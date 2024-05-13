@@ -26,4 +26,9 @@ sound/music/theend.ogg
 sound/music/flyinghigh.ogg
 sound/music/samsara.ogg
 sound/music/twilight.ogg
-modular_splurt/sound/music/hongkong.ogg
+modular_splurt/sound/music/house_of_the_barlim.ogg
+modular_splurt/sound/music/medic!.ogg
+modular_splurt/sound/music/moskau.ogg
+modular_splurt/sound/music/rap_do_carlinhos.ogg
+modular_splurt/sound/music/sogra_desgraçada.ogg
+modular_splurt/sound/music/tropa _do_bx.ogg
