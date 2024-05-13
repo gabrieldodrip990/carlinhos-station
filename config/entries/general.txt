@@ -1,5 +1,5 @@
 ## Lobby time: This is the amount of time between rounds that players have to setup their characters and be ready.
-LOBBY_COUNTDOWN 120
+LOBBY_COUNTDOWN 300
 
 ## Round End Time: This is the amount of time after the round ends that players have to murder death kill each other.
 ROUND_END_COUNTDOWN 90
@@ -290,12 +290,12 @@ ROUNDSTART_RACES human
 ## Races that are strictly worse than humans that could probably be turned on without balance concerns
 ROUNDSTART_RACES lizard
 ROUNDSTART_RACES synthliz
-#ROUNDSTART_RACES fly
-#ROUNDSTART_RACES insect
+ROUNDSTART_RACES fly
+ROUNDSTART_RACES insect
 ROUNDSTART_RACES plasmaman
 #ROUNDSTART_RACES shadow
 ROUNDSTART_RACES felinid
-#ROUNDSTART_RACES dwarf
+ROUNDSTART_RACES dwarf
 ROUNDSTART_RACES ethereal
 
 ## Races that are better than humans in some ways, but worse in others
@@ -311,8 +311,8 @@ ROUNDSTART_RACES ethereal
 #ROUNDSTART_RACES synth
 
 ## Races that are straight upgrades. If these are on expect powergamers to always pick them
-#ROUNDSTART_RACES skeleton
-#ROUNDSTART_RACES zombie
+ROUNDSTART_RACES skeleton
+ROUNDSTART_RACES zombie
 #ROUNDSTART_RACES slime
 #ROUNDSTART_RACES pod
 #ROUNDSTART_RACES military_synth
