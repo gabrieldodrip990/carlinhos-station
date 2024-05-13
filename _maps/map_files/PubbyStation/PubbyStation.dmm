@@ -3085,6 +3085,7 @@
 "akc" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/stripes/line,
+/obj/structure/guillotine,
 /turf/open/floor/plating,
 /area/security/execution/transfer)
 "akd" = (
@@ -6592,6 +6593,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/hypnochair,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "aut" = (
@@ -12981,6 +12983,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
+/obj/machinery/cryptominer/nanotrasen,
 /turf/open/floor/plasteel,
 /area/cargo/warehouse)
 "aNR" = (
@@ -49959,6 +49962,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"fCj" = (
+/obj/machinery/computer/arcade/amputation/festive,
+/turf/open/floor/plasteel,
+/area/cargo/warehouse)
 "fEI" = (
 /obj/machinery/vending/cola/random,
 /turf/open/floor/plasteel,
@@ -50223,6 +50230,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/service/kitchen)
+"gaR" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/jukebox,
+/turf/open/floor/plasteel/dark,
+/area/service/bar)
 "gaS" = (
 /obj/machinery/light{
 	dir = 8
@@ -52223,6 +52244,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"igJ" = (
+/obj/structure/closet/crate/secure/weapon,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "ihj" = (
 /obj/item/clothing/suit/toggle/labcoat/science,
 /turf/open/floor/plating,
@@ -55740,6 +55765,10 @@
 	},
 /turf/open/floor/plating,
 /area/security/brig)
+"mee" = (
+/obj/machinery/food_cart,
+/turf/open/floor/plasteel/showroomfloor,
+/area/service/kitchen)
 "meF" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
@@ -60848,6 +60877,10 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/commons/fitness)
+"rCd" = (
+/obj/machinery/nuclearbomb/beer,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "rCv" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/machinery/airalarm{
@@ -87584,7 +87617,7 @@ ahn
 alx
 aqB
 aiF
-aiF
+igJ
 pKD
 dke
 fCb
@@ -95335,7 +95368,7 @@ aRN
 aRN
 aTZ
 aSK
-aSK
+mee
 aRN
 aRN
 bgk
@@ -97917,7 +97950,7 @@ bex
 bfr
 bgq
 aJI
-aDZ
+rCd
 bih
 bjh
 bki
@@ -98424,7 +98457,7 @@ aPE
 aPE
 aZa
 bah
-bag
+gaR
 bah
 bdw
 bey
@@ -108178,7 +108211,7 @@ aKk
 aLh
 aMv
 aNQ
-aNO
+fCj
 aQg
 aNP
 cDa
