@@ -13855,8 +13855,8 @@
 /turf/open/floor/plasteel,
 /area/cargo/warehouse)
 "bcU" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
+/obj/structure/chair/wood/normal,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "bcV" = (
 /obj/machinery/airalarm{
@@ -36887,12 +36887,10 @@
 /turf/open/floor/plasteel,
 /area/engineering/main)
 "cjn" = (
-/obj/structure/chair/wood/normal{
-	dir = 4
-	},
-/obj/effect/landmark/blobstart,
-/turf/open/floor/wood,
-/area/maintenance/bar)
+/obj/structure/table/glass,
+/obj/item/restraints/handcuffs/fake/kinky,
+/turf/open/floor/carpet/red,
+/area/service/abandoned_gambling_den)
 "cjo" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/plasteel,
@@ -41079,9 +41077,10 @@
 /turf/open/space,
 /area/space/nearstation)
 "cxo" = (
-/obj/structure/chair/wood/normal,
-/turf/open/floor/wood,
-/area/maintenance/bar)
+/obj/structure/table/glass,
+/obj/item/melee/baton/stunsword,
+/turf/open/floor/carpet/red,
+/area/service/abandoned_gambling_den)
 "cxC" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -43663,9 +43662,9 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison/upper)
 "dfL" = (
-/obj/structure/reagent_dispensers/keg/gargle,
-/turf/open/floor/wood,
-/area/maintenance/bar)
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/rust,
+/area/maintenance/starboard/aft)
 "dgq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/firedoor,
@@ -43849,7 +43848,7 @@
 /area/security/prison/upper)
 "dxF" = (
 /obj/machinery/gear_painter,
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "dxN" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
@@ -44167,7 +44166,7 @@
 	name = "Abandoned Gambling Den APC";
 	pixel_y = -23
 	},
-/turf/open/floor/wood/wood_large,
+/turf/open/floor/carpet/red,
 /area/service/abandoned_gambling_den)
 "dJp" = (
 /obj/structure/sign/painting/library{
@@ -44204,9 +44203,10 @@
 /turf/closed/wall,
 /area/maintenance/bar)
 "dKV" = (
-/obj/structure/chair/stool/bar,
-/turf/open/floor/wood,
-/area/maintenance/bar)
+/obj/structure/table/glass,
+/obj/item/bdsm_whip,
+/turf/open/floor/carpet/red,
+/area/service/abandoned_gambling_den)
 "dLl" = (
 /obj/item/stack/rods,
 /turf/open/space,
@@ -44319,6 +44319,10 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard/aft)
+"dPc" = (
+/obj/structure/table/glass,
+/turf/open/floor/carpet/red,
+/area/service/abandoned_gambling_den)
 "dPq" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -44569,7 +44573,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/wood/wood_large,
+/turf/open/floor/carpet/red,
 /area/service/abandoned_gambling_den)
 "ecW" = (
 /obj/effect/turf_decal/tile/red{
@@ -46280,10 +46284,9 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "fxa" = (
-/obj/structure/chair/wood/normal,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/keg,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "fxk" = (
 /obj/structure/cable/white{
@@ -46562,7 +46565,8 @@
 	dir = 1;
 	pixel_y = -22
 	},
-/turf/open/floor/wood/wood_large,
+/obj/machinery/research_table,
+/turf/open/floor/carpet/red,
 /area/service/abandoned_gambling_den)
 "fJM" = (
 /obj/effect/turf_decal/tile/red{
@@ -47471,7 +47475,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "gBC" = (
 /obj/effect/turf_decal/tile/red{
@@ -47862,7 +47866,7 @@
 /obj/structure/chair/wood/normal{
 	dir = 4
 	},
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "gMD" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
@@ -47975,7 +47979,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/turf/open/floor/wood/wood_large,
+/turf/open/floor/carpet/red,
 /area/service/abandoned_gambling_den)
 "gRr" = (
 /obj/structure/chair/sofa/corp/right{
@@ -49236,7 +49240,8 @@
 /turf/open/floor/wood/wood_diagonal,
 /area/security/prison/upper)
 "iiW" = (
-/turf/open/floor/wood,
+/obj/machinery/vending/kink,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "ijk" = (
 /obj/structure/table,
@@ -49595,7 +49600,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "iAb" = (
 /obj/structure/chair/comfy/black{
@@ -50664,11 +50669,9 @@
 /area/service/bar)
 "jqv" = (
 /obj/structure/chair/wood/normal{
-	dir = 1
+	dir = 8
 	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
-	},
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "jrD" = (
 /obj/machinery/camera{
@@ -51147,7 +51150,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/port/aft)
 "jKj" = (
 /obj/structure/table,
@@ -51599,7 +51602,7 @@
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
-/turf/open/floor/wood/wood_large,
+/turf/open/floor/carpet/red,
 /area/service/abandoned_gambling_den)
 "jZI" = (
 /obj/effect/turf_decal/delivery,
@@ -51667,10 +51670,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/airlock/maintenance/abandoned{
-	id_tag = "abandonmaint1";
-	req_access_txt = "12"
-	},
 /obj/machinery/button/door{
 	id = "abandonmaint1";
 	name = "Door Bolt Control";
@@ -51678,7 +51677,8 @@
 	pixel_x = -25;
 	specialfunctions = 4
 	},
-/turf/open/floor/wood/wood_large,
+/obj/machinery/door/airlock/gold,
+/turf/open/floor/carpet/red,
 /area/maintenance/starboard/fore)
 "kdn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -52132,8 +52132,9 @@
 /turf/open/pool,
 /area/commons/fitness/recreation)
 "kyF" = (
-/obj/effect/landmark/xeno_spawn,
-/turf/open/floor/wood,
+/obj/structure/table/wood,
+/obj/structure/reagent_dispensers/keg/gargle,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "kyL" = (
 /obj/machinery/door/airlock/external{
@@ -53137,13 +53138,12 @@
 /turf/closed/wall,
 /area/maintenance/prison/aft)
 "lnu" = (
-/obj/structure/chair/wood/normal{
-	dir = 4
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/maintenance/bar)
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "lpQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/spawner/structure/window/reinforced,
@@ -53572,7 +53572,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "lJX" = (
-/turf/open/floor/wood/wood_large,
+/turf/open/floor/carpet/red,
 /area/service/abandoned_gambling_den)
 "lKj" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -53615,7 +53615,7 @@
 	dir = 4;
 	light_color = "#e8eaff"
 	},
-/turf/open/floor/wood/wood_large,
+/turf/open/floor/carpet/red,
 /area/service/abandoned_gambling_den)
 "lNm" = (
 /obj/structure/cable{
@@ -54256,9 +54256,7 @@
 /area/engineering/break_room)
 "mpI" = (
 /obj/structure/table/wood,
-/turf/open/floor/wood{
-	icon_state = "wood-broken5"
-	},
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "mqo" = (
 /obj/effect/turf_decal/tile/blue{
@@ -54287,8 +54285,8 @@
 /turf/open/floor/plating,
 /area/maintenance/bar)
 "mrR" = (
-/obj/effect/spawner/lootdrop/keg,
-/turf/open/floor/wood,
+/obj/machinery/chem_dispenser,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "msp" = (
 /obj/machinery/computer/arcade/orion_trail,
@@ -54660,7 +54658,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/service/library)
 "mLS" = (
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/blobstart,
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -54740,7 +54738,7 @@
 "mPE" = (
 /obj/machinery/chem_dispenser/drinks,
 /obj/structure/table/wood,
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "mPM" = (
 /obj/machinery/airalarm{
@@ -55035,7 +55033,7 @@
 /area/hallway/primary/port)
 "nfm" = (
 /obj/machinery/vending/autodrobe,
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "nfo" = (
 /obj/structure/disposalpipe/trunk{
@@ -56825,6 +56823,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison/cells)
+"oIB" = (
+/obj/structure/chair/comfy/brown,
+/turf/open/floor/carpet/red,
+/area/service/abandoned_gambling_den)
 "oJV" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -56835,10 +56837,7 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "oKh" = (
-/obj/structure/chair/wood/normal{
-	dir = 8
-	},
-/turf/open/floor/wood,
+/turf/open/floor/light/colour_cycle,
 /area/maintenance/bar)
 "oLk" = (
 /obj/machinery/door/airlock/grunge{
@@ -57192,8 +57191,10 @@
 /turf/open/floor/carpet,
 /area/commons/dorms)
 "piq" = (
-/obj/effect/landmark/start/stowaway,
-/turf/open/floor/wood/wood_large,
+/obj/structure/chair/comfy/brown{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
 /area/service/abandoned_gambling_den)
 "pjg" = (
 /obj/structure/table/wood,
@@ -57736,6 +57737,10 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"pDI" = (
+/obj/machinery/jukebox/disco,
+/turf/open/floor/light/colour_cycle,
+/area/maintenance/bar)
 "pEi" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -60980,9 +60985,8 @@
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard/aft)
 "sAM" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+/obj/machinery/chem_master,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "sBi" = (
 /obj/machinery/button/door{
@@ -60991,7 +60995,8 @@
 	pixel_x = -6;
 	pixel_y = 24
 	},
-/turf/open/floor/wood/wood_large,
+/obj/machinery/vending/sovietvend,
+/turf/open/floor/carpet/red,
 /area/service/abandoned_gambling_den)
 "sBl" = (
 /obj/machinery/door/window/southleft{
@@ -61065,7 +61070,7 @@
 /obj/machinery/light_switch{
 	pixel_y = -25
 	},
-/turf/open/floor/wood/wood_large,
+/turf/open/floor/carpet/red,
 /area/service/abandoned_gambling_den)
 "sEp" = (
 /obj/effect/turf_decal/tile/bar,
@@ -61091,10 +61096,11 @@
 /turf/open/floor/plasteel,
 /area/commons/fitness)
 "sEt" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
+/obj/structure/chair/comfy/brown{
+	dir = 8
 	},
-/area/maintenance/bar)
+/turf/open/floor/carpet/red,
+/area/service/abandoned_gambling_den)
 "sED" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 4
@@ -61453,7 +61459,7 @@
 /area/cargo/office)
 "sRT" = (
 /obj/machinery/vending/cola/random,
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "sSb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -61859,9 +61865,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "tkU" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken5"
-	},
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "tmx" = (
 /obj/effect/turf_decal/tile/red{
@@ -62610,7 +62614,7 @@
 "tPT" = (
 /obj/machinery/chem_dispenser/drinks/beer,
 /obj/structure/table/wood,
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "tPX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -62646,7 +62650,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "tRZ" = (
 /obj/structure/table/wood,
@@ -62924,7 +62928,7 @@
 	pixel_x = -26;
 	pixel_y = 26
 	},
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "ubg" = (
 /obj/structure/bookcase/random/religion,
@@ -63298,7 +63302,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "ute" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -63344,7 +63348,7 @@
 /area/security/prison/upper)
 "uvZ" = (
 /obj/structure/mineral_door/wood,
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "uwN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -63406,7 +63410,6 @@
 /area/maintenance/starboard/aft)
 "uzm" = (
 /obj/effect/decal/cleanable/vomit/old,
-/obj/effect/landmark/blobstart,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -63779,7 +63782,7 @@
 	pixel_x = -25;
 	specialfunctions = 4
 	},
-/turf/open/floor/wood/wood_large,
+/turf/open/floor/carpet/red,
 /area/service/abandoned_gambling_den)
 "uUP" = (
 /obj/structure/cable/white,
@@ -64119,7 +64122,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "vkt" = (
 /obj/structure/chair/comfy/black{
@@ -64513,7 +64516,7 @@
 /obj/structure/chair/wood/normal{
 	dir = 1
 	},
-/turf/open/floor/wood,
+/turf/open/floor/festive/wooden/wooden1,
 /area/maintenance/bar)
 "vAj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
@@ -65939,6 +65942,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison/upper)
+"wBy" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/service/abandoned_gambling_den)
 "wBQ" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -66713,9 +66722,7 @@
 /area/engineering/gravity_generator)
 "xgF" = (
 /obj/structure/chair/stool/bar,
-/turf/open/floor/wood{
-	icon_state = "wood-broken5"
-	},
+/turf/open/floor/light/colour_cycle,
 /area/maintenance/bar)
 "xhS" = (
 /obj/effect/turf_decal/stripes/line,
@@ -67468,6 +67475,10 @@
 	},
 /turf/open/space,
 /area/solars/starboard/fore)
+"xSD" = (
+/obj/effect/landmark/start/stowaway,
+/turf/open/floor/plating,
+/area/maintenance/department/electrical)
 "xSW" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -88921,7 +88932,7 @@ bQa
 bHE
 bHE
 bHE
-bHE
+bHC
 bHE
 bHE
 bHE
@@ -89937,7 +89948,7 @@ bCq
 bCq
 sXA
 mPE
-kyF
+tkU
 sAM
 imH
 evR
@@ -90190,12 +90201,12 @@ bHE
 cTF
 bHE
 bCq
-iiW
-iiW
-iiW
-iiW
-iiW
-dfL
+tkU
+tkU
+tkU
+tkU
+tkU
+tkU
 dKP
 mqZ
 tur
@@ -90450,9 +90461,9 @@ bCq
 uvZ
 dKP
 vjm
-bcU
-bcU
-bcU
+fxa
+mpI
+kyF
 dKP
 dKP
 dKP
@@ -90704,18 +90715,18 @@ bLu
 bCq
 bHE
 bCq
-iiW
-iiW
-dKV
+tkU
+tkU
 xgF
-dKV
-dKV
-iiW
-gMl
+xgF
+xgF
+xgF
+oKh
+tkU
 gMl
 iiW
 bLv
-bUs
+lnu
 bLv
 aaf
 cjJ
@@ -90963,13 +90974,13 @@ bUt
 bCq
 uaw
 tkU
-iiW
-lnu
-cjn
-iiW
-cxo
+oKh
+oKh
+oKh
+oKh
+oKh
 bcU
-bcU
+mpI
 vzO
 bLv
 bUs
@@ -91219,12 +91230,12 @@ bLv
 uuG
 jJF
 gBo
-sEt
-cxo
-bcU
-bcU
-jqv
-cxo
+tkU
+oKh
+oKh
+pDI
+oKh
+oKh
 bcU
 mpI
 vzO
@@ -91475,16 +91486,16 @@ aaf
 bLv
 bUs
 bCq
-iiW
-iiW
-fxa
-bcU
-bcU
-vzO
-iiW
+tkU
+tkU
 oKh
 oKh
-iiW
+oKh
+oKh
+oKh
+tkU
+jqv
+tkU
 bLv
 bUs
 bLv
@@ -91734,11 +91745,11 @@ bUs
 bCq
 sRT
 usO
-iiW
 oKh
 oKh
-iiW
-iiW
+oKh
+oKh
+oKh
 dxF
 izv
 nfm
@@ -113765,8 +113776,8 @@ aaa
 aaa
 wKe
 lJX
-lJX
-lJX
+wBy
+wBy
 lJX
 sEo
 asB
@@ -114021,9 +114032,9 @@ aaa
 aaa
 aaa
 wKe
-lJX
-lJX
-lJX
+oIB
+dKV
+cxo
 piq
 dIz
 asB
@@ -114278,10 +114289,10 @@ aaa
 aaa
 aaa
 nsA
-lJX
-lJX
-lJX
-lJX
+oIB
+dPc
+cjn
+piq
 lJX
 asB
 atC
@@ -114536,14 +114547,14 @@ aaa
 aaa
 wKe
 lJX
-lJX
-lJX
+sEt
+sEt
 lJX
 lJX
 asB
 atE
 auI
-auI
+xSD
 awT
 avM
 azv
@@ -120004,7 +120015,7 @@ cOe
 wVN
 pYQ
 mLS
-qIO
+dfL
 qSF
 lUP
 tTc
