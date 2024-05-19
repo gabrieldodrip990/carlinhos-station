@@ -9,5 +9,5 @@
 ###############################################################################################
 
 Gabriel_do_drip = Host
-Cachorro11 = Game Master
+Cachorro11 = GameMaster
 Kajekai = Badmin
