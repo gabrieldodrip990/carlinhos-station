@@ -24,6 +24,16 @@
 /// Unique code-facing identifier for this track
 #define TRACK_ID 4
 
+// Track data
+/// Name of the track
+#define TRACK_NAME 1
+/// Length of the track (in deciseconds)
+#define TRACK_LENGTH 2
+/// BPM of the track (in deciseconds)
+#define TRACK_BEAT 3
+/// Unique code-facing identifier for this track
+#define TRACK_ID 4
+
 
 SUBSYSTEM_DEF(jukeboxes)
 	name = "Jukeboxes"
