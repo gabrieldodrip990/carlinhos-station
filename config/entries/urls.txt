@@ -3,10 +3,10 @@
 # SERVER ss13.example.com:2506
 
 ## forum address
-# DISCORDURL https://discord.gg
+# DISCORDURL https://discord.gg/X79H58uygw
 
 ## Wiki address
-WIKIURL http://splurtstation.sytes.net/wiki/index.php
+WIKIURL http://64.20.39.142/wiki/index.php/Main_Page
 
 ## Wiki address of upstream
 WIKIURLTG http://www.tgstation13.org/wiki

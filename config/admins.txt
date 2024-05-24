@@ -10,4 +10,5 @@
 
 Gabriel_do_drip = Host
 Cachorro11 = GameMaster
+Argentinogostoso = GameMaster
 Kajekai = Badmin
