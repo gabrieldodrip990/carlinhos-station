@@ -12,17 +12,6 @@
 #define JUKE_BOX 3
 #define JUKE_FALLOFF 4
 #define JUKE_SOUND 5
-#define SOUND_JUKEBOXES 6
-
-// Track data
-/// Name of the track
-#define TRACK_NAME 1
-/// Length of the track (in deciseconds)
-#define TRACK_LENGTH 2
-/// BPM of the track (in deciseconds)
-#define TRACK_BEAT 3
-/// Unique code-facing identifier for this track
-#define TRACK_ID 4
 
 // Track data
 /// Name of the track
@@ -38,7 +27,6 @@
 SUBSYSTEM_DEF(jukeboxes)
 	name = "Jukeboxes"
 	wait = 5
-	priority = FIRE_PRIORITY_SOUND_LOOPS
 	var/list/songs = list()
 	var/list/activejukeboxes = list()
 	var/list/freejukeboxchannels = list()
@@ -57,17 +45,17 @@ SUBSYSTEM_DEF(jukeboxes)
 	song_beat = beat
 	song_associated_id = assocID
 
-/datum/controller/subsystem/jukeboxes/proc/addjukebox(obj/jukebox, datum/track/T, jukefalloff = 1, one_area_play = FALSE) //BLUEMOON EDIT
+/datum/controller/subsystem/jukeboxes/proc/addjukebox(obj/jukebox, datum/track/T, jukefalloff = 1, area_limited = FALSE) //SPLURT EDIT ADDITION: area_limited
 	if(!istype(T))
 		CRASH("[src] tried to play a song with a nonexistant track")
 	var/channeltoreserve = pick(freejukeboxchannels)
 	if(!channeltoreserve)
 		return FALSE
-	//BLUEMOON ADD START
+	//SPLURT ADDITION START
 	var/area_play
-	if(one_area_play)
+	if(area_limited)
 		area_play = get_area(jukebox)
-	//BLUEMOON ADD END
+	//SPLURT ADDITION END
 	var/sound/song_to_init = sound(T.song_path)
 	freejukeboxchannels -= channeltoreserve
 	var/list/youvegotafreejukebox = list(T, channeltoreserve, jukebox, jukefalloff, song_to_init)
@@ -85,12 +73,12 @@ SUBSYSTEM_DEF(jukeboxes)
 	for(var/mob/M in GLOB.player_list)
 		if(!M.client)
 			continue
-		if(!(M.client.prefs.toggles & SOUND_JUKEBOXES))
+		if(!(M.client.prefs.toggles & SOUND_INSTRUMENTS))
 			continue
-		//BLUEMOON ADD START
-		if(one_area_play && get_area(M) != area_play)
+		//SPLURT ADDITION START
+		if(area_limited && get_area(M) != area_play)
 			continue
-		//BLUEMOON ADD END
+		//SPLURT ADDITION END
 
 		SEND_SOUND(M, song_to_init)
 	return activejukeboxes.len
@@ -132,7 +120,7 @@ SUBSYSTEM_DEF(jukeboxes)
 	var/list/tracks = flist("config/jukebox_music/sounds/")
 	//SPLURT EDIT
 	var/max_tracks = CONFIG_GET(number/max_jukebox_songs)
-	if(max_tracks >= 0)
+	if(max_tracks >= 500)
 		while(tracks.len > max_tracks)
 			LAZYREMOVE(tracks, pick(tracks))
 	//SPLURT EDIT END
@@ -200,15 +188,11 @@ SUBSYSTEM_DEF(jukeboxes)
 			stack_trace("Invalid jukebox track datum.")
 			continue
 		var/obj/jukebox = jukeinfo[JUKE_BOX]
-		var/turf/jukebox_loc = jukebox.loc
 		if(!istype(jukebox))
 			stack_trace("Nonexistant or invalid object associated with jukebox.")
 			continue
 
-		if(!jukebox_loc)
-			return
-
-		var/list/audible_zlevels = get_multiz_accessible_levels(jukebox_loc.z) //TODO - for multiz refresh, this should use the cached zlevel connections var in SSMapping. For now this is fine!
+		var/list/audible_zlevels = get_multiz_accessible_levels(jukebox.z) //TODO - for multiz refresh, this should use the cached zlevel connections var in SSMapping. For now this is fine!
 
 		var/sound/song_played = jukeinfo[JUKE_SOUND]
 		var/turf/currentturf = get_turf(jukebox)
@@ -232,7 +216,7 @@ SUBSYSTEM_DEF(jukeboxes)
 		for(var/mob/M in GLOB.player_list)
 			if(!M.client)
 				continue
-			if(!(M.client.prefs.toggles & SOUND_JUKEBOXES))
+			if(!(M.client.prefs.toggles & SOUND_INSTRUMENTS))
 				M.stop_sound_channel(jukeinfo[JUKE_CHANNEL])
 				continue
 
@@ -244,6 +228,7 @@ SUBSYSTEM_DEF(jukeboxes)
 				hearer_env = (istype(hearerturf) ? hearerturf.return_air() : null)
 				if(istype(hearer_env))
 					pressure_factor = min(source_pressure, hearer_env.return_pressure())
+
 				if(pressure_factor && targetfalloff && M.can_hear() && (hearerturf.z in audible_zlevels))
 					if(get_area(hearerturf) == currentarea)
 						inrange = TRUE
@@ -274,4 +259,3 @@ SUBSYSTEM_DEF(jukeboxes)
 #undef JUKE_BOX
 #undef JUKE_FALLOFF
 #undef JUKE_SOUND
-#undef SOUND_JUKEBOXES

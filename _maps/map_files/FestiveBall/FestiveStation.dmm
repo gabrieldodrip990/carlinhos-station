@@ -20208,7 +20208,7 @@
 /area/commons/fitness/recreation)
 "baF" = (
 /obj/structure/table/wood,
-/obj/item/slapper,
+/obj/item/hand_item/slapper,
 /turf/open/floor/plasteel/dark,
 /area/commons/fitness/recreation)
 "baG" = (
@@ -23000,7 +23000,7 @@
 /area/commons/fitness/recreation)
 "biJ" = (
 /obj/structure/table/wood,
-/obj/item/slapper,
+/obj/item/hand_item/slapper,
 /obj/effect/decal/festive/fairylights,
 /turf/open/floor/carpet/arcade,
 /area/commons/fitness/recreation)
