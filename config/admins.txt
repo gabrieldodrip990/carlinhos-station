@@ -8,7 +8,9 @@
 # NOTE: syntax was changed to allow hyphenation of ranknames, since spaces are stripped.      #
 ###############################################################################################
 
-Gabriel_do_drip = Host
-Cachorro11 = GameMaster
-Argentinogostoso = GameMaster
-Kajekai = Badmin
+Gabriel_do_drip	= Host
+GhostX25 		= GameMasterModerador
+Cachorro11 		= GameMaster
+argentinogostoso	= GameMaster
+kajekai			= GameMaster
+FidgetyBacchus	= GameAdmin
