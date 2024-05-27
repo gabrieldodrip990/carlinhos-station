@@ -8,13 +8,13 @@ RESPAWN_DELAY 0.1
 RESPAWN_DELAY_CRYO 0.1
 
 ## Allow respawning as anything but an assistant.
-ALLOW_NON_ASSISTANT_RESPAWN
+#ALLOW_NON_ASSISTANT_RESPAWN
 
 ## Allow respawning as security and command. Only works if ALLOW_NON_ASSISTANT_RESPAWN is on.
 ALLOW_COMBAT_ROLE_RESPAWN
 
 ## Allow respawning as the same character
-ALLOW_SAME_CHARACTER_RESPAWN
+#ALLOW_SAME_CHARACTER_RESPAWN
 
 ## Observing is considered a respawn for the purposes of role lockouts. Defaults to disabled. When disabled, only RESPAWNING rather than returning from observer locks you out.
 #RESPAWN_PENALTY_INCLUDES_OBSERVE
