@@ -19,7 +19,7 @@ WEIGHTED_STATION_TRAITS
 # Configures tha amount of rounds that need to pass from the previous delam for another to happen again
 # If commented or 0 will enable delaminations every round
 # If -1 disables delams indefinitely
-#SM_DELAMINATION_COOLDOWN 0
+SM_DELAMINATION_COOLDOWN 0
 
 # Protolathe access
 # Comment to make protolathes and mechfabs use their access locks
