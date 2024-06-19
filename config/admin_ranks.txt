@@ -41,7 +41,7 @@ Trial Admin				= +@ +SPAWN +VAREDIT +BAN
 Badmin					= +@ +POSSESS +POLL +BUILDMODE +SERVER +FUN
 Game Admin				= +@ +STEALTH +SOUNDS +DEBUG
 Game Master				= +EVERYTHING *EVERYTHING
-Game Master Moderador	= +EVERYTHING -AUTOLOGIN *EVERYTHING
+Game Master Moderador	= +EVERYTHING *EVERYTHING
 
 Host					= +EVERYTHING *EVERYTHING
 
