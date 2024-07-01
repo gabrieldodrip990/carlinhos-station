@@ -11,4 +11,7 @@
 Gabriel_do_drip		= Host
 GhostX25 			= GameMasterModerador
 kajekai				= GameMaster
+argentinogostoso		= GameMaster
 Memerson1337		= Badmin
+Jesse mller			= Badmin
+FidgetyBacchus		= Badmin
