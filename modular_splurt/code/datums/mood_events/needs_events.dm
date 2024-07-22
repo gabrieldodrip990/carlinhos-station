@@ -6,8 +6,8 @@
 	description = span_nicegreen("MORE FOOD!!! MORE FOOD!!! MORE FOOD!!!\n")
 	mood_change = 8
 
-/datum/mood_event/cum_craving
-	description = span_warning("I... NEED... CUM...\n")
+/datum/mood_event/cum_craving //edição em homenagem ao manlekvf
+	description = span_warning("I... NEED... CUM... DENTRO DE UMA CRIANÇA!\n")
 	mood_change = -20
 
 /datum/mood_event/cum_stuffed
