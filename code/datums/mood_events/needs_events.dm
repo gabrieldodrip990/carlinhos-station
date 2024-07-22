@@ -1,6 +1,6 @@
 //nutrition
 /datum/mood_event/fat
-	description = "<span class='warning'><B>I'm so fat...</B></span>\n" //muh fatshaming
+	description = "<span class='warning'><B>Eu estou gordo que nem o Manlekvf o estuprador de criancas...</B></span>\n" //muh fatshaming
 	mood_change = -4
 
 /datum/mood_event/wellfed
@@ -19,25 +19,25 @@
 	description = "<span class='boldwarning'>I'm starving!</span>\n"
 	mood_change = -15
 
-//charge
+//charge PEDOFILA DO MANLEKVF
 /datum/mood_event/supercharged
-	description = "<span class='boldwarning'>I can't possibly keep all this power inside, I need to release some quick!</span>\n"
+	description = "<span class='boldwarning'>EU NÃO CONSIGO NÃO ABUSAR DE UMA CRIANCA, EU TENHO QUE ABUSAR DE UMA CRIANÇA!</span>\n"
 	mood_change = -10
 
 /datum/mood_event/overcharged
-	description = "<span class='warning'>I feel dangerously overcharged, perhaps I should release some power.</span>\n"
+	description = "<span class='warning'>Eu estou com muito tesão em crianças, devo abusar de alguma.</span>\n"
 	mood_change = -4
 
 /datum/mood_event/charged
-	description = "<span class='nicegreen'>I feel the power in my veins!</span>\n"
+	description = "<span class='nicegreen'>EU SINTO A PORNOGRAFIA INFANTIL NAS MINHAS VEIAS!</span>\n"
 	mood_change = 6
 
 /datum/mood_event/lowpower
-	description = "<span class='warning'>My power is running low, I should go charge up somewhere.</span>\n"
+	description = "<span class='warning'>Meu CP está baixo, precisso baixar mais CP.</span>\n"
 	mood_change = -6
 
 /datum/mood_event/decharged
-	description = "<span class='boldwarning'>I'm in desperate need of some electricity!</span>\n"
+	description = "<span class='boldwarning'>eu precisso muito de CP ou eu vou descarregar!</span>\n"
 	mood_change = -10
 
 //Disgust
