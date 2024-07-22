@@ -10,16 +10,7 @@
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
 /*.so
 
-#Ignore compiled files and other files generated during compilation.
-*.mdme
-*.mdme.*
-*.dmb
-*.rsc
-*.m.dme
-*.test.dme
-*.lk
-*.int
-*.backup
+# Não eu precisso desses
 ### https://raw.github.com/github/gitignore/cc542de017c606138a87ee4880e5f06b3a306def/Global/Linux.gitignore
 
 *~
@@ -79,7 +70,7 @@ coverage.xml
 *.pot
 
 # Django stuff:
-*.log
+# precisso ver esse log para confirmar que tá tudo ok.
 
 # Scrapy stuff:
 .scrapy
@@ -159,12 +150,7 @@ Temporary Items
 *.sublime-project
 *.sublime-workspace
 
-#Visual studio stuff
-*.vscode/*
-/tools/MapAtmosFixer/MapAtmosFixer/obj/*
-/tools/MapAtmosFixer/MapAtmosFixer/bin/*
-/tools/CreditsTool/bin/*
-/tools/CreditsTool/obj/*
+#Visual studio stuff EU USO ESSES!
 
 #GitHub Atom
 .atom-build.json
@@ -193,5 +179,4 @@ Temporary Items
 tools/UnstandardnessTestForDM/UnstandardnessTestForDM/obj/x86/Debug/UnstandardnessTestForDM.csproj.AssemblyReference.cache
 tools/UnstandardnessTestForDM/UnstandardnessTestForDM/obj/x86/Debug/.NETFramework,Version=v4.0,Profile=Client.AssemblyAttributes.cs
 
-#Tracy profiler DLL
-/prof.dll
+#Deixa o tracy pq eu quero mudar um pouco esse DLL para deixar melhor
