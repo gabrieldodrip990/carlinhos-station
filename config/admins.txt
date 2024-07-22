@@ -8,4 +8,8 @@
 # NOTE: syntax was changed to allow hyphenation of ranknames, since spaces are stripped.      #
 ###############################################################################################
 
-yourckeygoeshere = Host
+Gabriel_do_drip 	= Host
+Manlekvf			= Game Master
+GhostX25 			= Game Master
+Memerson1337 		= Badmin
+jesse miller		= Badmin

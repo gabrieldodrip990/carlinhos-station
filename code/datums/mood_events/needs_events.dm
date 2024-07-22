@@ -1,43 +1,43 @@
 //nutrition
 /datum/mood_event/fat
-	description = "<span class='warning'><B>I'm so fat...</B></span>\n" //muh fatshaming
+	description = "<span class='warning'><B>eu estou tão gordo...</B></span>\n" //muh fatshaming
 	mood_change = -4
 
 /datum/mood_event/wellfed
-	description = "<span class='nicegreen'>I'm stuffed!</span>\n"
+	description = "<span class='nicegreen'>eu estou cheio!</span>\n"
 	mood_change = 6
 
 /datum/mood_event/fed
-	description = "<span class='nicegreen'>I have recently had some food.</span>\n"
+	description = "<span class='nicegreen'>eu recetemente comi um pouco.</span>\n"
 	mood_change = 3
 
 /datum/mood_event/hungry
-	description = "<span class='warning'>I'm getting a bit hungry.</span>\n"
+	description = "<span class='warning'>eu estou com um pouco de fome...</span>\n"
 	mood_change = -8
 
 /datum/mood_event/starving
-	description = "<span class='boldwarning'>I'm starving!</span>\n"
+	description = "<span class='boldwarning'>estou com tanta fome que eu pareço o caverinha!</span>\n"
 	mood_change = -15
 
-//charge
+//mudanças...
 /datum/mood_event/supercharged
-	description = "<span class='boldwarning'>I can't possibly keep all this power inside, I need to release some quick!</span>\n"
+	description = "<span class='boldwarning'>eu não posso deixar todo esse poder dentro de mim... eu preciso retirar ele rapido!</span>\n"
 	mood_change = -10
 
 /datum/mood_event/overcharged
-	description = "<span class='warning'>I feel dangerously overcharged, perhaps I should release some power.</span>\n"
+	description = "<span class='warning'>me sinto perigosamente sobrecarregado... talvez eu devesse esvasziar um pouco.</span>\n"
 	mood_change = -4
 
 /datum/mood_event/charged
-	description = "<span class='nicegreen'>I feel the power in my veins!</span>\n"
+	description = "<span class='nicegreen'>eu sinto o poder nas minhas veias!!</span>\n"
 	mood_change = 6
 
 /datum/mood_event/lowpower
-	description = "<span class='warning'>My power is running low, I should go charge up somewhere.</span>\n"
+	description = "<span class='warning'>minha energia esta descarregando, eu deveria recarregar em algum lugar.</span>\n"
 	mood_change = -6
 
 /datum/mood_event/decharged
-	description = "<span class='boldwarning'>I'm in desperate need of some electricity!</span>\n"
+	description = "<span class='boldwarning'>eu estou desesperado! eu preciso de alguma eletricidade!</span>\n"
 	mood_change = -10
 
 //Disgust

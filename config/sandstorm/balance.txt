@@ -56,7 +56,7 @@ AUTODOC_TIME_SURGERY_BASE 350
 BLUESPACEMINER_MULT_OUTPUT 1
 
 ## What is the minimum stock part tier to produce bluespace crystals?
-BLUESPACEMINER_CRYSTAL_TIER 5
+BLUESPACEMINER_CRYSTAL_TIER 3
 
 ###
 ## TETRIS
