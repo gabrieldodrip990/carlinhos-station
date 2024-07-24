@@ -34,7 +34,7 @@ apenas um simples server Br baseado no code S.P.L.U.R.T station 13.
 * **Patreon:** https://www.patreon.com/SPLURTstation13
 * **Ko-fi:** https://ko-fi.com/splurt
 
-**Carlinhos station information)
+**Carlinhos station information**
 * **Code:**
 https://github.com/gabrieldodrip990/carlinhos-station
 * **Discord:**
