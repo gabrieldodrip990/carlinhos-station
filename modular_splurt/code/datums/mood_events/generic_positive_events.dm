@@ -1,11 +1,11 @@
 /datum/mood_event/lewd_headpat
 	description = span_nicegreen("I love headpats so much!\n")
-	mood_change = 3
+	mood_change = 1
 	timeout = 2 MINUTES
 
 /datum/mood_event/qareen_bliss
 	description = span_umbra("So.. horny...\n")
-	mood_change = 5
+	mood_change = 2
 
 /datum/mood_event/qareen_bliss/add_effects()
 	description = span_umbra("Must.. breed. , [pick("Nngggghh", "Can't.. think.", "It feels so good.", "Need.. fuck.")]...\n")
@@ -45,14 +45,14 @@
 	mood_change = 1
 	hidden = TRUE
 
-//BUTT SLAP - TRAIT_JIGGLY_ASS
+//BUTT SLAP - TRAIT_JIGGLY_ASS - Eu vou assasinar os autistas que fizeram isso
 
 /datum/mood_event/butt_slap
 	description = span_love("Smacking that butt felt extremely satisfying!\n")
-	mood_change = 3
+	mood_change = 1 // por mim deixava 0, mas os travecos imundos não vão gostar
 	timeout = 2 MINUTES
 
 /datum/mood_event/butt_slapped
 	description = span_love("My jiggly butt was finally smacked, so satisfying!\n")
-	mood_change = 3
+	mood_change = 1 // por mim deixava 0, mas os travecos imundos não vão gostar
 	timeout = 2 MINUTES
