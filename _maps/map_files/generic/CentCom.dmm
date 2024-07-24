@@ -19541,7 +19541,6 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding)
 "SZ" = (
-/obj/machinery/research_table/slaver,
 /turf/open/floor/padded,
 /area/slavers)
 "Ta" = (
@@ -21786,7 +21785,6 @@
 /turf/open/floor/padded,
 /area/slavers)
 "ZN" = (
-/obj/machinery/research_table/slaver,
 /obj/machinery/button/door{
 	id = "slavers_cell4";
 	name = "privacy shutters";
