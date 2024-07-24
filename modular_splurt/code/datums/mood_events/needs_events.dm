@@ -12,5 +12,5 @@
 
 /datum/mood_event/cum_stuffed
 	description = span_nicegreen("The cum feels so good inside me!...\n")
-	mood_change = 8
+	mood_change = 4 //Porra?
 	timeout = 5 MINUTES
