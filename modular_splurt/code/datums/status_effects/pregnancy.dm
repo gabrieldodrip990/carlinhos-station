@@ -1,10 +1,11 @@
 /**
  * Who is the liar but he who denies that Jesus is the Christ? This is the antichrist, he who denies the Father and the Son.
  * - John 2:22
+baseado até, uma pena esse codigo é pura sodomia e pecado.
  */
 /atom/movable/screen/alert/status_effect/pregnancy
 	name = "Pregnant"
-	desc = "Welp, you sure are pregnant."
+	desc = "Welp, you sure are pregnant. (Vão ter uma vida, seus travecos)" // :(
 	icon = 'modular_splurt/icons/mob/screen_alert.dmi'
 	icon_state = "baby"
 
