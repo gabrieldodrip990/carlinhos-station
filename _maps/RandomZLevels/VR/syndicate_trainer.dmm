@@ -3,10 +3,10 @@
 /turf/open/space,
 /area/space)
 "ab" = (
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/maint)
 "ac" = (
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/cafe)
 "ad" = (
 /turf/closed/indestructible/fakeglass,
@@ -14,12 +14,18 @@
 "ag" = (
 /turf/open/indestructible,
 /area/awaymission/centcomAway/maint)
+"ah" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
 "ai" = (
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)
 "aj" = (
 /obj/machinery/vending/cigarette,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/cafe)
 "al" = (
 /obj/machinery/vending/dinnerware,
@@ -32,7 +38,7 @@
 "ao" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/cafe)
 "ap" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -66,11 +72,11 @@
 /area/awaymission/centcomAway/cafe)
 "au" = (
 /obj/machinery/hydroponics,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "av" = (
 /obj/item/reagent_containers/glass/bucket,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "ay" = (
 /obj/structure/table,
@@ -111,7 +117,7 @@
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/cafe)
 "aK" = (
 /obj/effect/spawner/structure/window/hollow/reinforced,
@@ -130,6 +136,10 @@
 	},
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)
+"aO" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
 "aP" = (
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/indestructible,
@@ -147,7 +157,7 @@
 /turf/closed/indestructible/fakeglass,
 /area/awaymission/centcomAway/maint)
 "aV" = (
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/hangar)
 "aW" = (
 /obj/structure/table/reinforced,
@@ -155,7 +165,7 @@
 /area/awaymission/centcomAway/cafe)
 "aY" = (
 /obj/structure/sink,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/cafe)
 "aZ" = (
 /obj/structure/table,
@@ -245,22 +255,22 @@
 /area/awaymission/centcomAway/cafe)
 "bu" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/turf/open/indestructible,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/cafe)
 "bw" = (
 /obj/machinery/chem_master/condimaster{
 	name = "CondiMaster Neo"
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "bx" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal/bin,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "bz" = (
 /obj/structure/closet/secure_closet/hydroponics,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "bA" = (
 /obj/structure/rack,
@@ -285,9 +295,13 @@
 	},
 /turf/open/indestructible,
 /area/awaymission/centcomAway/hangar)
+"bI" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/thunderdome)
 "bJ" = (
 /obj/structure/chair/comfy/brown,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/cafe)
 "bK" = (
 /obj/structure/reagent_dispensers/beerkeg,
@@ -295,11 +309,11 @@
 /area/awaymission/centcomAway/cafe)
 "bL" = (
 /obj/structure/kitchenspike,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "bM" = (
 /obj/machinery/gibber,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "bN" = (
 /obj/machinery/autolathe,
@@ -349,12 +363,14 @@
 "cb" = (
 /obj/item/paper_bin,
 /obj/structure/table,
-/turf/open/indestructible,
+/obj/structure/table/reinforced/brass,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/cafe)
 "cc" = (
 /obj/item/clipboard,
 /obj/structure/table,
-/turf/open/indestructible,
+/obj/structure/table/reinforced/brass,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/cafe)
 "cd" = (
 /obj/machinery/suit_storage_unit/standard_unit,
@@ -363,18 +379,18 @@
 "ce" = (
 /obj/effect/spawner/structure/window/hollow/reinforced,
 /obj/structure/disposalpipe/segment,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "cg" = (
 /obj/structure/sign/departments/botany,
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/cafe)
 "ch" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/plantbgone{
 	pixel_y = 3
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "cj" = (
 /obj/machinery/door/airlock/external,
@@ -397,23 +413,24 @@
 "co" = (
 /obj/item/pen,
 /obj/structure/table,
-/turf/open/indestructible,
+/obj/structure/table/reinforced/brass,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/cafe)
 "cq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "cr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "cv" = (
 /obj/structure/sign/warning/vacuum,
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/maint)
 "cx" = (
 /obj/machinery/door/airlock/maintenance,
@@ -421,25 +438,25 @@
 /area/awaymission/centcomAway/hangar)
 "cB" = (
 /obj/machinery/door/window/westleft,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "cE" = (
 /obj/machinery/seed_extractor,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "cF" = (
 /obj/machinery/vending/hydroseeds{
 	slogan_delay = 700
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "cG" = (
 /obj/machinery/vending/hydronutrients,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "cH" = (
 /obj/machinery/biogenerator,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "cJ" = (
 /obj/structure/table/reinforced,
@@ -483,11 +500,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "cT" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/neck/stethoscope,
+/obj/item/dnainjector/firebreath,
+/obj/structure/table/wood/fancy/blue,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "cU" = (
@@ -532,6 +551,11 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/hangar)
+"dh" = (
+/obj/item/storage/hypospraykit/enlarge,
+/obj/structure/table/wood/fancy/blue,
+/turf/open/indestructible,
+/area/awaymission/centcomAway/general)
 "dl" = (
 /obj/structure/table,
 /obj/item/storage/box/handcuffs,
@@ -581,7 +605,7 @@
 	dir = 1
 	},
 /obj/machinery/disposal/bin,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "dv" = (
 /obj/structure/closet/crate,
@@ -619,7 +643,8 @@
 "dC" = (
 /obj/structure/table,
 /obj/item/storage/fancy/donut_box,
-/turf/open/indestructible,
+/obj/structure/table/reinforced/brass,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/cafe)
 "dE" = (
 /obj/structure/sink/kitchen{
@@ -739,7 +764,7 @@
 /turf/open/indestructible,
 /area/awaymission/centcomAway/maint)
 "eH" = (
-/obj/machinery/sleeper{
+/obj/machinery/sleeper/syndie/fullupgrade{
 	dir = 8
 	},
 /turf/open/indestructible,
@@ -768,6 +793,8 @@
 "eM" = (
 /obj/structure/table/reinforced,
 /obj/item/extinguisher/mini,
+/obj/item/dnainjector/lasereyesmut,
+/obj/structure/table/wood/fancy/blue,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "eN" = (
@@ -778,6 +805,7 @@
 /area/awaymission/centcomAway/courtroom)
 "eP" = (
 /obj/machinery/computer/cloning,
+/obj/item/dnainjector/elvismut,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "eQ" = (
@@ -816,7 +844,7 @@
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "eY" = (
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/courtroom)
 "eZ" = (
 /obj/structure/table,
@@ -888,6 +916,16 @@
 /obj/machinery/power/terminal,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
+"fr" = (
+/obj/machinery/button/door{
+	pixel_x = -26;
+	id = "começar";
+	name = "começar luta"
+	},
+/turf/open/indestructible/cobble/corner{
+	dir = 8
+	},
+/area/awaymission/centcomAway/thunderdome)
 "ft" = (
 /obj/structure/sign/warning/electricshock,
 /turf/closed/indestructible/riveted,
@@ -910,7 +948,7 @@
 /area/awaymission/centcomAway/general)
 "fy" = (
 /obj/structure/sign/departments/medbay/alt,
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/general)
 "fA" = (
 /obj/structure/window/reinforced{
@@ -996,7 +1034,7 @@
 /area/awaymission/centcomAway/general)
 "fQ" = (
 /obj/structure/sign/departments/science,
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/general)
 "fR" = (
 /obj/machinery/door/window/eastright,
@@ -1238,7 +1276,7 @@
 /area/awaymission/centcomAway/general)
 "hi" = (
 /obj/structure/sign/warning/biohazard,
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/general)
 "hj" = (
 /obj/structure/table/reinforced,
@@ -1264,6 +1302,12 @@
 "hq" = (
 /turf/closed/indestructible/fakeglass,
 /area/awaymission/centcomAway/courtroom)
+"hr" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/middle{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
 "hx" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
@@ -1274,7 +1318,7 @@
 /area/awaymission/centcomAway/hangar)
 "hy" = (
 /obj/structure/sign/warning/securearea,
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/general)
 "hA" = (
 /obj/structure/sink{
@@ -1363,7 +1407,7 @@
 /area/awaymission/centcomAway/courtroom)
 "hU" = (
 /obj/structure/sign/warning/vacuum,
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/hangar)
 "hV" = (
 /obj/structure/bodycontainer/crematorium,
@@ -1571,6 +1615,8 @@
 /obj/structure/table/wood{
 	dir = 10
 	},
+/obj/item/melee/baton/stunsword/smithed,
+/obj/item/stock_parts/cell/bluespacereactor,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "jg" = (
@@ -1702,7 +1748,7 @@
 /area/awaymission/centcomAway/general)
 "jU" = (
 /obj/structure/sign/warning/vacuum,
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/general)
 "jX" = (
 /obj/structure/chair{
@@ -1807,8 +1853,8 @@
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "kK" = (
-/obj/machinery/door/airlock/external,
-/turf/open/indestructible,
+/obj/machinery/door/airlock/diamond/glass,
+/turf/open/indestructible/gold,
 /area/awaymission/centcomAway/general)
 "kN" = (
 /obj/structure/table/wood,
@@ -1829,8 +1875,12 @@
 /obj/item/clothing/accessory/medal/gold,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
+"kR" = (
+/obj/machinery/door/airlock/maintenance,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/maint)
 "kS" = (
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/riveted/boss,
 /area/awaymission/centcomAway/thunderdome)
 "kT" = (
 /obj/structure/shuttle/engine/propulsion/right{
@@ -1853,124 +1903,135 @@
 "kW" = (
 /obj/structure/table,
 /obj/item/paicard,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "kX" = (
 /obj/structure/table,
 /obj/item/camera,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "kY" = (
-/obj/machinery/door/airlock/external,
 /obj/structure/fans/tiny/invisible,
-/turf/open/indestructible,
+/obj/machinery/door/airlock/hatch{
+	name = "equipe 1";
+	chat_color_name = red
+	},
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "kZ" = (
 /obj/machinery/vending/coffee,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "la" = (
 /obj/structure/table,
-/turf/open/indestructible,
+/obj/structure/table/wood/fancy/red,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "lb" = (
 /obj/machinery/vending/cigarette,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "lc" = (
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/thunderdome)
 "le" = (
 /obj/machinery/door/window/southleft,
-/turf/open/indestructible,
+/turf/open/indestructible/gold,
 /area/awaymission/centcomAway/thunderdome)
 "lf" = (
 /obj/effect/spawner/structure/window/hollow/reinforced,
-/turf/open/indestructible,
+/turf/open/indestructible/gold,
 /area/awaymission/centcomAway/thunderdome)
 "lg" = (
 /obj/machinery/door/window/southright,
-/turf/open/indestructible,
+/turf/open/indestructible/gold,
 /area/awaymission/centcomAway/thunderdome)
 "lh" = (
-/obj/structure/chair,
-/turf/open/indestructible,
+/obj/machinery/vending/games,
+/turf/open/indestructible/cobble/corner{
+	dir = 4
+	},
 /area/awaymission/centcomAway/thunderdome)
 "lj" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
 	},
 /obj/effect/landmark/vr_spawn/syndicate,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble,
 /area/awaymission/centcomAway/thunderdome)
 "ll" = (
 /obj/structure/reagent_dispensers/beerkeg,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/side{
+	dir = 1
+	},
 /area/awaymission/centcomAway/thunderdome)
 "lm" = (
 /obj/structure/closet/crate/trashcart,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/side{
+	dir = 1
+	},
 /area/awaymission/centcomAway/thunderdome)
 "ln" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/side{
+	dir = 1
+	},
 /area/awaymission/centcomAway/thunderdome)
 "lo" = (
 /obj/machinery/vending/snack,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/corner,
 /area/awaymission/centcomAway/thunderdome)
 "lp" = (
 /obj/structure/table,
 /obj/item/lipstick,
-/turf/open/indestructible,
+/obj/structure/table/wood/fancy/red,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "lq" = (
-/obj/structure/table/wood,
-/obj/item/radio/off,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/side{
+	dir = 1
+	},
 /area/awaymission/centcomAway/thunderdome)
 "lr" = (
 /obj/machinery/icecream_vat,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "ls" = (
 /obj/structure/chair{
 	dir = 1
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "lu" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating/beach/sand,
 /area/awaymission/centcomAway/thunderdome)
 "lv" = (
 /obj/structure/rack,
-/obj/item/restraints/legcuffs/beartrap,
-/obj/item/fireaxe,
-/turf/open/indestructible,
+/obj/item/vibro_weapon,
+/obj/item/vibro_weapon,
+/obj/item/vibro_weapon,
+/obj/item/shield/riot,
+/obj/item/shield/riot,
+/obj/item/shield/riot,
+/obj/item/shield/riot,
+/turf/open/indestructible/cobble/side{
+	dir = 1
+	},
 /area/awaymission/centcomAway/thunderdome)
 "lw" = (
-/turf/closed/indestructible/fakeglass,
+/obj/machinery/door/airlock/centcom,
+/obj/structure/fans/tiny/invisible,
+/turf/open/indestructible/cobble,
 /area/awaymission/centcomAway/thunderdome)
 "lz" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
+/obj/structure/reagent_dispensers/beerkeg,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"lA" = (
+/obj/structure/reagent_dispensers/keg/aphro/strong,
+/turf/open/indestructible/cobble/side{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/awaymission/centcomAway/thunderdome)
-"lA" = (
-/obj/machinery/door/poddoor{
-	id = "XCCtdomemelee";
-	name = "XCC Thunderdome Melee"
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/indestructible,
 /area/awaymission/centcomAway/thunderdome)
 "lB" = (
 /obj/item/reagent_containers/rag,
@@ -1985,49 +2046,52 @@
 /obj/structure/mirror{
 	pixel_x = -28
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/thunderdome)
 "lF" = (
 /obj/structure/closet/secure_closet/personal,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/thunderdome)
 "lG" = (
 /obj/structure/rack,
-/obj/item/clothing/under/color/red,
-/obj/item/clothing/shoes/sneakers/brown,
-/obj/item/clothing/suit/armor/tdome/red,
-/obj/item/clothing/head/helmet/thunderdome,
-/obj/item/hatchet,
-/obj/item/shield/riot,
-/turf/open/indestructible,
+/obj/item/melee/transforming/energy/sword/bananium,
+/obj/item/melee/transforming/energy/sword/bananium,
+/obj/item/melee/transforming/energy/sword/bananium,
+/obj/item/shield/riot/tower/swat/gladiator,
+/obj/item/shield/riot/tower/swat/gladiator,
+/obj/item/shield/riot/tower/swat/gladiator,
+/turf/open/indestructible/cobble/side{
+	dir = 8
+	},
 /area/awaymission/centcomAway/thunderdome)
 "lI" = (
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
-/turf/open/indestructible,
-/area/awaymission/centcomAway/thunderdome)
-"lJ" = (
-/obj/machinery/door/poddoor{
-	id = "XCCtdome";
-	name = "XCC Thunderdome"
-	},
 /obj/effect/turf_decal/delivery,
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/poddoor/shutters{
+	id = "XCCFerry";
+	name = "XCC Ferry Hangar"
+	},
 /turf/open/indestructible,
+/area/awaymission/centcomAway/hangar)
+"lJ" = (
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "lK" = (
-/obj/machinery/igniter/on,
-/turf/open/indestructible,
+/obj/structure/rack,
+/obj/item/melee/transforming/cleaving_saw,
+/obj/item/melee/transforming/cleaving_saw,
+/obj/item/melee/transforming/cleaving_saw,
+/turf/open/indestructible/cobble,
 /area/awaymission/centcomAway/thunderdome)
 "lL" = (
 /obj/structure/rack,
-/obj/item/clothing/under/color/green,
-/obj/item/clothing/shoes/sneakers/brown,
-/obj/item/clothing/suit/armor/tdome/green,
-/obj/item/clothing/head/helmet/thunderdome,
-/obj/item/hatchet,
-/obj/item/shield/riot,
-/turf/open/indestructible,
+/obj/item/melee/transforming/energy/sword,
+/obj/item/melee/transforming/energy/sword,
+/obj/item/melee/transforming/energy/sword,
+/obj/item/shield/riot/tower/swat,
+/obj/item/shield/riot/tower/swat,
+/obj/item/shield/riot/tower/swat,
+/turf/open/indestructible/cobble/corner,
 /area/awaymission/centcomAway/thunderdome)
 "lM" = (
 /obj/structure/table/reinforced,
@@ -2043,77 +2107,86 @@
 	dir = 4;
 	pixel_x = 11
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/thunderdome)
 "lS" = (
 /obj/machinery/chem_master,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "lU" = (
 /obj/structure/urinal{
 	pixel_y = 32
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/thunderdome)
 "lV" = (
 /obj/machinery/shower{
 	dir = 8
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/thunderdome)
 "lX" = (
 /obj/machinery/chem_dispenser,
 /obj/item/storage/box/beakers,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "lZ" = (
 /obj/machinery/shower{
 	dir = 4
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/thunderdome)
 "ma" = (
 /obj/machinery/door/airlock/freezer,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "mb" = (
-/obj/machinery/door/poddoor{
-	id = "XCCtdomeguns";
-	name = "XCC Thunderdome Guns"
+/turf/open/indestructible/cobble/side{
+	dir = 8
 	},
-/obj/effect/turf_decal/delivery,
-/turf/open/indestructible,
 /area/awaymission/centcomAway/thunderdome)
 "mc" = (
-/obj/item/soap/nanotrasen,
-/turf/open/indestructible,
-/area/awaymission/centcomAway/thunderdome)
+/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
+/area/awaymission/centcomAway/cafe)
 "md" = (
 /obj/structure/rack,
-/obj/item/gun/energy/laser/retro,
-/turf/open/indestructible,
+/obj/item/clothing/under/rank/security/officer/metrocop,
+/obj/item/clothing/head/helmet/metrocop,
+/obj/item/clothing/under/rank/security/officer/metrocop,
+/obj/item/clothing/suit/armor/vest/metrocop,
+/obj/item/clothing/suit/armor/vest/metrocop,
+/obj/item/clothing/head/helmet/metrocop,
+/obj/item/clothing/suit/armor/bone,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/clothing/suit/armor/riot/chaplain/witchhunter,
+/turf/open/indestructible/cobble/side,
 /area/awaymission/centcomAway/thunderdome)
 "me" = (
 /obj/machinery/vending/boozeomat{
 	req_access_txt = ""
 	},
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/awaymission/centcomAway/cafe)
 "mg" = (
 /obj/structure/chair/office/dark{
 	dir = 1
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/side{
+	dir = 1
+	},
 /area/awaymission/centcomAway/thunderdome)
 "mh" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/popcorn,
-/turf/open/indestructible,
+/obj/item/reagent_containers/food/snacks/popcorn,
+/obj/item/reagent_containers/food/snacks/popcorn,
+/turf/open/indestructible/cobble/side,
 /area/awaymission/centcomAway/thunderdome)
 "mi" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/reagent_dispensers/watertank,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "mj" = (
 /obj/structure/disposalpipe/segment,
@@ -2123,80 +2196,79 @@
 "mk" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/snacks/popcorn,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "ml" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "mm" = (
 /obj/structure/table,
 /obj/machinery/recharger{
 	pixel_y = 4
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/corner{
+	dir = 8
+	},
 /area/awaymission/centcomAway/thunderdome)
 "mo" = (
-/obj/machinery/modular_computer/console{
-	dir = 1
-	},
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/side,
 /area/awaymission/centcomAway/thunderdome)
 "mp" = (
 /obj/structure/closet/secure_closet/bar,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/side,
 /area/awaymission/centcomAway/thunderdome)
 "mq" = (
 /obj/structure/table,
 /obj/item/storage/box/handcuffs,
-/turf/open/indestructible,
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/handcuffs,
+/turf/open/indestructible/cobble/side,
 /area/awaymission/centcomAway/thunderdome)
 "mr" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/side,
 /area/awaymission/centcomAway/thunderdome)
 "ms" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/corner{
+	dir = 4
+	},
 /area/awaymission/centcomAway/thunderdome)
 "mt" = (
-/obj/machinery/button/door{
-	id = "XCCtdomemelee";
-	name = "XCC Thunderdome Melee!"
-	},
 /obj/structure/table/reinforced,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/corner{
+	dir = 8
+	},
 /area/awaymission/centcomAway/thunderdome)
 "mu" = (
 /obj/structure/chair/comfy/teal,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble,
 /area/awaymission/centcomAway/thunderdome)
 "mv" = (
-/obj/machinery/button/door{
-	id = "XCCtdomeguns";
-	name = "XCC Thunderdome Guns!"
-	},
 /obj/structure/table/reinforced,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble/corner{
+	dir = 4
+	},
 /area/awaymission/centcomAway/thunderdome)
 "mw" = (
 /obj/structure/table/reinforced,
-/turf/open/indestructible,
+/turf/open/indestructible/cobble,
 /area/awaymission/centcomAway/thunderdome)
 "my" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "mz" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/window/northright,
-/turf/open/indestructible,
+/turf/open/indestructible/hoteltile,
 /area/awaymission/centcomAway/cafe)
 "mE" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2277,10 +2349,7 @@
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "mW" = (
-/obj/structure/chair/stool{
-	pixel_y = 8
-	},
-/turf/open/indestructible,
+/turf/open/indestructible/cobble,
 /area/awaymission/centcomAway/thunderdome)
 "mX" = (
 /obj/machinery/door/airlock/centcom,
@@ -2294,7 +2363,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
+/turf/open/indestructible/cobble,
 /area/awaymission/centcomAway/thunderdome)
 "mZ" = (
 /obj/machinery/door/airlock/centcom,
@@ -2309,189 +2378,198 @@
 	},
 /area/awaymission/centcomAway/thunderdome)
 "na" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/obj/structure/rack,
+/obj/item/melee/chainofcommand/jungle,
+/obj/item/melee/chainofcommand/jungle,
+/obj/item/melee/chainofcommand/jungle,
+/turf/open/indestructible/cobble,
 /area/awaymission/centcomAway/thunderdome)
 "nb" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/centcomAway/thunderdome)
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
 "nc" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 2
-	},
-/turf/open/floor/plasteel,
+/obj/structure/chair,
+/turf/open/indestructible/cobble/side,
 /area/awaymission/centcomAway/thunderdome)
 "nd" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
+/obj/structure/rack,
+/obj/item/clothing/under/costume/roman,
+/obj/item/clothing/shoes/roman,
+/obj/item/clothing/head/helmet/roman,
+/obj/item/clothing/head/helmet/roman/legionnaire,
+/obj/item/clothing/head/helmet/roman/legionnaire,
+/obj/item/clothing/head/helmet/roman/legionnaire,
+/obj/item/clothing/under/costume/roman,
+/obj/item/clothing/under/costume/roman,
+/obj/item/clothing/head/helmet/roman,
+/obj/item/clothing/head/helmet/roman,
+/obj/item/clothing/head/helmet/roman/legionnaire,
+/obj/item/clothing/head/helmet/roman/legionnaire,
+/turf/open/indestructible/cobble/corner{
+	dir = 8
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/centcomAway/thunderdome)
 "ne" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
+/obj/structure/table,
+/obj/structure/table/reinforced/brass,
+/obj/item/gun/energy/laser/practice/hyperburst{
+	name = "terror of neo";
+	desc = "versão de briquedo que matou um membro do sindicato, (foi pra testar!) disse o matador do agente do sindicato"
 	},
-/turf/open/floor/plasteel,
-/area/awaymission/centcomAway/thunderdome)
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
 "nf" = (
-/obj/machinery/portable_atmospherics/scrubber/huge,
-/turf/open/indestructible,
-/area/awaymission/centcomAway/thunderdome)
+/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
+/area/awaymission/centcomAway/general)
 "ng" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/centcomAway/thunderdome)
+/obj/structure/table,
+/obj/structure/table/reinforced/brass,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
 "nh" = (
 /obj/machinery/door/airlock/centcom,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "nj" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
+/obj/structure/rack,
+/obj/item/melee/baseball_bat/ablative/syndi,
+/obj/item/shield/riot/flash,
+/obj/item/shield/riot/flash,
+/obj/item/shield/riot/flash,
+/turf/open/indestructible/cobble/side{
+	dir = 1
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/centcomAway/thunderdome)
 "nk" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/centcomAway/thunderdome)
+/obj/machinery/door/airlock/centcom,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/general)
 "nl" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/centcomAway/thunderdome)
+/turf/open/indestructible/hoteltile,
+/area/awaymission/centcomAway/cafe)
 "nm" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/beach/sand,
 /area/awaymission/centcomAway/thunderdome)
 "nn" = (
-/obj/effect/turf_decal/tile/red{
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"no" = (
+/obj/structure/rack,
+/obj/item/melee/baseball_bat/ablative/syndi,
+/obj/item/melee/baseball_bat/ablative/syndi,
+/obj/item/melee/baseball_bat/ablative/syndi,
+/obj/item/melee/baseball_bat/ablative/syndi,
+/obj/item/shield/riot/flash,
+/obj/item/shield/riot/flash,
+/obj/item/shield/riot/flash,
+/obj/item/shield/riot/flash,
+/turf/open/indestructible/cobble/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/centcomAway/thunderdome)
-"no" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/centcomAway/thunderdome)
 "np" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
+/turf/open/indestructible/cobble/side{
+	dir = 4
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/centcomAway/thunderdome)
 "nq" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/centcomAway/thunderdome)
+/turf/closed/indestructible/syndicate,
+/area/awaymission/centcomAway/general)
 "nr" = (
-/obj/machinery/portable_atmospherics/scrubber/huge,
-/obj/effect/turf_decal/tile/green{
+/turf/open/indestructible/cobble/corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/awaymission/centcomAway/thunderdome)
 "ns" = (
-/obj/machinery/portable_atmospherics/scrubber/huge,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/obj/structure/rack,
+/obj/structure/rack,
+/obj/item/melee/rapier,
+/obj/item/melee/rapier,
+/obj/item/melee/rapier,
+/turf/open/indestructible/cobble,
 /area/awaymission/centcomAway/thunderdome)
 "nt" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/centcomAway/thunderdome)
+/obj/structure/reagent_dispensers/keg/aphro/strong,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
 "nu" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/centcomAway/thunderdome)
+/turf/open/indestructible/gold,
+/area/awaymission/centcomAway/general)
 "nv" = (
-/obj/machinery/door/airlock/centcom,
-/turf/open/floor/plasteel/white,
+/obj/structure/window/reinforced/clockwork/fulltile,
+/turf/closed/indestructible/fakeglass,
 /area/awaymission/centcomAway/thunderdome)
 "nw" = (
 /obj/effect/vr_clean_master,
-/turf/open/floor/goonplaque,
+/turf/open/floor/plating/beach/sand,
 /area/awaymission/centcomAway/thunderdome)
 "nx" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
+/obj/structure/rack,
+/obj/item/shield/riot/kinetic_proof,
+/obj/item/shield/riot/kinetic_proof,
+/obj/item/shield/riot/kinetic_proof,
+/turf/open/indestructible/cobble/side{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
 /area/awaymission/centcomAway/thunderdome)
 "ny" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
+/obj/machinery/door/poddoor/multi_tile/three_tile_ver{
+	id = "começar"
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/thunderdome)
 "nz" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/sugar,
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/drinks/ice,
+/obj/item/reagent_containers/food/drinks/ice,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/sugar,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/thunderdome)
+"nN" = (
+/obj/structure/table/reinforced,
+/obj/structure/table/reinforced/brass,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"oF" = (
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/airlock/hatch{
+	name = "equipe 2";
+	chat_color_name = green
+	},
 /turf/open/indestructible,
+/area/awaymission/centcomAway/thunderdome)
+"oH" = (
+/obj/effect/spawner/structure/window/hollow/reinforced,
+/turf/open/indestructible/hoteltile,
+/area/awaymission/centcomAway/cafe)
+"oN" = (
+/obj/structure/rack,
+/obj/item/clockwork/weapon/ratvarian_spear,
+/obj/item/clockwork/weapon/ratvarian_spear,
+/obj/item/clockwork/weapon/ratvarian_spear,
+/obj/item/shield/riot/energy_proof,
+/obj/item/shield/riot/energy_proof,
+/obj/item/shield/riot/energy_proof,
+/turf/open/indestructible/cobble/corner{
+	dir = 1
+	},
+/area/awaymission/centcomAway/thunderdome)
+"qi" = (
+/obj/machinery/button/door{
+	pixel_x = -29;
+	id = "começar";
+	name = "começar luta"
+	},
+/turf/open/indestructible/cobble/side{
+	dir = 8
+	},
 /area/awaymission/centcomAway/thunderdome)
 "sL" = (
 /obj/machinery/door/airlock/external{
@@ -2500,21 +2578,375 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
+"tn" = (
+/obj/machinery/door/airlock/external,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/maint)
+"tp" = (
+/obj/structure/table,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"ts" = (
+/obj/machinery/door/airlock/centcom,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"tG" = (
+/obj/structure/rack,
+/obj/item/melee/rapier,
+/obj/item/melee/rapier,
+/obj/item/melee/rapier,
+/obj/item/melee/rapier,
+/turf/open/indestructible/cobble,
+/area/awaymission/centcomAway/thunderdome)
+"vc" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/end{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"vn" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "XCCsec1";
+	name = "XCC Checkpoint 1 Shutters"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/closed/indestructible/syndicate,
+/area/awaymission/centcomAway/general)
+"vH" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"wc" = (
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks/fullupgrade{
+	dir = 4
+	},
+/obj/structure/table/reinforced/brass,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"wd" = (
+/obj/item/soap/syndie,
+/turf/open/indestructible/hoteltile,
+/area/awaymission/centcomAway/thunderdome)
+"ws" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/riot/chaplain/witchhunter,
+/obj/item/clothing/suit/space/hardsuit/lavaknight,
+/turf/open/indestructible/cobble/side,
+/area/awaymission/centcomAway/thunderdome)
+"wt" = (
+/obj/machinery/food_cart,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/thunderdome)
+"xi" = (
+/obj/machinery/door/airlock/centcom,
+/turf/closed/indestructible/necropolis,
+/area/awaymission/centcomAway/thunderdome)
+"yR" = (
+/obj/structure/reagent_dispensers/keg/aphro/strong,
+/turf/open/indestructible/cobble/side{
+	dir = 8
+	},
+/area/awaymission/centcomAway/thunderdome)
 "zk" = (
 /turf/closed/indestructible/fakeglass,
 /area/awaymission/centcomAway/general)
+"zx" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/heavy,
+/obj/item/clothing/suit/armor/clockwork,
+/obj/item/clothing/suit/armor/riot/chaplain/hospitaller,
+/obj/item/clothing/suit/armor/riot/chaplain/teutonic/alt,
+/turf/open/indestructible/cobble/corner{
+	dir = 4
+	},
+/area/awaymission/centcomAway/thunderdome)
+"Bi" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/popcorn,
+/obj/item/reagent_containers/food/snacks/donut/semen,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/thunderdome)
+"BI" = (
+/obj/structure/rack,
+/obj/item/melee/transforming/energy/sword,
+/obj/item/melee/transforming/energy/sword,
+/obj/item/melee/transforming/energy/sword,
+/obj/item/shield/riot/tower/swat,
+/obj/item/shield/riot/tower/swat,
+/obj/item/shield/riot/tower/swat,
+/turf/open/indestructible/cobble/corner{
+	dir = 1
+	},
+/area/awaymission/centcomAway/thunderdome)
+"CH" = (
+/mob/living/simple_animal/hostile/alien/maid/barmaid,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"Dy" = (
+/obj/structure/table,
+/obj/item/kitchen/knife/butcher,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"DA" = (
+/obj/structure/closet/chefcloset,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"EQ" = (
+/obj/machinery/vending/boozeomat/all_access,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/thunderdome)
+"EX" = (
+/obj/structure/table/reinforced,
+/turf/open/indestructible/hoteltile,
+/area/awaymission/centcomAway/cafe)
+"Ge" = (
+/turf/open/indestructible/cobble/corner,
+/area/awaymission/centcomAway/thunderdome)
 "GJ" = (
 /obj/structure/chair,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
+"GO" = (
+/turf/closed/indestructible/sandstone,
+/area/awaymission/centcomAway/thunderdome)
+"GP" = (
+/obj/structure/reagent_dispensers/keg/aphro,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"HE" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/kitchen/rollingpin,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"HI" = (
+/obj/machinery/button/door{
+	pixel_x = 25;
+	id = "começar";
+	name = "começar luta"
+	},
+/turf/open/indestructible/cobble/corner{
+	dir = 4
+	},
+/area/awaymission/centcomAway/thunderdome)
+"Ih" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/riot/chaplain/teutonic/alt,
+/obj/item/clothing/suit/armor/riot/chaplain/ancient,
+/obj/item/clothing/suit/armor/riot/chaplain,
+/obj/item/clothing/suit/armor/clockwork,
+/obj/item/clothing/suit/armor/heavy,
+/turf/open/indestructible/cobble/corner{
+	dir = 4
+	},
+/area/awaymission/centcomAway/thunderdome)
+"Ix" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"Js" = (
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/airlock/diamond/glass,
+/turf/open/indestructible/gold,
+/area/awaymission/centcomAway/thunderdome)
+"Ku" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks/fullupgrade,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/thunderdome)
+"KH" = (
+/obj/structure/rack,
+/obj/item/melee/baton/stunsword/smithed,
+/obj/item/melee/baton/stunsword/smithed,
+/obj/item/melee/baton/stunsword/smithed,
+/obj/item/spear/bonespear,
+/obj/item/spear/bonespear,
+/obj/item/energy_katana,
+/turf/open/indestructible/cobble,
+/area/awaymission/centcomAway/thunderdome)
+"KN" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
 "KX" = (
 /obj/effect/vr_clean_master,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
+"LF" = (
+/obj/structure/rack,
+/obj/item/vibro_weapon,
+/obj/item/vibro_weapon,
+/obj/item/vibro_weapon,
+/obj/item/shield/riot,
+/obj/item/shield/riot,
+/obj/item/shield/riot,
+/turf/open/indestructible/cobble/side{
+	dir = 1
+	},
+/area/awaymission/centcomAway/thunderdome)
+"Ma" = (
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/general)
+"Me" = (
+/obj/structure/rack,
+/obj/item/melee/zweihander,
+/obj/item/melee/zweihander,
+/obj/item/melee/zweihander,
+/obj/item/shield/riot/tele,
+/obj/item/shield/riot/tele,
+/obj/item/shield/riot/tele,
+/obj/item/shield/riot/tele,
+/turf/open/indestructible/cobble/side{
+	dir = 8
+	},
+/area/awaymission/centcomAway/thunderdome)
+"MD" = (
+/obj/structure/rack,
+/obj/item/clockwork/weapon/ratvarian_spear,
+/obj/item/shield/riot/energy_proof,
+/obj/item/shield/riot/energy_proof,
+/obj/item/shield/riot/energy_proof,
+/obj/item/shield/riot/energy_proof,
+/turf/open/indestructible/cobble/corner{
+	dir = 1
+	},
+/area/awaymission/centcomAway/thunderdome)
+"Nk" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/end{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window/hollow/reinforced,
+/turf/open/indestructible,
+/area/awaymission/centcomAway/general)
+"NT" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/turf/open/indestructible/hoteltile,
+/area/awaymission/centcomAway/cafe)
+"Om" = (
+/obj/structure/rack,
+/obj/item/melee/baton/boomerang/loaded,
+/obj/item/melee/baton/boomerang/loaded,
+/obj/item/melee/baton/boomerang/loaded,
+/obj/item/melee/baton/boomerang/loaded,
+/turf/open/indestructible/cobble/corner,
+/area/awaymission/centcomAway/thunderdome)
+"Pk" = (
+/obj/structure/rack,
+/obj/item/melee/baton/stunsword,
+/obj/item/melee/baton/stunsword,
+/obj/item/melee/baton/stunsword,
+/obj/item/fireaxe,
+/turf/open/indestructible/cobble,
+/area/awaymission/centcomAway/thunderdome)
+"Po" = (
+/obj/machinery/sleeper/party,
+/turf/open/indestructible,
+/area/awaymission/centcomAway/general)
+"PX" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"Ql" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/riot/chaplain,
+/obj/item/clothing/suit/armor/riot/chaplain/ancient,
+/obj/item/clothing/suit/armor/riot/chaplain/teutonic,
+/obj/item/clothing/suit/armor/riot/chaplain/witchhunter,
+/turf/open/indestructible/cobble/side,
+/area/awaymission/centcomAway/thunderdome)
+"QD" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/thunderdome)
+"QT" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"Ri" = (
+/obj/structure/rack,
+/obj/item/melee/baton/stunsword,
+/obj/item/melee/baton/stunsword,
+/obj/item/melee/baton/stunsword,
+/obj/item/melee/baton/stunsword,
+/obj/item/fireaxe,
+/turf/open/indestructible/cobble,
+/area/awaymission/centcomAway/thunderdome)
+"Rj" = (
+/obj/structure/table,
+/obj/structure/table/reinforced/brass,
+/obj/effect/spawner/bundle/costume/maid,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"RA" = (
+/obj/structure/reagent_dispensers/keg/aphro/strong,
+/turf/closed/indestructible/necropolis,
+/area/awaymission/centcomAway/thunderdome)
+"RL" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"Si" = (
+/obj/effect/spawner/structure/window/hollow/reinforced,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/general)
+"Sx" = (
+/obj/machinery/chem_dispenser/abductor,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/thunderdome)
+"SN" = (
+/obj/machinery/jukebox/disco/indestructible,
+/turf/open/indestructible/cobble,
+/area/awaymission/centcomAway/thunderdome)
+"SX" = (
+/obj/structure/rack,
+/obj/item/shield/riot/tele,
+/obj/item/shield/riot/tele,
+/obj/item/shield/riot/tele,
+/obj/item/melee/zweihander,
+/obj/item/melee/zweihander,
+/obj/item/melee/zweihander,
+/turf/open/indestructible/cobble/side{
+	dir = 4
+	},
+/area/awaymission/centcomAway/thunderdome)
 "Tc" = (
 /obj/effect/vr_clean_master,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/hangar)
+"Tk" = (
+/obj/item/clothing/suit/baroness,
+/turf/open/indestructible/cobble,
+/area/awaymission/centcomAway/thunderdome)
+"To" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"Tp" = (
+/obj/structure/rack,
+/obj/item/melee/transforming/energy/sword/bananium,
+/obj/item/melee/transforming/energy/sword/bananium,
+/obj/item/melee/transforming/energy/sword/bananium,
+/obj/item/shield/riot/tower/swat/gladiator,
+/obj/item/shield/riot/tower/swat/gladiator,
+/obj/item/shield/riot/tower/swat/gladiator,
+/obj/item/shield/riot/tower/swat/gladiator,
+/turf/open/indestructible/cobble/side{
+	dir = 4
+	},
+/area/awaymission/centcomAway/thunderdome)
 "TG" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -2522,17 +2954,150 @@
 /obj/effect/vr_clean_master,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/courtroom)
+"TI" = (
+/obj/effect/spawner/structure/window/hollow/reinforced,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
 "TP" = (
 /turf/open/space/basic,
 /area/space)
+"TU" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/riot/chaplain/teutonic,
+/obj/item/clothing/suit/armor/riot/chaplain/hospitaller,
+/obj/item/clothing/head/helmet/knight,
+/obj/item/clothing/head/helmet/knight/blue,
+/obj/item/clothing/head/helmet/knight/greyscale,
+/obj/item/clothing/head/helmet/knight/red,
+/obj/item/clothing/head/helmet/knight/yellow,
+/obj/item/clothing/suit/armor/riot/knight,
+/obj/item/clothing/suit/armor/riot/knight/blue,
+/obj/item/clothing/suit/armor/riot/knight/greyscale,
+/obj/item/clothing/suit/armor/riot/knight/red,
+/obj/item/clothing/suit/armor/riot/knight/yellow,
+/obj/item/clothing/suit/space/hardsuit/lavaknight,
+/turf/open/indestructible/cobble/side,
+/area/awaymission/centcomAway/thunderdome)
+"TV" = (
+/obj/structure/table/wood/fancy/blue,
+/turf/open/indestructible,
+/area/awaymission/centcomAway/general)
+"Ue" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/riot/knight,
+/obj/item/clothing/suit/armor/riot/knight/blue,
+/obj/item/clothing/suit/armor/riot/knight/greyscale,
+/obj/item/clothing/suit/armor/riot/knight/red,
+/obj/item/clothing/suit/armor/riot/knight/yellow,
+/obj/item/clothing/head/helmet/knight,
+/obj/item/clothing/head/helmet/knight/blue,
+/obj/item/clothing/head/helmet/knight/greyscale,
+/obj/item/clothing/head/helmet/knight/red,
+/obj/item/clothing/head/helmet/knight/yellow,
+/turf/open/indestructible/cobble/corner{
+	dir = 8
+	},
+/area/awaymission/centcomAway/thunderdome)
 "Um" = (
 /obj/effect/vr_clean_master,
-/turf/open/indestructible,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"UB" = (
+/obj/structure/rack,
+/obj/item/melee/diamondaxe,
+/obj/item/melee/diamondaxe,
+/obj/item/melee/diamondaxe,
+/obj/item/sord,
+/turf/open/indestructible/cobble,
+/area/awaymission/centcomAway/thunderdome)
+"UY" = (
+/obj/machinery/door/airlock/diamond/glass{
+	name = "arena!"
+	},
+/turf/open/indestructible/gold,
+/area/awaymission/centcomAway/general)
+"Vb" = (
+/obj/structure/table,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/thunderdome)
+"Vo" = (
+/turf/open/indestructible/gold,
+/area/awaymission/centcomAway/thunderdome)
+"Vu" = (
+/obj/structure/table,
+/obj/machinery/processor{
+	pixel_y = 10
+	},
+/turf/open/indestructible/hotelwood,
 /area/awaymission/centcomAway/cafe)
 "VC" = (
 /obj/effect/landmark/vr_spawn/syndicate,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/hangar)
+"VV" = (
+/obj/effect/landmark/vr_spawn/syndicate,
+/turf/open/indestructible/gold,
+/area/awaymission/centcomAway/general)
+"WB" = (
+/obj/item/storage/hypospraykit/tactical,
+/obj/structure/table/wood/fancy/blue,
+/turf/open/indestructible,
+/area/awaymission/centcomAway/general)
+"XG" = (
+/obj/structure/rack,
+/obj/item/melee/baton/boomerang/loaded,
+/obj/item/melee/baton/boomerang/loaded,
+/obj/item/melee/baton/boomerang/loaded,
+/obj/item/shield/riot/roman,
+/obj/item/shield/riot/roman,
+/obj/item/shield/riot/roman,
+/turf/open/indestructible/cobble/corner,
+/area/awaymission/centcomAway/thunderdome)
+"Yd" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "XCCsec2";
+	name = "XCC Checkpoint 2 Shutters"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/closed/indestructible/syndicate,
+/area/awaymission/centcomAway/general)
+"Yr" = (
+/obj/machinery/door/airlock/centcom,
+/turf/closed/indestructible/syndicate,
+/area/awaymission/centcomAway/general)
+"Yy" = (
+/obj/structure/chair,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/thunderdome)
+"YC" = (
+/obj/item/clothing/suit/baroness/ladyballat,
+/turf/open/indestructible/cobble,
+/area/awaymission/centcomAway/thunderdome)
+"YZ" = (
+/obj/structure/rack,
+/obj/item/melee/transforming/energy/sword/cx,
+/obj/item/melee/transforming/energy/sword/cx,
+/obj/item/melee/transforming/energy/sword/cx,
+/obj/item/shield/riot/kinetic_proof,
+/obj/item/shield/riot/kinetic_proof,
+/obj/item/shield/riot/kinetic_proof,
+/turf/open/indestructible/cobble/side{
+	dir = 8
+	},
+/area/awaymission/centcomAway/thunderdome)
+"Zq" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/end,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"ZK" = (
+/obj/machinery/chem_dispenser/abductor,
+/turf/open/indestructible/hotelwood,
+/area/awaymission/centcomAway/cafe)
+"ZX" = (
+/turf/open/indestructible/cobble/corner{
+	dir = 8
+	},
+/area/awaymission/centcomAway/thunderdome)
 
 (1,1,1) = {"
 aa
@@ -6510,7 +7075,7 @@ iy
 aV
 aV
 jL
-jL
+lI
 jL
 jL
 jL
@@ -8883,9 +9448,9 @@ lc
 lc
 lF
 kS
+wd
 lc
 lc
-mc
 kS
 aa
 aa
@@ -9140,7 +9705,7 @@ kS
 kS
 kS
 kS
-nv
+nh
 kS
 kS
 kS
@@ -9229,16 +9794,16 @@ aV
 aV
 aV
 aV
-eu
-eu
+nq
+nq
 gW
 gW
 gW
 gW
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
 gW
 gW
 zk
@@ -9246,7 +9811,7 @@ iu
 zk
 gW
 gW
-eu
+nq
 bk
 bk
 aa
@@ -9267,16 +9832,16 @@ kS
 kS
 kS
 kS
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
 kS
 aa
 aa
@@ -9351,13 +9916,13 @@ ag
 ag
 ag
 dy
-eu
+nq
 hV
 gW
 gJ
 gJ
 gJ
-eu
+nq
 hW
 gW
 gW
@@ -9368,7 +9933,7 @@ gW
 gW
 gW
 hW
-eu
+nq
 gW
 gW
 zk
@@ -9391,22 +9956,22 @@ aa
 aa
 kS
 kS
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
 kS
 kS
 aa
@@ -9481,13 +10046,13 @@ ag
 ag
 ag
 bj
-eu
+nq
 hX
 gl
 gW
 gW
 gW
-eu
+nq
 gW
 gW
 zk
@@ -9498,7 +10063,7 @@ zk
 zk
 gW
 gW
-eu
+nq
 gW
 gW
 zk
@@ -9520,14 +10085,14 @@ aa
 aa
 kS
 kS
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
 kS
 kS
 kS
@@ -9535,9 +10100,9 @@ kS
 kS
 kS
 kS
-lc
-lc
-lc
+lJ
+lJ
+lJ
 kS
 kS
 aa
@@ -9602,22 +10167,22 @@ aV
 aV
 aV
 ag
-eu
-eu
-eu
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
+nq
+nq
+nq
 ag
 ew
-eu
+nq
 gW
 gW
 gW
 gW
 gW
-eu
+nq
 gW
 gW
 zk
@@ -9628,7 +10193,7 @@ iu
 zk
 gW
 gW
-eu
+nq
 gW
 gW
 zk
@@ -9650,8 +10215,8 @@ aa
 aa
 kS
 kW
-lc
-lc
+lJ
+lJ
 kS
 kS
 kS
@@ -9659,16 +10224,16 @@ kS
 kS
 kS
 kS
+BI
 lG
-lG
-lG
-lG
-lc
-nh
-lc
-lc
-lc
-lc
+YZ
+Me
+fr
+xi
+lJ
+lJ
+lJ
+lJ
 kS
 aa
 aa
@@ -9732,22 +10297,22 @@ ag
 ag
 ag
 ag
-eu
+nq
 gW
 gW
 gW
 gW
 gW
-eu
+nq
 ag
 ag
-eu
+nq
 gW
 gW
 hh
 hh
 hH
-eu
+nq
 gW
 gW
 zk
@@ -9758,7 +10323,7 @@ zk
 zk
 gW
 gW
-eu
+nq
 gW
 gW
 zk
@@ -9780,25 +10345,25 @@ aa
 aa
 kS
 kX
-lc
-lc
+lJ
+lJ
 mZ
-lc
-lc
-nz
+lJ
+lJ
+RA
 kS
 kS
 kS
-lc
-lc
-lc
-lc
-lc
+lq
+mW
+mW
+mW
+mo
 kS
 kS
 kS
-lc
-lc
+lJ
+lJ
 kS
 aa
 aa
@@ -9862,22 +10427,22 @@ ac
 ac
 ac
 ac
-eu
+nq
 gW
 gW
 gW
 fq
 fM
-eu
+nq
 ag
 ey
-eu
-eu
+nq
+nq
 dY
 hi
 hy
-eu
-eu
+nq
+nq
 hW
 gW
 gW
@@ -9888,7 +10453,7 @@ gW
 gW
 gW
 hW
-eu
+nq
 gW
 gW
 zk
@@ -9896,7 +10461,7 @@ iu
 zk
 gW
 gW
-eu
+nq
 aa
 aa
 aa
@@ -9910,25 +10475,25 @@ aa
 aa
 kS
 kX
-lc
-lc
+lJ
+lJ
 kS
-lc
-lc
+Sx
+lJ
 nz
 kS
-lv
-lA
-lI
-lI
-lc
-lI
-lI
+oN
 mb
-md
+mW
+mW
+mW
+mW
+mW
+mb
+nd
 kS
-lc
-lc
+lJ
+lJ
 kS
 aa
 aa
@@ -9982,8 +10547,8 @@ ac
 aF
 aQ
 ac
-cj
-cj
+tn
+tn
 ac
 aF
 aQ
@@ -9992,73 +10557,73 @@ aF
 aQ
 ac
 ec
-eu
+nq
 gW
 eS
 gW
 gW
 fN
-eu
+nq
 ag
 ag
-eu
+nq
 gW
 gW
 gW
 gW
 gW
-eu
-eu
-eu
+nq
+nq
+nq
 gW
 gW
 gW
 gW
 gW
 gW
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
 dY
-eu
-eu
-eu
+nq
+nq
+nq
 dY
-eu
-eu
-eu
-eu
-eu
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
+nq
+nq
+nq
+nq
+nq
 aa
 aa
 aa
 aa
 kS
 kS
-lc
-lc
+lJ
+lJ
 kS
-lc
-lc
+QD
+lJ
 lr
 kS
-lv
-lA
-lc
-lc
-lc
-lc
-lc
-mb
+LF
+mW
+mW
+Pk
+KH
+UB
+mW
+mW
 md
 kS
-lc
-lc
+lJ
+lJ
 kS
 aa
 aa
@@ -10112,8 +10677,8 @@ ac
 ai
 aG
 ac
-ai
-ai
+nn
+nn
 ac
 dq
 aG
@@ -10122,16 +10687,16 @@ dq
 aG
 ad
 ec
-eu
+nq
 gW
 gW
 gW
 fq
 fO
-eu
+nq
 ag
 gp
-eu
+nq
 lB
 gW
 eJ
@@ -10163,32 +10728,32 @@ gW
 kB
 gW
 iR
-eu
+nq
 aa
 aa
 aa
 aa
 kT
 kS
-lc
-lc
+lJ
+lJ
 kS
-lc
-lc
-lr
+Ku
+lJ
+wt
 kS
-lv
-lA
-lc
-lc
-lc
-lc
-lc
-mb
-md
+nj
+mW
+mW
+tG
+lK
+na
+mW
+mW
+TU
 kS
-lc
-lc
+lJ
+lJ
 kS
 aa
 aa
@@ -10242,8 +10807,8 @@ ac
 aH
 ai
 ac
-ai
-ai
+nn
+nn
 ac
 aH
 ai
@@ -10252,33 +10817,33 @@ aH
 ai
 ad
 ec
-eu
+nq
 gW
 gW
 gW
 gW
 gW
-eu
+nq
 ag
 gp
-eu
+nq
 ir
 gW
 gW
 gW
 gW
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
 dY
-eu
-eu
-eu
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
+nq
+nq
+nq
 gW
 gW
 gW
@@ -10293,32 +10858,32 @@ gW
 gW
 gW
 iM
-eu
+nq
 aa
 aa
 aa
 aa
 kU
 kS
-lc
-lc
+lJ
+lJ
 kS
-lc
-lc
-lc
+bI
+lJ
+EQ
 kS
-lv
+XG
 lA
-lc
-lc
-lc
-lc
-lc
-mb
-md
+np
+np
+np
+np
+np
+np
+Ih
 kS
-lc
-lc
+lJ
+lJ
 kS
 aa
 aa
@@ -10359,9 +10924,9 @@ aa
 aa
 aa
 aa
-aa
+TP
 ab
-aR
+kR
 ac
 ac
 bt
@@ -10372,8 +10937,8 @@ ac
 ac
 bt
 ac
-ai
-ai
+nn
+nn
 ac
 ac
 bt
@@ -10382,23 +10947,23 @@ ac
 bt
 ac
 ec
-eu
-eu
+nq
+nq
 eT
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
 aR
-eu
-eu
-eu
+nq
+nq
+nq
 dY
-eu
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
+nq
 ip
 gW
 gW
@@ -10406,7 +10971,7 @@ gW
 gW
 gW
 gW
-eu
+nq
 iu
 zk
 jM
@@ -10423,27 +10988,27 @@ gW
 eJ
 gW
 gW
-eu
+nq
 aa
 aa
 aa
 aa
 kV
 kS
-lc
-lc
+lJ
+lJ
 kS
 mk
+Bi
 mk
-mk
 kS
 kS
 kS
+kS
 lJ
 lJ
-lJ
-lJ
-lJ
+ny
+kS
 kS
 kS
 kS
@@ -10491,28 +11056,28 @@ aa
 aa
 aa
 ac
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
 ac
 ec
-eu
+nq
 gW
 gW
 gW
@@ -10528,7 +11093,7 @@ gW
 gW
 gW
 gW
-eu
+nq
 iq
 gW
 gW
@@ -10536,7 +11101,7 @@ gW
 iT
 jd
 jk
-eu
+nq
 jy
 zk
 jM
@@ -10553,32 +11118,32 @@ gW
 gW
 gW
 gW
-eu
+nq
 aa
 aa
 TP
 aa
 kS
 kS
-lc
-lc
+lJ
+lJ
 kS
-lc
-lc
-lc
-lh
-lw
-ns
+nr
+mb
+mb
+ZX
+nv
 lu
 lu
 lu
 lu
 lu
-nf
-lw
-lc
-lc
-lc
+lu
+lu
+nv
+nr
+qi
+mb
 mm
 kS
 aa
@@ -10621,28 +11186,28 @@ aa
 aa
 aa
 ad
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
 ac
 ec
-eu
+nq
 cd
 gW
 gW
@@ -10658,7 +11223,7 @@ gW
 gW
 gW
 gW
-eu
+nq
 gW
 gW
 gW
@@ -10666,7 +11231,7 @@ gW
 iU
 eW
 mQ
-eu
+nq
 iu
 zk
 gW
@@ -10683,33 +11248,33 @@ gQ
 kC
 gW
 gW
-eu
+nq
 aa
 aa
 aa
 aa
 aa
 kS
-lc
-lc
+lJ
+lJ
 kS
-lc
-lc
-lc
-lh
+lq
+mW
+mW
+mo
 lw
-nm
-lc
-lc
-lc
-lc
-lc
-ng
+lu
+lu
+lu
+lu
+lu
+lu
+lu
 lw
-lc
-lc
-lc
-la
+lq
+mW
+mW
+mo
 kS
 aa
 aa
@@ -10751,28 +11316,28 @@ aa
 aa
 aa
 ad
-ai
-ai
+nn
+nn
 aI
 aI
-ai
-ai
-ai
-ai
+nn
+nn
+nn
+nn
 aI
 aI
 aI
 aI
 aI
-ai
-ai
-ai
+nn
+nn
+nn
 aI
 aI
-ai
+nn
 ad
 ec
-eu
+nq
 bN
 gW
 dr
@@ -10788,7 +11353,7 @@ gW
 gW
 gW
 gW
-eu
+nq
 mU
 gW
 gW
@@ -10796,49 +11361,49 @@ gW
 iV
 iW
 gW
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
 dY
-eu
+nq
 eV
-eu
+nq
 dY
-eu
-eu
-eu
-eu
-eu
-eu
-eu
+nq
+eV
+nq
+nq
+nq
+nq
+nq
 dY
-eu
+nq
 bk
 bk
 bk
 bk
 aa
 kS
-lc
-lc
+lJ
+lJ
 kS
-lc
-lc
-lc
-lh
-lw
-nn
-lc
-nt
-nx
-nb
-lc
-nl
-lw
+lq
+mW
+mW
+nc
+nv
+lu
+nm
+lu
+nm
+lu
+nm
+lu
+nv
 mg
-lc
-lc
+mW
+mW
 mo
 kS
 aa
@@ -10881,28 +11446,28 @@ aa
 aa
 aa
 ad
-ai
-ai
-aF
-aF
-ai
-ai
-ai
+nn
+nn
+ng
+ng
+nn
+nn
+nn
 bJ
 cb
 co
-aF
-aF
-aF
-ai
-ai
-ai
-aF
-aF
-ai
+ng
+ng
+ng
+nn
+nn
+nn
+ne
+ng
+nn
 ad
 ec
-eu
+nq
 cd
 gW
 dr
@@ -10915,10 +11480,10 @@ gF
 gM
 gX
 gr
-eu
+nq
 gW
 gW
-eu
+nq
 is
 gW
 gW
@@ -10926,48 +11491,48 @@ gW
 iW
 eW
 gW
-eu
+nq
 iu
 iu
-eu
+nq
 jR
 jR
 jR
+vn
 jR
 jR
 jR
-jR
-eu
+nq
 iQ
 gW
 eV
 gW
 gW
-eu
+nq
 zk
 zk
 zk
-eu
+nq
 aa
 kS
-lc
-lc
+lJ
+lJ
 kS
-lc
-lc
-lc
-lh
-lw
+lq
+mW
+mW
+nc
+nv
+lu
+lu
 nm
-lc
-lc
-lc
-lc
-lc
-ng
-lw
+lu
+GO
+nm
+lu
+nv
 mg
-lc
+mW
 mW
 mo
 kS
@@ -11011,28 +11576,28 @@ aa
 aa
 aa
 ad
-ai
-ai
-aF
-aF
-ai
-ai
-ai
+nn
+nn
+ng
+ng
+nn
+nn
+nn
 bJ
 cc
-aF
-aF
-aF
-aF
-ai
-ai
-ai
+ng
+ng
+ng
+Rj
+nn
+nn
+nn
 dC
-aF
-ai
+ng
+nn
 ad
 ec
-eu
+nq
 gW
 gW
 dw
@@ -11048,58 +11613,58 @@ hj
 fu
 gW
 gW
-eu
-eu
-eu
-eu
-eu
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
+nq
+nq
+nq
+nq
+nq
 zk
 zk
-eu
+nq
 dY
-eu
+nq
 eV
-eu
+nq
 dY
-eu
+nq
 eV
-eu
+nq
 ku
 jB
 kD
 gW
 gW
-eu
+nq
 kN
 kP
 kP
-eu
+nq
 aa
 kS
-lc
-lc
+lJ
+lJ
 kS
 ll
-lc
-lc
-lh
-lw
-nn
-lc
-lc
-lK
-lc
-lc
-nl
-lw
+Tk
+mW
+nc
+nv
+lu
+lu
+lu
+lu
+GO
+lu
+lu
+nv
 mg
-lc
-lc
-lc
+mW
+mW
+mo
 kS
 aa
 aa
@@ -11141,35 +11706,35 @@ aa
 aa
 aa
 ad
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
 ac
 ac
-eu
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
+nq
 gW
 gW
-eu
+nq
 gt
 gW
 gO
@@ -11178,9 +11743,9 @@ hk
 fv
 gW
 gW
-eu
-eu
-eu
+nq
+nq
+nq
 gW
 gW
 gW
@@ -11203,7 +11768,7 @@ iQ
 eV
 gW
 gW
-eu
+nq
 zk
 zk
 zk
@@ -11211,25 +11776,25 @@ zk
 zk
 kS
 kS
-kY
+oF
 kS
-lc
-lc
-lc
-lh
-lw
+lq
+YC
+mW
+nc
+nv
 nm
-lK
-lc
-lc
-lc
-lK
-ng
-lw
+lu
+lu
+lu
+lu
+lu
+lu
+nv
 mg
-lc
-lc
-lc
+mW
+mW
+mo
 kS
 kS
 aa
@@ -11271,30 +11836,30 @@ aa
 aa
 aa
 ad
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-bt
-gW
-gW
-dY
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+ts
+Ma
+Ma
+nk
 gW
 gW
 gW
@@ -11308,7 +11873,7 @@ hl
 fv
 gW
 gW
-eu
+nq
 it
 eV
 gW
@@ -11332,38 +11897,38 @@ gW
 gW
 gW
 gW
-gW
+nu
+UY
+nu
+nu
+nu
 kK
-gW
-gW
-gW
-kK
-gW
-kY
-lc
-lc
+nu
+Js
+Vo
+Vo
 le
-lc
-lc
-lc
-lh
-lw
-np
-lc
-np
-nx
-ne
-lc
-ne
-lw
-lc
-lc
-lc
-lc
+lq
+mW
+mW
+nc
+nv
+lu
+lu
+nm
+lu
+lu
+lu
+lu
+nv
+lq
+mW
+mW
+mW
 mt
 kS
 kS
-aa
+TP
 aa
 aa
 aa
@@ -11401,30 +11966,30 @@ aa
 aa
 aa
 ad
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-aK
-gW
-gW
-eV
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+TI
+Ma
+Ma
+Si
 gW
 gW
 gW
@@ -11464,32 +12029,32 @@ gW
 gM
 jK
 eu
-gW
-eJ
-gW
+nu
+VV
+nu
 zk
 zk
 kS
-lc
-lc
+Vo
+Vo
 lf
-lc
-lc
-lc
-lh
-lw
-lc
-lc
-ng
+lq
+mW
+mW
+nc
+nv
+lu
+lu
+lu
 nw
-nd
-lc
-lc
-lw
+lu
+lu
+lu
+nv
 lq
 lj
-lc
-lc
+SN
+mW
 mu
 mw
 kS
@@ -11532,29 +12097,29 @@ aa
 aa
 ac
 aj
-ai
-ai
-ai
-ai
+nn
+nn
+nn
+nn
 aI
 aI
 aI
-ai
-ai
+nn
+nn
 Um
-ai
-ai
+nn
+nn
 aI
 aI
 aI
-ai
-ai
-ai
-ai
-bt
-gW
-gW
-dY
+nn
+nn
+nn
+nn
+ts
+Ma
+Ma
+nk
 gW
 gW
 gW
@@ -11568,7 +12133,7 @@ hl
 fv
 gW
 gW
-eu
+nq
 it
 eV
 gW
@@ -11592,34 +12157,34 @@ gW
 gW
 gW
 gW
-gW
+nu
+UY
+nu
+nu
+nu
 kK
-gW
-gW
-gW
-kK
-gW
-kY
-lc
-lc
+nu
+Js
+Vo
+Vo
 lg
-lc
-lc
-lc
-lh
-lw
-no
-lc
-no
-ny
+lq
+mW
+mW
 nc
-lc
-nc
-lw
-lc
-lc
-lc
-lc
+nv
+lu
+lu
+lu
+lu
+lu
+GO
+lu
+nv
+lq
+mW
+mW
+mW
 mv
 kS
 kS
@@ -11663,33 +12228,33 @@ aa
 ac
 ac
 ac
-aK
+TI
 bt
-aK
-aW
-aW
-aW
+TI
+wc
+nN
+nN
 ac
-aK
+oH
 cB
-aK
+oH
 ac
-aW
-aW
-aW
+nN
+nN
+nN
 aK
 bt
 aK
 ac
 ac
-eu
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
+nq
 gW
 gW
-eu
+nq
 gx
 gW
 gP
@@ -11698,9 +12263,9 @@ ho
 fv
 gW
 gW
-eu
-eu
-eu
+nq
+nq
+nq
 gW
 gW
 gW
@@ -11723,7 +12288,7 @@ iQ
 eV
 gW
 gW
-eu
+nq
 zk
 zk
 zk
@@ -11733,23 +12298,23 @@ kS
 kS
 kY
 kS
-lc
-lc
-lc
-lh
-lw
-nd
-lK
-lc
-lc
-lc
-lK
-nj
-lw
+lq
+mW
+mW
+nc
+nv
+lu
+lu
+lu
+nm
+nm
+lu
+lu
+nv
 mg
-lc
-lc
-lc
+mW
+mW
+mo
 kS
 kS
 aa
@@ -11791,7 +12356,19 @@ aa
 aa
 aa
 ac
-al
+vH
+nn
+nn
+nn
+nb
+nn
+nn
+CH
+ac
+nl
+nl
+nl
+ac
 ai
 ai
 ai
@@ -11799,20 +12376,8 @@ aW
 ai
 ai
 ai
-ac
-ai
-ai
-ai
-ac
-ai
-ai
-ai
-aW
-ai
-ai
-ai
 al
-eu
+nq
 eH
 gW
 eH
@@ -11828,57 +12393,57 @@ lM
 fw
 gW
 gW
-eu
+nq
 iu
-eu
-eu
+nq
+nq
 iQ
 hk
 jg
 gw
-eu
+nq
 zk
 zk
-eu
+nq
 dY
-eu
+nq
 eV
-eu
+nq
 dY
-eu
+nq
 kl
-eu
+nq
 ku
 jh
 kD
 gW
 gW
-eu
+nq
 kO
 kP
 kQ
-eu
+nq
 aa
 kS
-lc
-lc
+lJ
+lJ
 kS
 ll
-lc
-lc
-lh
-lw
-nq
-lc
-lc
-lK
-lc
-lc
-nk
-lw
+mW
+mW
+nc
+nv
+lu
+GO
+GO
+lu
+lu
+lu
+lu
+nv
 mg
-lc
-lc
+mW
+mW
 mp
 kS
 aa
@@ -11921,18 +12486,18 @@ aa
 aa
 aa
 ac
-am
-ai
-ai
-ai
-ai
-ai
-ai
-bK
+DA
+nn
+nn
+nn
+ZK
+nn
+nn
+lz
 ac
-ai
-ai
-ai
+nl
+nl
+nl
 ac
 bK
 ai
@@ -11942,7 +12507,7 @@ ai
 ai
 ai
 am
-eu
+nq
 eI
 eJ
 eI
@@ -11955,60 +12520,60 @@ gF
 gM
 gX
 gr
-eu
+nq
 gW
 gW
-eu
+nq
 zk
-eu
+nq
 gW
 gW
 iY
 jh
 hl
-eu
+nq
 iu
 iu
-eu
+nq
+jS
+jS
+Yd
+Yd
 jS
 jS
 jS
-jS
-jS
-jS
-jS
-eu
+nq
 iQ
 gW
 eV
 gW
 gW
-eu
+nq
 zk
 zk
 zk
-eu
+nq
 aa
 kS
-lc
-lc
+lJ
+lJ
 kS
 lm
-lc
-lc
-lh
-lw
-nd
-lc
-lc
-lc
-lc
-lc
-nj
-lw
+mW
+mW
+nc
+nv
+lu
+lu
+nm
+nm
+nm
+lu
+lu
+nv
 mg
-lc
-lc
+mW
+mW
 mq
 kS
 aa
@@ -12051,19 +12616,19 @@ aa
 aa
 aa
 ac
-bg
-ay
-aL
-ai
-ai
-ai
-ai
-aF
+ah
+Dy
+QT
+nn
+nn
+nn
+nn
+tp
 aK
-ai
-aW
-ai
-aK
+nl
+EX
+nl
+oH
 aF
 ai
 ai
@@ -12072,8 +12637,8 @@ ai
 aL
 ay
 bg
-eu
-gW
+nq
+Po
 gW
 gW
 fw
@@ -12096,49 +12661,49 @@ gW
 eJ
 gW
 hl
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
 dY
-eu
+nq
 eV
-eu
+nq
 dY
-eu
-eu
-eu
-eu
-eu
-eu
-eu
+nq
+Nk
+nq
+nq
+nq
+nq
+nq
 dY
-eu
+nq
 bk
 bk
 bk
 bk
 aa
 kS
-lc
-lc
+lJ
+lJ
 kS
 ll
-lc
-lc
-lh
-lw
-nq
-lc
-nu
-ny
-na
-lc
-nk
-lw
+mW
+mW
+nc
+nv
+nm
+lu
+nm
+lu
+lu
+lu
+nm
+nv
 mg
-lc
-lc
+mW
+mW
 mh
 kS
 aa
@@ -12182,16 +12747,16 @@ aa
 aa
 ac
 ao
-az
-az
-az
-az
-az
-az
-az
+RL
+RL
+RL
+RL
+RL
+RL
+RL
 mj
 cq
-aW
+EX
 cS
 mz
 az
@@ -12202,7 +12767,7 @@ az
 az
 az
 el
-eu
+nq
 eK
 gW
 gW
@@ -12218,15 +12783,15 @@ gW
 gW
 gW
 gW
-eu
+nq
 iv
-eu
+nq
 iM
 iR
 gW
 gW
 jq
-eu
+nq
 iu
 zk
 gW
@@ -12243,32 +12808,32 @@ iQ
 gW
 gW
 gW
-eu
+nq
 aa
 aa
 aa
 aa
 aa
 kS
-lc
-lc
+lJ
+lJ
 kS
 ln
-lc
-lc
-lh
+mW
+mW
+mo
 lw
-nd
-lc
-lc
-lc
-lc
-lc
-nj
+lu
+lu
+lu
+lu
+lu
+lu
+lu
 lw
-lc
-lc
-lc
+lq
+mW
+mW
 mr
 kS
 aa
@@ -12311,17 +12876,17 @@ aa
 aa
 aa
 ac
-ap
-ai
-ai
-ai
-ai
+KN
+nn
+GP
+nt
+nt
 ac
 me
 ac
 ac
 cr
-aW
+EX
 cr
 ac
 ac
@@ -12332,7 +12897,7 @@ ai
 ai
 ai
 ap
-eu
+nq
 eL
 eW
 gW
@@ -12348,15 +12913,15 @@ gW
 gW
 gW
 gW
-eu
+nq
 aa
-eu
-eu
-eu
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
+nq
+nq
+nq
 iu
 zk
 GJ
@@ -12373,32 +12938,32 @@ hk
 kE
 eJ
 gW
-eu
+nq
 aa
 aa
 aa
 aa
 kS
 kS
-lc
-lc
+lJ
+lJ
 kS
 lo
-lc
-lc
+np
+np
 lh
-lw
-nr
-lz
-lz
-lz
-lz
-lz
-nf
-lw
-lc
-lc
-lc
+nv
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+nv
+Ge
+np
+np
 ms
 kS
 aa
@@ -12441,17 +13006,17 @@ aa
 aa
 aa
 ac
-aq
-ai
-ai
-ai
+PX
+nn
+GP
+nn
 aY
 ac
-bu
+NT
 bL
 ac
 cr
-ai
+nl
 cr
 ac
 bL
@@ -12462,23 +13027,23 @@ ai
 ai
 ai
 aq
-eu
-eu
+nq
+nq
 gW
-gW
-eu
+WB
+nq
 fQ
-eu
+nf
 aR
 eY
 eY
 eY
 fT
 eY
-eu
-dY
-eu
-eu
+nq
+Yr
+nq
+nq
 bk
 bk
 bk
@@ -12486,7 +13051,7 @@ bk
 bk
 bk
 bk
-eu
+nq
 iu
 zk
 GJ
@@ -12503,15 +13068,16 @@ jg
 eW
 gW
 gW
-eu
+nq
 aa
 aa
 aa
 aa
 kT
 kS
-lc
-lc
+lJ
+lJ
+kS
 kS
 kS
 kS
@@ -12521,9 +13087,8 @@ kS
 kS
 lJ
 lJ
-lJ
-lJ
-lJ
+ny
+kS
 kS
 kS
 kS
@@ -12571,34 +13136,34 @@ aa
 aa
 aa
 ac
-ar
-ai
-ai
-ai
-ai
+HE
+nn
+nn
+nn
+nn
+ma
+nl
+nl
+ac
+cr
+nl
+cr
+ac
+nl
+nl
 ma
 ai
 ai
-ac
-cr
-ai
-cr
-ac
-ai
-ai
-ma
-ai
-ai
 ai
 ai
 ar
-eu
+nf
 eM
 gW
-gW
+dh
 fA
 gW
-eu
+nq
 ag
 eY
 gH
@@ -12608,7 +13173,7 @@ eY
 hA
 gW
 gW
-eu
+nq
 aa
 aa
 aa
@@ -12616,7 +13181,7 @@ aa
 aa
 aa
 aa
-eu
+nq
 iu
 zk
 gW
@@ -12633,32 +13198,32 @@ gw
 gQ
 gQ
 kJ
-eu
+nq
 aa
 aa
 aa
 aa
 kU
 kS
-lc
-lc
-lc
-lc
-lc
-lc
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
 kS
-lv
-lA
-lc
-lc
-lc
-lc
-lc
+MD
+yR
 mb
-md
+mb
+mb
+mb
+mb
+mb
+Ue
 kS
-lc
-lc
+lJ
+lJ
 kS
 aa
 aa
@@ -12701,17 +13266,17 @@ aa
 aa
 aa
 ac
-as
-aA
-aM
-aM
-aZ
+To
+aO
+Ix
+Ix
+Vu
 ac
 bw
 bM
 ac
 cr
-ai
+nl
 cr
 ac
 bM
@@ -12722,13 +13287,13 @@ aM
 aM
 aA
 as
-eu
+nf
 cT
 gW
-gW
+TV
 fB
 fR
-eu
+nq
 ag
 eY
 gH
@@ -12738,7 +13303,7 @@ eY
 gW
 hJ
 gW
-eu
+nq
 aa
 aa
 aa
@@ -12746,49 +13311,49 @@ aa
 aa
 aa
 aa
-eu
-eu
-eu
+nq
+nq
+nq
 jP
 zk
 jU
-eu
+nq
 jU
 zk
 jP
 zk
 jP
 zk
-eu
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
+nq
 aa
 aa
 aa
 aa
 kV
 kS
-lc
-lc
-lh
+lJ
+lJ
+Yy
 la
 lp
 ls
 kS
 lv
-lA
-lc
-lc
-lc
-lc
-lc
-mb
-md
+mW
+mW
+Ri
+KH
+UB
+mW
+mW
+ws
 kS
-lc
-lc
+lJ
+lJ
 kS
 aa
 aa
@@ -12831,17 +13396,17 @@ aa
 aa
 aa
 ac
-at
-aB
-aB
-aB
-ba
+vc
+hr
+hr
+hr
+Zq
 ac
 ac
 ac
 ac
 cr
-ai
+nl
 cr
 ac
 ac
@@ -12852,23 +13417,23 @@ aB
 aB
 aB
 ba
-eu
+nf
 gW
 gW
 gW
 gW
 gW
-eu
+nq
 ag
 eY
 gH
 fm
 fm
 eY
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
 aa
 aa
 aa
@@ -12900,25 +13465,25 @@ aa
 aa
 kS
 kS
-lc
-lc
-lh
+lJ
+lJ
+Yy
 la
 la
 ls
 kS
-lv
-lA
-lc
-lc
-lc
-lc
-lc
-mb
-md
+no
+mW
+mW
+ns
+lK
+na
+mW
+mW
+Ql
 kS
-lc
-lc
+lJ
+lJ
 kS
 aa
 aa
@@ -12971,7 +13536,7 @@ bx
 mi
 ce
 ml
-ai
+nl
 my
 ce
 mi
@@ -12982,13 +13547,13 @@ au
 au
 au
 au
-eu
+nf
 eP
 eW
 gW
 fC
 eW
-eu
+nq
 ag
 eY
 gH
@@ -13030,25 +13595,25 @@ aa
 aa
 kS
 kZ
-lc
-lc
-lh
+lJ
+lJ
+Yy
 la
 la
 ls
 kS
-lv
-lA
-lI
-lI
-lc
-lI
-lI
-mb
-md
+Om
+np
+mW
+mW
+mW
+mW
+mW
+np
+zx
 kS
-lc
-lc
+lJ
+lJ
 kS
 aa
 aa
@@ -13092,33 +13657,33 @@ aa
 aa
 ac
 av
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
 av
-eu
+nf
 eQ
 gW
 gW
 eQ
 gW
-eu
+nq
 ag
 eY
 gH
@@ -13159,26 +13724,26 @@ aa
 aa
 aa
 kS
-la
-lc
-lc
-lc
-lc
-lc
-lc
+Vb
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
 kS
 kS
 kS
-lc
-lc
-lc
-lc
-lc
+lq
+mW
+mW
+mW
+mo
 kS
 kS
 kS
-lc
-lc
+lJ
+lJ
 kS
 aa
 aa
@@ -13222,33 +13787,33 @@ aa
 aa
 ac
 av
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
 cE
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
 av
-eu
-eu
-eu
-eu
-eu
-eu
-eu
+nq
+nq
+nq
+nq
+nq
+nq
+nq
 ag
 eY
 eY
@@ -13290,25 +13855,25 @@ aa
 aa
 kS
 lb
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
 kS
 lL
-lL
-lL
-lL
-lc
+Tp
+nx
+SX
+HI
 nh
-lc
-lc
-lc
-lc
+lJ
+lJ
+lJ
+lJ
 kS
 aa
 aa
@@ -13359,11 +13924,11 @@ au
 lS
 bz
 bz
-aK
-ai
+oH
+nl
 cF
-ai
-aK
+nl
+oH
 bz
 bz
 lS
@@ -13372,7 +13937,7 @@ au
 au
 au
 au
-ac
+mc
 ag
 ag
 ag
@@ -13420,14 +13985,14 @@ aa
 aa
 kS
 kS
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
 kS
 kS
 kS
@@ -13435,9 +14000,9 @@ kS
 kS
 kS
 kS
-lc
-lc
-lc
+lJ
+lJ
+lJ
 kS
 kS
 aa
@@ -13490,19 +14055,19 @@ ac
 ac
 ac
 cg
-ai
+nl
 cG
-ai
+nl
 cg
+mc
+mc
+mc
 ac
 ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
+mc
 ag
 eY
 eY
@@ -13551,22 +14116,22 @@ aa
 aa
 kS
 kS
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
 kS
 kS
 aa
@@ -13620,9 +14185,9 @@ bj
 bA
 ac
 ch
-ai
+nl
 cH
-ai
+nl
 ch
 ac
 bA
@@ -13687,16 +14252,16 @@ kS
 kS
 kS
 kS
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
-lc
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
+lJ
 kS
 aa
 aa
@@ -13750,9 +14315,9 @@ ag
 ag
 ac
 ch
-ai
-ai
-ai
+nl
+nl
+nl
 ch
 ac
 ag
@@ -13820,7 +14385,7 @@ kS
 kS
 kS
 kS
-nv
+nh
 kS
 kS
 kS
@@ -14085,7 +14650,7 @@ lF
 kS
 lc
 lc
-lc
+wd
 kS
 aa
 aa
