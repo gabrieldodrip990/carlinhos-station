@@ -1178,6 +1178,52 @@ Mark this mob, then navigate to the preferences of the client you desire and cal
 /mob/living/carbon/human/species/ipc
 	race = /datum/species/ipc
 
+/mob/living/carbon/human/species/ipc_empty
+	parent_type = /mob/living/carbon/human/species/ipc
+
+	// Override New() to remove organs and limbs
+	New()
+		..()
+		// Remove all organs
+		for (var/obj/item/organ/O in internal_organs)
+			qdel(O)
+
+		// Remove all limbs
+		for (var/obj/item/bodypart/L in bodyparts)
+			if (L.body_part == CHEST)
+				continue
+			qdel(L)
+
+		hair_style = "Bald"
+		facial_hair_style = "Shaved"
+		update_hair()
+		update_body()
+		set_stat(DEAD)
+		timeofdeath = world.time + 99999999999999999999
+
+/mob/living/carbon/human/species/synth_empty
+	parent_type = /mob/living/carbon/human/species/synth
+
+	// Override New() to remove organs and limbs
+	New()
+		..()
+		// Remove all organs
+		for (var/obj/item/organ/O in internal_organs)
+			qdel(O)
+
+		// Remove all limbs
+		for (var/obj/item/bodypart/L in bodyparts)
+			if (L.body_part == CHEST)
+				continue
+			qdel(L)
+
+		hair_style = "Bald"
+		facial_hair_style = "Shaved"
+		update_hair()
+		update_body()
+		set_stat(DEAD)
+		timeofdeath = world.time + 99999999999999999999
+
 /mob/living/carbon/human/species/roundstartslime
 	race = /datum/species/jelly/roundstartslime
 

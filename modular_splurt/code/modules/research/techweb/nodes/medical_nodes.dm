@@ -16,8 +16,9 @@
 		"ipc_eyes",
 		"ipc_ears",
 		"ipc_tongue",
-		"ipc_brain",
-		"ci-power-cord"
+		"ci-power-cord",
+		"ipc_body",
+		"synth_body"
 	)
 	LAZYADD(design_ids, extra_designs)
 	. = ..()
