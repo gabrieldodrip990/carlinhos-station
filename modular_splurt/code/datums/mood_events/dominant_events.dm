@@ -1,4 +1,4 @@
-#esse fetiche de bosta nao vai afetar o mood mais. foda-se.
+//esse fetiche de bosta nao vai afetar o mood mais. foda-se.
 /datum/mood_event/dominant/need
 	description = span_warning("I need to be someone's good THING...\n")
 	mood_change = 0
