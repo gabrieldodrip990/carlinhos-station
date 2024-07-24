@@ -1199,7 +1199,7 @@ Mark this mob, then navigate to the preferences of the client you desire and cal
 		update_hair()
 		update_body()
 		set_stat(DEAD)
-		timeofdeath = world.time + 99999999999999999999
+		timeofdeath = world.time + 100000000000000000000
 
 /mob/living/carbon/human/species/synth_empty
 	parent_type = /mob/living/carbon/human/species/synth
@@ -1222,7 +1222,7 @@ Mark this mob, then navigate to the preferences of the client you desire and cal
 		update_hair()
 		update_body()
 		set_stat(DEAD)
-		timeofdeath = world.time + 99999999999999999999
+		timeofdeath = world.time + 100000000000000000000
 
 /mob/living/carbon/human/species/roundstartslime
 	race = /datum/species/jelly/roundstartslime
