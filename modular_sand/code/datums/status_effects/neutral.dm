@@ -1,7 +1,8 @@
+//Marcação para remoção e/ou deixar menos imbecil
 /datum/status_effect/dripping_cum
 	id = "dripping_cum"
-	// We only end when we run out!
-	duration = -1
+	// We only end when we run out! << caralho, vai se fuder kkkkkkkkkkk
+	duration = 10
 	tick_interval = 1 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/dripping_cum
 	var/datum/reagents/contents
@@ -83,7 +84,7 @@
 
 /atom/movable/screen/alert/status_effect/dripping_cum
 	name = "Dripping Cum"
-	desc = "Your last affairs left you dripping someone's seed."
+	desc = "Your last affairs left you dripping someone's seed." //its over, milhões devem morrer
 	icon = 'modular_sand/icons/mob/screen_alert.dmi'
 	icon_state = "dripping_cum"
 
