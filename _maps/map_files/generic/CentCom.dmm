@@ -31843,9 +31843,9 @@
 	},
 /turf/open/floor/grass/grass0,
 /area/centcom/holding)
-"vgW" = (
-/obj/structure/bed/double,
-/turf/open/floor/carpet,
+"SZ" = (
+/obj/machinery/research_table/slaver,
+/turf/open/floor/padded,
 /area/slavers)
 "viB" = (
 /obj/structure/chair/comfy/brown{
@@ -34961,24 +34961,14 @@
 /obj/effect/turf_decal/box/corners{
 	dir = 8
 	},
-/turf/open/floor/glass/reinforced,
-/area/syndicate_mothership/control)
-"xYe" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plating,
-/area/syndicate_mothership/control)
-"xYh" = (
-/obj/machinery/computer{
-	dir = 1;
-	name = "Colossus Shuttle recall terminal"
-	},
-/obj/effect/turf_decal/tile/brown/fourcorners,
-/turf/open/floor/iron/dark,
-/area/syndicate_mothership/control)
-"xYt" = (
-/obj/machinery/status_display/shuttle{
-	pixel_y = -32
+/turf/open/floor/padded,
+/area/slavers)
+"ZN" = (
+/obj/machinery/research_table/slaver,
+/obj/machinery/button/door{
+	id = "slavers_cell4";
+	name = "privacy shutters";
+	pixel_y = -26
 	},
 /turf/open/floor/iron/smooth,
 /area/centcom/evac)
