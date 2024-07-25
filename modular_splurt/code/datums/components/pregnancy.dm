@@ -113,9 +113,10 @@
 	UnregisterSignal(parent, COMSIG_PARENT_EXAMINE)
 
 /datum/component/pregnancy/proc/register_carrier()
-	RegisterSignal(carrier, COMSIG_MOB_DEATH, PROC_REF(clear_eggs))
+	RegisterSignal(carrier, COMSIG_MOB_DEATH, PROC_REF(fetus_mortus))
 	RegisterSignal(carrier, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(handle_life))
 	RegisterSignal(carrier, COMSIG_HEALTH_SCAN, PROC_REF(on_scan))
+	RegisterSignal(carrier, COMSIG_MOB_DEATH, PROC_REF(handle_damage))
 	if(oviposition)
 		RegisterSignal(carrier, COMSIG_MOB_CLIMAX, PROC_REF(on_climax))
 
@@ -123,6 +124,7 @@
 	UnregisterSignal(carrier, COMSIG_MOB_DEATH)
 	UnregisterSignal(carrier, COMSIG_LIVING_BIOLOGICAL_LIFE)
 	UnregisterSignal(carrier, COMSIG_HEALTH_SCAN)
+	UnregisterSignal(carrier, COMSIG_MOB_APPLY_DAMAGE)
 	UnregisterSignal(carrier, COMSIG_MOB_CLIMAX)
 
 /datum/component/pregnancy/Destroy()
@@ -179,18 +181,20 @@
 /datum/component/pregnancy/proc/handle_life(seconds)
 	SIGNAL_HANDLER
 
-	if(oviposition)
-		handle_ovi_preg()
-	else
-		handle_incubation()
+	if(!HAS_TRAIT(carrier,TRAIT_COMMON_PREGNANCY)) //For normal pregnancy - Gardelin0
+		if(oviposition)
+			handle_ovi_preg()
+		else
+			handle_incubation()
 
 	if((stage >= 2) && !revealed)
 		revealed = TRUE
 		carrier.apply_status_effect(/datum/status_effect/pregnancy)
 		carrier.apply_status_effect(/datum/status_effect/lactation)
 
-	if(stage > 3 && ishuman(carrier) && oviposition)
-		SEND_SIGNAL(carrier, COMSIG_ADD_MOOD_EVENT, "pregnancy", /datum/mood_event/pregnant_negative)
+	if(!HAS_TRAIT(carrier,TRAIT_COMMON_PREGNANCY)) //For normal pregnancy - Gardelin0
+		if(stage > 3 && ishuman(carrier) && oviposition)
+			SEND_SIGNAL(carrier, COMSIG_ADD_MOOD_EVENT, "pregnancy", /datum/mood_event/pregnant_negative)
 
 	if(COOLDOWN_FINISHED(src, stage_time))
 		stage += 1
@@ -401,11 +405,28 @@
 /datum/component/pregnancy/proc/human_pragency_end(mob/living/carbon/human/gregnant)
 	SEND_SIGNAL(gregnant, COMSIG_CLEAR_MOOD_EVENT, "pregnancy")
 
-/datum/component/pregnancy/proc/clear_eggs()
+/datum/component/pregnancy/proc/fetus_mortus()
 	SIGNAL_HANDLER
 
+	if(!QDELETED(carrier) && get_turf(carrier) && (stage >= 2))
+		if(!oviposition)
+			new /obj/effect/gibspawner/generic(get_turf(carrier))
+		else
+			new /obj/effect/decal/cleanable/egg_smudge(get_turf(carrier))
+	carrier.Knockdown(200, TRUE, TRUE)
+	carrier.Stun(200, TRUE, TRUE)
+	carrier.adjustStaminaLoss(200)
+	carrier.visible_message(span_danger("[carrier] has a miscarriage!"), \
+						span_userdanger("Oh no! My baby is dead!"))
 	qdel(src)
 
 /datum/component/pregnancy/proc/on_scan(datum/source, mob/user)
 	SIGNAL_HANDLER
 	to_chat(user, span_notice("<b>Pregnancy detected!</b>"))
+
+//drop kicked
+/datum/component/pregnancy/proc/handle_damage(datum/source, damage, damagetype, def_zone)
+	SIGNAL_HANDLER
+
+	if(def_zone == BODY_ZONE_CHEST && damage > 5 && prob(40))
+		fetus_mortus()

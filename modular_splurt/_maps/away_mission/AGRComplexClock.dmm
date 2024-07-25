@@ -2024,6 +2024,7 @@
 /area/awaymission/complex/engineering)
 "bSL" = (
 /obj/structure/table,
+/obj/item/toy/plush/plushvar,
 /turf/open/floor/plasteel,
 /area/awaymission/complex/research)
 "bSO" = (
@@ -6421,6 +6422,10 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/warmer,
 /area/awaymission/complex/mainfacility)
+"fCQ" = (
+/turf/open/space/basic,
+/turf/closed/mineral/snowmountain,
+/area/awaymission/complex/exterior)
 "fDs" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -11813,6 +11818,20 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plating,
 /area/awaymission/complex/engineering)
+"kgy" = (
+/obj/vehicle/ridden/atv/snowmobile,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/item/key{
+	desc = "A small grey key meant to be placed inside a vehicle. There is nothing special about this key at all besides that.";
+	name = "ATV key"
+	},
+/turf/open/floor/plating,
+/area/awaymission/complex/research)
 "kgE" = (
 /obj/structure/railing{
 	dir = 1
@@ -12216,6 +12235,20 @@
 /obj/structure/filingcabinet/chestdrawer/wheeled,
 /turf/open/floor/wood/damturf/broken7,
 /area/awaymission/complex/facilityresearch)
+"kwH" = (
+/obj/vehicle/ridden/atv/snowmobile,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/item/key{
+	desc = "A small grey key meant to be placed inside a vehicle. There is nothing special about this key at all besides that.";
+	name = "ATV key"
+	},
+/turf/open/floor/plating,
+/area/awaymission/complex/research)
 "kxm" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -13193,6 +13226,9 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/awaymission/complex/command)
+"lwG" = (
+/turf/closed/mineral/snowmountain,
+/area/awaymission/complex/exterior)
 "lxk" = (
 /obj/structure/chair/sofa/corp{
 	dir = 8
@@ -13750,6 +13786,11 @@
 "mcB" = (
 /turf/open/floor/plasteel/stairs/old,
 /area/awaymission/complex/research)
+"mcZ" = (
+/turf/open/space/basic,
+/turf/closed/mineral/snowmountain,
+/turf/closed/mineral/snowmountain,
+/area/awaymission/complex/exterior)
 "mdZ" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -22296,6 +22337,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/item/toy/plush/plushvar,
 /turf/open/floor/plasteel,
 /area/awaymission/complex/research)
 "tvG" = (
@@ -24316,6 +24358,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/complex/security)
+"vaS" = (
+/obj/vehicle/ridden/atv/snowmobile,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/item/key{
+	desc = "A small grey key meant to be placed inside a vehicle. There is nothing special about this key at all besides that.";
+	name = "ATV key"
+	},
+/turf/open/floor/plating,
+/area/awaymission/complex/research)
 "vaV" = (
 /obj/structure/closet/secure_closet/security/sec,
 /obj/effect/turf_decal/tile/red{
@@ -25212,6 +25268,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
+/obj/item/toy/plush/plushvar,
 /turf/open/floor/plasteel,
 /area/awaymission/complex/research)
 "vLI" = (
@@ -27730,7 +27787,7 @@
 "ykF" = (
 /obj/structure/table/wood,
 /obj/structure/fluff/paper,
-/obj/item/paperslip,
+/obj/item/paper/paperslip,
 /turf/open/floor/wood,
 /area/awaymission/complex/facilityresearch)
 "ylC" = (
@@ -36763,7 +36820,7 @@ rkE
 rkE
 rkE
 rkE
-sFr
+lwG
 rkE
 rkE
 rkE
@@ -37020,7 +37077,7 @@ rkE
 rkE
 rkE
 rkE
-sFr
+lwG
 rkE
 rkE
 rkE
@@ -37275,9 +37332,9 @@ gIA
 rkE
 rkE
 rkE
-sFr
-sFr
-sFr
+lwG
+lwG
+lwG
 rkE
 rkE
 rkE
@@ -37531,11 +37588,11 @@ rkE
 gIA
 gIA
 gIA
-sFr
-sFr
-sFr
-sFr
-sFr
+lwG
+lwG
+lwG
+lwG
+lwG
 rkE
 rkE
 rkE
@@ -37791,7 +37848,7 @@ rkE
 rkE
 rkE
 rkE
-sFr
+lwG
 rkE
 rkE
 rkE
@@ -39332,7 +39389,7 @@ rkE
 rkE
 rkE
 rkE
-sFr
+fCQ
 rkE
 rkE
 rkE
@@ -39589,8 +39646,8 @@ rkE
 rkE
 rkE
 rkE
-sFr
-sFr
+fCQ
+fCQ
 rkE
 rkE
 rkE
@@ -39845,10 +39902,10 @@ gIA
 gIA
 gIA
 gIA
-sFr
-sFr
-sFr
-sFr
+fCQ
+mcZ
+mcZ
+fCQ
 rkE
 rkE
 rkE
@@ -40104,7 +40161,7 @@ rkE
 rkE
 rkE
 rkE
-sFr
+fCQ
 rkE
 rkE
 rkE
@@ -89410,7 +89467,7 @@ dfP
 dfP
 dfP
 dfP
-swG
+dfP
 swG
 sFr
 sFr
@@ -89665,9 +89722,9 @@ hDO
 sWv
 kgM
 swG
-swG
-swG
-swG
+hDO
+sWv
+kgM
 swG
 sFr
 sFr
@@ -89922,9 +89979,9 @@ edC
 iTF
 rkI
 swG
-swG
-swG
-swG
+kgy
+vaS
+kwH
 sFr
 sFr
 sFr

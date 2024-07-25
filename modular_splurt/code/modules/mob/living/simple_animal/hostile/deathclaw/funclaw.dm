@@ -28,6 +28,9 @@
 	if(M.client && M.client?.prefs.erppref == "Yes" && CHECK_BITFIELD(M.client?.prefs.toggles, VERB_CONSENT) && M.client?.prefs.nonconpref == "Yes")
 		wantsNoncon = TRUE
 
+	if(M.client && M.client?.prefs.mobsexpref == "No") //So the new pref checks - Gardelin0
+		return
+
 	switch(deathclaw_mode)
 		if("gentle")
 			if(onLewdCooldown || !wantsNoncon)
@@ -46,8 +49,8 @@
 
 		start_pulling(M, supress_message = TRUE)
 		log_combat(src, M, "grabbed")
-		M.visible_message(span_warning("[src] violently grabs [M]!"), \
-			span_userdanger("[src] violently grabs you!"))
+		M.visible_message("<span class='warning'>[src] violently grabs [M]!</span>", \
+			"<span class='userdanger'>[src] violently grabs you!</span>")
 		setGrabState(GRAB_NECK) //Instant neck grab
 
 		return
@@ -84,6 +87,9 @@
 			chosen_hole = CUM_TARGET_THROAT
 
 /mob/living/simple_animal/hostile/deathclaw/funclaw/proc/do_lewd_action(mob/living/M)
+	if(M.client && M.client?.prefs.mobsexpref == "No")
+		return
+
 	if(get_refraction_dif() > 0)
 		return
 
@@ -138,15 +144,16 @@
 				handle_post_sex(25, null, M)
 				shake_camera(M, 6, 1)
 			else
-				I = SSinteractions.interactions["/datum/interaction/lewd/throatfuck"]
+				I = SSinteractions.interactions["/datum/interaction/lewd/facefuck"] //Changed so they don't crit you anymore - Gardelin0
 				I.display_interaction(src, M)
 
-/mob/living/simple_animal/hostile/deathclaw/funclaw/cum(mob/living/M)
+/mob/living/simple_animal/hostile/deathclaw/funclaw/cum(mob/living/M, target_orifice, cum_inside = FALSE, anonymous = FALSE)
 
 	if(get_refraction_dif() > 0)
 		return
 
 	var/message
+	var/obj/item/organ/genital/target_gen = null
 
 	if(!istype(M))
 		chosen_hole = null
@@ -155,27 +162,31 @@
 		if(CUM_TARGET_THROAT)
 			if(M.has_mouth() && M.mouth_is_free())
 				message = "shoves their fat reptillian cock deep down \the [M]'s throat and cums."
+				target_gen = M.getorganslot(ORGAN_SLOT_STOMACH)
+				target_gen.reagents.add_reagent(/datum/reagent/consumable/semen, 30)
 			else
 				message = "cums on \the [M]'s face."
 		if(CUM_TARGET_VAGINA)
 			if(M.is_bottomless() && M.has_vagina())
 				message = "rams its meaty cock into \the [M]'s pussy and fills it with sperm."
+				target_gen = M.getorganslot(ORGAN_SLOT_WOMB)
+				target_gen.reagents.add_reagent(/datum/reagent/consumable/semen, 30)
 				M.impregnate(src, M.getorganslot(ORGAN_SLOT_WOMB), src.type)
 			else
 				message = "cums on \the [M]'s belly."
 		if(CUM_TARGET_ANUS)
 			if(M.is_bottomless() && M.has_anus())
 				message = "hilts its knot into \the [M]'s ass and floods it with Deathclaw jizz."
+				target_gen = M.getorganslot(ORGAN_SLOT_ANUS)
+				target_gen.reagents.add_reagent(/datum/reagent/consumable/semen, 30)
 			else
 				message = "cums on \the [M]'s backside."
 		else
-			message = "cums on the floor!"
+			message = "кончает, заполняя пространство под собой!"
 
 	if(deathclaw_mode == "abomination" && M.client?.prefs.unholypref == "Yes")
 		message = "cums all over [M]'s body"
 
-	if(istype(M, /mob/living/carbon))
-		M.reagents.add_reagent(/datum/reagent/consumable/semen, 30)
 	new /obj/effect/decal/cleanable/semen(loc)
 
 	playlewdinteractionsound(loc, "modular_splurt/sound/lewd/deathclaw[rand(1, 2)].ogg", 30, 1, -1)
@@ -191,15 +202,15 @@
 
 /mob/living/simple_animal/hostile/deathclaw/funclaw/proc/slap(mob/living/M)
 	playlewdinteractionsound(loc, "modular_sand/sound/interactions/slap.ogg", 30, 1, -1)
-	visible_message(span_danger("\The [src]</b> slaps \the [M] right on the ass!"), \
-			span_userdanger("\The [src]</b> slaps \the [M] right on the ass!"), null, COMBAT_MESSAGE_RANGE)
+	visible_message(span_danger("\The [src]</b> шлёпает [M] по заднице!"), \
+			span_userdanger("\The [src]</b> шлёпает [M] по заднице!"), null, COMBAT_MESSAGE_RANGE)
 
 /mob/living/simple_animal/hostile/deathclaw/funclaw/proc/tearSlot(mob/living/M, slot)
 	var/obj/item/W = M.get_item_by_slot(slot)
 	if(W)
 		M.dropItemToGround(W)
 		playlewdinteractionsound(loc, "sound/items/poster_ripped.ogg", 30, 1, -1)
-		visible_message(span_danger("\The [src]</b> tears off \the [M]'s clothes!"), \
-				span_userdanger("\The [src]</b> tears off \the [M]'s clothes!"), null, COMBAT_MESSAGE_RANGE)
+		visible_message(span_danger("\The [src]</b> разрывает одежду [M]!"), \
+				span_userdanger("\The [src]</b> разрывает одежду [M]!"), null, COMBAT_MESSAGE_RANGE)
 		return TRUE
 	return FALSE

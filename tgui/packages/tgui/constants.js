@@ -67,6 +67,41 @@ export const RADIO_CHANNELS = [
     color: '#8f4a4b',
   },
   {
+    name: 'InteQ',
+    freq: 1207,
+    color: '#e58200',
+  },
+  {
+    name: 'Illegal',
+    freq: 1208,
+    color: '#30300',
+  },
+  {
+    name: 'Solar Federation',
+    freq: 1244,
+    color: '#3434fd',
+  },
+  {
+    name: 'New Russian Empire',
+    freq: 1222,
+    color: '#ff4444',
+  },
+  {
+    name: 'Tarkoff',
+    freq: 1243,
+    color: '#8f4a4b',
+  },
+  {
+    name: 'Syndicate DS-1',
+    freq: 1209,
+    color: '#8f4a4b',
+  },
+  {
+    name: 'Syndicate DS-2',
+    freq: 1210,
+    color: '#8f4a4b',
+  },
+  {
     name: 'Red Team',
     freq: 1215,
     color: '#ff4444',
@@ -110,6 +145,11 @@ export const RADIO_CHANNELS = [
     name: 'Command',
     freq: 1353,
     color: '#fcdf03',
+  },
+  {
+    name: 'Law',
+    freq: 1415,
+    color: '#ff69d7',
   },
   {
     name: 'Medical',

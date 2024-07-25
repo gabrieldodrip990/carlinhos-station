@@ -190,22 +190,12 @@
 	build_path = /obj/item/organ/tongue/robot/ipc
 	category = list("IPC Organs")
 
-/datum/design/ipc_body
-	name = "IPC Body"
-	desc = "An IPC body made of metal. Now you can create your own IPC. Must be completed with other IPC parts."
-	id = "ipc_body"
+/datum/design/ipc_brain
+	name = "IPC Brain (inert)"
+	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. It is usually slotted into the head of synthetic crewmembers."
+	id = "ipc_brain"
 	build_type = MECHFAB
-	construction_time = 200
-	materials = list(/datum/material/iron = 20000, /datum/material/glass = 1000, /datum/material/silver = 200, /datum/material/gold = 400)
-	build_path = /mob/living/carbon/human/species/ipc_empty
-	category = list("IPC Organs")
-
-/datum/design/synth_body
-	name = "Synth Body"
-	desc = "A Synth body. Now you can create your own live synth. Must be completed with other synth parts."
-	id = "synth_body"
-	build_type = MECHFAB
-	construction_time = 200
-	materials = list(/datum/material/iron = 20000, /datum/material/glass = 1000, /datum/material/silver = 200, /datum/material/gold = 400)
-	build_path = /mob/living/carbon/human/species/synth_empty
+	construction_time = 40
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 300, /datum/material/silver = 500, /datum/material/gold = 400)
+	build_path = /obj/item/organ/brain/ipc
 	category = list("IPC Organs")

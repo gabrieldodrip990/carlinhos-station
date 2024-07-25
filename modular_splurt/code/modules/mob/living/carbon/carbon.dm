@@ -1,12 +1,9 @@
-/mob/living/carbon/is_muzzled()
-	return ..() || istype(wear_mask, /obj/item/clothing/mask/gas/sechailer/slut)
-
 /mob/living/carbon/cuff_resist(obj/item/I, breakouttime = 600, cuff_break = 0)
 	if(istype(I, /obj/item/restraints/bondage_rope))
 		var/obj/item/restraints/bondage_rope/rope = I
 		cuff_break = rope.prepare_resist(src)
 		if(cuff_break == -1)
-			to_chat(src, span_danger("You are not able to reach the rope."))
+			to_chat(src, "<span class='danger'>You are not able to reach the rope.</span>")
 			return
 	. = ..()
 
@@ -14,8 +11,8 @@
 	if(istype(I, /obj/item/restraints/bondage_rope))
 		var/obj/item/restraints/bondage_rope/rope = I
 		if(LAZYLEN(rope.rope_stack) > 1)
-			visible_message(span_danger("[src] manages to loosen up their rope!"))
-			to_chat(src, span_notice("You successfully loosen up your rope."))
+			visible_message("<span class='danger'>[src] manages to loosen up their rope!</span>")
+			to_chat(src, "<span class='notice'>You successfully loosen up your rope.</span>")
 
 			var/obj/item/restraints/bondage_rope/new_rope = new rope.type()
 			new_rope.color = pop(rope.rope_stack)
@@ -30,6 +27,13 @@
 
 	// Get worn items
 	var/items = get_contents()
+
+	// BLUEMOON ADD START - нельзя сбросить включенный модсьют
+	var/obj/item/mod/control/modsuit = get_item_by_slot(ITEM_SLOT_BACK)
+	if(modsuit && istype(modsuit) && modsuit.active)
+		to_chat(src, "<span class='warning'>Включенный модсьют не даёт сбросить одежду!</span>")
+		return
+	// BLUEMOON ADD END
 
 	// Iterate over worn items
 	for(var/obj/item/item_worn in items)
@@ -56,7 +60,7 @@
 	// When successfully disrobing a target
 	if(user_disrobed)
 		// Display a chat message
-		visible_message(span_userlove("[src] suddenly bursts out of [p_their()] clothes!"), span_userlove("You suddenly burst out of your clothes!"))
+		visible_message(span_userlove("[src] вырывается из своей одежды!"), span_userlove("Ты вырываешься из своей одежды!"))
 
 		// Play the ripped poster sound
 		playsound(loc, 'sound/items/poster_ripped.ogg', 50, 1)

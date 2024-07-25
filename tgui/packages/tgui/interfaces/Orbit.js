@@ -98,6 +98,7 @@ export const Orbit = (props, context) => {
     antagonists,
     auto_observe,
     dead,
+    dead_players,
     ghosts,
     misc,
     npcs,
@@ -121,7 +122,7 @@ export const Orbit = (props, context) => {
   const orbitMostRelevant = searchText => {
     for (const source of [
       sortedAntagonists.map(([_, antags]) => antags),
-      alive, ghosts, dead, npcs, misc,
+      alive, ghosts, dead, dead_players, npcs, misc,
     ]) {
       const member = source
         .filter(searchFor(searchText))
@@ -224,6 +225,12 @@ export const Orbit = (props, context) => {
         <BasicSection
           title="Dead"
           source={dead}
+          searchText={searchText}
+        />
+
+        <BasicSection
+          title="Dead Players"
+          source={dead_players}
           searchText={searchText}
         />
 

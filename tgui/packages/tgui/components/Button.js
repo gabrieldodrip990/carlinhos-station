@@ -162,7 +162,7 @@ export class ButtonConfirm extends Component {
 
   render() {
     const {
-      confirmContent = "Confirm?",
+      confirmContent = "Подтвердить?",
       confirmColor = "bad",
       confirmIcon,
       icon,

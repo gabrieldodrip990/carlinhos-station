@@ -1,4 +1,3 @@
-//tive que da revert infelizmente, tava dando erro em mapas e em um antag, depois nos ver como retirar
 /datum/design/board/self_actualization_device
 	name = "Machine Design (Self-Actualization Device)"
 	desc = "The circuit board for a Self-Actualization Device by Cinco: A Family Company."

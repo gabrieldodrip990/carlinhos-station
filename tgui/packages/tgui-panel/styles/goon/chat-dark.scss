@@ -376,6 +376,10 @@ em {
   color: #dd3535;
 }
 
+.lawradio {
+  color: #ff69d7;
+}
+
 .medradio {
   color: #57b8f0;
 }
@@ -394,6 +398,14 @@ em {
 
 .syndradio {
   color: #8f4a4b;
+}
+
+.inteqradio {
+  color: #e58200;
+}
+
+.pirateradio {
+  color: #fafafa;
 }
 
 .gangradio {
@@ -602,6 +614,15 @@ blockquote.nicegreen {
 .lewd {
   color: #800080;
 }
+
+/* BLUEMOON ADD START - напитки для синтетиков */
+.synth {
+  color: #006afe;
+  font-style: italic;
+  font-weight: bold;
+  text-shadow: 0 0 3px #006eff;
+}
+/* BLUEMOON ADD END */
 
 .cult {
   color: #973e3b;
@@ -1164,6 +1185,28 @@ blockquote.brass {
 .examine_block hr {
   border: none;
   background: rgba(255, 255, 255, 0.3);
+  height: 1px;
+  margin: 8px 16px 8px 16px;
+}
+
+/* блюмун */
+
+// для больших персонажей
+.bigtalk {
+  font-size: 110%;
+}
+
+.mail_info_box {
+  background: rgba(60, 56, 56, 0.2);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  margin: 3px 2px;
+  padding: 4px 8px;
+  max-width: 550px;
+}
+
+.mail_info_box hr {
+  border: none;
+  background: rgb(225, 255, 0);
   height: 1px;
   margin: 8px 16px 8px 16px;
 }

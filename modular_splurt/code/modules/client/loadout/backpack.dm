@@ -103,6 +103,12 @@
 /datum/gear/backpack/towel
 	name = "Towel"
 	path = /obj/item/reagent_containers/rag/towel
+	cost = 2
+
+/datum/gear/backpack/towel_red
+	name = "Red Towel"
+	path = /obj/item/reagent_containers/rag/towel/syndicate
+	cost = 4
 
 /datum/gear/backpack/hugbox
 	name = "Box of Hugs"
@@ -138,18 +144,6 @@
 	name = "Hypnotic Chastity Watch"
 	path = /obj/item/chastity_hypno/watch
 
-/datum/gear/backpack/electropack/vibrator
-	name = "Remote Vibrator"
-	path = /obj/item/electropack/vibrator
-
-/datum/gear/backpack/electropack/vibrator/small
-	name = "Small Remote Vibrator"
-	path = /obj/item/electropack/vibrator/small
-
-/datum/gear/backpack/strapon_strap
-	name = "Strapon Strap"
-	path = /obj/item/strapon_strap
-
 //MODIFIED COSTS - MODULAR SPLURT
 /datum/gear/backpack/tennis/tri
 	cost = 1
@@ -168,9 +162,3 @@
 
 /datum/gear/backpack/modular_laptop
 	cost = 3
-
-/datum/gear/backpack/ringbox_gold
-	cost = 2
-
-/datum/gear/backpack/ringbox_diamond
-	cost = 4

@@ -238,7 +238,7 @@
 	// Check for mindshield implant
 	if(HAS_TRAIT(action_target, TRAIT_MINDSHIELD))
 		// Warn the users, then return
-		to_chat(action_owner, span_warning("You stare deeply into [action_target]'s eyes, but hear a faint buzzing from [action_target.p_their()] head. It seems something is interfering."))
+		to_chat(action_owner, span_warning("You stare deeply into [action_target]'s eyes, but hear a faint buzzing from [action_target.ru_ego()] head. It seems something is interfering."))
 		to_chat(action_target, span_notice("[action_owner] stares intensely into your eyes for a moment, before a buzzing sound emits from your head."))
 		return
 
@@ -246,7 +246,7 @@
 	// This is required for SetSleeping to trigger
 	if(HAS_TRAIT(action_target, TRAIT_SLEEPIMMUNE))
 		// Warn the users, then return
-		to_chat(action_owner, span_warning("You stare deeply into [action_target]'s eyes, and see nothing but unrelenting energy. You won't be able to subdue [action_target.p_them()] in this state!"))
+		to_chat(action_owner, span_warning("You stare deeply into [action_target]'s eyes, and see nothing but unrelenting energy. You won't be able to subdue [action_target.ru_na()] in this state!"))
 		to_chat(action_target, span_notice("[action_owner] stares intensely into your eyes, but sees something unusual about you..."))
 		return
 
@@ -259,7 +259,7 @@
 	// Check for combat mode
 	if(SEND_SIGNAL(action_target, COMSIG_COMBAT_MODE_CHECK, COMBAT_MODE_ACTIVE))
 		// Warn the users, then return
-		to_chat(action_owner, span_warning("[action_target] is acting too defensively! You'll need [action_target.p_them()] to lower [action_target.p_their()] guard first!"))
+		to_chat(action_owner, span_warning("[action_target] is acting too defensively! You'll need [action_target.ru_na()] to lower [action_target.ru_ego()] guard first!"))
 		to_chat(action_target, span_notice("[action_owner] tries to stare into your eyes, but can't get a read on you."))
 		return
 
@@ -485,7 +485,7 @@
 		bite_target = pull_target
 
 	// Or cocooned carbon
-	else if(istype(pull_target,/obj/structure/arachnid/cocoon))
+	else if(istype(pull_target,/obj/structure/spider/stickyweb/arachnid/cocoon))
 		// Define if cocoon has a valid target
 		// This cannot use pull_target
 		var/possible_cocoon_target = locate(/mob/living/carbon/human) in action_owner.pulling.contents
@@ -693,13 +693,13 @@
 		// Check for aggressive grab
 		else if(action_owner.grab_state < GRAB_AGGRESSIVE)
 			// Warn the user, then return
-			to_chat(action_owner, span_warning("You sense that [bite_target] is running low on blood. You'll need a tighter grip on [bite_target.p_them()] to continue."))
+			to_chat(action_owner, span_warning("You sense that [bite_target] is running low on blood. You'll need a tighter grip on [bite_target.ru_na()] to continue."))
 			return
 
 		// Check for pacifist
 		else if(HAS_TRAIT(action_owner, TRAIT_PACIFISM))
 			// Warn the user, then return
-			to_chat(action_owner, span_warning("You can't drain any more blood from [bite_target] without hurting [bite_target.p_them()]!"))
+			to_chat(action_owner, span_warning("You can't drain any more blood from [bite_target] without hurting [bite_target.ru_na()]!"))
 			return
 
 	// Check for pierce immunity
@@ -792,7 +792,8 @@
 		// Check for masochism
 		if(!HAS_TRAIT(bite_target, TRAIT_MASO))
 			// Force bite_target to play the scream emote
-			bite_target.emote("scream")
+			if(!HAS_TRAIT(bite_target, TRAIT_ROBOTIC_ORGANISM)) // BLUEMOON ADD - роботы не кричат от боли
+				bite_target.emote("scream")
 
 		// Log the biting action failure
 		log_combat(action_owner,bite_target,"bloodfledge bitten (interrupted)")
@@ -844,12 +845,12 @@
 			// Switch for target's blood type
 			switch(blood_type_target)
 				// Synth blood
-				if("S")
+				if("S", "HF")
 					// Mark blood as invalid
 					blood_valid = FALSE
 
 					// Set blood type name
-					blood_name = "coolant"
+					blood_name = "hydraulic fluid" // BLUEMOON EDIT - was "coolant"
 
 					// Check if blood types match
 					if(blood_type_match)
@@ -1366,8 +1367,8 @@
 			organ_vagina.update_size()
 
 	// Set transformation message
-	var/owner_p_their = action_owner.p_their()
-	var/toggle_message = (!transformed ? "[action_owner] shivers, [owner_p_their] flesh bursting with a sudden growth of thick fur as [owner_p_their] features contort to that of a beast, fully transforming [action_owner.p_them()] into a werewolf!" : "[action_owner] shrinks, [owner_p_their] wolfish features quickly receding.")
+	var/owner_ru_ego = action_owner.ru_ego()
+	var/toggle_message = (!transformed ? "[action_owner] shivers, [owner_ru_ego] flesh bursting with a sudden growth of thick fur as [owner_ru_ego] features contort to that of a beast, fully transforming [action_owner.ru_na()] into a werewolf!" : "[action_owner] shrinks, [owner_ru_ego] wolfish features quickly receding.")
 
 	// Alert in local chat
 	action_owner.visible_message(span_danger(toggle_message))
@@ -1457,12 +1458,6 @@
 //Quirk: Cosmetic Glow
 //Copy and pasted. Cry about it.
 /datum/action/cosglow
-	name = "Broken Glow Action"
-	desc = "Report this to a coder."
-	icon_icon = 'icons/effects/effects.dmi'
-	button_icon_state = "static"
-
-/datum/action/cosglow/update_glow
 	name = "Modify Glow"
 	desc = "Change your glow color."
 	button_icon_state = "blank"

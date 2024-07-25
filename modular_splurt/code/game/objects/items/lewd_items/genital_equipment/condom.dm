@@ -48,7 +48,7 @@
 
 /obj/item/genital_equipment/condom/update_icon()
 	switch(reagents.total_volume)
-		if(0 to 49)
+		if(1 to 49)
 			icon_state = "b_condom_inflated"
 		if(50 to 100)
 			icon_state = "b_condom_inflated_med"
@@ -56,6 +56,8 @@
 			icon_state = "b_condom_inflated_large"
 		if(250 to 300)
 			icon_state = "b_condom_inflated_huge"
+		else
+			icon_state = "b_condom"
 	..()
 
 /obj/item/genital_equipment/condom/on_reagent_change()
@@ -68,13 +70,13 @@
 		if(unwrapped == 0)
 			icon_state 	= "b_condom"
 			unwrapped = 1
-			to_chat(user, span_notice("You unwrap the condom."))
+			to_chat(user, "<span class='notice'>You unwrap the condom.</span>")
 			playsound(user, 'sound/items/poster_ripped.ogg', 50, 1, -1)
 			return
 
 /obj/item/genital_equipment/condom/throw_impact(atom/hit_atom)
 	. = ..()
-	if(!.) //if we're not being caught
+	if(!. && reagents.total_volume) //if we're not being caught
 		splat(hit_atom)
 
 /obj/item/genital_equipment/condom/proc/splat(atom/movable/hit_atom)

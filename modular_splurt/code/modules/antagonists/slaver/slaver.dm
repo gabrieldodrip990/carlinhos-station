@@ -4,24 +4,26 @@ GLOBAL_VAR_INIT(slavers_credits_balance, 5000)
 GLOBAL_VAR_INIT(slavers_credits_total, 0)
 GLOBAL_VAR_INIT(slavers_slaves_sold, 0)
 
-#define SLAVER_STANDARD_RANSOM 7500
+#define SLAVER_STANDARD_RANSOM 20000
 
 /// Price table for when trying to set slave prices automatically
 GLOBAL_LIST_INIT(slavers_ransom_values, list(
-	"Captain" 					= 175000,
-	"Head of Personnel" 		= 125000,
-	"Head of Security" 			= 100000,
-	"Chief Engineer" 			= 80000,
-	"Research Director" 		= 80000,
-	"Chief Medical Officer" 	= 80000,
-	"Blueshield" 				= 30000,
+	"Captain" 					= 500000,
+	"Head of Personnel" 		= 200000,
+	"Head of Security" 			= 150000,
+	"Chief Engineer" 			= 120000,
+	"Research Director" 		= 120000,
+	"Chief Medical Officer" 	= 120000,
+	"Blueshield" 				= 100000,
+	"Bridge Officer" 			= 80000,
 
-	"Warden" 					= 30000,
-	"Brig Physician" 			= 20000,
-	"Security Officer" 			= 20000,
-	"Detective" 				= 20000,
+	"Warden" 					= 80000,
+	"Brig Physician" 			= 40000,
+	"Security Officer" 			= 40000,
+	"Detective" 				= 40000,
+	"NanoTrasen Representative" = 80000,
 
-	"Quartermaster" 			= 10000,
+	"Quartermaster" 			= 40000,
 	"Cargo Technician" 			= SLAVER_STANDARD_RANSOM,
 	"Shaft Miner"				= SLAVER_STANDARD_RANSOM,
 	"Assistant" 				= SLAVER_STANDARD_RANSOM,
@@ -32,7 +34,7 @@ GLOBAL_LIST_INIT(slavers_ransom_values, list(
 	"Clown"						= SLAVER_STANDARD_RANSOM,
 	"Mime"						= SLAVER_STANDARD_RANSOM,
 	"Curator"					= SLAVER_STANDARD_RANSOM,
-	"Lawyer"					= SLAVER_STANDARD_RANSOM,
+	"Internal Affairs Agent"	= SLAVER_STANDARD_RANSOM,
 	"Chaplain"					= SLAVER_STANDARD_RANSOM,
 	"Station Engineer"			= SLAVER_STANDARD_RANSOM,
 	"Atmospheric Technician"	= SLAVER_STANDARD_RANSOM,
@@ -46,8 +48,8 @@ GLOBAL_LIST_INIT(slavers_ransom_values, list(
 	"Prisoner"					= SLAVER_STANDARD_RANSOM,
 	"Stowaway"					= SLAVER_STANDARD_RANSOM,
 	"Curator"					= SLAVER_STANDARD_RANSOM,
-	"Lawyer"					= SLAVER_STANDARD_RANSOM,
 	"Chaplain"					= SLAVER_STANDARD_RANSOM,
+	"Bouncer"					= SLAVER_STANDARD_RANSOM,
 ))
 
 #undef SLAVER_STANDARD_RANSOM
@@ -200,7 +202,7 @@ GLOBAL_LIST_INIT(slavers_ransom_values, list(
 
 /datum/team/slavers/roundend_report()
 	var/list/parts = list()
-	parts += span_header("Slave Traders:")
+	parts += "<span class='header'>Slave Traders:</span>"
 
 	var/text = "<br><span class='header'>The crew were:</span>"
 	var/slavesSold = GLOB.slavers_slaves_sold
@@ -225,9 +227,9 @@ GLOBAL_LIST_INIT(slavers_ransom_values, list(
 
 	// var/datum/objective/slaver/O = locate() in objectives
 	if(GLOB.slavers_credits_total >= 200000 && !all_dead)
-		parts += span_greentext("The slaver crew were successful!")
+		parts += "<span class='greentext'>The slaver crew were successful!</span>"
 	else
-		parts += span_redtext("The slaver crew have failed.")
+		parts += "<span class='redtext'>The slaver crew have failed.</span>"
 
 	parts += text
 
@@ -235,3 +237,9 @@ GLOBAL_LIST_INIT(slavers_ransom_values, list(
 
 /proc/is_slaver(mob/M)
 	return M && istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/slaver)
+
+/obj/item/clothing/glasses/hud/slaver
+	name = "Raper Sunglasses"
+	desc = "Солнцезащитные очки тёмного цвета, дающие способность увидеть, желает ли член экипажа подвергнуться сексуальному насилию."
+	icon_state = "bigsunglasses"
+	hud_type = DATA_HUD_ANTAGTARGET

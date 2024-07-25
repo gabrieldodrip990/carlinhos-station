@@ -1,5 +1,5 @@
 /datum/interaction/lewd/bondage_rope_remove
-	description = "Remove bondage rope."
+	description = "Убрать бандажную веревку."
 	interaction_sound = 'modular_splurt/sound/lewd/rope.ogg'
 	interaction_flags =  INTERACTION_FLAG_ADJACENT | INTERACTION_FLAG_OOC_CONSENT | INTERACTION_FLAG_REQUIRE_BONDAGE
 

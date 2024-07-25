@@ -1971,6 +1971,7 @@
 /area/awaymission/complex/engineering)
 "bSL" = (
 /obj/structure/table,
+/obj/item/toy/plush/narplush,
 /turf/open/floor/plasteel,
 /area/awaymission/complex/research)
 "bSO" = (
@@ -14186,6 +14187,20 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/awaymission/complex/minerhouse)
+"mxo" = (
+/obj/vehicle/ridden/atv/snowmobile,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/item/key{
+	desc = "A small grey key meant to be placed inside a vehicle. There is nothing special about this key at all besides that.";
+	name = "ATV key"
+	},
+/turf/open/floor/plating,
+/area/awaymission/complex/research)
 "mxC" = (
 /obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plating/snowed/complex,
@@ -15000,6 +15015,20 @@
 /obj/effect/decal/cleanable/oil/slippery,
 /turf/open/floor/plating,
 /area/awaymission/complex/logistics)
+"nee" = (
+/obj/vehicle/ridden/atv/snowmobile,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/item/key{
+	desc = "A small grey key meant to be placed inside a vehicle. There is nothing special about this key at all besides that.";
+	name = "ATV key"
+	},
+/turf/open/floor/plating,
+/area/awaymission/complex/research)
 "nen" = (
 /obj/structure/table/wood/fancy/blackred,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -16225,6 +16254,10 @@
 /obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/plating,
 /area/awaymission/complex/gatehouse)
+"ojz" = (
+/mob/living/simple_animal/hostile/cult/magic/elite,
+/turf/open/floor/plating/asteroid/snow/complex,
+/area/awaymission/complex/cultfacility)
 "ojQ" = (
 /obj/structure/firepit,
 /turf/open/floor/plating/asteroid/snow/complex{
@@ -18375,6 +18408,20 @@
 "qdp" = (
 /turf/open/floor/plating/ashplanet/ash,
 /area/awaymission/complex/janitorial)
+"qdX" = (
+/obj/vehicle/ridden/atv/snowmobile,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/item/key{
+	desc = "A small grey key meant to be placed inside a vehicle. There is nothing special about this key at all besides that.";
+	name = "ATV key"
+	},
+/turf/open/floor/plating,
+/area/awaymission/complex/research)
 "qen" = (
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/showroomfloor,
@@ -18956,6 +19003,7 @@
 /area/awaymission/complex/security)
 "qFC" = (
 /obj/effect/rune/narsie,
+/mob/living/simple_animal/hostile/cultleader,
 /turf/open/floor/plasteel/cult,
 /area/awaymission/complex/cultfacility)
 "qFD" = (
@@ -22383,6 +22431,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/item/toy/plush/narplush,
 /turf/open/floor/plasteel,
 /area/awaymission/complex/research)
 "tvP" = (
@@ -23666,6 +23715,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/complex/research)
+"uwY" = (
+/turf/closed/mineral/snowmountain,
+/area/awaymission/complex/exterior)
 "uxb" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/plating,
@@ -25229,6 +25281,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
+/obj/item/toy/plush/narplush,
 /turf/open/floor/plasteel,
 /area/awaymission/complex/research)
 "vLI" = (
@@ -27771,7 +27824,7 @@
 "ykF" = (
 /obj/structure/table/wood,
 /obj/structure/fluff/paper,
-/obj/item/paperslip,
+/obj/item/paper/paperslip,
 /turf/open/floor/wood,
 /area/awaymission/complex/facilityresearch)
 "ylC" = (
@@ -36804,7 +36857,7 @@ rkE
 rkE
 rkE
 rkE
-sFr
+uwY
 rkE
 rkE
 rkE
@@ -37061,7 +37114,7 @@ rkE
 rkE
 rkE
 rkE
-sFr
+uwY
 rkE
 rkE
 rkE
@@ -37316,9 +37369,9 @@ gIA
 rkE
 rkE
 rkE
-sFr
-sFr
-sFr
+uwY
+uwY
+uwY
 rkE
 rkE
 rkE
@@ -37572,11 +37625,11 @@ rkE
 gIA
 gIA
 gIA
-sFr
-sFr
-sFr
-sFr
-sFr
+uwY
+uwY
+uwY
+uwY
+uwY
 rkE
 rkE
 rkE
@@ -37832,7 +37885,7 @@ rkE
 rkE
 rkE
 rkE
-sFr
+uwY
 rkE
 rkE
 rkE
@@ -39373,7 +39426,7 @@ rkE
 rkE
 rkE
 rkE
-sFr
+uwY
 rkE
 rkE
 rkE
@@ -39630,8 +39683,8 @@ rkE
 rkE
 rkE
 rkE
-sFr
-sFr
+uwY
+uwY
 rkE
 rkE
 rkE
@@ -39886,10 +39939,10 @@ gIA
 gIA
 gIA
 gIA
-sFr
-sFr
-sFr
-sFr
+uwY
+uwY
+uwY
+uwY
 rkE
 rkE
 rkE
@@ -40145,7 +40198,7 @@ rkE
 rkE
 rkE
 rkE
-sFr
+uwY
 rkE
 rkE
 rkE
@@ -71447,7 +71500,7 @@ icb
 kGf
 uyW
 erS
-icb
+ojz
 icb
 xJi
 uyW
@@ -73502,8 +73555,8 @@ mAC
 icb
 bqx
 mlw
-icb
-icb
+erS
+ojz
 icb
 jqC
 mlw
@@ -89451,7 +89504,7 @@ dfP
 dfP
 dfP
 dfP
-swG
+dfP
 swG
 sFr
 sFr
@@ -89706,9 +89759,9 @@ hDO
 sWv
 kgM
 swG
-swG
-swG
-swG
+hDO
+sWv
+kgM
 swG
 sFr
 sFr
@@ -89963,9 +90016,9 @@ edC
 iTF
 rkI
 swG
-swG
-swG
-swG
+mxo
+nee
+qdX
 sFr
 sFr
 sFr

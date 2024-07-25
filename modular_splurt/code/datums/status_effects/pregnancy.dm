@@ -1,11 +1,10 @@
 /**
  * Who is the liar but he who denies that Jesus is the Christ? This is the antichrist, he who denies the Father and the Son.
  * - John 2:22
-baseado até, uma pena esse codigo é pura sodomia e pecado.
  */
 /atom/movable/screen/alert/status_effect/pregnancy
 	name = "Pregnant"
-	desc = "Welp, you sure are pregnant. (Vão ter uma vida, seus travecos)" // :(
+	desc = "Welp, you sure are pregnant."
 	icon = 'modular_splurt/icons/mob/screen_alert.dmi'
 	icon_state = "baby"
 
@@ -22,7 +21,8 @@ baseado até, uma pena esse codigo é pura sodomia e pecado.
 
 /datum/status_effect/lactation
 	id = "lactation"
-	duration = 20 MINUTES
+	duration = -1 //Make Lactation permanent - Gardelin0
+	tick = FALSE
 	alert_type = /atom/movable/screen/alert/status_effect/lactation
 	var/noapply
 

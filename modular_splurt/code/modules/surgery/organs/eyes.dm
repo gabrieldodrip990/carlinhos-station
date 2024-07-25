@@ -74,7 +74,7 @@
 // Organ examine text
 /obj/item/organ/eyes/robotic/hypno/proc/examine_user(atom/examine_target, mob/living/carbon/human/examiner, list/examine_list)
 	// Add examine text
-	examine_list += "[usr.p_their(TRUE)] eyes glimmer with an entrancing power."
+	examine_list += "[usr.p_their(TRUE)] глаза необычайно сверкают."
 
 //X-Ray Eyes - Extra Functionality
 
@@ -121,7 +121,7 @@
 
 /obj/item/organ/eyes/robotic/shield
 	actions_types = list(/datum/action/item_action/organ_action/use)
-	var/shield_active = TRUE 
+	var/shield_active = TRUE
 
 /obj/item/organ/eyes/robotic/shield/ui_action_click()
 	toggle_shield()

@@ -1,5 +1,5 @@
-## Carlinhos station 13
-apenas um simples server Br baseado no code S.P.L.U.R.T station 13.
+## S.P.L.U.R.T. Station 13
+Based and maintained from Sandstorm Station 13, which is based and maintained from Citadel, which is based and mantained from /tg/station. (yup)
 
 [![CI Suite](https://github.com/SPLURT-Station/S.P.L.U.R.T-Station-13/workflows/CI%20Suite/badge.svg)](https://github.com/SPLURT-Station/S.P.L.U.R.T-Station-13//actions?query=workflow%3A%22CI+Suite%22)
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/SPLURT-Station/S.P.L.U.R.T-Station-13.svg)](http://isitmaintained.com/project/SPLURT-Station/S.P.L.U.R.T-Station-13 "Percentage of issues still open")
@@ -33,12 +33,6 @@ apenas um simples server Br baseado no code S.P.L.U.R.T station 13.
 * **Discord:** https://discord.gg/wynHVMzHzC
 * **Patreon:** https://www.patreon.com/SPLURTstation13
 * **Ko-fi:** https://ko-fi.com/splurt
-
-**Carlinhos station information**
-* **Code:**
-https://github.com/gabrieldodrip990/carlinhos-station
-* **Discord:**
-https://discord.gg/X79H58uygw
 
 ## DOWNLOADING
 

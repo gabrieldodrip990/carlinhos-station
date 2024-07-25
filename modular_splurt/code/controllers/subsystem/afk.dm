@@ -36,14 +36,13 @@ SUBSYSTEM_DEF(auto_cryo)
 			continue
 
 		// Send to cryo
-		cryoMob(cryo_mob, effects = TRUE)
+		cryoMob(cryo_mob, is_teleporter = TRUE, effects = TRUE) //BLUEMOON CHANGE было is_teleporter = FALSE (нужно для правильного описания коробки в некоторых ситуациях)
 
 		// Remove from SSD list
 		GLOB.ssd_mob_list -= cryo_mob
 
 		// Log cryo interaction
 		log_game("[cryo_mob] was sent to cryo after being SSD for [afk_time] ticks.")
-
 
 // Remove defines
 #undef SUBSYSTEM_CRYO_CAN_RUN

@@ -107,7 +107,7 @@ namespace UnstandardnessTestForDM
             foreach(String filename in filenames){
                 searchFileForDefines(filename);
             }
-            
+
         }
 
         public void find_all_files()
@@ -158,7 +158,7 @@ namespace UnstandardnessTestForDM
             }
         }
 
-        
+
         public void DirSearch(string sDir, int flag)
         {
             try
@@ -279,7 +279,7 @@ namespace UnstandardnessTestForDM
 
                             comment = comment.Trim();
                             value = value.Trim();
-                        
+
                             Define d = new Define(fileName,i,name,value,comment);
                             defines.Add(d);
                             mainform.listBox1.Items.Add(d);
@@ -294,7 +294,7 @@ namespace UnstandardnessTestForDM
                     }
                 }
             }
-            catch (Exception e) { 
+            catch (Exception e) {
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
                 MessageBox.Show("Exception: " + e.Message + " | " + e.ToString());
@@ -440,7 +440,7 @@ namespace UnstandardnessTestForDM
                 r.Add(newline.TrimEnd());
 
             }
-        
+
             return r;
         }
 

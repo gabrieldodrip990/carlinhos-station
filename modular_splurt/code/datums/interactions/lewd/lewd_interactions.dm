@@ -1,5 +1,8 @@
 //help
 /datum/interaction/lewd
+
+	var/unholy = FALSE //То же самое что и эстрим вербы, но гораздо хуже.
+
 	var/require_user_legs
 	var/require_user_num_legs
 
@@ -14,17 +17,17 @@
 		var/has_belly = user.has_belly()
 		if(!has_belly)
 			if(!silent)
-				to_chat(user, span_warning("You don't have a belly."))
+				to_chat(user, span_warning("У тебя нет живота."))
 			return FALSE
 
 		if(!(has_belly == TRUE) || !(user_require_belly_exposed && user_require_belly_unexposed))
 			if(user_require_belly_exposed && has_belly == HAS_UNEXPOSED_GENITAL)
 				if(!silent)
-					to_chat(user, span_warning("Your belly needs to be exposed."))
+					to_chat(user, span_warning("Твой живот должен быть спрятан."))
 				return FALSE
 			if(user_require_belly_unexposed && has_belly == HAS_EXPOSED_GENITAL)
 				if(!silent)
-					to_chat(user, span_warning("Your belly need to be unexposed."))
+					to_chat(user, span_warning("Твой живот должен быть обнажён."))
 				return FALSE
 
 	if(require_user_legs)
@@ -32,22 +35,22 @@
 			if(REQUIRE_EXPOSED)
 				if(!user.has_legs(REQUIRE_EXPOSED))
 					if(!silent)
-						to_chat(user, span_warning("Your legs need to be exposed."))
+						to_chat(user, "<span class='warning'>Твои ноги должны быть обнажены.</span>")
 					return FALSE
 			if(REQUIRE_UNEXPOSED)
 				if(!user.has_legs(REQUIRE_UNEXPOSED))
 					if(!silent)
-						to_chat(user, span_warning("Your legs need to be unexposed."))
+						to_chat(user, "<span class='warning'>Твои ноги должны быть спрятаны.</span>")
 					return FALSE
 			if(REQUIRE_ANY)
 				if(!user.has_legs(REQUIRE_ANY))
 					if(!silent)
-						to_chat(user, span_warning("You don't have enough legs."))
+						to_chat(user, "<span class='warning'>У тебя не хватает ног для этого.</span>")
 					return FALSE
 
 	if(require_user_num_legs && (user.has_legs() < require_user_num_legs))
 		if(!silent)
-			to_chat(user, span_warning("Your don't have enough legs."))
+			to_chat(user, "<span class='warning'>У тебя не хватает ног для этого.</span>")
 		return FALSE
 
 
@@ -56,7 +59,7 @@
 		if(cli)
 			if(cli.prefs.unholypref == "No")
 				if(!silent)
-					to_chat(user, "<span class='warning'>That's way too much for you.</span>")
+					to_chat(user, "<span class='warning'>Для тебя это слишком.</span>")
 				return FALSE
 
 	var/user_require_penis_exposed = !!(required_from_user_exposed & INTERACTION_REQUIRE_PENIS)
@@ -100,17 +103,17 @@
 		var/has_belly = target.has_belly()
 		if(!has_belly)
 			if(!silent)
-				to_chat(target, span_warning("They don't have a belly."))
+				to_chat(target, span_warning("У партнёра нет живота."))
 			return FALSE
 
 		if(!(has_belly == TRUE) || !(target_require_belly_exposed && target_require_belly_unexposed))
 			if(target_require_belly_exposed && has_belly == HAS_UNEXPOSED_GENITAL)
 				if(!silent)
-					to_chat(target, span_warning("Their belly needs to be exposed."))
+					to_chat(target, span_warning("Живот партнёра должен быть спрятан."))
 				return FALSE
 			if(target_require_belly_unexposed && has_belly == HAS_EXPOSED_GENITAL)
 				if(!silent)
-					to_chat(target, span_warning("Their belly need to be unexposed."))
+					to_chat(target, span_warning("Живот партнёра должен быть обнажёнлы."))
 				return FALSE
 
 	if(require_target_legs)
@@ -118,22 +121,22 @@
 			if(REQUIRE_EXPOSED)
 				if(!target.has_legs(REQUIRE_EXPOSED))
 					if(!silent)
-						to_chat(user, span_warning("[target.p_their()] legs need to be exposed."))
+						to_chat(user, "<span class='warning'>Ноги партнёра должны быть обнажены.</span>")
 					return FALSE
 			if(REQUIRE_UNEXPOSED)
 				if(!target.has_legs(REQUIRE_UNEXPOSED))
 					if(!silent)
-						to_chat(user, span_warning("[target.p_their()] legs need to be unexposed."))
+						to_chat(user, "<span class='warning'>Ноги партнёра должны быть спрятаны.</span>")
 					return FALSE
 			if(REQUIRE_ANY)
 				if(!target.has_legs(REQUIRE_ANY))
 					if(!silent)
-						to_chat(user, span_warning("[target.p_they()] [target.p_do()]n't have enough legs."))
+						to_chat(user, "<span class='warning'>У твоего партнёра не хватает ног.</span>")
 					return FALSE
 
 	if(require_target_num_legs && (target.has_legs() < require_target_num_legs))
 		if(!silent)
-			to_chat(user, span_warning("[target.p_they()] [target.p_do()]n't have enough legs."))
+			to_chat(user, "<span class='warning'>Кажется, здесь не хватает ног.</span>")
 		return FALSE
 
 	if(interaction_flags & INTERACTION_FLAG_UNHOLY_CONTENT)
@@ -141,7 +144,7 @@
 		if(cli)
 			if(target.client.prefs.unholypref == "No")
 				if(!silent)
-					to_chat(user, "<span class='warning'>For some reason, you don't want to do this to [target].</span>")
+					to_chat(user, "<span class='warning'>По какой-то причине ты передумал это делать с <b>[target]</b>.</span>")
 				return FALSE
 
 	var/target_require_penis_exposed = !!(required_from_target_exposed & INTERACTION_REQUIRE_PENIS)
@@ -174,4 +177,4 @@
 /mob/living/list_interaction_attributes(mob/living/LM)
 	. = ..()
 	if(has_belly() == HAS_EXPOSED_GENITAL)
-		. += "...have a belly"
+		. += "...обладает выпуклым животом."

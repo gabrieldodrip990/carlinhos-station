@@ -20,6 +20,7 @@
 			"BootyF" = image(icon = 'modular_splurt/icons/mob/robots.dmi', icon_state = "bootystandard"),
 			"BootyM" = image(icon = 'modular_splurt/icons/mob/robots.dmi', icon_state = "bootystandardM"),
 			"BootyS" = image(icon = 'modular_splurt/icons/mob/robots.dmi', icon_state = "bootystandardS"),
+			"Fembot" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi', icon_state = "fembot-clerc"), //Gardelin0 Addon
 			"Assaultron" = image(icon = 'modular_splurt/icons/mob/robots.dmi', icon_state = "assaultron_standard"),
 			"Handy" = image(icon = 'modular_splurt/icons/mob/robots.dmi', icon_state = "handy"),
 			"Robo-Brain" = image(icon = 'modular_splurt/icons/mob/robots.dmi', icon_state = "robobrain"),
@@ -75,6 +76,9 @@
 			cyborg_base_icon = "bootystandardS"
 			cyborg_icon_override = 'modular_splurt/icons/mob/robots.dmi'
 			hat_offset = 3
+		if("Fembot") // //Gardelin0 Addon
+			cyborg_base_icon = "fembot-clerc"
+			cyborg_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi'
 		if("Assaultron")
 			cyborg_base_icon = "assaultron_standard"
 			cyborg_icon_override = 'modular_splurt/icons/mob/robots.dmi'
@@ -250,7 +254,6 @@
 			cyborg_base_icon = "mekacargo"
 			cyborg_icon_override = 'modular_splurt/icons/mob/robots_32x64.dmi'
 			hat_offset = 3
-			hasrest = TRUE
 		if("M-Meka")
 			cyborg_base_icon = "mmekacargo"
 			cyborg_icon_override = 'modular_splurt/icons/mob/robots_32x64.dmi'

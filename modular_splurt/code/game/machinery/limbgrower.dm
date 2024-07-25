@@ -1,8 +1,7 @@
 /obj/machinery/limbgrower/Initialize(mapload)
 	var/list/extra_cat = list(
 		"shadekin",
-		"teshari",
-		"vox"
+		"teshari"
 	)
 	LAZYADD(categories, extra_cat)
 	. = ..()
@@ -41,15 +40,3 @@
 	icon_mask = 'modular_splurt/icons/mob/clothing/species/vox/face.dmi'
 	icon_uniform = 'modular_splurt/icons/mob/clothing/species/vox/uniform.dmi'
 	icon_suit = 'modular_splurt/icons/mob/clothing/species/vox/suit.dmi'
-
-/datum/species/mammal/shadekin
-	limbs_id = SPECIES_SHADEKIN
-	icon_limbs = 'modular_splurt/icons/mob/human_parts_greyscale.dmi'
-
-/datum/species/mammal/teshari
-	limbs_id = SPECIES_TESHARI
-	icon_limbs = 'modular_splurt/icons/mob/teshari.dmi'
-
-/datum/species/vox
-	limbs_id = SPECIES_VOX
-	icon_limbs = 'modular_splurt/icons/mob/vox.dmi'

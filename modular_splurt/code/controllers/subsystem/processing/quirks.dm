@@ -1,5 +1,7 @@
+//BLUEMOON DELETE из-за нужды в переводе это всё в основе проке
 // Add incompatible quirks.
 // Inspired from LeDrascol's code. Thank you.
+/*
 /datum/controller/subsystem/processing/quirks/Initialize(timeofday)
 	. = ..()
 
@@ -22,3 +24,4 @@
 		// Bloodsuckers have NO_THIRST trait.
 		list("Thirsty","Bloodsucker Fledgling"),
 		))
+*/
