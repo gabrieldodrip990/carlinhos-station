@@ -11,6 +11,9 @@
 	shield_flags = SHIELD_FLAGS_DEFAULT | SHIELD_KINETIC_STRONG | SHIELD_ENERGY_WEAK
 	max_integrity = 300 //High integrity, extremely strong against melee / bullets, but still quite easy to destroy with lasers and energy
 	repair_material = /obj/item/stack/tile/brass
+	melee_block = 50 //bluemoon shange start
+	bullet_block = 60
+	laser_block = 20 //bluemoon shange end
 	var/dam_absorbed = 0
 	var/bash_mult_steps = 30
 	var/max_bash_mult = 4
@@ -40,8 +43,8 @@
 		return ..()
 
 	if(!is_servant_of_ratvar(owner))
-		owner.visible_message("<span class='warning'>As [owner] blocks the attack with [src], [owner.p_they()] suddenly drops it, whincing in pain! </span>", "<span class='warning'>As you block the attack with [src], it heats up tremendously, forcing you to drop it from the pain alone! </span>")
-		owner.emote("scream")
+		owner.visible_message("<span class='warning'>As [owner] blocks the attack with [src], [owner.ru_who()] suddenly drops it, whincing in pain! </span>", "<span class='warning'>As you block the attack with [src], it heats up tremendously, forcing you to drop it from the pain alone! </span>")
+		owner.emote("realagony")
 		playsound(src, 'sound/machines/fryer/deep_fryer_emerge.ogg', 50)
 		if(iscarbon(owner)) //Type safety for if a drone somehow got a shield (ratvar protect us)
 			var/mob/living/carbon/C = owner

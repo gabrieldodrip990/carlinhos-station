@@ -5,6 +5,7 @@
 	icon_state = "robot"
 	bubble_icon = "robot"
 	var/obj/item/pda/ai/aiPDA
+	var/flash_protect = FALSE
 
 /mob/living/silicon/robot/get_cell()
 	return cell
@@ -14,7 +15,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	wires = new /datum/wires/robot(src)
+	set_wires(new /datum/wires/robot(src))
 	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
 	// AddElement(/datum/element/ridable, /datum/component/riding/creature/cyborg)
 	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
@@ -129,9 +130,45 @@
 
 /mob/living/silicon/robot/Topic(href, href_list)
 	. = ..()
+	// BLUEMOON ADD START - профиль для боргов
+	if(href_list["cyborg_profile"])
+		ui_interact(usr)
+	// BLUEMOON ADD END
+	if(href_list["character_profile"])
+		if(!profile)
+			profile = new(src)
+		profile.ui_interact(usr)
 	//Show alerts window if user clicked on "Show alerts" in chat
 	if(href_list["showalerts"])
 		alert_control.ui_interact(src)
+
+	return
+
+// BLUEMOON ADD START - профиль для боргов
+// Да, это проклято и должно быть перенесено в отдельный датум, но...
+/mob/living/silicon/robot/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "CyborgProfile", "Профиль юнита [src]")
+		ui.open()
+
+/mob/living/silicon/robot/ui_static_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	var/data[0]
+	if(!src || !istype(src))
+		return
+	data["silicon_flavor_text"] = mind?.silicon_flavor_text || ""
+	data["oocnotes"] = mind?.ooc_notes || ""
+	data["vore_tag"] = client?.prefs?.vorepref || "No"
+	data["erp_tag"] = client?.prefs?.erppref || "No"
+	data["mob_tag"] = client?.prefs?.mobsexpref || "No"
+	data["nc_tag"] = client?.prefs?.nonconpref || "No"
+	data["unholy_tag"] = client?.prefs?.unholypref || "No"
+	data["extreme_tag"] = client?.prefs?.extremepref || "No"
+	data["very_extreme_tag"] = client?.prefs?.extremeharm || "No"
+
+	return data
+// BLUEMOON ADD END
 
 /mob/living/silicon/robot/proc/pick_module()
 	if(module.type != /obj/item/robot_module)
@@ -141,7 +178,7 @@
 		to_chat(src,"<span class='userdanger'>ERROR: Module installer reply timeout. Please check internal connections.</span>")
 		return
 
-	if(!CONFIG_GET(flag/disable_secborg) && GLOB.security_level < CONFIG_GET(number/minimum_secborg_alert))
+	if(!CONFIG_GET(flag/disable_secborg) && GLOB.security_level < CONFIG_GET(number/minimum_secborg_alert) && !CONFIG_GET(flag/bypass_secborg_code))
 		to_chat(src, "<span class='notice'>NOTICE: Due to local station regulations, the security cyborg module and its variants are only available during [NUM2SECLEVEL(CONFIG_GET(number/minimum_secborg_alert))] alert and greater.</span>")
 
 	var/list/modulelist = list("Standard" = /obj/item/robot_module/standard, \
@@ -152,7 +189,7 @@
 	"Service" = /obj/item/robot_module/butler)
 	if(!CONFIG_GET(flag/disable_peaceborg))
 		modulelist["Peacekeeper"] = /obj/item/robot_module/peacekeeper
-	if(BORG_SEC_AVAILABLE)
+	if(BORG_SEC_AVAILABLE || CONFIG_GET(flag/bypass_secborg_code))
 		modulelist["Security"] = /obj/item/robot_module/security
 
 	var/input_module = input("Please, select a module!", "Robot", null, null) as null|anything in sort_list(modulelist)
@@ -432,7 +469,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
-		if(check_access(H.get_active_held_item()) || check_access(H.wear_id))
+		if(check_access(H.get_active_held_item()) || check_access(H.wear_id) || check_access(H.wear_neck))
 			return TRUE
 	else if(ismonkey(M))
 		var/mob/living/carbon/monkey/george = M
@@ -675,13 +712,14 @@
 	lawupdate = FALSE
 	scrambledcodes = TRUE // These are rogue borgs.
 	ionpulse = TRUE
-	var/playstyle_string = "<span class='big bold'>You are a Syndicate assault cyborg!</span><br>\
-							<b>You are armed with powerful offensive tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
-							Your cyborg LMG will slowly produce ammunition from your power supply, and your operative pinpointer will find and locate fellow nuclear operatives. \
-							<i>Help the operatives secure the disk at all costs!</i></b>"
+	flash_protect = TRUE
+	var/playstyle_string = "<span class='big bold'>Вы - Штурмовой Киборг Синдиката!</span><br>\
+							<b>Вы вооружены мощными наступательными средствами, которые помогут вам выполнить задание: помочь Союзным Оперативникам. \
+							Ваш LMG будет медленно производить боеприпасы из вашего источника питания, а ваш оперативный пинпоинтер будет находить и определять местоположение товарищей по Операции. \
+							<i>Помогите оперативникам любой ценой!!!</i></b>"
 	set_module = /obj/item/robot_module/syndicate
 	cell = /obj/item/stock_parts/cell/hyper
-	// radio = /obj/item/radio/borg/syndicate
+	typing_indicator_state = /obj/effect/overlay/typing_indicator/additional/syndbot
 
 /mob/living/silicon/robot/modules/syndicate/Initialize(mapload)
 	. = ..()
@@ -703,24 +741,82 @@
 
 /mob/living/silicon/robot/modules/syndicate/medical
 	icon_state = "synd_medical"
-	playstyle_string = "<span class='big bold'>You are a Syndicate medical cyborg!</span><br>\
-						<b>You are armed with powerful medical tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
-						Your hypospray will produce Restorative Nanites, a wonder-drug that will heal most types of bodily damages, including clone and brain damage. It also produces morphine for offense. \
-						Your defibrillator paddles can revive operatives through their hardsuits, or can be used on harm intent to shock enemies! \
-						Your energy saw functions as a circular saw, but can be activated to deal more damage, and your operative pinpointer will find and locate fellow nuclear operatives. \
-						<i>Help the operatives secure the disk at all costs!</i></b>"
+	playstyle_string = "<span class='big bold'>Вы - Медицинский Киборг Синдиката!</span><br>\
+						<b>Вы вооружены мощными медицинскими инструментами, которые помогут вам выполнить задание: помочь союзным оперативникам. \
+						Ваш гипоспрей производит восстанавливающие наниты - чудо-лекарство, исцеляющее большинство видов телесных повреждений, включая повреждения мозга. Он также производит сильнодействующий морфий для нападения. \
+						Ваши дефибрилляторы могут оживлять оперативников через их бронескафандры, или могут быть использованы для нападения на врагов! \
+						Ваша энергетическая пила работает как циркулярная, но может быть активирована для нанесения больших повреждений, а ваш оперативный пинпоинтер найдет и определит местонахождение товарищей по Операции. \
+						<i>Помогите оперативникам любой ценой!!!</i></b>"
 	set_module = /obj/item/robot_module/syndicate_medical
 
 /mob/living/silicon/robot/modules/syndicate/saboteur
 	icon_state = "synd_engi"
-	playstyle_string = "<span class='big bold'>You are a Syndicate saboteur cyborg!</span><br>\
-						<b>You are armed with robust engineering tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
-						Your destination tagger will allow you to stealthily traverse the disposal network across the station \
-						Your welder will allow you to repair the operatives' exosuits, but also yourself and your fellow cyborgs \
-						Your cyborg chameleon projector allows you to assume the appearance and registered name of a Nanotrasen engineering borg, and undertake covert actions on the station \
-						Be aware that almost any physical contact or incidental damage will break your camouflage \
-						<i>Help the operatives secure the disk at all costs!</i></b>"
+	playstyle_string = "<span class='big bold'>Вы - Саботажный Киборг Синдиката!</span><br>\
+						<b>Вы вооружены надежными инженерными средствами, которые помогут вам выполнить задание: помочь союзным оперативникам. \
+						Ваш Маркер Назначения позволит Вам скрытно перемещаться по сети утилизации по всей станции. \
+						Ваш сварочный аппарат позволит Вам ремонтировать экзокостюмы оперативников, а также себя и своих товарищей-киборгов. \
+						Ваш Киборг-Проектор Хамелеон позволит вам принять облик и зарегистрированное имя инженерного борга Nanotrasen и проводить тайные операции на Космических Станциях. \
+						Имейте в виду, что почти любой физический контакт или случайное повреждение нарушит ваш камуфляж! \
+						<i>Помогите оперативникам любой ценой!!!</i></b>"
 	set_module = /obj/item/robot_module/saboteur
+
+/mob/living/silicon/robot/modules/inteq
+	icon_state = "inteq_sec"
+	var/playstyle_string = "<span class='big bold'>Вы - Штурмовой Киборг ИнтеКью!</span><br>\
+							<b>Вы вооружены мощными наступательными средствами, которые помогут вам выполнить задание: помочь Союзным Оперативникам. \
+							Ваш LMG будет медленно производить боеприпасы из вашего источника питания, а ваш оперативный пинпоинтер будет находить и определять местоположение товарищей по Операции. \
+							<i>Помогите оперативникам любой ценой!!!</i></b>"
+	faction = list(ROLE_INTEQ)
+	bubble_icon = "syndibot"
+	req_access = list(ACCESS_SYNDICATE)
+	lawupdate = FALSE
+	scrambledcodes = TRUE // These are rogue borgs.
+	ionpulse = TRUE
+	flash_protect = TRUE
+	lamp_color = COLOR_SOAPSTONE_GOLD
+	set_module = /obj/item/robot_module/syndicate/inteq
+	cell = /obj/item/stock_parts/cell/hyper
+	typing_indicator_state = /obj/effect/overlay/typing_indicator/additional/syndbot
+	upgrades = list(/obj/item/borg/upgrade/vtec)
+
+/mob/living/silicon/robot/modules/inteq/Initialize(mapload)
+	. = ..()
+	radio = new /obj/item/radio/borg/inteq(src)
+	laws = new /datum/ai_laws/inteq_override()
+	addtimer(CALLBACK(src, PROC_REF(show_playstyle)), 5)
+
+/mob/living/silicon/robot/modules/inteq/create_modularInterface()
+	if(!modularInterface)
+		modularInterface = new /obj/item/modular_computer/tablet/integrated/syndicate(src)
+	return ..()
+
+/mob/living/silicon/robot/modules/inteq/proc/show_playstyle()
+	if(playstyle_string)
+		to_chat(src, playstyle_string)
+
+/mob/living/silicon/robot/modules/inteq/ResetModule()
+	return
+
+/mob/living/silicon/robot/modules/inteq/medical
+	icon_state = "inteq_medical"
+	playstyle_string = "<span class='big bold'>Вы - Медицинский Киборг ИнтеКью!</span><br>\
+						<b>Вы вооружены мощными медицинскими инструментами, которые помогут вам выполнить задание: помочь союзным оперативникам. \
+						Ваш гипоспрей производит восстанавливающие наниты - чудо-лекарство, исцеляющее большинство видов телесных повреждений, включая повреждения мозга. Он также производит сильнодействующий морфий для нападения. \
+						Ваши дефибрилляторы могут оживлять оперативников через их бронескафандры, или могут быть использованы для нападения на врагов! \
+						Ваша энергетическая пила работает как циркулярная, но может быть активирована для нанесения больших повреждений, а ваш оперативный пинпоинтер найдет и определит местонахождение товарищей по Операции. \
+						<i>Помогите оперативникам любой ценой!!!</i></b>"
+	set_module = /obj/item/robot_module/syndicate_medical/inteq
+
+/mob/living/silicon/robot/modules/inteq/saboteur
+	icon_state = "inteq_engi"
+	playstyle_string = "<span class='big bold'>Вы - Саботажный Киборг ИнтеКью!</span><br>\
+						<b>Вы вооружены надежными инженерными средствами, которые помогут вам выполнить задание: помочь союзным оперативникам. \
+						Ваш Маркер Назначения позволит Вам скрытно перемещаться по сети утилизации по всей станции. \
+						Ваш сварочный аппарат позволит Вам ремонтировать экзокостюмы оперативников, а также себя и своих товарищей-киборгов. \
+						Ваш Киборг-Проектор Хамелеон позволит вам принять облик и зарегистрированное имя инженерного борга Nanotrasen и проводить тайные операции на Космических Станциях. \
+						Имейте в виду, что почти любой физический контакт или случайное повреждение нарушит ваш камуфляж! \
+						<i>Помогите оперативникам любой ценой!!!</i></b>"
+	set_module = /obj/item/robot_module/saboteur/inteq
 
 /mob/living/silicon/robot/modules/syndicate/spider// used for space ninja and their cyborg hacking special objective
 	bubble_icon = "spider"
@@ -728,6 +824,7 @@
 							<b>You are armed with powerful offensive tools to aid you in your mission: obey your ninja masters by any means necessary. \
 							Your cyborg LMG will slowly produce ammunition from your power supply, and your pinpointer will find and locate fellow members of the Spider Clan.</b>"
 	set_module = /obj/item/robot_module/syndicate/spider
+	typing_indicator_state = /obj/effect/overlay/typing_indicator/additional/spider
 
 /mob/living/silicon/robot/modules/syndicate_medical/spider// ditto
 	bubble_icon = "spider"
@@ -737,6 +834,7 @@
 						Your defibrillator paddles can revive allies through their hardsuits, or can be used on harm intent to shock enemies! \
 						Your energy saw functions as a circular saw, but can be activated to deal more damage, and your pinpointer will find and locate fellow members of the Spider Clan.</b>"
 	set_module = /obj/item/robot_module/syndicate_medical/spider
+	typing_indicator_state = /obj/effect/overlay/typing_indicator/additional/spider
 
 /mob/living/silicon/robot/modules/saboteur/spider// ditto
 	bubble_icon = "spider"
@@ -747,6 +845,7 @@
 						Your cyborg chameleon projector allows you to assume the appearance and registered name of a Nanotrasen engineering borg, and undertake covert actions on the station, \
 						be aware that almost any physical contact or incidental damage will break your camouflage.</b>"
 	set_module = /obj/item/robot_module/saboteur/spider
+	typing_indicator_state = /obj/effect/overlay/typing_indicator/additional/spider
 
 /mob/living/silicon/robot/proc/notify_ai(notifytype, oldname, newname)
 	if(!connected_ai)
@@ -862,6 +961,7 @@
 	diag_hud_set_health()
 	diag_hud_set_aishell()
 	update_health_hud()
+	..()
 
 /mob/living/silicon/robot/revive(full_heal = FALSE, admin_revive = FALSE)
 	if(..()) //successfully ressuscitated from death
@@ -1174,9 +1274,9 @@
 		return
 	if(iscarbon(M) && !M.incapacitated() && !riding_datum.equip_buckle_inhands(M, 1))
 		if(M.get_num_arms() <= 0)
-			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_they()] don't have any usable arms!</span>")
+			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.ru_who()] don't have any usable arms!</span>")
 		else
-			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_their()] hands are full!</span>")
+			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.ru_ego()] hands are full!</span>")
 		return
 	. = ..(M, force, check_loc)
 
@@ -1226,16 +1326,38 @@
 	set desc = "Select your resting pose."
 	sitting = 0
 	bellyup = 0
-	var/choice = alert(src, "Select resting pose", "", "Resting", "Sitting", "Belly up")
-	switch(choice)
-		if("Resting")
-			update_icons()
-			return FALSE
-		if("Sitting")
-			sitting = 1
-		if("Belly up")
-			bellyup = 1
-	update_icons()
+	deep_rest = 0		//DarkSer request by Gardelin0
+	wag_rest = 0		//DarkSer request by Gardelin0
+	wag_sit = 0			//DarkSer request by Gardelin0
+
+	if(module.drakerest == TRUE)	//DarkSer request by Gardelin0
+		var/choice_drake = tgui_alert(usr, "Select resting pose", "Pose", list("Resting", "Sitting", "Belly up", "Napping", "Resting Wag", "Sitting Wag"))
+		switch(choice_drake)
+			if("Resting")
+				update_icons()
+				return FALSE
+			if("Sitting")
+				sitting = 1
+			if("Belly up")
+				bellyup = 1
+			if("Napping")
+				deep_rest = 1
+			if("Resting Wag")
+				wag_rest = 1
+			if("Sitting Wag")
+				wag_sit = 1
+		update_icons()
+	if(module.drakerest == FALSE)
+		var/choice = tgui_alert(usr, "Select resting pose", "Pose", list("Resting", "Sitting", "Belly up"))
+		switch(choice)
+			if("Resting")
+				update_icons()
+				return FALSE
+			if("Sitting")
+				sitting = 1
+			if("Belly up")
+				bellyup = 1
+		update_icons()
 
 /mob/living/silicon/robot/verb/viewmanifest()
 	set category = "Robot Commands"
@@ -1283,7 +1405,7 @@
 		program.force_full_update()
 
 /mob/living/silicon/robot/get_tooltip_data()
-	var/t_He = p_they(TRUE)
+	var/t_He = ru_who(TRUE)
 	var/t_is = p_are()
 	. = list()
 	var/borg_type = module ? module : "Default"
@@ -1295,4 +1417,6 @@
 		borg_type = "Engineering"
 */
 	. += "[t_He] [t_is] a [borg_type] unit"
+	if(activity)
+		. += activity
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, usr, .)

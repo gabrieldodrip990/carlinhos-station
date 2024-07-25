@@ -240,6 +240,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	/// List of family heirlooms this species can get with the family heirloom quirk. List of types.
 	var/list/family_heirlooms
 
+	/// BLUEMOON ADD START - если брут или бёрн ниже этого порога, то урон не наносится
+	var/minimal_damage_threshold = 0
+	// BLUEMOON ADD END
+
 	COOLDOWN_DECLARE(ass) // SPLURT ADDITION: ASS-SMACK COOLDOWN
 
 ///////////
@@ -275,6 +279,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			qdel(S)
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
+	GLOB.roundstart_race_names = sort_list(GLOB.roundstart_race_names) // BLUEMOON ADD - сортировка названий рас для выбора в меню создания персонажа
 
 /**
  * Checks if a species is eligible to be picked at roundstart.
@@ -412,10 +417,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			stomach = new()
 		stomach.Insert(C)
 
-	if(appendix && (!should_have_appendix || replace_current))
+	if(!mutantappendix && appendix && (!should_have_appendix || replace_current))
 		appendix.Remove(TRUE)
 		QDEL_NULL(appendix)
-	if(should_have_appendix && !appendix)
+	if(should_have_appendix && !appendix && mutantappendix)
 		appendix = new()
 		appendix.Insert(C)
 
@@ -851,8 +856,15 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				if(eye_type in GLOB.eye_types)
 					left_state = "[eye_type]_left_eye"
 					right_state = "[eye_type]_right_eye"
+				/*BLUEMOON REMOVAL START - EYES
 				var/mutable_appearance/left_eye = mutable_appearance('icons/mob/eyes.dmi', left_state, -BODY_LAYER)
 				var/mutable_appearance/right_eye = mutable_appearance('icons/mob/eyes.dmi', right_state, -BODY_LAYER)
+				BLUEMOON REMOVAL END - EYES*/
+				//BLUEMON ADD - EYES. Это грубый костыль, чтобы не нужно было изменять оригинальный dmi файл
+				var/mutable_appearance/left_eye = mutable_appearance('modular_bluemoon/eyes/eyes.dmi', left_state, -BODY_LAYER)
+				var/mutable_appearance/right_eye = mutable_appearance('modular_bluemoon/eyes/eyes.dmi', right_state, -BODY_LAYER)
+				//BLUEMON END - EYES. Туда скопированы оригинальные глаза. Если сплюрт добавит новые, нужно добавить их и сюда.
+				//bro tip: можно сделать так, чтобы если не находил глаза в оригинале, ссылался на новый файл. Но автору не хватило сил
 				left_eye.category = "HEAD"
 				right_eye.category = "HEAD"
 				if((EYECOLOR in species_traits) && has_eyes)
@@ -1288,7 +1300,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			if(!HAS_TRAIT(H, TRAIT_ROBOTIC_ORGANISM))
 				H.adjustBruteLoss(1)
 			else
-				H.adjustFireLoss(1) //Robots melt instead of taking brute.
+				H.adjustToxLoss(1, toxins_type = TOX_SYSCORRUPT) // BLUEMOON CHANGES - вместо урона ожогами, у синтетиков начинают пегреваться внутренности, что выражено уроном токсинами
 
 /datum/species/proc/spec_death(gibbed, mob/living/carbon/human/H)
 	if(H)
@@ -1315,7 +1327,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(ITEM_SLOT_HANDS)
 			if(H.get_empty_held_indexes())
 				return TRUE
-			return FALSE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_MASK)
 			if(H.wear_mask)
 				return FALSE
@@ -1329,7 +1341,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_NECK) )
 				return FALSE
-			return TRUE
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_BACK)
 			if(H.back)
 				return FALSE
@@ -1563,7 +1575,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 /datum/species/proc/equip_delay_self_check(obj/item/I, mob/living/carbon/human/H, bypass_equip_delay_self)
 	if(!I.equip_delay_self || bypass_equip_delay_self)
 		return TRUE
-	H.visible_message("<span class='notice'>[H] start putting on [I]...</span>", "<span class='notice'>You start putting on [I]...</span>")
+	H.visible_message("<span class='notice'>[H] одевается в [I]...</span>", "<span class='notice'>Ты натягиваешь [I]...</span>")
 	return do_after(H, I.equip_delay_self, target = H)
 
 /datum/species/proc/before_equip_job(datum/job/J, mob/living/carbon/human/H)
@@ -1593,7 +1605,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	//The fucking TRAIT_FAT mutation is the dumbest shit ever. It makes the code so difficult to work with
 	if(HAS_TRAIT(H, TRAIT_FAT))//I share your pain, past coder.
 		if(H.overeatduration < 100)
-			to_chat(H, span_notice("You feel fit again!"))
+			to_chat(H, span_notice("Я чувствую себя гораздо лучше!"))
 			REMOVE_TRAIT(H, TRAIT_FAT, OBESITY)
 			H.remove_movespeed_modifier(/datum/movespeed_modifier/obesity)
 			H.update_inv_w_uniform()
@@ -1606,8 +1618,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	else
 		if(HAS_TRAIT(H, TRAIT_INCUBUS || TRAIT_SUCCUBUS))
 			return //SPLURT EDIT: Incubi and succubi don't get fat drawbacks (but can still be seen on examine)
-		if(H.overeatduration >= 100)
-			to_chat(H, span_danger("You suddenly feel blubbery!"))
+		if(H.overeatduration >= 100 && !HAS_TRAIT(H, TRAIT_BLUEMOON_DEVOURER))
+			to_chat(H, span_danger("Кажется, вы объелись!"))
 			ADD_TRAIT(H, TRAIT_FAT, OBESITY)
 			H.add_movespeed_modifier(/datum/movespeed_modifier/obesity)
 			H.update_inv_w_uniform()
@@ -1852,6 +1864,16 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		target.set_last_attacker(user)
 		user.dna.species.spec_unarmedattacked(user, target)
 
+		// BLUEMOON ADD START - если урона ниже минимального наносимого для расы, то он не наносится
+		if(minimal_damage_threshold && damage <= minimal_damage_threshold)
+			damage = 0
+			if(HAS_TRAIT(target, TRAIT_ROBOTIC_ORGANISM))
+				target.visible_message(span_warning("Корпус [target] слишком прочный, удар не повредил его!"), span_notice("Корпус нивелирует наносимые повреждения."))
+			else
+				target.visible_message("Кожа [target] слишком прочная, удар не повредил её!", span_notice("Кожа даже не повреждается от наносимых повреждений."))
+		damage *= get_size(user) // в зависимости от размера персонажа, урон становится больше, или меньше
+		// BLUEMOON ADD END
+
 		if(user.limb_destroyer)
 			target.dismembering_strike(user, affecting.body_zone)
 
@@ -1927,7 +1949,8 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		return FALSE
 	else if(aim_for_groin && (target == user || target.lying || same_dir) && (target_on_help || target_restrained || target_aiming_for_groin))
 		if(target.client?.prefs.cit_toggles & NO_ASS_SLAP)
-			to_chat(user,"A force stays your hand, preventing you from slapping \the [target]'s ass!")
+			to_chat(user, span_warning("По какой-то причине вы не можете сделать это с [target].")) // BLUEMOON EDIT, было 	to_chat(user,"A force stays your hand, preventing you from slapping \the [target]'s ass!")
+			to_chat(user, span_warning(span_small("Игрок отключил механическую возможность шлепать себя. Попробуйте отыгрывать это через действия."))) // BLUEMOON ADD
 			return FALSE
 		if(!user.UseStaminaBuffer(3, warn = TRUE))
 			return FALSE
@@ -1945,24 +1968,24 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				'modular_splurt/sound/effects/pan0.ogg',
 				'modular_splurt/sound/effects/pan1.ogg'
 			)
-			playsound(target.loc, pick(ouchies), 50, 1, -1)
+			playsound(target.loc, pick(ouchies), 15, 1, -1)
 			user.emote("scream")
 			return FALSE
 		//SPLURT ADDITION START
 		if(HAS_TRAIT(target, TRAIT_JIGGLY_ASS))
 			if(!COOLDOWN_FINISHED(src, ass))
 				if(user == target)
-					to_chat(user, span_alert("Your butt is still [pick("rippling","jiggling","sloshing","clapping","wobbling")] about way too much to get a good smack!"))
+					to_chat(user, span_alert("Твоя сочная задница все еще [pick("пульсирует","покачивается","трясётся","хлопает","колеблется")] после хорошего удара!"))
 				else
-					to_chat(user, span_alert("[target]'s big butt is still [pick("rippling","jiggling","sloshing","clapping","wobbling")] about way too much to get a good smack!"))
+					to_chat(user, span_alert("Сочной задница [target] все еще [pick("пульсирует","покачивается","трясётся","хлопает","колеблется")] после хорошего удара!"))
 			else
 				COOLDOWN_START(src, ass, 5 SECONDS)
 				if(user == target)
 					playsound(target.loc, 'sound/weapons/slap.ogg', 50, FALSE, -1) // deep bassy butt
 					user.adjustStaminaLoss(25)
 					user.visible_message(
-						span_notice("[user] gives [user.p_their()] butt a smack!"),
-						span_lewd("You give your big fat butt a smack! It [pick("ripples","jiggles","sloshes","claps","wobbles")] about and throws you off balance!"),
+						span_notice("[user] шлёпает по своей сочной заднице!"),
+						span_lewd("Вы шлёпнули по своей сочной заднице! Она [pick("пульсирует","покачивается","трясётся","хлопает","колеблется","трясётся")] после хорошего удара и мешает вам стоять ровно!"),
 					)
 					return
 				else
@@ -1971,9 +1994,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 					playsound(target.loc, 'sound/weapons/slap.ogg', 50, FALSE, -1) // deep bassy butt
 					target.adjustStaminaLoss(25)
 					user.visible_message(
-						span_notice("\The [user] slaps [target]'s butt!"),
+						span_notice("[user] шлёпает по сочной заднице [target]!"),
 						target = target,
-						target_message = span_lewd("[user] smacks your big fat butt and sends it [pick("rippling","jiggling","sloshing","clapping","wobbling")]! It [pick("ripples","jiggles","sloshes","claps","wobbles")] about and throws you off balance!"))
+						target_message = span_lewd("[user] шлёпает по сочной заднице [target]! Она [pick("пульсирует","покачивается","трясётся","хлопает","колеблется","трясётся")] после хорошего удара и мешает вам стоять ровно!"))
 				return FALSE
 		//SPLURT ADDITION END
 		target.adjust_arousal(20,"masochism", maso = TRUE)
@@ -1981,7 +2004,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			target.mob_climax(forced_climax=TRUE, cause = "masochism")
 		if (!HAS_TRAIT(target, TRAIT_PERMABONER))
 			stop_wagging_tail(target)
-		playsound(target.loc, 'sound/weapons/slap.ogg', 50, 1, -1)
+		// playsound(target.loc, 'sound/weapons/slap.ogg', 50, 1, -1) // BLUEMOON REMOVAL - это дубль звука сверху (почему он вообще существует?)
 		target.visible_message(\
 			span_danger("\The [user] slaps [user == target ? "[user.p_their()] own" : "\the [target]'s"] ass!"),\
 			span_notice("[user] slaps your ass!"),\
@@ -2104,10 +2127,22 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	hit_area = affecting.name
 	var/def_zone = affecting.body_zone
 
-	var/armor_block = H.run_armor_check(affecting, MELEE, "<span class='notice'>Your armor has protected your [hit_area].</span>", "<span class='notice'>Your armor has softened a hit to your [hit_area].</span>",I.armour_penetration)
-	armor_block = min(90,armor_block) //cap damage reduction at 90%
+	// BLUEMOON ADD START - если урона ниже минимального наносимого для расы, то он не наносится
+	var/armor_block = 0
+	if(minimal_damage_threshold && totitemdamage <= minimal_damage_threshold)
+		totitemdamage = 0
+		if(HAS_TRAIT(H, TRAIT_ROBOTIC_ORGANISM))
+			H.visible_message(span_warning("Корпус [H] слишком прочный, удар не повредил его!"), span_notice("Корпус нивелирует наносимые повреждения."))
+		else
+			H.visible_message("Кожа [H] слишком прочная, удар не повредил её!", span_notice("Кожа даже не повреждается от наносимых повреждений."))
+	else
+	// BLUEMOON ADD END
+		armor_block = H.run_armor_check(affecting, MELEE, "<span class='notice'>Your armor has protected your [hit_area].</span>", "<span class='notice'>Your armor has softened a hit to your [hit_area].</span>",I.armour_penetration) // BLUEMOON CHANGES - var/armor_block перенесён выше
+		armor_block = min(90,armor_block) //cap damage reduction at 90%
+
 	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 	var/Iwound_bonus = I.wound_bonus
+
 
 	// this way, you can't wound with a surgical tool on help intent if they have a surgery active and are laying down, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
 	if((I.item_flags & SURGICAL_TOOL) && user.a_intent == INTENT_HELP && (H.mobility_flags & ~MOBILITY_STAND) && (LAZYLEN(H.surgeries) > 0))
@@ -2154,10 +2189,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 					else
 						H.adjustOrganLoss(ORGAN_SLOT_BRAIN, I.force * 0.2)
 
-					if(H.stat == CONSCIOUS && H != user && prob(I.force + ((100 - H.health) * 0.5))) // rev deconversion through blunt trauma.
-						var/datum/antagonist/rev/rev = H.mind.has_antag_datum(/datum/antagonist/rev)
-						if(rev)
-							rev.remove_revolutionary(FALSE, user)
+					if(H.mind == null)
+						return
+					if(H.mind.has_antag_datum(/datum/antagonist/rev))
+						if(H.stat == CONSCIOUS && H != user && prob(I.force + ((100 - H.health) * 0.5))) // rev deconversion through blunt trauma.
+							var/datum/antagonist/rev/rev = H.mind.has_antag_datum(/datum/antagonist/rev)
+							if(rev)
+								rev.remove_revolutionary(FALSE, user)
 
 				if(bloody)	//Apply blood
 					if(H.wear_mask)
@@ -2184,7 +2222,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 						H.w_socks.add_mob_blood(H)
 						H.update_inv_w_socks()
 					if(H.w_shirt)
-						H.w_underwear.add_mob_blood(H)
+						H.w_shirt.add_mob_blood(H)
 						H.update_inv_w_shirt()
 					//
 
@@ -2239,9 +2277,16 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(CHECK_MOBILITY(user, MOBILITY_STAND))
 			to_chat(user, "<span class='notice'>You can only force yourself up if you're on the ground.</span>")
 			return
-		if(!user.UseStaminaBuffer(STAMINA_COST_SHOVE_UP, TRUE))
+		// BLUEMOON ADD START
+		var/shove_up_stamina_cost = MAX_STAMINA_HEALTH * CONFIG_GET(number/percent_stamina_cost_shove_up)
+		if(HAS_TRAIT(user, TRAIT_BLUEMOON_HEAVY_SUPER)) // сверхтяжёлые персонажи поднимаются в два раза тяжелее
+			shove_up_stamina_cost *= 2
+		else if(HAS_TRAIT(user, TRAIT_BLUEMOON_HEAVY)) // тяжёлые персонажи поднимаются в 1.5 раза тяжелее
+			shove_up_stamina_cost *= 1.5
+		// BLUEMOON ADD END
+		if(!user.UseStaminaBuffer(shove_up_stamina_cost, TRUE)) // BLUEMOON CHANGES
 			return
-		user.visible_message("<span class='notice'>[user] forces [p_them()]self up to [p_their()] feet!</span>", "<span class='notice'>You force yourself up to your feet!</span>")
+		user.visible_message("<span class='notice'>[user] forces [p_them()]self up to [ru_ego()] feet!</span>", "<span class='notice'>You force yourself up to your feet!</span>")
 		user.set_resting(FALSE, TRUE)
 		playsound(user, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
@@ -2256,6 +2301,13 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		return FALSE
 	if(attacker_style && attacker_style.disarm_act(user,target))
 		return TRUE
+	// BLUEMOON ADDITION AHEAD
+	if(HAS_TRAIT(target, TRAIT_BLUEMOON_HEAVY_SUPER)) // Большие персонажей могут сбивать с ног только другие большие персонажи (и халк)
+		if(!HAS_TRAIT(user, TRAIT_BLUEMOON_HEAVY_SUPER))
+			if(!user.dna.check_mutation(HULK))
+				to_chat(user, span_warning("Слишком много весит!"))
+				return
+	// BLUEMOON ADDITION END
 	if(!CHECK_MOBILITY(user, MOBILITY_STAND))
 		return FALSE
 	else
@@ -2371,7 +2423,17 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	switch(damagetype)
 		if(BRUTE)
 			H.damageoverlaytemp = 20
-			var/damage_amount = forced ? damage : damage * hit_percent * brutemod * H.physiology.brute_mod
+			var/damage_amount
+			if (HAS_TRAIT(H, TRAIT_TOUGHT) && !forced) // проверка на трейт стойкости
+				if (damage <= 10) //если урон до применения модификаторов не привышает 10, то он не учитывается
+					if(HAS_TRAIT(H, TRAIT_ROBOTIC_ORGANISM))
+						H.visible_message(span_warning("Корпус [H] слишком прочный, удар не повредил его!"), span_notice("Корпус нивелирует наносимые повреждения."))
+					else
+						H.visible_message("Кожа [H] слишком прочная, удар не повредил её!", span_notice("Кожа даже не повреждается от наносимых повреждений."))
+					return apply_damage(damage, damagetype = STAMINA)
+				damage_amount = damage * hit_percent * brutemod * H.physiology.brute_mod
+			else
+				damage_amount = forced ? damage : damage * hit_percent * brutemod * H.physiology.brute_mod
 			if(BP)
 				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
@@ -2509,17 +2571,21 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			firemodifier = min(firemodifier, 0)
 			burn_damage = max(log(2-firemodifier,(H.bodytemperature-BODYTEMP_NORMAL))-5,0) // this can go below 5 at log 2.5
 		if (burn_damage)
+			var/alert_type = HAS_TRAIT(H, TRAIT_ROBOTIC_ORGANISM) ? /atom/movable/screen/alert/sweat_robotic : /atom/movable/screen/alert/sweat // BLUEMOON ADD - для разделения алёртов синтетиков и органиков
 			switch(burn_damage)
 				if(0 to 2)
-					H.throw_alert("temp", /atom/movable/screen/alert/sweat, 1)
+					H.throw_alert("temp", alert_type, 1) // BLUEMOON CHANGES
 				if(2 to 4)
-					H.throw_alert("temp", /atom/movable/screen/alert/sweat, 2)
+					H.throw_alert("temp", alert_type, 2) // BLUEMOON CHANGES
 				else
-					H.throw_alert("temp", /atom/movable/screen/alert/sweat, 3)
+					H.throw_alert("temp", alert_type, 3) // BLUEMOON CHANGES
 		burn_damage = burn_damage * heatmod * H.physiology.heat_mod
-		if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 10) / 4) //40% for level 3 damage on humans
-			H.emote("scream")
-		H.apply_damage(burn_damage, BURN)
+		if(!HAS_TRAIT(H, TRAIT_ROBOTIC_ORGANISM))
+			if (H.stat < UNCONSCIOUS && (prob(burn_damage) * 10) / 4) //40% for level 3 damage on humans
+				H.emote("scream")
+			H.apply_damage(burn_damage, BURN)
+		else
+			H.adjustToxLoss(burn_damage / 2, toxins_type = TOX_SYSCORRUPT)
 
 	else if(H.bodytemperature < (BODYTEMP_COLD_DAMAGE_LIMIT + cold_offset) && !HAS_TRAIT(H, TRAIT_RESISTCOLD))
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")

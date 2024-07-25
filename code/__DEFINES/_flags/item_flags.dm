@@ -26,6 +26,8 @@
 #define ITEM_CAN_PARRY						(1<<12)
 /// This item can be used in the directional blocking system. Only a basic check used to determine if we should proceed with directional block handling at all.
 #define ITEM_CAN_BLOCK						(1<<13)
+/// Является ли данный предмет семейной ценностью (family heirloom)
+#define FAMILY_HEIRLOOM						(1<<14) // BLUEMOON ADD - выбор вещей из лодаута как family heirloom
 
 // Flags for the clothing_flags var on /obj/item/clothing
 
@@ -40,6 +42,7 @@
 #define VOICEBOX_DISABLED 		(1<<8)	//The voicebox is currently turned off.
 #define IGNORE_HAT_TOSS			(1<<9)	//Hats with negative effects when worn (i.e the tinfoil hat).
 #define SCAN_REAGENTS			(1<<10)	// Allows helmets and glasses to scan reagents.
+#define PLASMAMAN_HELMET_EXEMPT (1<<11) //prevents from placing on plasmaman helmet
 
 // Flags for the organ_flags var on /obj/item/organ
 

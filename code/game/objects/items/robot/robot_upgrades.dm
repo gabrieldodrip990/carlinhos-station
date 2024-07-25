@@ -92,6 +92,7 @@
 		VC = new /obj/effect/proc_holder/silicon/cyborg/vtecControl
 		R.AddAbility(VC)
 		R.cansprint = 0
+		R.disable_intentional_sprint_mode()
 		var/datum/hud/robot/robohud = R.hud_used
 		if(istype(robohud))
 			robohud.assert_move_intent_ui()
@@ -727,22 +728,53 @@
 	action_icon_state = "Chevron_State_0"
 
 	var/currentState = 0
-	var/maxReduction = 0.5
 
 
 /obj/effect/proc_holder/silicon/cyborg/vtecControl/Trigger(mob/living/silicon/robot/user)
-	currentState = (currentState + 1) % 3
+	if(!(user.cell?.charge) || (!user.cell?.self_recharge && (user.cell?.charge <= 500)) || (user.cell?.self_recharge && (user.cell?.charge <= max(user.cell?.chargerate, 500))))
+		to_chat(user, "<span class='warning'>Critical cell charge! VTEC is temporarily disabled.</span>")
+		currentState = 0
+	else
+		currentState = (currentState + 1) % 3
 
 	if(istype(user))
 		switch(currentState)
-			if (0)
-				user.vtec = initial(user.vtec)
-			if (1)
-				user.vtec = initial(user.vtec) - maxReduction * 0.5
-			if (2)
-				user.vtec = initial(user.vtec) - maxReduction * 1
+			if (0) //default speed
+				user.vtec = initial(user.vtec) //"vtec" value is negative and the lesser it is the faster we move.
+			if (1) //slightly faster than runnung
+				user.vtec = initial(user.vtec) - 0.75 //cyborg sprinting is roughly -2. don't forget we can't sprint with vtec.  //BLUEMOON EDIT Снижение модификатора скорости со стандартных -1,25 до -0,75 для второго режима VTEC
+			if (2) //overclocking module
+				user.vtec = initial(user.vtec) - 1 //while changing this value check /mob/living/silicon/robot/proc/use_power() to maintain proper power drain //BLUEMOON EDIT Снижение модификатора скорости со стандартных -1,75 до -1 для третьего режима VTEC
 
 	action.button_icon_state = "Chevron_State_[currentState]"
 	action.UpdateButtons()
 
 	return TRUE
+
+/obj/item/borg/upgrade/broomer
+	name = "Experimental Broom"
+	desc = "При активации позволяет толкать предметы перед собой в большой куче."
+	icon_state = "cyborg_upgrade3"
+	require_module = TRUE
+	module_type = list(/obj/item/robot_module/butler)
+	module_flags = BORG_MODULE_JANITOR
+
+/obj/item/borg/upgrade/broomer/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (!.)
+		return
+	var/obj/item/broom/cyborg/BR = locate() in R.module.modules
+	if (BR)
+		to_chat(user, span_warning("Этот киборг уже оснащен экспериментальным толкателем!"))
+		return FALSE
+	BR = new(R.module)
+	R.module.basic_modules += BR
+	R.module.add_module(BR, FALSE, TRUE)
+
+/obj/item/borg/upgrade/broomer/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (!.)
+		return
+	var/obj/item/broom/cyborg/BR = locate() in R.module.modules
+	if (BR)
+		R.module.remove_module(BR, TRUE)

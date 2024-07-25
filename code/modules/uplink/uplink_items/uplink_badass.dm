@@ -16,7 +16,7 @@
 /datum/uplink_item/badass/costumes
 	cost = 4
 	cant_discount = TRUE
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SYNDICATE
 
 /datum/uplink_item/badass/costumes/centcom_official
 	name = "CentCom Official Costume"
@@ -37,21 +37,31 @@
 
 /datum/uplink_item/badass/balloon
 	name = "Syndicate Balloon"
-	desc = "For showing that you are THE BOSS: A useless red balloon with the Syndicate logo on it. \
-			Can blow the deepest of covers."
+	desc = "For showing that you are Syndicate member: A useless red balloon with the Syndicate logo on it. \
+			Can blow the deepest of covers. Seriously, it's totally useless nowadays. The friendship pact as is."
 	item = /obj/item/toy/syndicateballoon
 	cost = 20
 	cant_discount = TRUE
 	illegal_tech = FALSE
+	purchasable_from = UPLINK_SYNDICATE
+
+/datum/uplink_item/badass/balloon/inteq_ballon
+	name = "InteQ Balloon"
+	desc = "Для тех, кто хочет заявить о своём причастии к InteQ: Бесполезный оранжевый шар с логотипом ЧВК. \
+			Может подорвать даже самое идеальное прикрытие. Серьёзно, это бесполезный шарик."
+	item = /obj/item/toy/inteqballoon
+	cost = 30
+	purchasable_from = (UPLINK_TRAITORS | UPLINK_NUKE_OPS)
 
 /datum/uplink_item/badass/syndiecash
-	name = "Syndicate Briefcase Full of Cash"
+	name = "Briefcase Full of Cash"
 	desc = "A secure briefcase containing 5000 space credits. Useful for bribing personnel, or purchasing goods \
 			and services at lucrative prices. The briefcase also feels a little heavier to hold; it has been \
 			manufactured to pack a little bit more of a punch if your client needs some convincing."
 	item = /obj/item/storage/secure/briefcase/syndie
 	cost = 1
 	restricted = TRUE
+	purchasable_from = (UPLINK_TRAITORS | UPLINK_NUKE_OPS) //bluemoon change никакого фарма денег через ВР
 
 /datum/uplink_item/badass/syndiecards
 	name = "Syndicate Playing Cards"
@@ -69,6 +79,15 @@
 	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	illegal_tech = FALSE
+	purchasable_from = UPLINK_SYNDICATE // Bluemoon Changes
+
+/datum/uplink_item/badass/inteqcigs // Bluemoon Changes
+	name = "InteQ Smokes"
+	desc = "Strong flavor, dense smoke, infused with omnizine."
+	item = /obj/item/storage/fancy/cigarettes/cigpack_inteq
+	cost = 2
+	illegal_tech = FALSE
+	purchasable_from = ~(UPLINK_SYNDICATE)
 
 /datum/uplink_item/badass/tactical_naptime
 	name = "Sleepy Time Pajama Bundle"
@@ -77,17 +96,26 @@
 	cost = 4
 	limited_stock = 1
 	cant_discount = TRUE
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SYNDICATE
 
 /datum/uplink_item/badass/gaming_cardpack
 	name = "TCG Card Operatives Bundle"
 	desc = "A bundle full of goodies required to work as a TCG Card Operative. A warm pajama, a mug of cocoa, a plushie and a two packs full of rare 2560 Core Set cards!"
 	item = /obj/item/storage/box/syndie_kit/sleepytime/cardpack
 	cost = 20
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SYNDICATE
 
 /datum/uplink_item/badass/cardpack
 	name = "TCG Nuclear Cardpack"
 	desc = "A cardpack filled with top-tier TCG cards."
 	item = /obj/item/cardpack/syndicate
-	cost = 4
+	cost = 1
+
+/datum/uplink_item/badass/toy_inteq
+	name = "InteQ Operative Toy"
+	desc = "Show them who is the boss."
+	item = /obj/item/toy/figure/inteq
+	cost = 1
+	cant_discount = TRUE
+	illegal_tech = FALSE
+	purchasable_from = ~(UPLINK_SYNDICATE)

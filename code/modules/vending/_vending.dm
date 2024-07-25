@@ -97,8 +97,6 @@
 
 	///String of slogans separated by semicolons, optional
 	var/product_slogans = ""
-	///String of small ad messages in the vending screen - random chance
-	var/product_ads = ""
 
 	var/list/product_records = list()
 	var/list/hidden_records = list()
@@ -187,7 +185,7 @@
 		circuit = null
 		build_inv = TRUE
 	. = ..()
-	wires = new /datum/wires/vending(src)
+	set_wires(new /datum/wires/vending(src))
 	if(build_inv) //non-constructable vending machine
 		build_inventory(products, product_records)
 		build_inventory(contraband, hidden_records)
@@ -325,6 +323,32 @@ GLOBAL_LIST_EMPTY(vending_products)
 		// R.age_restricted = initial(temp.age_restricted)
 		// R.colorable = !!(initial(temp.greyscale_config) && initial(temp.greyscale_colors) && (initial(temp.flags_1) & IS_PLAYER_COLORABLE_1))
 		recordlist += R
+
+/**
+ * Reassign the prices of the vending machine as a result of the inflation value, as provided by SSeconomy
+ *
+ * This rebuilds both /datum/data/vending_products lists for premium and standard products based on their most relevant pricing values.
+ * Arguments:
+ * * recordlist - the list of standard product datums in the vendor to refresh their prices.
+ * * premiumlist - the list of premium product datums in the vendor to refresh their prices.
+ */
+/obj/machinery/vending/proc/reset_prices(list/recordlist, list/premiumlist)
+	default_price = max(1, round(initial(default_price) * SSeconomy.inflation_value()))
+	extra_price = max(1, round(initial(extra_price) * SSeconomy.inflation_value()))
+	for(var/R in recordlist)
+		var/datum/data/vending_product/record = R
+		var/atom/potential_product = record.product_path
+		record.custom_price = round(initial(potential_product.custom_price) * SSeconomy.inflation_value())
+	for(var/R in premiumlist)
+		var/datum/data/vending_product/record = R
+		var/atom/potential_product = record.product_path
+		var/premium_sanity = round(initial(potential_product.custom_premium_price))
+		if(premium_sanity)
+			record.custom_premium_price = round(premium_sanity * SSeconomy.inflation_value())
+			continue
+		//For some ungodly reason, some premium only items only have a custom_price
+		record.custom_premium_price = round(extra_price + (initial(potential_product.custom_price) * (SSeconomy.inflation_value() - 1)))
+
 
 /**
  * Refill a vending machine from a refill canister
@@ -510,11 +534,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(in_range(fatty, src))
 		for(var/mob/living/L in get_turf(fatty))
 			var/was_alive = (L.stat != DEAD)
-			var/mob/living/carbon/C = L
+			//var/mob/living/carbon/C = L  (BLUEMOON CHANGE никогда не доверяй такой конструкции (причина рантаймов на 3 типе падения))
 
 			// SEND_SIGNAL(L, COMSIG_ON_VENDOR_CRUSH)
 
-			if(istype(C))
+			//BLUEMOON CHANGE START 100% проверяем, что мы пытаемся это сделать с карбном, а не кем-либо ещё
+			if(istype(L, /mob/living/carbon))
+
+				var/mob/living/carbon/C = L
+			//BLUEMOON CHANGE END
 				var/crit_rebate = 0 // lessen the normal damage we deal for some of the crits
 
 				if(crit_case < 5) // the body/head asplode case has its own description
@@ -588,7 +616,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				L.client.give_award(/datum/award/achievement/misc/vendor_squish, L) // good job losing a fight with an inanimate object idiot
 
 			L.Paralyze(60)
-			L.emote("scream")
+			L.emote("realagony")
 			. = TRUE
 			playsound(L, 'sound/effects/blobattack.ogg', 40, TRUE)
 			playsound(L, 'sound/effects/splat.ogg', 50, TRUE)
@@ -685,6 +713,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
+	log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
 	obj_flags |= EMAGGED
 	to_chat(user, span_notice("You short out the product lock on [src]."))
 
@@ -753,7 +782,14 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/ui_data(mob/user)
 	. = list()
 	var/obj/item/card/id/C
-	if(isliving(user))
+	if(iscyborg(user) || isAI(user) || isdrone(user))
+		var/datum/bank_account/Civ = SSeconomy.get_dep_account(ACCOUNT_SCI)
+		.["user"] = list()
+		.["user"]["name"] = user.name
+		.["user"]["cash"] = Civ.account_balance
+		.["user"]["job"] = "Silicon"
+		.["user"]["department"] = Civ.account_holder
+	else if(isliving(user))
 		var/mob/living/L = user
 		C = L.get_idcard(TRUE)
 	if(C?.registered_account)
@@ -836,6 +872,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!can_vend(usr))
 		return
 	vend_ready = FALSE //One thing at a time!!
+	var/silicon_customer = FALSE
+	if(iscyborg(usr) || isAI(usr) || isdrone(usr))
+		silicon_customer = TRUE
 	var/datum/data/vending_product/R = locate(params["ref"])
 	var/list/record_to_check = product_records + coin_records
 	if(extended_inventory)
@@ -861,13 +900,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return
 	if(onstation)
 		var/obj/item/card/id/C
-		if(isliving(usr))
-			var/mob/living/L = usr
-			C = L.get_idcard(TRUE)
-		if(!can_transact(C))
-			flick(icon_deny,src)
-			vend_ready = TRUE
-			return
+		var/datum/bank_account/account
+		if(!silicon_customer)
+			if(isliving(usr))
+				var/mob/living/L = usr
+				C = L.get_idcard(TRUE)
+			if(!can_transact(C))
+				flick(icon_deny,src)
+				vend_ready = TRUE
+				return
 		// else if(age_restrictions && R.age_restricted && (!C.registered_age || C.registered_age < AGE_MINOR))
 		// 	say("You are not of legal age to purchase [R.name].")
 		// 	if(!(usr in GLOB.narcd_underages))
@@ -877,28 +918,38 @@ GLOBAL_LIST_EMPTY(vending_products)
 		// 	flick(icon_deny,src)
 		// 	vend_ready = TRUE
 		// 	return
-		var/datum/bank_account/account = C.registered_account
+			account = C?.registered_account
+		else
+			account = SSeconomy.get_dep_account(ACCOUNT_SCI)
 
 		var/discounts = FALSE
 		try // too lazy, and i do NOT want to use for() to check, as & is faster
-			discounts = !!(cost_multiplier_per_dept.len > 0 && (cost_multiplier_per_dept & account.account_job.access) > 0)
+			discounts = !!(cost_multiplier_per_dept.len > 0 && (cost_multiplier_per_dept & account?.account_job.access) > 0)
 		catch
 			// L
 			discounts = FALSE
-
-		if(account.account_job && account.account_job.paycheck_department == payment_department || discounts)
+		if(account?.account_job && account?.account_job.paycheck_department == payment_department || discounts)
 			price_to_use = 0 // it's free shut up
 		if(coin_records.Find(R) || hidden_records.Find(R))
 			price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
-		if(price_to_use && !attempt_transact(C, price_to_use))
+		if(price_to_use && silicon_customer)
+			if(!account.adjust_money(-price_to_use))
+				say("You do not possess the funds to purchase [R.name].")
+				flick(icon_deny,src)
+				vend_ready = TRUE
+				return
+			var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
+			if(D)
+				D.adjust_money(price_to_use)
+		else if(price_to_use && !attempt_transact(C, price_to_use))
 			say("You do not possess the funds to purchase [R.name].")
 			flick(icon_deny,src)
 			vend_ready = TRUE
 			return
 		SSblackbox.record_feedback("amount", "vending_spent", price_to_use)
-		log_econ("[price_to_use] credits were inserted into [src] by [key_name(usr)] (account: [account.account_holder]) to buy [R].")
+		log_econ("[price_to_use] credits were inserted into [src] by [key_name(usr)] (account: [account?.account_holder]) to buy [R].")
 	if(last_shopper != REF(usr) || purchase_message_cooldown < world.time)
-		say("Thank you for shopping with [src]!")
+		say("Спасибо за покупку в [src]!")
 		purchase_message_cooldown = world.time + 5 SECONDS
 		//This is not the best practice, but it's safe enough here since the chances of two people using a machine with the same ref in 5 seconds is fuck low
 		last_shopper = REF(usr)
@@ -1040,7 +1091,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 ///Crush the mob that the vending machine got thrown at
 /obj/machinery/vending/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(isliving(hit_atom))
+	if(isliving(hit_atom) && !tilted) //BLUEMOON EDIT вендор не падает когда он уже упал
 		tilt(fatty=hit_atom)
 	return ..()
 
@@ -1121,21 +1172,28 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/N = params["item"]
 			var/obj/S
 			vend_ready = FALSE
-			var/obj/item/card/id/C
-			if(isliving(usr))
-				var/mob/living/L = usr
-				C = L.get_idcard(TRUE)
-			if(!C)
-				say("No card found.")
-				flick(icon_deny,src)
-				vend_ready = TRUE
-				return
-			else if (!C.registered_account)
-				say("No account found.")
-				flick(icon_deny,src)
-				vend_ready = TRUE
-				return
-			var/datum/bank_account/account = C.registered_account
+			var/datum/bank_account/account
+			var/silicon_customer = FALSE
+			if(iscyborg(usr) || isAI(usr) || isdrone(usr))
+				silicon_customer = TRUE
+			if(!silicon_customer)
+				var/obj/item/card/id/C
+				if(isliving(usr))
+					var/mob/living/L = usr
+					C = L.get_idcard(TRUE)
+				if(!C)
+					say("No card found.")
+					flick(icon_deny,src)
+					vend_ready = TRUE
+					return
+				else if (!C.registered_account)
+					say("No account found.")
+					flick(icon_deny,src)
+					vend_ready = TRUE
+					return
+				account = C.registered_account
+			else
+				account = SSeconomy.get_dep_account(ACCOUNT_SCI)
 			for(var/obj/O in contents)
 				if(format_text(O.name) == N)
 					S = O

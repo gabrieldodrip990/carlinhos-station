@@ -114,6 +114,7 @@
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return
+	log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
 	req_access = list()
 	req_one_access = list()
 	playsound(src, "sparks", 100, 1)
@@ -127,14 +128,20 @@
 /obj/machinery/button/attack_robot(mob/user)
 	return attack_ai(user)
 
-/obj/machinery/button/proc/setup_device()
-	if(id && istype(device, /obj/item/assembly/control))
-		var/obj/item/assembly/control/A = device
+/obj/machinery/button/proc/setup_device() // для раундстарта
+	var/obj/item/assembly/control/A = device
+	if(istype(device, /obj/item/assembly/control))
 		A.id = id
-	initialized_button = 1
+		initialized_button = 1
 
-/obj/machinery/button/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
-	if(id && istype(device, /obj/item/assembly/control))
+/obj/machinery/button/proc/setup_button() // для самостроя
+	var/obj/item/assembly/control/A = device
+	if(istype(device, /obj/item/assembly/control))
+		id = A.id
+
+
+/obj/machinery/button/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=TRUE)
+	if(istype(device, /obj/item/assembly/control))
 		var/obj/item/assembly/control/A = device
 		A.id = "[idnum][id]"
 
@@ -142,8 +149,8 @@
 	. = ..()
 	if(.)
 		return
-	if(!initialized_button)
-		setup_device()
+
+	setup_button()
 	add_fingerprint(user)
 	if(panel_open)
 		if(device || board)
@@ -201,6 +208,22 @@
 	desc = "A door remote control switch."
 	var/normaldoorcontrol = FALSE
 	var/specialfunctions = OPEN // Bitflag, see assembly file
+
+/obj/machinery/button/door/directional/north //Pixel offsets get overwritten on New()
+	dir = SOUTH
+	pixel_y = 28
+
+/obj/machinery/button/door/directional/south
+	dir = NORTH
+	pixel_y = -28
+
+/obj/machinery/button/door/directional/east
+	dir = WEST
+	pixel_x = 28
+
+/obj/machinery/button/door/directional/west
+	dir = EAST
+	pixel_x = -28
 
 /obj/machinery/button/door/setup_device()
 	if(!device)

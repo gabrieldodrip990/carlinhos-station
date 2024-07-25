@@ -23,16 +23,17 @@
 	var/lethal_damage = 20
 	var/stun_cost = 333				//10000/333*25 = 750. stunbatons are at time of writing 10000/1000*49 = 490.
 	var/stun_status_effect = STATUS_EFFECT_ELECTROSTAFF			//a small slowdown effect
-	var/stun_stamdmg = 40
+	var/stun_stamdmg = 50
 	var/stun_status_duration = 25
 	var/stam_cost = 3.5
 	var/wielded = FALSE // track wielded status on item
 
 // haha security desword time /s
 /datum/block_parry_data/electrostaff
+	can_block_directions = BLOCK_DIR_NORTH | BLOCK_DIR_NORTHEAST | BLOCK_DIR_NORTHWEST | BLOCK_DIR_WEST | BLOCK_DIR_EAST
 	block_damage_absorption = 0
 	block_damage_multiplier = 1
-	can_block_attack_types = ~ATTACK_TYPE_PROJECTILE		// only able to parry non projectiles
+	can_block_attack_types = ALL
 	block_damage_multiplier_override = list(
 		TEXT_ATTACK_TYPE_MELEE = 0.5,		// only useful on melee and unarmed
 		TEXT_ATTACK_TYPE_UNARMED = 0.3
@@ -167,6 +168,16 @@
 	if(C.charge < min_hit_cost())
 		turn_off()
 
+/obj/item/electrostaff/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+	if(wielded)
+		final_block_chance *= 2
+	if(prob(final_block_chance))
+		if(attack_type & ATTACK_TYPE_MELEE)
+			playsound(src, 'sound/weapons/parry.ogg', 100, 1)
+			owner.visible_message("<span class='danger'>[owner] parries [attack_text] with [src]!</span>")
+			return BLOCK_SUCCESS | BLOCK_PHYSICAL_EXTERNAL
+	return BLOCK_NONE
+
 /obj/item/electrostaff/attack(mob/living/target, mob/living/user)
 	if(IS_STAMCRIT(user) || !user.UseStaminaBuffer(stam_cost))//CIT CHANGE - makes it impossible to baton in stamina softcrit
 		to_chat(user, "<span class='danger'>You're too exhausted to use [src] properly.</span>")//CIT CHANGE - ditto
@@ -242,7 +253,7 @@
 	return TRUE
 
 /obj/item/electrostaff/proc/clowning_around(mob/living/user)
-	user.visible_message("<span class='danger'>[user] accidentally hits [user.p_them()]self with [src]!</span>", \
+	user.visible_message("<span class='danger'>[user] accidentally hits себя with [src]!</span>", \
 						"<span class='userdanger'>You accidentally hit yourself with [src]!</span>")
 	SEND_SIGNAL(user, COMSIG_LIVING_MINOR_SHOCK)
 	harm_act(user, user, TRUE)

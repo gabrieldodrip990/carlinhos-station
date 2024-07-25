@@ -493,16 +493,16 @@
 /mob/living/list_interaction_attributes(mob/living/LM)
 	. = ..()
 	if(!COOLDOWN_FINISHED(LM, refractory_period))
-		. += "...are sexually exhausted for the time being."
+		. += "...ощущается сексуальную истощённость."
 	switch(a_intent)
 		if(INTENT_HELP)
-			. += "...are acting gentle."
+			. += "...ведёт себя мягко."
 		if(INTENT_DISARM)
-			. += "...are acting playful."
+			. += "...ведёт себя игриво."
 		if(INTENT_GRAB)
-			. += "...are acting rough."
+			. += "...ведёт себя грубо."
 		if(INTENT_HARM)
-			. += "...are fighting anyone who comes near."
+			. += "...выглядит агрессивно!"
 	//Here comes the fucking weird shit.
 	if(client)
 		var/client/cli = client
@@ -511,44 +511,44 @@
 			if(!ucli || (ucli.prefs.extremepref != "No"))
 				if(!get_item_by_slot(ITEM_SLOT_EARS_LEFT) && !get_item_by_slot(ITEM_SLOT_EARS_RIGHT))
 					if(has_ears())
-						. += "...have unprotected ears."
+						. += "...уши открыты."
 					else
-						. += "...have a hole where their ears should be."
+						. += "...ушная раковина открыта и в свободном доступе."
 				else
-					. += "...have covered ears."
+					. += "...уши прикрыты."
 				if(!get_item_by_slot(ITEM_SLOT_EYES))
 					if(has_eyes())
-						. += "...have exposed eyes."
+						. += "...глаза открыты."
 					else
-						. += "...have exposed eyesockets."
+						. += "...имеются открытые глазные впадины."
 				else
-					. += "...have covered eyes."
+					. += "...глаза прикрыты."
 	//
 	// check those loops only once, thanks
 	var/is_topless = is_topless()
 	var/is_bottomless = is_bottomless()
 	if(is_topless && is_bottomless)
-		. += "...are naked."
+		. += "...одежда отсутствует."
 	else
 		if((is_topless && !is_bottomless) || (!is_topless && is_bottomless))
-			. += "...are partially clothed."
+			. += "...обладает открытой одеждой."
 		else
-			. += "...are clothed."
+			. += "...обладает закрытой одеждой."
 	if(has_breasts() == HAS_EXPOSED_GENITAL)
-		. += "...have breasts."
+		. += "...обладает грудью."
 	if(has_penis() == HAS_EXPOSED_GENITAL)
-		. += "...have a penis."
+		. += "...обладает пенисом."
 	if(has_strapon() == HAS_EXPOSED_GENITAL)
-		. += "...have a strapon."
+		. += "...держит готовый страпон."
 	if(has_balls() == HAS_EXPOSED_GENITAL)
-		. += "...have a ballsack."
+		. += "...обладает семенниками."
 	if(has_vagina() == HAS_EXPOSED_GENITAL)
-		. += "...have a vagina."
+		. += "...обладает вагиной."
 	if(has_anus() == HAS_EXPOSED_GENITAL)
-		. += "...have an anus."
+		. += "...обладает анальным кольцом."
 	if(has_feet() == HAS_EXPOSED_GENITAL)
 		switch(get_num_feet())
 			if(2)
-				. += "...have a pair of feet."
+				. += "...обладает двумя ногами."
 			if(1)
-				. += "...have a single foot."
+				. += "...обладает одной ногой."

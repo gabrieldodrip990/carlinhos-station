@@ -45,6 +45,7 @@
 	if(reagents.total_volume && (ignore_flags || M.can_inject(user, 1))) // Ignore flag should be checked first or there will be an error message.
 		to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
 		to_chat(user, "<span class='notice'>You inject [M] with [src].</span>")
+		playsound(loc, 'sound/items/medi/hypo.ogg', 80, 0)
 
 		var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 		reagents.reaction(M, INJECT, fraction)
@@ -134,6 +135,9 @@
 		reagent_flags = NONE
 	update_icon()
 	addtimer(CALLBACK(src, PROC_REF(cyborg_recharge), user), 80)
+
+/obj/item/reagent_containers/hypospray/medipen/attack_self()
+	attack(usr, usr)
 
 /obj/item/reagent_containers/hypospray/medipen/proc/cyborg_recharge(mob/living/silicon/robot/user)
 	if(!reagents.total_volume && iscyborg(user))
@@ -382,6 +386,16 @@
 	quickload = TRUE
 	penetrates = TRUE
 
+/obj/item/hypospray/mkii/CMO/combat/synthflesh
+	name = "Combat Hypospray with Synthflesh"
+	icon = 'icons/obj/syringe.dmi'
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	mode = HYPO_SPRAY
+	item_state = "holy_hypo"
+	icon_state = "holy_hypo"
+	start_vial = /obj/item/reagent_containers/glass/bottle/vial/large/synthflesh
+
 /obj/item/hypospray/mkii/Initialize(mapload)
 	. = ..()
 	if(!spawnwithvial)
@@ -476,6 +490,7 @@
 	inject_self = COMBAT_SELF_SPRAY
 	penetrates = TRUE
 	to_chat(user, "You overcharge [src]'s control circuit.")
+	log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
 	obj_flags |= EMAGGED
 	return TRUE
 
@@ -538,7 +553,7 @@
 	vial.reagents.reaction(L, method, fraction)
 	vial.reagents.trans_to(target, vial.amount_per_transfer_from_this, log = "hypospray fill")
 	var/long_sound = vial.amount_per_transfer_from_this >= 15
-	playsound(loc, long_sound ? 'sound/items/hypospray_long.ogg' : pick('sound/items/hypospray.ogg','sound/items/hypospray2.ogg'), 50, 1, -1)
+	playsound(loc, long_sound ? 'sound/items/medi/hypospray_long.ogg' : pick('sound/items/medi/hypospray.ogg','sound/items/medi/hypospray2.ogg'), 50, 1, -1)
 	to_chat(user, "<span class='notice'>You [fp_verb] [vial.amount_per_transfer_from_this] units of the solution. The hypospray's cartridge now contains [vial.reagents.total_volume] units.</span>")
 
 /obj/item/hypospray/mkii/attack_self(mob/living/user)

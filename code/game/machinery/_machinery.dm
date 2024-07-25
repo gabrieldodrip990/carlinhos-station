@@ -139,17 +139,29 @@ Class Procs:
 	var/market_verb = "Customer"
 	var/payment_department = ACCOUNT_ENG
 
+	var/clickvol = 40	// sound volume played on succesful click
+	var/next_clicksound = 0	// value to compare with world.time for whether to play clicksound according to CLICKSOUND_INTERVAL
+	var/clicksound	// sound played on succesful interface use by a carbon lifeform
+	/// What was our power state the last time we updated its appearance?
+	/// TRUE for on, FALSE for off, -1 for never checked
+	var/appearance_power_state = -1
+
+	var/allow_oversized_characters = FALSE // BLUEMOON ADD - чтобы большие персонажи могли помещаться в некоторые машины
+
+	///A combination of factors such as having power, not being broken and so on. Boolean.
+	var/is_operational = TRUE
 	///Boolean on whether this machines interact with atmos
 	var/atmos_processing = FALSE
-
-	var/allow_oversized_characters = FALSE //SPLURT EDIT - To allow large characters to fit inside machinery
 
 
 /obj/machinery/Initialize(mapload)
 	if(!armor)
 		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	. = ..()
+	SSmachines.register_machine(src)
 	GLOB.machines += src
+
+	check_on_table()
 
 	if(ispath(circuit, /obj/item/circuitboard))
 		circuit = new circuit(src)
@@ -171,6 +183,7 @@ Class Procs:
 	power_change()
 
 /obj/machinery/Destroy()
+	SSmachines.unregister_machine(src)
 	GLOB.machines.Remove(src)
 	if(!speed_process)
 		STOP_PROCESSING(SSmachines, src)
@@ -200,10 +213,17 @@ Class Procs:
 		return
 	. = stat
 	stat = new_value
-	on_machine_stat_update(stat)
+	on_stat_update(.)
 
-/obj/machinery/proc/on_machine_stat_update(stat)
-	return
+///Called when the value of `stat` changes, so we can react to it.
+/obj/machinery/proc/on_stat_update(old_value)
+	//From off to on.
+	if((old_value & (NOPOWER|BROKEN|MAINT)) && !(stat & (NOPOWER|BROKEN|MAINT)))
+		set_is_operational(TRUE)
+		return
+	//From on to off.
+	if(stat & (NOPOWER|BROKEN|MAINT))
+		set_is_operational(FALSE)
 
 /obj/machinery/emp_act(severity)
 	. = ..()
@@ -247,7 +267,7 @@ Class Procs:
 				continue
 			if(isliving(AM))
 				var/mob/living/L = am
-				if(L.buckled || (!allow_oversized_characters && L.mob_size >= MOB_SIZE_LARGE)) // SPLURT EDIT - added allow_oversized_characters
+				if(L.buckled || (!allow_oversized_characters && L.mob_size >= MOB_SIZE_LARGE)) // BLUEMOON EDIT - добавлено allow_oversized_characters
 					continue
 			target = am
 
@@ -273,6 +293,22 @@ Class Procs:
 	else if(use_power >= 2)
 		use_power(active_power_usage,power_channel)
 	return TRUE
+
+/**
+ * Puts passed object in to user's hand
+ *
+ * Puts the passed object in to the users hand if they are adjacent.
+ * If the user is not adjacent then place the object on top of the machine.
+ *
+ * Vars:
+ * * object (obj) The object to be moved in to the users hand.
+ * * user (mob/living) The user to recive the object
+ */
+/obj/machinery/proc/try_put_in_hand(obj/object, mob/living/user)
+	if(!issilicon(user) && in_range(src, user))
+		user.put_in_hands(object)
+	else
+		object.forceMove(drop_location())
 
 /obj/machinery/proc/is_operational()
 	return !(stat & (NOPOWER|BROKEN|MAINT))
@@ -334,16 +370,16 @@ Class Procs:
 /obj/machinery/proc/can_transact(obj/item/card/id/thecard, allowdepartment, silent)
 	if(!istype(thecard))
 		if(!silent)
-			say("No card found.")
+			say("Карта не найдена.")
 		return FALSE
 	else if (!thecard.registered_account)
 		if(!silent)
-			say("No account found.")
+			say("Аккаунт не найден.")
 		return FALSE
-	else if(!allowdepartment && !thecard.registered_account.account_job)
-		if(!silent)
-			say("Departmental accounts have been blacklisted from personal expenses due to embezzlement.")
-		return FALSE
+//	else if(!allowdepartment && !thecard.registered_account.account_job)
+//		if(!silent)
+//			say("Departmental accounts have been blacklisted from personal expenses due to embezzlement.")
+//		return FALSE
 	return TRUE
 
 /obj/machinery/proc/attempt_transact(obj/item/card/id/thecard, transaction_cost)
@@ -370,19 +406,19 @@ Class Procs:
 		if(I)
 			var/datum/bank_account/insurance = I.registered_account
 			if(!insurance)
-				say("[market_verb] NAP Violation: No bank account found.")
+				say("[market_verb] NAP Violation: Не найден банковский счёт.")
 				nap_violation(L)
 				return FALSE
 			else
 				if(!insurance.adjust_money(-fair_market_price))
-					say("[market_verb] NAP Violation: Unable to pay.")
+					say("[market_verb] NAP Violation: Невозможно оплатить.")
 					nap_violation(L)
 					return FALSE
 				var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
 				if(D)
 					D.adjust_money(fair_market_price)
 		else
-			say("[market_verb] NAP Violation: No ID card found.")
+			say("[market_verb] NAP Violation: Карта не найдена.")
 			nap_violation(L)
 			return FALSE
 	return TRUE
@@ -399,6 +435,8 @@ Class Procs:
 	. = ..()
 
 /obj/machinery/ui_act(action, params)
+	if(params["ic_advactivator"])
+		return
 	add_fingerprint(usr)
 	return ..()
 
@@ -419,7 +457,7 @@ Class Procs:
 	else
 		user.DelayNextAction(CLICK_CD_MELEE)
 		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-		user.visible_message("<span class='danger'>[user.name] smashes against \the [src.name] with its paws.</span>", null, null, COMBAT_MESSAGE_RANGE)
+		user.visible_message("<span class='danger'>[user.name] бьёт \the [src.name] своими лапами.</span>", null, null, COMBAT_MESSAGE_RANGE)
 		take_damage(4, BRUTE, MELEE, 1)
 
 /obj/machinery/attack_robot(mob/user)
@@ -451,7 +489,7 @@ Class Procs:
 	. = !(state_open || panel_open || is_operational() || (flags_1 & NODECONSTRUCT_1)) && I.tool_behaviour == TOOL_CROWBAR
 	if(.)
 		I.play_tool_sound(src, 50)
-		visible_message("<span class='notice'>[usr] pries open \the [src].</span>", "<span class='notice'>You pry open \the [src].</span>")
+		visible_message("<span class='notice'>[usr] вскрывает \the [src].</span>", "<span class='notice'>Вы вскрыли \the [src].</span>")
 		open_machine()
 
 /obj/machinery/proc/default_deconstruction_crowbar(obj/item/I, ignore_panel = 0)
@@ -470,6 +508,28 @@ Class Procs:
 			LAZYCLEARLIST(component_parts)
 			circuit = null
 	qdel(src)
+
+/**
+ * Drop every movable atom in the machine's contents list that is not a component_part.
+ *
+ * Proc does not drop components and will skip over anything in the component_parts list.
+ * Call dump_contents() to drop all contents including components.
+ * Arguments:
+ * * subset - If this is not null, only atoms that are also contained within the subset list will be dropped.
+ */
+/obj/machinery/proc/dump_inventory_contents(list/subset = null)
+	var/turf/this_turf = get_turf(src)
+	for(var/atom/movable/movable_atom in contents)
+		if(subset && !(movable_atom in subset))
+			continue
+
+		if(movable_atom in component_parts)
+			continue
+
+		movable_atom.forceMove(this_turf)
+
+		if(occupant == movable_atom)
+			set_occupant(null)
 
 /obj/machinery/proc/spawn_frame(disassembled)
 	var/obj/structure/frame/machine/M = new /obj/structure/frame/machine(loc)
@@ -511,11 +571,11 @@ Class Procs:
 		if(!panel_open)
 			panel_open = TRUE
 			icon_state = icon_state_open
-			to_chat(user, "<span class='notice'>You open the maintenance hatch of [src].</span>")
+			to_chat(user, "<span class='notice'>Вы скручиваете панель обслуживания [src] с винтов.</span>")
 		else
 			panel_open = FALSE
 			icon_state = icon_state_closed
-			to_chat(user, "<span class='notice'>You close the maintenance hatch of [src].</span>")
+			to_chat(user, "<span class='notice'>Вы вкручиваете панель обслуживания [src] обратно.</span>")
 		return TRUE
 	return FALSE
 
@@ -523,13 +583,13 @@ Class Procs:
 	if(panel_open && I.tool_behaviour == TOOL_WRENCH)
 		I.play_tool_sound(src, 50)
 		setDir(turn(dir,-90))
-		to_chat(user, "<span class='notice'>You rotate [src].</span>")
+		to_chat(user, "<span class='notice'>Вы поворачиваете [src].</span>")
 		return TRUE
 	return FALSE
 
 /obj/proc/can_be_unfasten_wrench(mob/user, silent) //if we can unwrench this object; returns SUCCESSFUL_UNFASTEN and FAILED_UNFASTEN, which are both TRUE, or CANT_UNFASTEN, which isn't.
 	if(!(isfloorturf(loc) || istype(loc, /turf/open/indestructible)) && !anchored)
-		to_chat(user, "<span class='warning'>[src] needs to be on the floor to be secured!</span>")
+		to_chat(user, "<span class='warning'>[src] должен находится на полу, чтобы закрутить!</span>")
 		return FAILED_UNFASTEN
 	return SUCCESSFUL_UNFASTEN
 
@@ -539,13 +599,14 @@ Class Procs:
 		if(!can_be_unfasten || can_be_unfasten == FAILED_UNFASTEN)
 			return can_be_unfasten
 		if(time)
-			to_chat(user, "<span class='notice'>You begin [anchored ? "un" : ""]securing [src]...</span>")
+			to_chat(user, "<span class='notice'>Вы начинаете [anchored ? "откручивать" : "вкручивать"] [src]...</span>")
 		I.play_tool_sound(src, 50)
 		var/prev_anchored = anchored
 		//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
 		if(I.use_tool(src, user, time, extra_checks = CALLBACK(src, PROC_REF(unfasten_wrench_check), prev_anchored, user)))
-			to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]secure [src].</span>")
+			to_chat(user, "<span class='notice'>Вы начинаете [anchored ? "откручивать" : "вкручивать"] [src].</span>")
 			setAnchored(!anchored)
+			check_on_table()
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			SEND_SIGNAL(src, COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH, anchored)
 			return SUCCESSFUL_UNFASTEN
@@ -608,7 +669,7 @@ Class Procs:
 
 /obj/machinery/proc/display_parts(mob/user)
 	. = list()
-	. += "<span class='notice'>It contains the following parts:</span>"
+	. += "<span class='notice'>Содержит следующие детали:</span>"
 	for(var/obj/item/C in component_parts)
 		. += "<span class='notice'>[icon2html(C, user)] \A [C].</span>"
 	. = jointext(., "")
@@ -616,18 +677,18 @@ Class Procs:
 /obj/machinery/examine(mob/user)
 	. = ..()
 	if(stat & BROKEN)
-		. += "<span class='notice'>It looks broken and non-functional.</span>"
+		. += "<span class='notice'>Выглядит сломанным и не рабочим.</span>"
 	if(!(resistance_flags & INDESTRUCTIBLE))
 		if(resistance_flags & ON_FIRE)
-			. += "<span class='warning'>It's on fire!</span>"
+			. += "<span class='warning'>Оно горит!</span>"
 		var/healthpercent = (obj_integrity/max_integrity) * 100
 		switch(healthpercent)
 			if(50 to 99)
-				. += "It looks slightly damaged."
+				. += "Выглядит слегка поврежденным."
 			if(25 to 50)
-				. += "It appears heavily damaged."
+				. += "Выглядит крайне поврежденным."
 			if(0 to 25)
-				. += "<span class='warning'>It's falling apart!</span>"
+				. += "<span class='warning'>Вот-вот развалится!</span>"
 	if(user.research_scanner && component_parts)
 		. += display_parts(user, TRUE)
 
@@ -682,6 +743,32 @@ Class Procs:
  * However, the proc may also be used elsewhere.
  */
 /obj/machinery/proc/AI_notify_hack()
-	var/alertstr = "<span class='userdanger'>Network Alert: Hacking attempt detected[get_area(src)?" in [get_area_name(src, TRUE)]":". Unable to pinpoint location"].</span>"
+	var/alertstr = "<span class='userdanger'>Network Alert: Замечена попытка взлома[get_area(src)?" в [get_area_name(src, TRUE)]":". Невозможно отследить местоположение"].</span>"
 	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
 		to_chat(AI, alertstr)
+
+/obj/machinery/proc/play_click_sound(custom_clicksound)
+	if((custom_clicksound||clicksound) && world.time > next_clicksound)
+		next_clicksound = world.time + CLICKSOUND_INTERVAL
+		if(custom_clicksound)
+			playsound(src, custom_clicksound, clickvol)
+		else if(clicksound)
+			playsound(src, clicksound, clickvol)
+	return
+
+/// Adjusts the vertical pixel offset when the object is anchored on a tile with table
+/obj/proc/check_on_table()
+	if(anchored_tabletop_offset != 0 && !istype(src, /obj/structure/table) && locate(/obj/structure/table) in loc)
+		pixel_y = anchored ? anchored_tabletop_offset : initial(pixel_y)
+
+///Called when we want to change the value of the `is_operational` variable. Boolean.
+/obj/machinery/proc/set_is_operational(new_value)
+	if(new_value == is_operational)
+		return
+	. = is_operational
+	is_operational = new_value
+	on_set_is_operational(.)
+
+///Called when the value of `is_operational` changes, so we can react to it.
+/obj/machinery/proc/on_set_is_operational(old_value)
+	return

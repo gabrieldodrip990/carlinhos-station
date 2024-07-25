@@ -125,6 +125,8 @@
 	if(!istype(M) || M.stat == DEAD || M.mob_transforming || (GODMODE & M.status_flags))
 		return
 
+	to_chat(M, span_reallybig("ВНИМАНИЕ! ВЫ БЫЛИ ОБРАЩЕНЫ В ДРУГОЕ СУЩЕСТВО, ВАША ПРОШЛАЯ ЛИЧНОСТЬ ЗАБЫТА!! ИЗУЧИТЕ СВОЮ НОВУЮ ОБОЛОЧКУ И ИГРАЙТЕ!!"))
+	tgui_alert_async(M, "ВНИМАНИЕ! ВЫ БЫЛИ ОБРАЩЕНЫ В ДРУГОЕ СУЩЕСТВО, ВАША ПРОШЛАЯ ЛИЧНОСТЬ ЗАБЫТА!! ИЗУЧИТЕ СВОЮ НОВУЮ ОБОЛОЧКУ И ИГРАЙТЕ!!!")
 	M.mob_transforming = TRUE
 	M.Paralyze(INFINITY)
 	M.icon = null
@@ -144,17 +146,17 @@
 
 	var/mob/living/new_mob
 
-	var/randomize = pick("monkey","robot","slime","xeno","humanoid","animal")
+	var/randomize = pick("robot","robot","robot","robot","robot","monkey","slime","xeno","humanoid","animal")
 	switch(randomize)
 		if("monkey")
 			new_mob = new /mob/living/carbon/monkey(M.loc)
 
 		if("robot")
 			var/robot = pick(200;/mob/living/silicon/robot,
-							/mob/living/silicon/robot/modules/syndicate,
-							/mob/living/silicon/robot/modules/syndicate/medical,
-							/mob/living/silicon/robot/modules/syndicate/saboteur,
-							200;/mob/living/simple_animal/drone/polymorphed)
+							/mob/living/silicon/robot/modules/inteq,
+							/mob/living/silicon/robot/modules/inteq/medical,
+							/mob/living/silicon/robot/modules/inteq/saboteur)
+
 			new_mob = new robot(M.loc)
 			if(issilicon(new_mob))
 				new_mob.gender = M.gender
@@ -166,6 +168,7 @@
 				Robot.mmi.transfer_identity(M)	//Does not transfer key/client.
 				Robot.clear_inherent_laws(0)
 				Robot.clear_zeroth_law(0)
+				Robot.laws = new /datum/ai_laws/antimov()
 
 		if("slime")
 			new_mob = new /mob/living/simple_animal/slime/random(M.loc)
@@ -173,7 +176,7 @@
 		if("xeno")
 			var/Xe
 			if(M.ckey)
-				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/carbon/alien/humanoid/sentinel)
+				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/carbon/alien/humanoid/sentinel, /mob/living/carbon/alien/humanoid/drone, /mob/living/carbon/alien/humanoid/royal/praetorian)
 			else
 				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/simple_animal/hostile/alien/sentinel)
 			new_mob = new Xe(M.loc)
@@ -238,6 +241,8 @@
 
 	new_mob.a_intent = INTENT_HARM
 
+	new_mob.fully_replace_character_name("[pick(GLOB.nightmare_names)]")
+
 	M.wabbajack_act(new_mob)
 
 	to_chat(new_mob, "<span class='warning'>Your form morphs into that of a [randomize].</span>")
@@ -299,10 +304,11 @@
 /obj/item/projectile/magic/spellblade
 	name = "blade energy"
 	icon_state = "lavastaff"
-	damage = 15
+	damage = 20
 	damage_type = BURN
 	flag = MAGIC
-	dismemberment = 50
+	dismemberment = 10
+	armour_penetration = 30
 	nodamage = 0
 
 /obj/item/projectile/magic/spellblade/on_hit(target)
@@ -317,10 +323,10 @@
 /obj/item/projectile/magic/arcane_barrage
 	name = "arcane bolt"
 	icon_state = "arcane_barrage"
-	damage = 20
+	damage = 30
 	damage_type = BURN
 	nodamage = 0
-	armour_penetration = 0
+	armour_penetration = 30
 	flag = MAGIC
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
@@ -440,7 +446,6 @@
 	var/zap_power = 20000
 	var/zap_range = 15
 	var/zap_flags = ZAP_MOB_DAMAGE | ZAP_MOB_STUN | ZAP_OBJ_DAMAGE
-	var/chain
 	var/mob/living/caster
 
 /obj/item/projectile/magic/aoe/lightning/fire(setAngle)
@@ -462,6 +467,25 @@
 /obj/item/projectile/magic/aoe/lightning/Destroy()
 	qdel(chain)
 	. = ..()
+
+/obj/item/projectile/magic/aoe/nuclear
+	name = "Bolt of Nuclear Bomb"
+	icon_state = "nuclear_bomb"
+	damage = 10
+	damage_type = BRUTE
+	nodamage = 0
+	pixels_per_second = TILES_TO_PIXELS(1.5)
+	flag = MAGIC
+
+/obj/item/projectile/magic/aoe/nuclear/on_hit(target)
+	. = ..()
+	if(ismob(target))
+		var/mob/living/M = target
+		if(M.anti_magic_check())
+			visible_message("<span class='warning'>[src] vanishes into smoke on contact with [target]!</span>")
+			return BULLET_ACT_BLOCK
+	var/turf/T = get_turf(target)
+	explosion(T, GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
 
 /obj/item/projectile/magic/aoe/fireball
 	name = "bolt of fireball"

@@ -22,6 +22,15 @@
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/heavy_crowbar
+	name = "Heavy Pocket Crowbar"
+	id = "heavy_crowbar"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 500)
+	build_path = /obj/item/crowbar/large/heavy
+	category = list("initial","Tools","Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/flashlight
 	name = "Flashlight"
 	id = "flashlight"
@@ -124,6 +133,14 @@
 	build_path = /obj/item/clothing/head/welding
 	category = list("initial","Tools")
 
+/datum/design/gas_mask
+	name = "Gas Mask"
+	id = "gas_mask"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 1750, /datum/material/glass = 400)
+	build_path = /obj/item/clothing/mask/gas
+	category = list("initial","Tools")
+
 /datum/design/cable_coil
 	name = "Cable Coil"
 	id = "cable_coil"
@@ -157,6 +174,14 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 150, /datum/material/glass = 150)
 	build_path = /obj/item/geiger_counter
+	category = list("initial", "Tools")
+
+/datum/design/ttsdevice
+	name = "TTS Device"
+	id = "ttsdevice"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 150, /datum/material/glass = 150)
+	build_path = /obj/item/ttsdevice
 	category = list("initial", "Tools")
 
 /datum/design/chisel

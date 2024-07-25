@@ -1,9 +1,5 @@
 /// Number of paychecks jobs start with at the creation of a new bank account for a player (So at shift-start or game join, but not a blank new account.)
 #define STARTING_PAYCHECKS 5
-/// How much mail the Economy SS will create per minute, regardless of firing time.
-#define MAX_MAIL_PER_MINUTE 3
-/// Probability of using letters of envelope sprites on all letters.
-#define FULL_CRATE_LETTER_ODDS 70
 
 #define PAYCHECK_ASSISTANT 25
 #define PAYCHECK_MINIMAL 75
@@ -12,10 +8,12 @@
 #define PAYCHECK_HARD 200
 #define PAYCHECK_COMMAND 250
 
-#define MAX_GRANT_CIV 2500
-#define MAX_GRANT_ENG 3000
-#define MAX_GRANT_SCI 5000
-#define MAX_GRANT_SECMEDSRV 3000
+#define MAX_GRANT_CIV 2000
+#define MAX_GRANT_ENG 2000
+#define MAX_GRANT_SCI 250
+#define MAX_GRANT_SECMEDSRV 2000
+
+#define STATION_TARGET_BUFFER 100
 
 //What should vending machines charge when you buy something in-department.
 #define VENDING_DISCOUNT 0 // price * discount so 0 = 0

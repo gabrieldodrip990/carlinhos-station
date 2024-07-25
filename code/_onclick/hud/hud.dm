@@ -188,9 +188,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	if(!screenmob.client)
 		return FALSE
 
-	// This code is the absolute fucking worst, I want it to go die in a fire
-	// Seriously, why
-	screenmob.client.screen = list()
+	screenmob.client.clear_screen()
 	screenmob.client.update_clickcatcher()
 
 	var/display_hud_version = version
@@ -628,6 +626,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 		palette.set_expanded(FALSE)
 
 /datum/action_group/palette/refresh_actions()
+	if(!owner)
+		return
+
 	var/atom/movable/screen/button_palette/palette = owner.toggle_palette
 	var/atom/movable/screen/palette_scroll/scroll_down = owner.palette_down
 	var/atom/movable/screen/palette_scroll/scroll_up = owner.palette_up

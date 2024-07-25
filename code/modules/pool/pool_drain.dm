@@ -148,8 +148,8 @@
 		icon_state = "filter_b"
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/machinery/pool/filter, spawn_shark)), 50)
 		var/msg = "[key_name(user)] emagged the pool filter and spawned a shark"
-		log_game(msg)
 		message_admins(msg)
+		log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
 
 /obj/machinery/pool/filter/proc/spawn_shark()
 	if(prob(50))

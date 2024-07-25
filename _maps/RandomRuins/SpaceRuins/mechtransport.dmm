@@ -59,10 +59,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/space/has_grav/powered/mechtransport)
-"o" = (
-/obj/machinery/spaceship_navigation_beacon/invion,
-/turf/closed/wall/mineral/titanium,
-/area/ruin/space/has_grav/powered/mechtransport)
 "p" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Cockpit";
@@ -84,6 +80,7 @@
 /area/ruin/space/has_grav/powered/mechtransport)
 "u" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/spawner/lootdrop/salvage,
 /turf/open/floor/mineral/titanium/airless,
 /area/ruin/space/has_grav/powered/mechtransport)
 "v" = (
@@ -181,6 +178,7 @@
 /turf/open/floor/mineral/titanium/airless,
 /area/ruin/space/has_grav/powered/mechtransport)
 "R" = (
+/obj/effect/spawner/lootdrop/salvage,
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg3"
 	},
@@ -191,6 +189,11 @@
 /area/ruin/space/has_grav/powered/mechtransport)
 "T" = (
 /turf/template_noop,
+/area/ruin/space/has_grav/powered/mechtransport)
+"U" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/lootdrop/salvage,
+/turf/open/floor/mineral/titanium/airless,
 /area/ruin/space/has_grav/powered/mechtransport)
 "V" = (
 /obj/item/stack/rods,
@@ -257,7 +260,7 @@ c
 g
 l
 d
-t
+U
 w
 C
 G
@@ -324,7 +327,7 @@ X
 b
 d
 d
-o
+d
 u
 A
 y

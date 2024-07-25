@@ -75,10 +75,15 @@
 	log_game("SIZECODE: [M] ckey: [M.key] has ingested growthchem.")
 
 /datum/reagent/growthchem/on_mob_life(mob/living/M)
+	// BLUEMOON ADD START - нормализаторы не дружат с изменениями размера во время их ношения
+	if(M.GetComponent(/datum/component/size_normalized))
+		to_chat(M, span_warning("You normalization device fights any changes in size!"))
+		return
+	// BLUEMOON ADD END
 	var/size = get_size(M)
-	if(size < RESIZE_MACRO)
+	if(size < RESIZE_LARGE) // BLUEMOON EDIT - было RESIZE_MACRO
 		M.update_size(size + 0.025)
-		M.visible_message(span_danger("[pick("[M] grows!", "[M] expands in size!", "[M] pushes outwards in stature!")]"), span_danger("[pick("You feel your body fighting for space and growing!", "The world contracts inwards in every direction!", "You feel your muscles expand, and your surroundings shrink!")]"))
+		M.visible_message("<span class='danger'>[pick("[M] grows!", "[M] expands in size!", "[M] pushes outwards in stature!")]</span>", "<span class='danger'>[pick("You feel your body fighting for space and growing!", "The world contracts inwards in every direction!", "You feel your muscles expand, and your surroundings shrink!")]</span>")
 	..()
 	. = 1
 
@@ -122,9 +127,14 @@
 	log_game("SIZECODE: [M] ckey: [M.key] has ingested shrinkchem.")
 
 /datum/reagent/shrinkchem/on_mob_life(mob/living/M)
+	// BLUEMOON ADD START - нормализаторы не дружат с изменениями размера во время их ношения
+	if(M.GetComponent(/datum/component/size_normalized))
+		to_chat(M, span_warning("You normalization device fights any changes in size!"))
+		return
+	// BLUEMOON ADD END
 	var/size = get_size(M)
 	if(size > RESIZE_MICRO)
 		M.update_size(size - 0.025)
-		M.visible_message(span_danger("[pick("[M] shrinks down!", "[M] dwindles in size!", "[M] compresses down!")]"), span_danger("[pick("You feel your body compressing in size!", "The world pushes outwards in every direction!", "You feel your muscles contract, and your surroundings grow!")]"))
+		M.visible_message("<span class='danger'>[pick("[M] shrinks down!", "[M] dwindles in size!", "[M] compresses down!")]</span>", "<span class='danger'>[pick("You feel your body compressing in size!", "The world pushes outwards in every direction!", "You feel your muscles contract, and your surroundings grow!")]</span>")
 	..()
 	. = 1

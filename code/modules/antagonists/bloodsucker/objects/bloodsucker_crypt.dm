@@ -64,7 +64,7 @@
 
 
 /obj/structure/bloodsucker
-	var/mob/living/owner
+	var/mob/living/carbon/human/owner // BLUEMOON EDIT - было var/mob/living/owner, нужно в таком виде для проверки на хозяина маскировки
 
 /*
 /obj/structure/bloodsucker/bloodthrone
@@ -115,7 +115,7 @@
 	qdel(src)
 
 /obj/structure/bloodsucker/vassalrack/examine(mob/user)
-	var/datum/antagonist/bloodsucker/B = user.mind.has_antag_datum(ANTAG_DATUM_BLOODSUCKER)
+	var/datum/antagonist/bloodsucker/B = user.mind?.has_antag_datum(ANTAG_DATUM_BLOODSUCKER) // BLUEMOON EDIT - иначе рантайм при экзейме гостом
 	. = ..()
 	if(B || isobserver(user))
 		. += {"<span class='cult'>This is the vassal rack, which allows you to thrall crewmembers into loyal minions in your service.</span>"}
@@ -123,7 +123,8 @@
 		. += {"<span class='cult'>Simply click and hold on a victim, and then drag their sprite on the vassal rack. Alt click on the vassal rack to unbuckle them.</span>"}
 		. += {"<span class='cult'>Make sure that the victim is handcuffed, or else they can simply run away or resist, as the process is not instant.</span>"}
 		. += {"<span class='cult'>To convert the victim, simply click on the vassal rack itself. Sharp weapons work faster than other tools.</span>"}
-		. += {"<span class='cult'> You have only the power for [B.bloodsucker_level - B.count_vassals(user.mind)] vassals</span>"}
+		if(B) // BLUEMOON ADD - иначе рантайм при экзейме гостом
+			. += {"<span class='cult'> You have only the power for [B.bloodsucker_level - B.count_vassals(user.mind)] vassals</span>"}
 /*	if(user.mind.has_antag_datum(ANTAG_DATUM_VASSAL)
 	. += {"<span class='cult'>This is the vassal rack, which allows your master to thrall crewmembers into his minions.\n
 	Aid your master in bringing their victims here and keeping them secure.\n
@@ -165,6 +166,7 @@
 	// Standard Buckle Check
 	if(!buckle_mob(M)) // force=TRUE))
 		return
+	remove_disguise() // BLUEMOON ADD - маскировка пропадает при размещении жертвы
 	// Attempt Buckle
 	user.visible_message("<span class='notice'>[user] straps [M] into the rack, immobilizing them.</span>", \
 			  		 "<span class='boldnotice'>You secure [M] tightly in place. They won't escape you now.</span>")
@@ -194,9 +196,9 @@
 							"<span class='danger'>[user] attempts to release you from the rack!</span>") //  For sound if not seen -->  "<span class='italics'>You hear a squishy wet noise.</span>")
 		if(!do_mob(user, M, 200))
 			return
+		unbuckle_mob(M)
 	// Did the time. Now try to do it.
 	..()
-	unbuckle_mob(M)
 
 /obj/structure/bloodsucker/vassalrack/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
 	if(!..())
@@ -265,7 +267,7 @@
 	if(user.blood_volume < CONVERT_COST + 5)
 		to_chat(user, "<span class='notice'>You don't have enough blood to initiate the Dark Communion with [target].</span>")
 		return
-	if(B.count_vassals(user.mind) > B.bloodsucker_level)
+	if(B.count_vassals(user.mind) + 1 > B.bloodsucker_level) // BLUEMOON EDIT - добавлено +1, т.к. ранее можно было иметь на 1 вассала больше, чем уровень вампира
 		to_chat(user, "<span class='notice'>Your power is yet too weak to bring more vassals under your control....</span>")
 		return
 	// Prep...
@@ -289,7 +291,7 @@
 				// SUCCESS: All done!
 				else
 					if(RequireDisloyalty(target))
-						to_chat(user, "<span class='boldwarning'>[target] has external loyalties! [target.p_they(TRUE)] will require more <i>persuasion</i> to break [target.p_them()] to your will!</span>")
+						to_chat(user, "<span class='boldwarning'>[target] has external loyalties! [target.ru_who(TRUE)] will require more <i>persuasion</i> to break [target.ru_na()] to your will!</span>")
 					else
 						to_chat(user, "<span class='notice'>[target] looks ready for the <b>Dark Communion</b>.</span>")
 			// Still Need More Persuasion...
@@ -315,8 +317,8 @@
 	B.AddBloodVolume(-CONVERT_COST)
 	target.add_mob_blood(user, "<span class='danger'>Youve used [CONVERT_COST] amount of blood to gain a new vassal!</span>")
 	to_chat(user, )
-	user.visible_message("<span class='notice'>[user] marks a bloody smear on [target]'s forehead and puts a wrist up to [target.p_their()] mouth!</span>", \
-				  	  "<span class='notice'>You paint a bloody marking across [target]'s forehead, place your wrist to [target.p_their()] mouth, and subject [target.p_them()] to the Dark Communion.</span>")
+	user.visible_message("<span class='notice'>[user] marks a bloody smear on [target]'s forehead and puts a wrist up to [target.ru_ego()] mouth!</span>", \
+				  	  "<span class='notice'>You paint a bloody marking across [target]'s forehead, place your wrist to [target.ru_ego()] mouth, and subject [target.ru_na()] to the Dark Communion.</span>")
 	if(!do_mob(user, src, 50))
 		to_chat(user, "<span class='danger'><i>The ritual has been interrupted!</i></span>")
 		useLock = FALSE
@@ -379,10 +381,11 @@
 	if(I)
 		playsound(loc, I.hitsound, 30, 1, -1)
 		I.play_tool_sound(target)
-	target.visible_message("<span class='danger'>[user] has [method_string] [target]'s [target_string] with [user.p_their()] [weapon_string]!</span>", \
-						   "<span class='userdanger'>[user] has [method_string] your [target_string] with [user.p_their()] [weapon_string]!</span>")
+	target.visible_message("<span class='danger'>[user] has [method_string] [target]'s [target_string] with [user.ru_ego()] [weapon_string]!</span>", \
+						   "<span class='userdanger'>[user] has [method_string] your [target_string] with [user.ru_ego()] [weapon_string]!</span>")
 	if(!target.is_muzzled())
-		target.emote("scream")
+		if(!HAS_TRAIT(target, TRAIT_ROBOTIC_ORGANISM)) // BLUEMOON ADD - роботы не кричат от боли
+			target.emote("scream")
 	target.Jitter(5)
 	target.apply_damages(brute = torture_dmg_brute, burn = torture_dmg_burn, def_zone = (BP ? BP.body_zone : null)) // take_overall_damage(6,0)
 	return TRUE
@@ -481,6 +484,7 @@
 		toggle()
 
 /obj/structure/bloodsucker/candelabrum/proc/toggle(mob/user)
+	remove_disguise() // BLUEMOON ADD - маскировка пропадает при активации или деактивации
 	lit = !lit
 	if(lit)
 		set_light(2, 3, "#66FFFF")

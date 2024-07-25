@@ -90,6 +90,10 @@
 #define ACCESS_SYNDICATE 150//General Syndicate Access. Includes Syndicate mechs and ruins.
 #define ACCESS_SYNDICATE_LEADER 151//Nuke Op Leader Access
 
+	//The InteQ
+#define ACCESS_INTEQ 152//General Syndicate Access. Includes Syndicate mechs and ruins.
+#define ACCESS_INTEQ_LEADER 153//Nuke Op Leader Access
+
 	//Away Missions or Ruins
 	/*For generic away-mission/ruin access. Why would normal crew have access to a long-abandoned derelict
 	or a 2000 year-old temple? */
@@ -103,7 +107,19 @@
 #define ACCESS_AWAY_GENERIC3 207
 #define ACCESS_AWAY_GENERIC4 208
 
+/// - - - AWAY MISSIONS - - -
+/*For generic away-mission/ruin access. Why would normal crew have access to a long-abandoned derelict
+	or a 2000 year-old temple? */
+#define ACCESS_AWAY_COMMAND "away_command"
+#define ACCESS_AWAY_ENGINEERING "away_engineering"
+#define ACCESS_AWAY_MEDICAL "away_medical"
+#define ACCESS_AWAY_SUPPLY "away_supply"
+#define ACCESS_AWAY_SCIENCE "away_science"
+#define ACCESS_AWAY_MAINTENANCE "away_maintenance"
+
 	//Special, for anything that's basically internal
 #define ACCESS_BLOODCULT 250
 #define ACCESS_CLOCKCULT 251
 
+	//Таркоф, ёбанный в рот.
+#define ACCESS_TARKOFF "tarkoff"

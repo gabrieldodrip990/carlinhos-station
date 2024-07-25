@@ -10,10 +10,15 @@
 		"stamp-hos" = 'icons/stamp_icons/large_stamp-hos.png',
 		"stamp-rd" = 'icons/stamp_icons/large_stamp-rd.png',
 		"stamp-cap" = 'icons/stamp_icons/large_stamp-cap.png',
+		"stamp-com" = 'icons/stamp_icons/large_stamp-com.png',
 		"stamp-qm" = 'icons/stamp_icons/large_stamp-qm.png',
 		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png',
 		"stamp-chap" = 'icons/stamp_icons/large_stamp-chap.png',
 		"stamp-mime" = 'icons/stamp_icons/large_stamp-mime.png',
 		"stamp-centcom" = 'icons/stamp_icons/large_stamp-centcom.png',
-		"stamp-syndicate" = 'icons/stamp_icons/large_stamp-syndicate.png'
+		"stamp-syndicate" = 'icons/stamp_icons/large_stamp-syndicate.png',
+		"stamp-ntr" = 'icons/stamp_icons/large_stamp-rep.png',
+		"stamp-warden" = 'icons/stamp_icons/large_stamp-warden.png',
+		"stamp-security" = 'icons/stamp_icons/large_stamp-security.png',
+		"stamp-machine" = 'icons/stamp_icons/large_stamp-machine.png' // BLUEMOON ADD - новый штамп для автоматически сгененированных документов
 	)

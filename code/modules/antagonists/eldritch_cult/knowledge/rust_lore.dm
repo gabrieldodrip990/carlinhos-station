@@ -4,7 +4,10 @@
 	gain_text = "'Let me tell you a story', said the Blacksmith, as he gazed deep into his rusty blade."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/final_eldritch/ash_final,/datum/eldritch_knowledge/final_eldritch/flesh_final,/datum/eldritch_knowledge/final_eldritch/void_final,/datum/eldritch_knowledge/base_void)
 	next_knowledge = list(/datum/eldritch_knowledge/rust_fist)
-	required_atoms = list(/obj/item/spear,/obj/item/trash)
+	required_atoms = list(
+		/obj/item/spear = 1,
+		/obj/item/trash = 1,
+	)
 	result_atoms = list(/obj/item/melee/sickly_blade/rust)
 	cost = 0
 	route = PATH_RUST
@@ -72,11 +75,11 @@
 	if(!istype(user_loc_turf, /turf/open/floor/plating/rust) || !isliving(user))
 		return
 	var/mob/living/living_user = user
-	living_user.adjustBruteLoss(-3, FALSE)
-	living_user.adjustFireLoss(-3, FALSE)
-	living_user.adjustToxLoss(-3, FALSE, TRUE)
-	living_user.adjustOxyLoss(-1, FALSE)
-	living_user.adjustStaminaLoss(-6)
+	living_user.adjustBruteLoss(-6, FALSE)
+	living_user.adjustFireLoss(-6, FALSE)
+	living_user.adjustToxLoss(-6, FALSE, TRUE)
+	living_user.adjustOxyLoss(-2, FALSE)
+	living_user.adjustStaminaLoss(-12)
 
 /datum/eldritch_knowledge/rust_mark
 	name = "Mark of Rust"
@@ -166,14 +169,14 @@
 
 /datum/eldritch_knowledge/spell/grasp_of_decay/on_gain(mob/user)
 	. = ..()
-	priority_announce("A foul wind is blowing... The floor creaks with rust as something sinister approaches!", sound = 'sound/misc/notice1.ogg')
+	priority_announce("Внимание, [station_name()]. [user.real_name] излучает пространственную нестабильность, в связи с которой дует ржавый ветер... пол скрипит, сдавливаясь под приближающейся угрозой!", sound = 'sound/misc/notice1.ogg')
 
 /datum/eldritch_knowledge/final_eldritch/rust_final
 	name = "Rustbringer's Oath"
 	desc = "Bring three corpses onto a transmutation rune. After you finish the ritual, rust will now automatically spread from the rune. Your healing on rust is also tripled, while you become more resilient overall."
 	gain_text = "Champion of rust. Corruptor of steel. Fear the dark for the Rustbringer has come! Rusted Hills, CALL MY NAME!"
 	cost = 5
-	sacs_needed = 8
+	sacs_needed = 5
 	required_atoms = list(/mob/living/carbon/human)
 	route = PATH_RUST
 
@@ -182,7 +185,7 @@
 	H.physiology.brute_mod *= 0.5
 	H.physiology.burn_mod *= 0.5
 	H.client?.give_award(/datum/award/achievement/misc/rust_ascension, H)
-	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the decay, for the Rustbringer, [user.real_name] has ascended! None shall escape the corrosion! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'sound/announcer/classic/spanomalies.ogg')
+	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Бойтесь разложения, что несёт Ржавый Всадник, [user.real_name], возносясь над вами! Никто не избежит от коррозии! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'modular_bluemoon/kovac_shitcode/sound/eldritch/rust_lore.ogg')
 	new /datum/rust_spread(loc)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
 	ascension.ascended = TRUE
@@ -193,11 +196,11 @@
 	if(!finished)
 		return
 	var/mob/living/carbon/human/human_user = user
-	human_user.adjustBruteLoss(-6, FALSE)
-	human_user.adjustFireLoss(-6, FALSE)
-	human_user.adjustToxLoss(-6, FALSE, TRUE)
-	human_user.adjustOxyLoss(-6, FALSE)
-	human_user.adjustStaminaLoss(-20)
+	human_user.adjustBruteLoss(-12, FALSE)
+	human_user.adjustFireLoss(-12, FALSE)
+	human_user.adjustToxLoss(-12, FALSE, TRUE)
+	human_user.adjustOxyLoss(-12, FALSE)
+	human_user.adjustStaminaLoss(-40)
 
 
 /**

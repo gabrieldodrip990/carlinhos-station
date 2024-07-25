@@ -62,32 +62,48 @@
 		switch(href_list["makeAntag"])
 			if("traitors")
 				if(src.makeTraitors())
-					message_admins("[key_name_admin(usr)] created traitors.")
-					log_admin("[key_name(usr)] created traitors.")
+					message_admins("[key_name_admin(usr)] created a traitor.")
+					log_admin("[key_name(usr)] created a traitor.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create traitors. Unfortunately, there were no candidates available.")
-					log_admin("[key_name(usr)] failed to create traitors.")
+					message_admins("[key_name_admin(usr)] tried to create a traitor. Unfortunately, there were no candidates available.")
+					log_admin("[key_name(usr)] failed to create a traitor.")
+			if("heretics")
+				if(src.makeHeretics())
+					message_admins("[key_name_admin(usr)] created a heretic.")
+					log_admin("[key_name(usr)] created a heretic.")
+				else
+					message_admins("[key_name_admin(usr)] tried to create a heretic. Unfortunately, there were no candidates available.")
+					log_admin("[key_name(usr)] failed to create a heretic.")
 			if("changelings")
 				if(src.makeChangelings())
-					message_admins("[key_name(usr)] created changelings.")
-					log_admin("[key_name(usr)] created changelings.")
+					message_admins("[key_name(usr)] created a changeling.")
+					log_admin("[key_name(usr)] created a changeling.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create changelings. Unfortunately, there were no candidates available.")
-					log_admin("[key_name(usr)] failed to create changelings.")
+					message_admins("[key_name_admin(usr)] tried to create a changeling. Unfortunately, there were no candidates available.")
+					log_admin("[key_name(usr)] failed to create a changeling.")
+			// BLUEMOON ADD START
+			if("bloodsucker")
+				if(src.makeBloodsucker())
+					message_admins("[key_name_admin(usr)] created a bloodsucker.")
+					log_admin("[key_name(usr)] created a bloodsucker.")
+				else
+					message_admins("[key_name_admin(usr)] tried to create a bloodsucker. Unfortunately, there were no candidates available.")
+					log_admin("[key_name(usr)] failed to create a bloodsucker.")
+			// BLUEMOON ADD END
 			if("revs")
 				if(src.makeRevs())
-					message_admins("[key_name(usr)] started a revolution.")
-					log_admin("[key_name(usr)] started a revolution.")
+					message_admins("[key_name(usr)] created a revolution head.")
+					log_admin("[key_name(usr)] created a revolution head.")
 				else
-					message_admins("[key_name_admin(usr)] tried to start a revolution. Unfortunately, there were no candidates available.")
-					log_admin("[key_name(usr)] failed to start a revolution.")
+					message_admins("[key_name_admin(usr)] tried to creat a revolution head. Unfortunately, there were no candidates available.")
+					log_admin("[key_name(usr)] failed to create a revolution head.")
 			if("cult")
 				if(src.makeCult())
-					message_admins("[key_name(usr)] started a cult.")
-					log_admin("[key_name(usr)] started a cult.")
+					message_admins("[key_name(usr)] created a Nar'Sie cultist.")
+					log_admin("[key_name(usr)] started a Nar'Sie cultist.")
 				else
-					message_admins("[key_name_admin(usr)] tried to start a cult. Unfortunately, there were no candidates available.")
-					log_admin("[key_name(usr)] failed to start a cult.")
+					message_admins("[key_name_admin(usr)] tried to creat a Nar'Sie cultist. Unfortunately, there were no candidates available.")
+					log_admin("[key_name(usr)] failed to create a Nar'Sie cultist.")
 			if("wizard")
 				message_admins("[key_name(usr)] is creating a wizard...")
 				if(src.makeWizard())
@@ -104,6 +120,14 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a nuke team. Unfortunately, there were not enough candidates available.")
 					log_admin("[key_name(usr)] failed to create a nuke team.")
+			if("syndicate_ops")
+				message_admins("[key_name(usr)] is creating a syndicate team...")
+				if(src.makeSyndicateTeam())
+					message_admins("[key_name(usr)] created a syndicate team.")
+					log_admin("[key_name(usr)] created a syndicate team.")
+				else
+					message_admins("[key_name_admin(usr)] tried to create a syndicate team. Unfortunately, there were not enough candidates available.")
+					log_admin("[key_name(usr)] failed to create a syndicate team.")
 			if("slaver")
 				message_admins("[key_name(usr)] is creating a slaver trader crew...")
 				if(src.makeSlaverTeam())
@@ -153,11 +177,11 @@
 					log_admin("[key_name(usr)] failed to create an abductor team.")
 			if("clockcult")
 				if(src.makeClockCult())
-					message_admins("[key_name(usr)] started a clockwork cult.")
-					log_admin("[key_name(usr)] started a clockwork cult.")
+					message_admins("[key_name(usr)] created a Clockwork cultist.")
+					log_admin("[key_name(usr)] started a Clockwork cultist.")
 				else
-					message_admins("[key_name_admin(usr)] tried to start a clockwork cult. Unfortunately, there were no candidates available.")
-					log_admin("[key_name(usr)] failed to start a clockwork cult.")
+					message_admins("[key_name_admin(usr)] tried to start a Clockwork cultist. Unfortunately, there were no candidates available.")
+					log_admin("[key_name(usr)] failed to start a Clockwork cultist.")
 			if("revenant")
 				if(src.makeRevenant())
 					message_admins("[key_name(usr)] created a revenant.")
@@ -165,13 +189,14 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a revenant. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create a revenant.")
-			if("qareen")
-				if(src.makeQareen())
-					message_admins("[key_name(usr)] created a qareen.")
-					log_admin("[key_name(usr)] created a qareen.")
-				else
-					message_admins("[key_name_admin(usr)] tried to create a qareen. Unfortunately, there were no candidates available.")
-					log_admin("[key_name(usr)] failed to create a qareen.")
+
+//			if("qareen")	Temporary removed. - Gardelin0
+//				if(src.makeQareen())
+//					message_admins("[key_name(usr)] created a qareen.")
+//					log_admin("[key_name(usr)] created a qareen.")
+//				else
+//				message_admins("[key_name_admin(usr)] tried to create a qareen. Unfortunately, there were no candidates available.")
+//					log_admin("[key_name(usr)] failed to create a qareen.")
 
 	else if(href_list["dbsearchckey"] || href_list["dbsearchadmin"] || href_list["dbsearchip"] || href_list["dbsearchcid"])
 		var/adminckey = href_list["dbsearchadmin"]
@@ -326,7 +351,7 @@
 			return
 		SSshuttle.emergency.setTimer(timer*10)
 		log_admin("[key_name(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds.")
-		minor_announce("The emergency shuttle will reach its destination in [round(SSshuttle.emergency.timeLeft(600))] minutes.")
+		minor_announce("Шаттл эвакуации прибудет через [round(SSshuttle.emergency.timeLeft(600))] минут.")
 		message_admins("<span class='adminnotice'>[key_name_admin(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds.</span>")
 		href_list["secrets"] = "check_antagonist"
 	else if(href_list["trigger_centcom_recall"])
@@ -438,10 +463,10 @@
 			return
 
 		var/delmob = 0
-		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
-			if("Cancel")
+		switch(alert("Delete old mob?","Message","Да","Нет","Отмена"))
+			if("Отмена")
 				return
-			if("Yes")
+			if("Да")
 				delmob = 1
 
 		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]")
@@ -534,8 +559,8 @@
 
 		var/duration
 
-		switch(alert("Temporary Ban for [banned_key]?",,"Yes","No"))
-			if("Yes")
+		switch(alert("Temporary Ban for [banned_key]?",,"Да","Нет"))
+			if("Да")
 				temp = 1
 				var/mins = 0
 				if(minutes > GLOB.CMinutes)
@@ -549,7 +574,7 @@
 				reason = input(usr,"Please State Reason For Banning [banned_key].","Reason",reason2) as message|null
 				if(!reason)
 					return
-			if("No")
+			if("Нет")
 				temp = 0
 				duration = "Perma"
 				reason = input(usr,"Please State Reason For Banning [banned_key].","Reason",reason2) as message|null
@@ -582,8 +607,8 @@
 
 
 		if(jobban_isbanned(M, "appearance"))
-			switch(alert("Remove appearance ban?","Please Confirm","Yes","No"))
-				if("Yes")
+			switch(alert("Remove appearance ban?","Please Confirm","Да","Нет"))
+				if("Да")
 					ban_unban_log_save("[key_name(usr)] removed [key_name(M)]'s appearance ban.")
 					log_admin_private("[key_name(usr)] removed [key_name(M)]'s appearance ban.")
 					DB_ban_unban(M.ckey, BANTYPE_ANY_JOB, "appearance")
@@ -592,8 +617,8 @@
 					message_admins("<span class='adminnotice'>[key_name_admin(usr)] removed [key_name_admin(M)]'s appearance ban.</span>")
 					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has removed your appearance ban.</BIG></span>")
 
-		else switch(alert("Appearance ban [M.key]?",,"Yes","No", "Cancel"))
-			if("Yes")
+		else switch(alert("Appearance ban [M.key]?",,"Да","Нет", "Cancel"))
+			if("Да")
 				var/reason = input(usr,"Please State Reason.","Reason") as message|null
 				if(!reason)
 					return
@@ -617,7 +642,7 @@
 					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]</span>")
 				else
 					to_chat(M, "<span class='danger'>No ban appeals URL has been set.</span>")
-			if("No")
+			if("Нет")
 				return
 
 	else if(href_list["jobban2"])
@@ -773,6 +798,26 @@
 				counter = 0
 		dat += "</tr></table>"
 
+
+	//Law (Crimson)
+		counter = 0
+		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
+		dat += "<tr bgcolor='7e3d48'><th colspan='[length(GLOB.law_positions)]'><a href='?src=[REF(src)];[HrefToken()];jobban3=lawdept;jobban4=[REF(M)]'>Law Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in GLOB.law_positions)
+			if(!jobPos)
+				continue
+			if(jobban_isbanned(M, jobPos))
+				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'><font color=red>[jobPos]</font></a></td>"
+				counter++
+			else
+				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'>[jobPos]</a></td>"
+				counter++
+
+			if(counter >= 5) //So things dont get squiiiiished!
+				dat += "</tr><tr align='center'>"
+				counter = 0
+		dat += "</tr></table>"
+
 	//Non-Human (Green)
 		counter = 0
 		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
@@ -842,7 +887,7 @@
 		dat += "</tr></table>"
 
 	//Antagonist (Orange)
-		var/isbanned_dept = jobban_isbanned(M, ROLE_SYNDICATE)
+		var/isbanned_dept = jobban_isbanned(M, ROLE_INTEQ)
 		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
 		dat += "<tr bgcolor='ffeeaa'><th colspan='10'><a href='?src=[REF(src)];[HrefToken()];jobban3=Syndicate;jobban4=[REF(M)]'>Antagonist Positions</a> | "
 		dat += "<a href='?src=[REF(src)];[HrefToken()];jobban3=teamantags;jobban4=[REF(M)]'>Team Antagonists</a> | "
@@ -997,6 +1042,11 @@
 					if(!jobPos)
 						continue
 					joblist += jobPos
+			if("lawdept")
+				for(var/jobPos in GLOB.law_positions)
+					if(!jobPos)
+						continue
+					joblist += jobPos
 			if("nonhumandept")
 				for(var/jobPos in GLOB.nonhuman_positions)
 					if(!jobPos)
@@ -1022,8 +1072,8 @@
 		//Banning comes first
 		if(notbannedlist.len) //at least 1 unbanned job exists in joblist so we have stuff to ban.
 			var/severity = null
-			switch(alert("Temporary Ban for [M.key]?",,"Yes","No", "Cancel"))
-				if("Yes")
+			switch(alert("Temporary Ban for [M.key]?",,"Да","Нет", "Cancel"))
+				if("Да")
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(mins <= 0)
 						to_chat(usr, "<span class='danger'>[mins] is not a valid duration.</span>")
@@ -1054,7 +1104,7 @@
 					to_chat(M, "<span class='danger'>This jobban will be lifted in [mins] minutes.</span>")
 					href_list["jobban2"] = 1 // lets it fall through and refresh
 					return TRUE
-				if("No")
+				if("Нет")
 					var/reason = input(usr,"Please State Reason For Banning [M.key].","Reason") as message|null
 					severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
 					if(!severity)
@@ -1091,8 +1141,8 @@
 				var/reason = jobban_isbanned(M, job)
 				if(!reason)
 					continue //skip if it isn't jobbanned anyway
-				switch(alert("Job: '[job]' Reason: '[reason]' Un-jobban?","Please Confirm","Yes","No"))
-					if("Yes")
+				switch(alert("Job: '[job]' Reason: '[reason]' Un-jobban?","Please Confirm","Да","Нет"))
+					if("Да")
 						ban_unban_log_save("[key_name(usr)] unjobbanned [key_name(M)] from [job]")
 						log_admin_private("[key_name(usr)] unbanned [key_name(M)] from [job]")
 						DB_ban_unban(M.ckey, BANTYPE_ANY_JOB, job)
@@ -1173,16 +1223,16 @@
 	else if(href_list["deletemessage"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = alert("Delete message/note?",,"Yes","No");
-		if (safety == "Yes")
+		var/safety = alert("Delete message/note?",,"Да","Нет");
+		if (safety == "Да")
 			var/message_id = href_list["deletemessage"]
 			delete_message(message_id)
 
 	else if(href_list["deletemessageempty"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = alert("Delete message/note?",,"Yes","No");
-		if (safety == "Yes")
+		var/safety = alert("Delete message/note?",,"Да","Нет");
+		if (safety == "Да")
 			var/message_id = href_list["deletemessageempty"]
 			delete_message(message_id, browse = TRUE)
 
@@ -1298,8 +1348,8 @@
 		if(M.client && M.client.holder)
 			return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
 
-		switch(alert("Temporary Ban for [M.key]?",,"Yes","No", "Cancel"))
-			if("Yes")
+		switch(alert("Temporary Ban for [M.key]?",,"Да","Нет", "Отмена"))
+			if("Да")
 				var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 				if(mins <= 0)
 					to_chat(usr, "<span class='danger'>[mins] is not a valid duration.</span>")
@@ -1326,16 +1376,16 @@
 				if(AH)
 					AH.Resolve()
 				qdel(M.client)
-			if("No")
+			if("Нет")
 				var/reason = input(usr,"Please State Reason For Banning [M.key].","Reason") as message|null
 				if(!reason)
 					return
-				switch(alert(usr,"IP ban?",,"Yes","No","Cancel"))
-					if("Cancel")
+				switch(alert(usr,"IP ban?",,"Да","Нет","Отмена"))
+					if("Отмена")
 						return
-					if("Yes")
+					if("Да")
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)
-					if("No")
+					if("Нет")
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
 				to_chat(M, "<span class='boldannounce'><BIG>You have been banned by [usr.client.key].\nReason: [reason]</BIG></span>")
 				to_chat(M, "<span class='danger'>This is a permanent ban. The round ID is [GLOB.round_id].</span>")
@@ -1355,7 +1405,7 @@
 				if(AH)
 					AH.Resolve()
 				qdel(M.client)
-			if("Cancel")
+			if("Отмена")
 				return
 
 	else if(href_list["mute"])
@@ -1410,6 +1460,7 @@
 			return tgui_alert(usr, "The game has already started.")
 
 		dynamic_mode_options(usr)
+	/* BLUEMOON REMOVAL START - мы используем GLOB.round_type
 	else if(href_list["f_dynamic_force_extended"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1418,7 +1469,7 @@
 		log_admin("[key_name(usr)] set 'forced_extended' to [GLOB.dynamic_forced_extended].")
 		message_admins("[key_name(usr)] set 'forced_extended' to [GLOB.dynamic_forced_extended].")
 		dynamic_mode_options(usr)
-
+	/ BLUEMOON REMOVAL END */
 	else if(href_list["f_dynamic_no_stacking"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1427,6 +1478,20 @@
 		log_admin("[key_name(usr)] set 'no_stacking' to [GLOB.dynamic_no_stacking].")
 		message_admins("[key_name(usr)] set 'no_stacking' to [GLOB.dynamic_no_stacking].")
 		dynamic_mode_options(usr)
+//BLUEMOON ADDITION START
+	else if(href_list["f_round_type"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/chosen_type = input("Выберите вариацию динамика","Round Type Choose") as null|anything in list(ROUNDTYPE_DYNAMIC_TEAMBASED, ROUNDTYPE_DYNAMIC_HARD, ROUNDTYPE_DYNAMIC_MEDIUM, ROUNDTYPE_DYNAMIC_LIGHT, ROUNDTYPE_EXTENDED)
+		GLOB.round_type = chosen_type
+		GLOB.master_mode = chosen_type
+
+		log_admin("[key_name(usr)] изменяет режим игры на [chosen_type].")
+		to_chat(world, "<span class='adminnotice'><b>Выставлен режим [GLOB.master_mode].</b></span>")
+
+		dynamic_mode_options(usr)
+//BLUEMOON ADDITION END
 	else if(href_list["f_dynamic_stacking_limit"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -2210,7 +2275,7 @@
 
 		var/atom/target //Where the object will be spawned
 		var/where = href_list["object_where"]
-		if (!( where in list("onfloor","frompod","inhand","inmarked") ))
+		if (!( where in list("onfloor","frompod","fromquantumspread","inhand","inmarked") ))
 			where = "onfloor"
 
 
@@ -2221,7 +2286,7 @@
 					where = "onfloor"
 				target = usr
 
-			if("onfloor", "frompod")
+			if("onfloor", "frompod", "fromquantumspread")
 				switch(href_list["offset_type"])
 					if ("absolute")
 						target = locate(0 + X,0 + Y,0 + Z)
@@ -2238,9 +2303,12 @@
 					target = marked_datum
 
 		var/obj/structure/closet/supplypod/centcompod/pod
+		var/datum/effect_system/spark_spread/quantum/sparks
 		if(target)
 			if(where == "frompod")
 				pod = new()
+			if(where == "fromquantumspread")
+				sparks = new
 			for (var/path in paths)
 				for (var/i = 0; i < number; i++)
 					if(path in typesof(/turf))
@@ -2275,6 +2343,12 @@
 
 		if(pod)
 			new /obj/effect/pod_landingzone(target, pod)
+
+		if(sparks)
+			playsound(get_turf(target.loc), 'sound/magic/Repulse.ogg', 100, 1)
+			sparks.set_up(10, 1, target)
+			sparks.attach(target.loc)
+			sparks.start()
 
 		if (number == 1)
 			log_admin("[key_name(usr)] created a [english_list(paths)]")
@@ -2661,7 +2735,7 @@
 
 		var/list/bans
 
-		var/list/dat = list("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><body>")
+		var/list/dat = list("<meta http-equiv='Content-Type' content='text/html; charset=utf-8'><body>")
 
 		if(response.errored)
 			dat += "<br>Failed to connect to CentCom."
@@ -2751,6 +2825,21 @@
 		if(!datum_to_mark)
 			return
 		return usr.client?.mark_datum(datum_to_mark)
+
+	else if(href_list["show_paper"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/obj/item/paper/paper_to_show = locate(href_list["show_paper"])
+		if(!paper_to_show)
+			return
+		paper_to_show.ui_interact(usr)
+
+	else if(href_list["movepod"])
+		var/obj/docking_port/mobile/pod/pod = src
+		pod.request()
+		message_admins("[key_name_admin(usr)] moved the Escape Pod.")
+		log_admin("[key_name(usr)] moved the Escape Pod.")
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))

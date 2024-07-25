@@ -130,7 +130,7 @@
 
 /mob/living/silicon/can_inject(mob/user, error_msg, target_zone, penetrate_thick = FALSE, bypass_immunity = FALSE)
 	if(error_msg)
-		to_chat(user, "<span class='alert'>[p_their(TRUE)] outer shell is too tough.</span>")
+		to_chat(user, "<span class='alert'>[ru_ego(TRUE)] outer shell is too tough.</span>")
 	return FALSE
 
 /mob/living/silicon/IsAdvancedToolUser()
@@ -190,7 +190,7 @@
 /mob/living/silicon/proc/statelaws(force = 0)
 
 	//"radiomod" is inserted before a hardcoded message to change if and how it is handled by an internal radio.
-	say("[radiomod] Current Active Laws:")
+	say("[radiomod] Текущие законы:")
 	//laws_sanity_check()
 	//laws.show_laws(world)
 	var/number = 1
@@ -246,7 +246,7 @@
 
 /mob/living/silicon/proc/checklaws() //Gives you a link-driven interface for deciding what laws the statelaws() proc will share with the crew. --NeoFite
 
-	var/list = "<b>Which laws do you want to include when stating them for the crew?</b><br><br>"
+	var/list = {"<meta charset="UTF-8"><b>Какие законы вы хотите продемонстрировать, когда будете излагать их для экипажа?</b><br><br>"}
 
 	if (laws.devillaws && laws.devillaws.len)
 		for(var/index = 1, index <= laws.devillaws.len, index++)

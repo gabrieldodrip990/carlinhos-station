@@ -1,5 +1,5 @@
 /datum/interaction/lewd/fingerass_self
-	description = "Finger yourself."
+	description = "Попа. Поиграться со своей задницей."
 	interaction_sound = null
 	required_from_user = INTERACTION_REQUIRE_HANDS
 	required_from_user_exposed = INTERACTION_REQUIRE_ANUS
@@ -7,20 +7,20 @@
 	max_distance = 0
 	write_log_user = "fingered self"
 	write_log_target = null
+	p13user_emote = PLUG13_EMOTE_ANUS
+	p13target_strength = PLUG13_STRENGTH_NORMAL
 
 /datum/interaction/lewd/fingerass_self/display_interaction(mob/living/user)
-	var/t_His = user.p_their()
-	var/t_Him = user.p_them()
 
 	user.visible_message(span_lewd("<b>\The [user]</b> [pick(
-		"fingers [t_Him]self.",
-		"fingers [t_His] asshole.",
-		"fingers [t_Him]self hard.")]"), ignored_mobs = user.get_unconsenting())
+		"погружает палец в свой сфинктер.",
+		"суёт палец в своё анальное колечко.",
+		"разрабатывает своё анальное кольцо собственного пальца.")]"), ignored_mobs = user.get_unconsenting())
 	playlewdinteractionsound(get_turf(user), 'modular_sand/sound/interactions/champ_fingering.ogg', 50, 1, -1)
-	user.handle_post_sex(NORMAL_LUST, CUM_TARGET_HAND, user, "anus") //SPLURT edit
+	user.handle_post_sex(NORMAL_LUST, CUM_TARGET_HAND, user, CUM_TARGET_ANUS) //SPLURT edit
 
 /datum/interaction/lewd/finger_self
-	description = "Finger your own pussy."
+	description = "Вагина. Поиграться со своей вагиной."
 	required_from_user = INTERACTION_REQUIRE_HANDS
 	required_from_user_exposed = INTERACTION_REQUIRE_VAGINA
 	interaction_sound = null
@@ -28,6 +28,7 @@
 	max_distance = 0
 	write_log_user = "fingered own pussy"
 	write_log_target = null
+	p13user_emote = PLUG13_EMOTE_VAGINA
 
 	additional_details = list(
 		list(
@@ -38,7 +39,6 @@
 	)
 
 /datum/interaction/lewd/finger_self/display_interaction(mob/living/user)
-	var/t_His = user.p_their()
 
 	var/obj/item/reagent_containers/liquid_container
 
@@ -51,15 +51,15 @@
 			liquid_container = cached_item
 
 	var/message = pick(
-		"fingers [t_His] pussy deep",
-		"fingers [t_His] pussy",
-		"plays with [t_His] pussy",
-		"fingers [t_His] own pussy hard")
+		"погружает палец в свою киску",
+		"тихо выдыхает и всовывает палец в своё влагалище",
+		"играется со своей киской",
+		"разрабатывает своё влагалище своим пальчиком")
 	if(!user.is_fucking(user, CUM_TARGET_HAND, user.getorganslot(ORGAN_SLOT_VAGINA)))
 		user.set_is_fucking(user, CUM_TARGET_HAND, user.getorganslot(ORGAN_SLOT_VAGINA))
 
 	if(liquid_container)
-		message += " over \the [liquid_container]"
+		message += " прямо в [liquid_container]"
 
 	user.visible_message(span_lewd("<b>\The [user]</b> [message]."), ignored_mobs = user.get_unconsenting())
 	playlewdinteractionsound(get_turf(user), 'modular_sand/sound/interactions/champ_fingering.ogg', 50, 1, -1)

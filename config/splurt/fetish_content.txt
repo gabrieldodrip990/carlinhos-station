@@ -1,6 +1,6 @@
 ## Minimum and maximum limits for belly size from the character creation menu. If there's bigger belly sizes out there, change the max accordingly.
 BELLY_MIN_SIZE_PREFS 0
-BELLY_MAX_SIZE_PREFS 3
+BELLY_MAX_SIZE_PREFS 10
 
 ## GIRTH ratio configs for penises. Defaults to the defines for this value
 #DIAMETER_RATIO_MIN_SIZE_PREFS
@@ -14,7 +14,7 @@ BELLY_MAX_SIZE_PREFS 3
 
 ## Multiplier for the points earned on a sex table ##
 ## Setting it to 0 obviously just makes it generate no points at all. ##
-SEX_TABLE_MULTIPLIER 50
+#SEX_TABLE_MULTIPLIER 50
 
 ## Enable old size penalty system ##
 ## If uncommented, it'll use citadel's original size penalties for mob sizes rather than the new calculated ones. ##

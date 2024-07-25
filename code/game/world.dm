@@ -49,8 +49,6 @@ GLOBAL_LIST(topic_status_cache)
 #endif
 
 	LoadVerbs(/datum/verbs/menu)
-	if(CONFIG_GET(flag/usewhitelist))
-		load_whitelist()
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
@@ -134,7 +132,7 @@ GLOBAL_LIST(topic_status_cache)
 	GLOB.reagent_log = "[GLOB.log_directory]/reagents.log"
 	GLOB.world_crafting_log = "[GLOB.log_directory]/crafting.log"
 	GLOB.click_log = "[GLOB.log_directory]/click.log"
-	GLOB.world_asset_log = "[GLOB.log_directory]/asset.log"
+	GLOB.admin_log = "[GLOB.log_directory]/admin_log.log"
 
 
 #ifdef UNIT_TESTS
@@ -247,6 +245,7 @@ GLOBAL_LIST(topic_status_cache)
 	else
 		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
 		Master.Shutdown()	//run SS shutdowns
+	SSpersistence.RecordGracefulEnding() // BLUEMOON ADD - система запоминает, успешно ли завершился прошлый раунд, или крашнулся
 
 	TgsReboot()
 
@@ -350,6 +349,7 @@ GLOBAL_LIST(topic_status_cache)
 	maxz++
 	SSmobs.MaxZChanged()
 	SSidlenpcpool.MaxZChanged()
+	SSmachines.MaxZChanged() //BLUEMOON ADD счётчик бс майнеров на z уровне
 	world.refresh_atmos_grid()
 
 /// Auxtools atmos

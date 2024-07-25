@@ -16,7 +16,7 @@
 	hair_style = random_hair_style(gender)
 	facial_hair_style = random_facial_hair_style(gender)
 	hair_color = random_short_color()
-	facial_hair_color = hair_color
+	facial_hair_color = random_short_color()
 	var/random_eye_color = random_eye_color()
 	left_eye_color = random_eye_color
 	right_eye_color = random_eye_color
@@ -54,8 +54,8 @@
 				mannequin.job = previewJob.title
 				previewJob.equip(mannequin, TRUE, preference_source = parent)
 		if(PREVIEW_PREF_LOADOUT)
-			SSjob.equip_loadout(parent.mob, mannequin, bypass_prereqs = TRUE, can_drop = FALSE)
-			SSjob.post_equip_loadout(parent.mob, mannequin, bypass_prereqs = TRUE, can_drop = FALSE)
+			SSjob.equip_loadout(parent.mob, mannequin, bypass_prereqs = TRUE, can_drop = FALSE, is_dummy = TRUE)
+			SSjob.post_equip_loadout(parent.mob, mannequin, bypass_prereqs = TRUE, can_drop = FALSE, is_dummy = TRUE)
 		if(PREVIEW_PREF_NAKED)
 			mannequin.hidden_underwear = TRUE
 			mannequin.hidden_undershirt = TRUE

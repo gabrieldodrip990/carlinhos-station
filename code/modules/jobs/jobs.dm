@@ -1,18 +1,24 @@
 GLOBAL_LIST_INIT(command_positions, list(
 	"Captain",
+	"Bridge Officer",
 	"Head of Personnel",
 	"Head of Security",
 	"Chief Engineer",
 	"Research Director",
 	"Chief Medical Officer",
 	"Quartermaster",
-	"Blueshield",
-	"Bridge Officer"))
+	"NanoTrasen Representative",
+	"Blueshield"))
 
 GLOBAL_LIST_INIT(engineering_positions, list(
 	"Chief Engineer",
 	"Station Engineer",
 	"Atmospheric Technician"))
+
+GLOBAL_LIST_INIT(law_positions, list(
+	"NanoTrasen Representative",
+	"Internal Affairs Agent",
+	))
 
 
 GLOBAL_LIST_INIT(medical_positions, list(
@@ -22,13 +28,15 @@ GLOBAL_LIST_INIT(medical_positions, list(
 	"Virologist",
 	"Paramedic",
 	"Psychologist",
-	"Chemist"))
+	"Chemist",
+	"Brig Physician"))
 
 
 GLOBAL_LIST_INIT(science_positions, list(
 	"Research Director",
 	"Scientist",
-	"Roboticist"))
+	"Roboticist",
+	"Expeditor")) //BlueMoon edit
 
 GLOBAL_LIST_INIT(supply_positions, list(
 	"Quartermaster",
@@ -40,15 +48,24 @@ GLOBAL_LIST_INIT(civilian_positions, list(
 	"Bartender",
 	"Botanist",
 	"Cook",
+	"Bouncer",
+	"Entertainer",
 	"Janitor",
 	"Curator",
-	"Lawyer",
 	"Chaplain",
 	"Clown",
 	"Mime",
+	"Bridge Officer", // BLUEMOON EDIT
 	"Prisoner",
 	"Assistant",
 	"Stowaway"))
+
+//we really need to split service into civillian positions officially, until then this is my solution
+GLOBAL_LIST_INIT(service_food_positions, list(
+	"Bartender",
+	"Botanist",
+	"Cook",
+))
 
 GLOBAL_LIST_INIT(security_positions, list(
 	"Head of Security",
@@ -65,9 +82,10 @@ GLOBAL_LIST_INIT(nonhuman_positions, list(
 	ROLE_PAI))
 
 GLOBAL_LIST_INIT(exp_jobsmap, list(
-	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | list("AI","Cyborg")), // crew positions
+	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | law_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | list("AI","Cyborg")), // crew positions
 	EXP_TYPE_COMMAND = list("titles" = command_positions),
 	EXP_TYPE_ENGINEERING = list("titles" = engineering_positions),
+	EXP_TYPE_LAW = list("titles" = law_positions),
 	EXP_TYPE_MEDICAL = list("titles" = medical_positions),
 	EXP_TYPE_SCIENCE = list("titles" = science_positions),
 	EXP_TYPE_SUPPLY = list("titles" = supply_positions),

@@ -40,6 +40,13 @@
 /////////////
 ////MISC/////
 /////////////
+/datum/design/toner
+	name = "Printer Toner"
+	id = "toner"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 10, /datum/material/glass = 20)
+	build_path = /obj/item/toner
+	category = list("initial", "Misc")
 
 /datum/design/camera
 	name = "Camera"
@@ -48,6 +55,24 @@
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 100)
 	build_path = /obj/item/camera
 	category = list("initial", "Misc")
+
+//BlueMoon Edit. Begin.
+/datum/design/poster
+	name = "Motivational Poster"
+	id = "random_official"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 1000)
+	build_path = /obj/item/poster/random_official
+	category = list("initial", "Misc")
+
+/datum/design/flag
+	name = "Flag"
+	id = "cool_flag"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 1000)
+	build_path = /obj/item/sign/flag
+	category = list("initial", "Misc")
+//BlueMoon Edit. End.
 
 /datum/design/camera_film
 	name = "Camera Film Cartridge"
@@ -80,7 +105,7 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 50)
 	build_path = /obj/item/airlock_painter
-	category = list("initial", "Misc","Tool Designs")
+	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/airlock_painter/decal

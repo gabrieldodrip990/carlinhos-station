@@ -16,7 +16,8 @@
 	var/datum/track/selectedtrack = null
 	var/list/queuedplaylist = list()
 	var/queuecooldown //This var exists solely to prevent accidental repeats of John Mulaney's 'What's New Pussycat?' incident. Intentional, however......
-	var/area_limited = FALSE //SPLURT ADDITION: variable to let the jukebox only be hearable in the specific area it's located.
+	var/repeat = FALSE //BLUEMOON ADD зацикливание плейлистов
+	var/one_area_play = FALSE //BLUEMOON ADD переменная проигрыша джукбокса в одной зоне (для инфдорм)
 
 /obj/machinery/jukebox/disco
 	name = "radiant dance machine mark IV"
@@ -56,6 +57,7 @@
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return
+	log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
 	obj_flags |= EMAGGED
 	queuecost = PRICE_FREE
 	req_one_access = null
@@ -91,10 +93,12 @@
 /obj/machinery/jukebox/ui_data(mob/user)
 	var/list/data = list()
 	data["active"] = active
-	data["songs"] = list()
-	for(var/datum/track/S in SSjukeboxes.songs)
-		var/list/track_data = list(name = S.song_name)
-		data["songs"] += list(track_data)
+	// BLUEMOON DEL -- ищи в modular_bluemoon/jukebox
+	// data["songs"] = list()
+	// for(var/datum/track/S in SSjukeboxes.songs)
+	// 	var/list/track_data = list(name = S.song_name)
+	// 	data["songs"] += list(track_data)
+	// BLUEMOON DEL END
 	data["queued_tracks"] = list()
 	for(var/datum/track/S in queuedplaylist)
 		var/list/track_data = list(name = S.song_name)
@@ -108,6 +112,7 @@
 	data["is_emagged"] = (obj_flags & EMAGGED)
 	data["cost_for_play"] = queuecost
 	data["has_access"] = allowed(user)
+	data["repeat"] = repeat		//BLUEMOON ADD
 	return data
 
 /obj/machinery/jukebox/ui_act(action, list/params)
@@ -126,9 +131,19 @@
 			else
 				stop = 0
 			return TRUE
+		//BLUEMOON ADD зацикливание плейлистов
+		if("repeat")
+			repeat = !repeat
+			return
+		//BLUEMOON ADD END
 		if("add_to_queue")
-			if(QDELETED(src))
+			var/list/available = list()
+			for(var/datum/track/S in SSjukeboxes.songs)
+				available[S.song_name] = S
+			var/selected = params["track"]
+			if(QDELETED(src) || !selected || !istype(available[selected], /datum/track))
 				return
+			selectedtrack = available[selected]
 			if(world.time < queuecooldown)
 				return
 			if(!istype(selectedtrack, /datum/track))
@@ -175,9 +190,9 @@
 			else if(new_volume == "min")
 				volume = 0
 			else if(new_volume == "max")
-				volume = ((obj_flags & EMAGGED) ? 210 : 100)
+				volume = ((obj_flags & EMAGGED) ? 1000 : 100)
 			else if(text2num(new_volume) != null)
-				volume = clamp(0, text2num(new_volume), ((obj_flags & EMAGGED) ? 210 : 100))
+				volume = clamp(0, text2num(new_volume), ((obj_flags & EMAGGED) ? 1000 : 100))
 			var/wherejuke = SSjukeboxes.findjukeboxindex(src)
 			if(wherejuke)
 				SSjukeboxes.updatejukebox(wherejuke, jukefalloff = volume/35)
@@ -187,14 +202,18 @@
 	if(playing || !queuedplaylist.len)
 		return FALSE
 	playing = queuedplaylist[1]
-	var/jukeboxslottotake = SSjukeboxes.addjukebox(src, playing, volume/35, area_limited) //SPLURT EDIT: area_limited
+	var/jukeboxslottotake = SSjukeboxes.addjukebox(src, playing, volume/35, one_area_play) //BLUEMOON EDIT
 	if(jukeboxslottotake)
 		active = TRUE
 		update_icon()
 		START_PROCESSING(SSobj, src)
 		stop = world.time + playing.song_length
+		//BLUEMOON ADD повтор плейлиста (трек добавляется в конец плейлиста)
+		if(repeat)
+			queuedplaylist += queuedplaylist[1]
+		//BLUEMOON ADD END
 		queuedplaylist.Cut(1, 2)
-		say("Now playing: [playing.song_name]")
+		say("Сейчас играет: [playing.song_name]")
 		playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, TRUE)
 		return TRUE
 	else
@@ -358,15 +377,15 @@
 
 /obj/machinery/jukebox/disco/proc/dance(var/mob/living/M) //Show your moves
 	set waitfor = FALSE
-	switch(rand(0,9))
-		if(0 to 1)
-			dance2(M)
-		if(2 to 3)
-			dance3(M)
-		if(4 to 6)
-			dance4(M)
-		if(7 to 9)
-			dance5(M)
+	// switch(rand(0,9))
+	// 	if(0 to 1)
+	dance2(M) // остался только эмоут, не ломающий спрайты
+		// if(2 to 3)
+		// 	dance3(M)
+		// if(4 to 6)
+		// 	dance4(M)
+		// if(7 to 9)
+		// 	dance5(M)
 
 /obj/machinery/jukebox/disco/proc/dance2(var/mob/living/M)
 	for(var/i = 1, i < 10, i++)
@@ -504,15 +523,15 @@
 				update_icon()
 				playing = null
 				stop = 0
-		else if(volume > 140) // BOOM BOOM BOOM BOOM
-			for(var/mob/living/carbon/C in hearers(round(volume/35), src)) // I WANT YOU IN MY ROOM
-				if(istype(C)) // LETS SPEND THE NIGHT TOGETHER
-					C.adjustEarDamage(max((((volume/35) - sqrt(get_dist(C, src) * 4)) - C.get_ear_protection())*0.1, 0)) // FROM NOW UNTIL FOREVER
-
+//		else if(volume > 750) // BOOM BOOM BOOM BOOM
+//			for(var/mob/living/carbon/C in hearers(round(volume/35), src)) // I WANT YOU IN MY ROOM
+//				if(istype(C)) // LETS SPEND THE NIGHT TOGETHER
+//					C.adjustEarDamage(max((((volume/100) - sqrt(get_dist(C, src) * 2)) - C.get_ear_protection())*0.1, 0)) // FROM NOW UNTIL FOREVER
 
 /obj/machinery/jukebox/disco/process()
 	. = ..()
 	if(active)
-		for(var/mob/living/M in rangers)
-			if(prob(5+(allowed(M)*4)) && CHECK_MOBILITY(M, MOBILITY_MOVE))
+		//for(var/mob/living/M in rangers)
+		for(var/mob/living/M in hearers(2, src))
+			if(prob(5+(allowed(M)*4)) && CHECK_MOBILITY(M, MOBILITY_MOVE) && (!M.client || !(M.client.prefs.cit_toggles & NO_DISCO_DANCE)))
 				dance(M)

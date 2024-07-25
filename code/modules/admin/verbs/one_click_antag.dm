@@ -11,20 +11,23 @@
 /datum/admins/proc/one_click_antag()
 
 	var/dat = {"
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=traitors'>Make Traitors</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=changelings'>Make Changelings</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revs'>Make Revs</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=cult'>Make Cult</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=clockcult'>Make Clockwork Cult</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=traitors'>Make 1 Traitor</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=heretics'>Make 1 Heretic</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=changelings'>Make 1 Changeling</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=bloodsucker'>Make 1 Bloodsucker</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revs'>Make 1 Head Rev</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=cult'>Make 1 Nar'Sie Cultist</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=clockcult'>Make 1 Clockwork Cultist</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=blob'>Make Blob</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=wizard'>Make Wizard (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=nukeops'>Make Nuke Team (Requires Ghosts)</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=syndicate_ops'>Make Syndicate Team (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=slaver'>Make Slave Trader Crew (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=centcom'>Make CentCom Response Team (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=abductors'>Make Abductor Team (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=qareen'>Make Qareen (Requires Ghost)</a><br>
 		"}
+	//<a href='?src=[REF(src)];[HrefToken()];makeAntag=qareen'>Make Qareen (Requires Ghost)</a><br> 	Temporary removed. - Gardelin0
 
 	var/datum/browser/popup = new(usr, "oneclickantag", "Quick-Create Antagonist", 400, 400)
 	popup.set_content(dat)
@@ -33,8 +36,12 @@
 /datum/admins/proc/isReadytoRumble(mob/living/carbon/human/applicant, targetrole, onstation = TRUE, conscious = TRUE)
 	if(applicant.mind.special_role)
 		return FALSE
-	if(!(targetrole in applicant.client.prefs.be_special))
+	if(!HAS_ANTAG_PREF(applicant.client, targetrole)) // BLUEMOON EDIT - было if(!(targetrole in applicant.client.prefs.be_special))
 		return FALSE
+	// BLUEMOON ADD START - проверка на то, включено ли разрешение на бытие антагонистом посреди раунда
+	if(!(applicant.client.prefs.toggles & MIDROUND_ANTAG))
+		return FALSE
+	// BLUEMOON ADD END
 	if(onstation)
 		var/turf/T = get_turf(applicant)
 		if(!is_station_level(T.z))
@@ -43,7 +50,7 @@
 		return FALSE
 	if(!considered_alive(applicant.mind) || considered_afk(applicant.mind)) //makes sure the player isn't a zombie, brain, or just afk all together
 		return FALSE
-	return (!jobban_isbanned(applicant, targetrole) && !jobban_isbanned(applicant, ROLE_SYNDICATE))
+	return (!jobban_isbanned(applicant, targetrole) && !jobban_isbanned(applicant, ROLE_INTEQ))
 
 
 /datum/admins/proc/makeTraitors()
@@ -65,7 +72,7 @@
 					candidates += applicant
 
 	if(candidates.len)
-		var/numTraitors = min(candidates.len, 3)
+		var/numTraitors = 1 // BLUEMOON EDIT - поставил 1, чтобы легче контролировать количество, а было min(candidates.len, 3)
 
 		for(var/i = 0, i<numTraitors, i++)
 			H = pick(candidates)
@@ -77,6 +84,35 @@
 
 	return FALSE
 
+/datum/admins/proc/makeHeretics()
+
+	var/datum/game_mode/heretics/temp = new
+	if(CONFIG_GET(flag/protect_roles_from_antagonist))
+		temp.restricted_jobs += temp.protected_jobs
+
+	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
+		temp.restricted_jobs += "Assistant"
+
+	var/list/mob/living/carbon/human/candidates = list()
+	var/mob/living/carbon/human/H = null
+
+	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
+		if(isReadytoRumble(applicant, ROLE_HERETIC))
+			if(temp.age_check(applicant.client))
+				if(!(applicant.job in temp.restricted_jobs))
+					candidates += applicant
+
+	if(candidates.len)
+		var/numHeretics = 1 // BLUEMOON EDIT - БЫЛО min(candidates.len, 3)
+
+		for(var/i = 0, i<numHeretics, i++)
+			H = pick(candidates)
+			H.mind.make_Heretic()
+			candidates.Remove(H)
+
+		return 1
+
+	return 0
 
 /datum/admins/proc/makeChangelings()
 
@@ -95,9 +131,13 @@
 			if(temp.age_check(applicant.client))
 				if(!(applicant.job in temp.restricted_jobs))
 					candidates += applicant
+		// BLUEMOON ADD START
+		if(HAS_TRAIT(applicant, TRAIT_ROBOTIC_ORGANISM)) // никаких роботов-вампиров из далекого космоса
+			candidates -= applicant
+		// BLUEMOON ADD END
 
 	if(candidates.len)
-		var/numChangelings = min(candidates.len, 3)
+		var/numChangelings = 1 // BLUEMOON EDIT - было min(candidates.len, 3)
 
 		for(var/i = 0, i<numChangelings, i++)
 			H = pick(candidates)
@@ -127,7 +167,7 @@
 					candidates += applicant
 
 	if(candidates.len)
-		var/numRevs = min(candidates.len, 3)
+		var/numRevs = 1 // BLUEMOON EDIT - было min(candidates.len, 3)
 
 		for(var/i = 0, i<numRevs, i++)
 			H = pick(candidates)
@@ -166,7 +206,7 @@
 					candidates += applicant
 
 	if(candidates.len)
-		var/numCultists = min(candidates.len, 4)
+		var/numCultists = 1 // BLUEMOON EDIT - было min(candidates.len, 4)
 
 		for(var/i = 0, i<numCultists, i++)
 			H = pick(candidates)
@@ -196,7 +236,7 @@
 					candidates += applicant
 
 	if(candidates.len)
-		var/numCultists = min(candidates.len, 4)
+		var/numCultists = 1 // BLUEMOON EDIT - было min(candidates.len, 4)
 
 		for(var/i = 0, i<numCultists, i++)
 			H = pick(candidates)
@@ -211,8 +251,6 @@
 		return TRUE
 
 	return FALSE
-
-
 
 /datum/admins/proc/makeNukeTeam()
 	var/datum/game_mode/nuclear/temp = new
@@ -255,6 +293,47 @@
 	else
 		return FALSE
 
+/datum/admins/proc/makeSyndicateTeam()
+	var/datum/game_mode/nuclear/temp = new
+	var/list/mob/candidates = pollGhostCandidates("Do you wish to be considered for a nuke team being sent in?", ROLE_OPERATIVE, temp)
+	var/list/mob/chosen = list()
+	var/mob/theghost = null
+
+	if(candidates.len)
+		var/numagents = 5
+		var/agentcount = 0
+
+		for(var/i = 0, i<numagents,i++)
+			shuffle_inplace(candidates) //More shuffles means more randoms
+			for(var/mob/j in candidates)
+				if(!j || !j.client)
+					candidates.Remove(j)
+					continue
+
+				theghost = j
+				candidates.Remove(theghost)
+				chosen += theghost
+				agentcount++
+				break
+		//Making sure we have atleast 3 Nuke agents, because less than that is kinda bad
+		if(agentcount < 3)
+			return 0
+
+		//Let's find the spawn locations
+		var/leader_chosen = FALSE
+		var/datum/team/nuclear/nuke_team
+		for(var/mob/c in chosen)
+			var/mob/living/carbon/human/new_character=makeBody(c)
+			if(!leader_chosen)
+				leader_chosen = TRUE
+				var/datum/antagonist/syndicate_op/N = new_character.mind.add_antag_datum(/datum/antagonist/syndicate_op/leader)
+				nuke_team = N.nuke_team
+			else
+				new_character.mind.add_antag_datum(/datum/antagonist/syndicate_op,nuke_team)
+		return 1
+	else
+		return 0
+
 
 //Abductors
 ///datum/admins/proc/makeAbductorTeam()
@@ -291,8 +370,9 @@
 	.["mainsettings"]["teamsize"]["value"] = newtemplate.teamsize
 	.["mainsettings"]["mission"]["value"] = newtemplate.mission
 	.["mainsettings"]["polldesc"]["value"] = newtemplate.polldesc
+	.["mainsettings"]["ertphrase"]["value"] = newtemplate.ertphrase
 	.["mainsettings"]["open_armory"]["value"] = newtemplate.opendoors ? "Yes" : "No"
-
+	.["mainsettings"]["spawn_admin"]["value"] = newtemplate.spawn_admin ? "Yes" : "No"
 
 /datum/admins/proc/equipAntagOnDummy(mob/living/carbon/human/dummy/mannequin, datum/antagonist/antag)
 	for(var/I in mannequin.get_equipped_items(TRUE))
@@ -301,7 +381,7 @@
 		var/datum/antagonist/ert/ert = antag
 		mannequin.equipOutfit(initial(ert.outfit), TRUE)
 	else if (ispath(antag, /datum/antagonist/official))
-		mannequin.equipOutfit(/datum/outfit/centcom_official, TRUE)
+		mannequin.equipOutfit(/datum/outfit/ert/centcom_official, TRUE)
 
 /datum/admins/proc/makeERTPreviewIcon(list/settings)
 	// Set up the dummy for its photoshoot
@@ -356,8 +436,11 @@
 		"teamsize" = list("desc" = "Team Size", "type" = "number", "value" = ertemplate.teamsize),
 		"mission" = list("desc" = "Mission", "type" = "string", "value" = ertemplate.mission),
 		"polldesc" = list("desc" = "Ghost poll description", "type" = "string", "value" = ertemplate.polldesc),
+		"ertphrase" = list("desc" = "ERT Sending Sound", "type" = "string", "value" = ertemplate.ertphrase),
 		"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(CONFIG_GET(flag/enforce_human_authority) ? "Yes" : "No")]"),
 		"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
+		"notify_players" = list("desc" = "Notify players that you have sent an ERT", "type" = "boolean", "value" = "[(ertemplate.notify_players ? "Yes" : "No")]"),
+		"spawn_admin" = list("desc" = "Spawn yourself as briefing officer", "type" = "boolean", "value" = "[(ertemplate.spawn_admin ? "Yes" : "No")]"),
 		)
 	)
 
@@ -379,10 +462,15 @@
 		ertemplate.teamsize = prefs["teamsize"]["value"]
 		ertemplate.mission = prefs["mission"]["value"]
 		ertemplate.polldesc = prefs["polldesc"]["value"]
+		ertemplate.ertphrase = prefs["ertphrase"]["value"]
 		ertemplate.enforce_human = prefs["enforce_human"]["value"] == "Yes" ? TRUE : FALSE
 		ertemplate.opendoors = prefs["open_armory"]["value"] == "Yes" ? TRUE : FALSE
+		ertemplate.notify_players = prefs["notify_players"]["value"] == "Yes"
+		ertemplate.spawn_admin = prefs["spawn_admin"]["value"] == "Yes"
+		if(ertemplate.notify_players)
+			priority_announce("Внимание, [station_name()]. Мы формируем [ertemplate.polldesc] для отправки на станцию. Ожидайте.", "Инициализирован протокол ОБР", 'modular_bluemoon/kovac_shitcode/sound/ert/ert_send.ogg') //BlueMoon sound
 
-		var/list/mob/candidates = pollGhostCandidates("Do you wish to be considered for [ertemplate.polldesc] ?", "deathsquad", null)
+		var/list/mob/candidates = pollGhostCandidates("Do you wish to be considered for [ertemplate.polldesc]?", "Deathsquad", null)
 		var/teamSpawned = FALSE
 
 		if(candidates.len > 0)
@@ -401,6 +489,21 @@
 			missionobj.completed = TRUE
 			ert_team.objectives += missionobj
 			ert_team.mission = missionobj
+
+			var/list/brief_spawn = list()
+			for(var/obj/effect/landmark/ert_shuttle_brief_spawn/L in GLOB.landmarks_list)
+				brief_spawn += L.loc
+			if(!brief_spawn)
+				message_admins("No valid spawn locations found, aborting...")
+				return MAP_ERROR
+			if(ertemplate.spawn_admin)
+				if(isobserver(usr))
+					var/mob/living/carbon/human/admin_officer = new (pick(brief_spawn))
+					usr.client.prefs.copy_to(admin_officer)
+					admin_officer.equipOutfit(/datum/outfit/spec_ops)
+					admin_officer.key = usr.key
+				else
+					to_chat(usr, span_warning("Could not spawn you in as briefing officer as you are not a ghost!"))
 
 			var/list/spawnpoints = GLOB.emergencyresponseteamspawn
 			while(numagents && candidates.len)
@@ -439,7 +542,9 @@
 				teamSpawned++
 
 			if (teamSpawned)
-				message_admins("[ertemplate.polldesc] has spawned with the mission: [ertemplate.mission]")
+				message_admins("[ertemplate.polldesc] были отправлены на станцию со следующей миссией: [ertemplate.mission]")
+				if(ertemplate.notify_players)
+					priority_announce("Внимание, [station_name()]. Мы отправляем поздразделение - [ertemplate.polldesc]. Вам следует приготовиться.", "Подготовка Отряда Быстрого Реагирования", ertemplate.ertphrase) //BlueMoon sound
 
 			//Open the Armory doors
 			if(ertemplate.opendoors)
@@ -448,6 +553,8 @@
 					CHECK_TICK
 			return TRUE
 		else
+			if(ertemplate.notify_players)
+				priority_announce("[station_name()], мы не можем выслать [ertemplate.polldesc] ввиду занятости всех действующих оперативников.", "Отряд Быстрого Реагирования недоступен", 'modular_bluemoon/kovac_shitcode/sound/ert/ert_no.ogg') //BlueMoon sound
 			return FALSE
 
 	return
@@ -461,6 +568,6 @@
 	new /datum/round_event/ghost_role/revenant(TRUE, TRUE)
 	return TRUE
 
-/datum/admins/proc/makeQareen()
-	new /datum/round_event/ghost_role/qareen(TRUE, TRUE)
-	return TRUE
+//datum/admins/proc/makeQareen()	Temporary removed. - Gardelin0
+//	new /datum/round_event/ghost_role/qareen(TRUE, TRUE)
+//	return TRUE

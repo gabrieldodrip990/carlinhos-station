@@ -15,6 +15,8 @@
 			return
 	. = attackchain_flags
 	if(tool_behaviour && ((. = target.tool_act(user, src, tool_behaviour)) & STOP_ATTACK_PROC_CHAIN))
+		if(tool_behaviour == TOOL_MULTITOOL)
+			update_icon()
 		return
 	if((. |= pre_attack(target, user, params, ., damage_multiplier)) & STOP_ATTACK_PROC_CHAIN)
 		return
@@ -82,14 +84,14 @@
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user)
 	if(item_flags & NOBLUDGEON)
 		return
-	if(force && damtype != STAMINA && HAS_TRAIT(user, TRAIT_PACIFISM))
+	if(force && damtype != STAMINA && damtype != LUST_DAMAGE && HAS_TRAIT(user, TRAIT_PACIFISM))	//So pacifists can use horny items. - Gardelin0
 		to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
 		return
 
 	if(!UseStaminaBufferStandard(user, STAM_COST_ATTACK_MOB_MULT, null, TRUE))
 		return DISCARD_LAST_ACTION
 
-	if(!force)
+	if(!force && !HAS_TRAIT(src, TRAIT_CUSTOM_TAP_SOUND))
 		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), 1, -1)
 	else if(hitsound)
 		playsound(loc, hitsound, get_clamped_volume(), 1, -1)

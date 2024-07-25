@@ -69,6 +69,7 @@
 		/obj/item/reagent_containers/food/snacks/jelliedtoast/slime = 1,
 		/obj/item/reagent_containers/food/snacks/peanut_buttertoast = 1,
 	)
+	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/pbj_sandwich
 	name = "PB&J sandwich"
@@ -85,6 +86,7 @@
 		/obj/item/reagent_containers/food/snacks/jelliedtoast/cherry = 1,
 		/obj/item/reagent_containers/food/snacks/peanut_buttertoast = 1,
 	)
+	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/peanutbutter_sandwich
 	name = "Peanut butter sandwich"
@@ -93,6 +95,7 @@
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2,
 	)
 	result = /obj/item/reagent_containers/food/snacks/peanutbutter_sandwich
+	category = CAT_FOOD
 	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/notasandwich
@@ -123,7 +126,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/meatballsub
 	subcategory = CAT_SANDWICH
-	
+
 /datum/crafting_recipe/food/hotdog
 	name = "Hot dog"
 	reqs = list(

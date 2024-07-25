@@ -37,6 +37,18 @@
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 
+/obj/item/clothing/under/rank/prisoner/syndicate
+	name = "syndicate prisoner jumpsuit"
+	desc = "A crimson red jumpsuit worn by syndicate captives. Its sensors have been shorted out."
+	color = "#992300"
+	has_sensor = FALSE
+
+/obj/item/clothing/under/rank/prisoner/skirt/syndicate
+	name = "syndicate prisoner jumpskirt"
+	desc = "A crimson red jumpskirt worn by syndicate captives. Its sensors have been shorted out."
+	color = "#992300"
+	has_sensor = FALSE
+
 /obj/item/clothing/under/misc/mailman
 	name = "mailman's jumpsuit"
 	desc = "<i>'Special delivery!'</i>"
@@ -138,7 +150,7 @@
 				return
 			next_extinguish = world.time + extinguish_cooldown
 			extinguishes_left--
-			H.visible_message("<span class='warning'>[H]'s suit automatically extinguishes [H.p_them()]!</span>","<span class='warning'>Your suit automatically extinguishes you.</span>")
+			H.visible_message("<span class='warning'>[H]'s suit automatically extinguishes [H.ru_na()]!</span>","<span class='warning'>Your suit automatically extinguishes you.</span>")
 			H.ExtinguishMob()
 			new /obj/effect/particle_effect/water(get_turf(H))
 	return FALSE
@@ -163,20 +175,59 @@
 	icon = 'icons/obj/device.dmi'
 
 /obj/item/clothing/under/misc/gear_harness
-	name = "gear harness"
+	name = "Gear Harness"
 	desc = "A simple, inconspicuous harness replacement for a jumpsuit."
 	limb_integrity = 180
 	icon_state = "gear_harness"
 	item_state = "gear_harness"
 	can_adjust = TRUE
 	body_parts_covered = CHEST|GROIN
+	var/filled_condoms_counter = 0
+
+/obj/item/clothing/under/misc/gear_harness/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = AddComponent(/datum/component/storage/concrete)
+	STR.max_w_class = WEIGHT_CLASS_TINY
+	STR.max_combined_w_class = WEIGHT_CLASS_TINY*100
+	STR.max_items = 100
+	STR.can_hold = typecacheof(list(/obj/item/genital_equipment/condom))
+	STR.insert_preposition = "on"
+	STR.display_numerical_stacking = TRUE
+	STR.click_gather = TRUE
+	STR.allow_quick_empty = TRUE
+
+/obj/item/clothing/under/misc/gear_harness/examine(mob/user)
+	. = ..()
+	. += "You can clip condoms onto it."
+	. += "<b>Alt-Click</b> to adjust coverage of your body."
+	if(filled_condoms_counter > 1)
+		. += "There are <b>[filled_condoms_counter]</b> filled condoms clipped onto it."
+	else if(filled_condoms_counter == 1)
+		. += "There is <b>[filled_condoms_counter]</b> filled condom clipped onto it."
+
+/obj/item/clothing/under/misc/gear_harness/get_examine_string(mob/user, thats)
+	. = ..()
+	if(filled_condoms_counter)
+		. += " with <span class='love'>[filled_condoms_counter] filled condom[filled_condoms_counter > 1 ? "s" : ""]</span> clipped onto it"
+
+/obj/item/clothing/under/misc/gear_harness/Entered(atom/movable/AM, atom/oldLoc)
+	. = ..()
+	var/obj/item/genital_equipment/condom/C = AM
+	if(C.reagents?.total_volume >= 1)
+		filled_condoms_counter++
+
+/obj/item/clothing/under/misc/gear_harness/Exited(atom/movable/AM, atom/newLoc)
+	. = ..()
+	var/obj/item/genital_equipment/condom/C = AM
+	if(C.reagents?.total_volume >= 1)
+		filled_condoms_counter--
 
 /obj/item/clothing/under/misc/gear_harness/toggle_jumpsuit_adjust()
 	if(!body_parts_covered)
-		to_chat(usr, "<span class='notice'>Your gear harness is now covering your chest and groin.</span>")
+		to_chat(usr, "<span class='notice'>Gear harness is now covering chest and groin.</span>")
 		body_parts_covered = CHEST|GROIN
 	else
-		to_chat(usr, "<span class='notice'>Your gear harness is no longer covering anything.</span>")
+		to_chat(usr, "<span class='notice'>Gear harness is no longer covering anything.</span>")
 		body_parts_covered = NONE
 	return TRUE
 
@@ -185,7 +236,7 @@
 	desc = "A jumpsuit made from durathread, its resilient fibres provide some protection to the wearer."
 	icon_state = "durathread"
 	item_state = "durathread"
-	can_adjust = TRUE
+	can_adjust = FALSE
 	armor = list(MELEE = 10, LASER = 10, FIRE = 40, ACID = 10, BOMB = 5)
 
 /obj/item/clothing/under/misc/durathread/skirt
@@ -198,20 +249,28 @@
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/under/misc/squatter
-	name = "slav squatter tracksuit"
+	name = "Slav Squatter Tracksuit"
 	desc = "Cyka blyat."
 	icon_state = "squatteroutfit"
 	item_state = "squatteroutfit"
+	alternate_screams = RUSSIAN_SCREAMS
+	can_adjust = TRUE
+	//mutantrace_variation = USE_TAUR_CLIP_MASK|STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+
+/obj/item/clothing/under/misc/squatter/pants
+	name = "Slav Squatter Pants"
+	icon_state = "squatterpants"
+	item_state = "squatterpants"
 	can_adjust = FALSE
-	mutantrace_variation = USE_TAUR_CLIP_MASK
 
 /obj/item/clothing/under/misc/blue_camo
-	name = "russian blue camo"
+	name = "Russian Blue Camo"
 	desc = "Drop and give me dvadtsat!"
 	icon_state = "russobluecamo"
 	item_state = "russobluecamo"
-	can_adjust = FALSE
-	mutantrace_variation = USE_TAUR_CLIP_MASK
+	alternate_screams = RUSSIAN_SCREAMS
+	can_adjust = TRUE
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/under/misc/keyholesweater
 	name = "keyhole sweater"
@@ -219,7 +278,7 @@
 	icon_state = "keyholesweater"
 	item_state = "keyholesweater"
 	can_adjust = FALSE
-	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/under/misc/stripper
 	name = "pink stripper outfit"

@@ -126,6 +126,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/effect/spawner/lootdrop/salvage,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "n" = (
@@ -157,21 +158,13 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "t" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "u" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
+/obj/effect/spawner/lootdrop/salvage,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "v" = (
 /obj/effect/turf_decal/tile/blue{
@@ -306,7 +299,6 @@
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "P" = (
 /obj/structure/table/glass,
-/obj/machinery/light,
 /obj/structure/bedsheetbin,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
@@ -339,9 +331,12 @@
 "V" = (
 /turf/closed/wall/r_wall/rust,
 /area/space/nearstation)
-"Z" = (
-/obj/machinery/spaceship_navigation_beacon/invion,
-/turf/closed/wall/r_wall/rust,
+"Y" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/salvage,
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 
 (1,1,1) = {"
@@ -394,7 +389,7 @@ a
 c
 s
 E
-E
+u
 c
 a
 a
@@ -436,7 +431,7 @@ a
 a
 a
 d
-Z
+d
 H
 b
 b
@@ -447,9 +442,9 @@ a
 a
 b
 b
-u
 I
 I
+Y
 c
 a
 a

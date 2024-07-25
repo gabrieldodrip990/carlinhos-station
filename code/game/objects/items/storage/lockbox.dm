@@ -57,6 +57,7 @@
 	icon_state = src.icon_broken
 	if(user)
 		visible_message("<span class='warning'>\The [src] has been broken by [user] with an electromagnetic card!</span>")
+		log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
 	return TRUE
 
 /obj/item/storage/lockbox/Entered()
@@ -70,7 +71,7 @@
 	update_icon()
 
 /obj/item/storage/lockbox/loyalty
-	name = "lockbox of mindshield implants"
+	name = "Lockbox of Mindshield Implants"
 	req_access = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/loyalty/PopulateContents()

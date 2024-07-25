@@ -24,7 +24,7 @@
 	var/block_percent_to_counter = 50
 	var/obj/item/stock_parts/cell/cell
 	var/hitcost = 750
-	var/throw_hit_chance = 35
+	var/throw_hit_chance = 50
 	var/preload_cell_type //if not empty the baton starts with this type of cell
 	var/cooldown_duration = 2.5 SECONDS //How long our baton rightclick goes on cooldown for after applying a knockdown
 	var/status_duration = 3 SECONDS //how long our status effects last for otherwise
@@ -42,7 +42,7 @@
 		. = R.get_cell()
 
 /obj/item/melee/baton/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message("<span class='suicide'>[user] is putting the live [name] in [user.ru_ego()] mouth! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return (FIRELOSS)
 
 /obj/item/melee/baton/Initialize(mapload)
@@ -236,8 +236,14 @@
 		return FALSE
 
 	if(shoving && COOLDOWN_FINISHED(src, shove_cooldown) && !HAS_TRAIT(L, TRAIT_IWASBATONED)) //Rightclicking applies a knockdown, but only once every couple of seconds, based on the cooldown_duration var. If they were recently knocked down, they can't be knocked down again by a baton.
-		L.DefaultCombatKnockdown(50, override_stamdmg = 0)
-		L.apply_status_effect(STATUS_EFFECT_TASED_WEAK_NODMG, status_duration) //Even if they shove themselves up, they're still slowed.
+		if(!HAS_TRAIT(L, TRAIT_BLUEMOON_HEAVY_SUPER)) // BLUEMOON ADD - больших и тяжёлых существ проблематично нормально оглушить
+			L.DefaultCombatKnockdown(50, override_stamdmg = 0)
+			L.apply_status_effect(STATUS_EFFECT_TASED_WEAK_NODMG, status_duration) //Even if they shove themselves up, they're still slowed.
+		// BLUEMOON ADD START - больших и тяжёлых существ проблематично нормально оглушить
+		else
+			if(get_size(L) > 1)
+				final_stamina_loss_amount *= 1 / get_size(L) // я за час не придумал, как из 1 получить 1 и из 2 получить 0.5 - сделайте вы
+		// BLUEMOON ADD END
 		L.apply_status_effect(STATUS_EFFECT_OFF_BALANCE, status_duration) //They're very likely to drop items if shoved briefly after a knockdown.
 		shoved = TRUE
 		COOLDOWN_START(src, shove_cooldown, cooldown_duration)
@@ -251,6 +257,9 @@
 	L.apply_effect(EFFECT_STUTTER, stamina_loss_amount)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
 	if(user)
+		if(!(HAS_TRAIT(L, TRAIT_BLUEMOON_HEAVY_SUPER))) // BLUEMOON ADD - больших и тяжёлых существ проблематично нормально оглушить
+			L.Jitter(25)
+			L.Dizzy(25)
 		L.set_last_attacker(user)
 		L.visible_message("<span class='danger'>[user] has [shoved ? "brutally stunned" : "stunned"] [L] with [src]!</span>", \
 								"<span class='userdanger'>[user] has [shoved ? "brutally stunnned" : "stunned"] you with [src]!</span>")
@@ -266,7 +275,7 @@
 	return TRUE
 
 /obj/item/melee/baton/proc/clowning_around(mob/living/user)
-	user.visible_message("<span class='danger'>[user] accidentally hits [user.p_them()]self with [src]!</span>", \
+	user.visible_message("<span class='danger'>[user] accidentally hits себя with [src]!</span>", \
 						"<span class='userdanger'>You accidentally hit yourself with [src]!</span>")
 	SEND_SIGNAL(user, COMSIG_LIVING_MINOR_SHOCK)
 	user.DefaultCombatKnockdown(stamina_loss_amount*6)
@@ -351,7 +360,7 @@
 	armor_pen = 35
 	hitcost = 1000
 	throw_hit_chance = 10
-	slot_flags = ITEM_SLOT_BACK
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	cooldown_duration = 7 SECONDS //It's a little on the weak side
 	status_duration = 3 //Slows someone for a tiny bit
 	var/obj/item/assembly/igniter/sparkler

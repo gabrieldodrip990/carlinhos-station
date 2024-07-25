@@ -11,6 +11,8 @@
 	throw_speed = 2
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
+	var/charging_icon = "cell_in" /// The charge overlay icon file for the cell charge lights
+	var/connector_type = null
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 1000
 	custom_materials = list(/datum/material/iron=700, /datum/material/glass=50)
@@ -189,7 +191,7 @@
 		return FALSE
 
 /obj/item/stock_parts/cell/get_part_rating()
-	return rating * maxcharge
+	return self_recharge > 0 ? rating * maxcharge * self_recharge * 5 : rating * maxcharge
 
 /* Cell variants*/
 /obj/item/stock_parts/cell/empty
@@ -226,7 +228,7 @@
 
 /obj/item/stock_parts/cell/lascarbine
 	name = "laser carbine power supply"
-	maxcharge = 1500			//20 laser shots.
+	maxcharge = 2100			//~30 laser shots.
 
 /obj/item/stock_parts/cell/pulse //200 pulse shots
 	name = "pulse rifle power cell"
@@ -244,6 +246,7 @@
 /obj/item/stock_parts/cell/high
 	name = "high-capacity power cell"
 	icon_state = "hcell"
+	charging_icon = "hcell_in"
 	maxcharge = 10000
 	custom_materials = list(/datum/material/glass=60)
 	chargerate = 1500
@@ -252,6 +255,7 @@
 	name = "high-capacity power cell+"
 	desc = "Where did these come from?"
 	icon_state = "h+cell"
+	charging_icon = "hpcell_in"
 	maxcharge = 15000
 	chargerate = 2250
 	rating = 2
@@ -262,6 +266,7 @@
 /obj/item/stock_parts/cell/super
 	name = "super-capacity power cell"
 	icon_state = "scell"
+	charging_icon = "scell_in"
 	maxcharge = 20000
 	custom_materials = list(/datum/material/glass=300)
 	chargerate = 2000
@@ -273,6 +278,7 @@
 /obj/item/stock_parts/cell/hyper
 	name = "hyper-capacity power cell"
 	icon_state = "hpcell"
+	charging_icon = "hpcell_in"
 	maxcharge = 30000
 	custom_materials = list(/datum/material/glass=400)
 	chargerate = 3000
@@ -285,6 +291,7 @@
 	name = "bluespace power cell"
 	desc = "A rechargeable transdimensional power cell."
 	icon_state = "bscell"
+	charging_icon = "bscell_in"
 	maxcharge = 40000
 	custom_materials = list(/datum/material/glass=600)
 	chargerate = 4000
@@ -296,6 +303,7 @@
 /obj/item/stock_parts/cell/infinite
 	name = "infinite-capacity power cell!"
 	icon_state = "icell"
+	charging_icon = "icell_in"
 	maxcharge = 30000
 	custom_materials = list(/datum/material/glass=1000)
 	rating = 100
@@ -322,6 +330,7 @@
 	desc = "A rechargeable starch based power cell."
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "potato"
+	charging_icon = "potato_in"
 	charge = 100
 	maxcharge = 300
 	custom_materials = null
@@ -332,6 +341,7 @@
 	desc = "A yellow slime core infused with plasma, it crackles with power."
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "yellow slime extract"
+	charging_icon = "slime_in"
 	custom_materials = null
 	rating = 5 //self-recharge makes these desirable
 	self_recharge = 1 // Infused slime cores self-recharge, over time
@@ -339,6 +349,7 @@
 /obj/item/stock_parts/cell/emproof
 	name = "\improper EMP-proof cell"
 	desc = "An EMP-proof cell."
+	charging_icon = "hpcell_in"
 	maxcharge = 500
 	rating = 3
 
@@ -403,3 +414,6 @@
 	maxcharge = 100
 	self_recharge = -5 //it loses power over time instead of gaining
 	rating = 1
+
+/obj/item/stock_parts/cell/lead
+	charging_icon = "lead_in"

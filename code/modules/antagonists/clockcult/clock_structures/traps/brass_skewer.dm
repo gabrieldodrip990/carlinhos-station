@@ -23,7 +23,7 @@
 		var/mob/living/L = buckled_mobs[1]
 		if(iscarbon(L))
 			L.DefaultCombatKnockdown(100)
-			L.visible_message("<span class='warning'>[L] is maimed as the skewer shatters while still in [L.p_their()] body!</span>")
+			L.visible_message("<span class='warning'>[L] is maimed as the skewer shatters while still in [L.ru_ego()] body!</span>")
 			L.adjustBruteLoss(15)
 		unbuckle_mob(L)
 	return ..()
@@ -61,7 +61,7 @@
 		else
 			squirrel.visible_message("<span class='boldwarning'>A massive brass spike erupts from the ground, impaling [squirrel]!</span>", \
 			"<span class='userdanger'>A massive brass spike rams through your chest, hoisting you into the air!</span>")
-			squirrel.emote("scream")
+			squirrel.emote("realagony")
 			playsound(squirrel, 'sound/effects/splat.ogg', 50, TRUE)
 			playsound(squirrel, 'sound/misc/desceration-03.ogg', 50, TRUE)
 			squirrel.apply_damage(20, BRUTE, BODY_ZONE_CHEST)
@@ -100,9 +100,9 @@
 		user.visible_message("<span class='warning'>[user] starts wriggling off of [src]!</span>", \
 		"<span class='danger'>You start agonizingly working your way off of [src]...</span>")
 		wiggle_wiggle = TRUE
-		if(!do_after(user, 300, target = user))
+		if(!do_after(user, 3 SECONDS, target = user))
 			user.visible_message("<span class='warning'>[user] slides back down [src]!</span>")
-			user.emote("scream")
+			user.emote("realagony")
 			user.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
 			playsound(user, 'sound/misc/desceration-03.ogg', 50, TRUE)
 			wiggle_wiggle = FALSE
@@ -115,7 +115,7 @@
 			skewee.visible_message("<span class='warning'>[skewee] painfully slides back down [src].</span>")
 			if(skewee.stat >= UNCONSCIOUS)
 				return //by ratvar, no more spamming my deadchat, holy fuck
-			skewee.emote("pain")
+			skewee.emote("realagony")
 			return
 	skewee.visible_message("<span class='danger'>[skewee] comes free of [src] with a squelching pop!</span>", \
 	"<span class='boldannounce'>You come free of [src]!</span>")

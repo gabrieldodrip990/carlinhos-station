@@ -24,9 +24,7 @@
 	batform_enabled = FALSE
 
 /datum/species/vampire/roundstart/check_roundstart_eligible()
-	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
 		return TRUE
-	return FALSE
 
 /datum/species/vampire/on_species_gain(mob/living/carbon/human/C, datum/species/old_species)
 	. = ..()
@@ -57,8 +55,8 @@
 		return
 	if(C.blood_volume > 0.5)
 		C.blood_volume -= 0.5 //Will take roughly 19.5 minutes to die from standard blood volume, roughly 83 minutes to die from max blood volume.
-	else
-		C.dust(FALSE, TRUE)
+	else if(!istype(C.loc, /obj/structure/closet/crate/coffin))
+		C.adjustBruteLoss(1, 0)	//Vampires will slowly die without blood, instead of dusting
 
 	var/area/A = get_area(C)
 	if(istype(A, /area/service/chapel) && C.mind?.assigned_role != "Chaplain")
@@ -168,6 +166,10 @@
 
 	var/mob/living/carbon/human/human_caster = caster
 	var/mob/living/shape = new shapeshift_type(caster.loc)
+	if(isanimal(shape)) //BLUEMOON ADD шейпы не двигаются и не пытаются кого-то убить если выйти
+		var/mob/living/simple_animal/s_a = shape
+		s_a.AIStatus = AI_OFF
+		s_a.wander = FALSE //BLUEMOON ADD END
 	H = new(shape,src,human_caster)
 	if(istype(H, /mob/living/simple_animal))
 		var/mob/living/simple_animal/SA = H

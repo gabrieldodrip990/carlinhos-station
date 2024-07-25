@@ -13,7 +13,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	icon = 'icons/obj/items_and_weapons.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
-	force = 12
+	force = 18
 	total_mass = TOTAL_MASS_NORMAL_ITEM // average toolbox
 	attack_verb = list("robusted")
 	hitsound = 'sound/weapons/smash.ogg'
@@ -91,7 +91,7 @@
 			if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)
 				master.visible_message("<span class='boldwarning'>[src] turns on [master]!</span>", "<span class='his_grace big bold'>[src] turns on you!</span>")
 				do_attack_animation(master, null, src)
-				master.emote("scream")
+				master.emote("realagony")
 				master.remove_status_effect(STATUS_EFFECT_HISGRACE)
 				REMOVE_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 				master.DefaultCombatKnockdown(60)

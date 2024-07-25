@@ -4,8 +4,8 @@
 	config_tag = "overthrow"
 	antag_flag = ROLE_OVERTHROW
 	chaos = 5
-	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster")
+	restricted_jobs = list("AI", "Cyborg", "Positronic Brain")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security","Bridge Officer", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Quartermaster")
 	required_players = 20 // the core idea is of a swift, bloodless coup, so it shouldn't be as chaotic as revs.
 	required_enemies = 2 // minimum two teams, otherwise it's just nerfed revs.
 	recommended_enemies = 4
@@ -48,7 +48,7 @@
 	return ..()
 
 /datum/game_mode/overthrow/generate_report()
-	return "Some sleeping agents have managed to get aboard. Their objective is to stage a coup and take over the station stealthly."
+	return "На борт Космической Станции удалось проникнуть нескольким Спящим Агентам Профсоюза. Их цель - устроить переворот и незаметно захватить станцию."
 
 // Calculates points for each team and displays the winners.
 /datum/game_mode/overthrow/special_report() // so many for loops, I am deeply sorry

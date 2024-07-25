@@ -40,6 +40,7 @@
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return
+	log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
 	obj_flags |= EMAGGED
 	to_chat(user, "<span class='warning'>PZZTTPFFFT</span>")
 	desc = "[desc] The display is flickering slightly."
@@ -201,6 +202,12 @@
 	flash_protect = -2 //You either are flashproof or you can see in the dark, pick one.
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	glass_colour_type = /datum/client_colour/glass_colour/green
+
+/obj/item/clothing/glasses/hud/security/night/combat
+	name = "combat night vision security  HUD"
+	desc = "An advanced shielded security heads-up display with flash protection and ability to see complete darkness."
+	flash_protect = 1
+	vision_correction = 1
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars
 	name = "\improper HUD gar glasses"

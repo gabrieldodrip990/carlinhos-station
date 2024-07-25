@@ -204,11 +204,11 @@
 
 /datum/gear/uniform/turtleneck
 	name = "Tactitool Turtleneck"
-	path = /obj/item/clothing/under/syndicate/cosmetic
+	path = /obj/item/clothing/under/syndicate/tacticool
 
 /datum/gear/uniform/skirtleneck
 	name = "Tactitool Skirtleneck"
-	path = /obj/item/clothing/under/syndicate/cosmetic/skirt
+	path = /obj/item/clothing/under/syndicate/tacticool/skirt
 
 /datum/gear/uniform/sweater
 	name = "Cream Commando Sweater"
@@ -240,7 +240,7 @@
 	path = /obj/item/clothing/under/misc/keyholesweater
 
 /datum/gear/uniform/tealturtle
-	name = "Teal Turtleneck"
+	name = "Green Turtleneck"
 	path = /obj/item/clothing/under/suit/turtle/teal
 
 /datum/gear/uniform/greyturtle
@@ -258,10 +258,6 @@
 /datum/gear/uniform/blueturtle
 	name = "Blue Turtleneck"
 	path = /obj/item/clothing/under/suit/turtle/blue
-
-/datum/gear/uniform/redturtle
-	name = "Red Turtleneck"
-	path = /obj/item/clothing/under/suit/turtle/red
 
 /datum/gear/uniform/polyjump
 	name = "Polychromic Jumpsuit"
@@ -419,7 +415,7 @@
 	path = /obj/item/clothing/under/rank/captain/util
 	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
 	restricted_desc = "Command"
-	restricted_roles = list("Quartermaster", "Research Director", "Chief Medical Officer", "Head Of Security", "Head Of Personnel", "Captain")
+	restricted_roles = list("Quartermaster", "Research Director", "Chief Medical Officer", "Head Of Security", "Head Of Personnel","Bridge Officer", "Captain")
 
 /datum/gear/uniform/grey/eng/mech
 	name = "Mechanic's Uniform"
@@ -563,7 +559,7 @@
 	name = "TMP uniform, service"
 	path = /obj/item/clothing/under/trek/fedutil/service
 	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
-	restricted_desc = "Service and Civilian, barring Clown, Mime and Lawyer"
+	restricted_desc = "Service and Civilian, barring Clown, Mime and Internal Affairs Agent"
 	restricted_roles = list("Assistant", "Bartender", "Botanist", "Cook", "Curator", "Janitor", "Chaplain")
 
 //Orvilike
@@ -572,7 +568,7 @@
 	path = /obj/item/clothing/under/trek/command/orv
 	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
 	restricted_desc = "Heads of Staff"
-	restricted_roles = list("Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster")
+	restricted_roles = list("Head of Security","Bridge Officer", "Captain", "Head of Personnel", "Chief Engineer", "Research Director", "Chief Medical Officer", "Quartermaster")
 
 /datum/gear/uniform/orvcmd_capt
 	name = "ORV uniform, capt"
@@ -630,7 +626,7 @@
 	path = /obj/item/clothing/under/trek/orv/service
 	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
 	restricted_roles = list("Bartender", "Botanist", "Cook", "Curator", "Janitor", "Chaplain", "Cargo Technician", "Shaft Miner")
-	restricted_desc = "Service, Cargo and Civilian, barring Clown, Mime and Lawyer"
+	restricted_desc = "Service, Cargo and Civilian, barring Clown, Mime and Internal Affairs Agent"
 
 //Memes
 /datum/gear/uniform/gear_harnesses
@@ -748,3 +744,11 @@
 	path = /obj/item/clothing/under/rank/civilian/polychromic_clown
 	subcategory = LOADOUT_SUBCATEGORY_UNIFORM_JOBS
 	restricted_roles = list("Clown")
+
+/datum/gear/uniform/maid
+	name = "Tactical Maid Outfit"
+	path = /obj/item/clothing/under/syndicate/maid
+
+/datum/gear/uniform/maid_revealing
+	name = "Revealing Tactical Maid Outfit"
+	path = /obj/item/clothing/under/syndicate/maid_revealing

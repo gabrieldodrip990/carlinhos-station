@@ -58,28 +58,28 @@
 	name = "Axe Slam"
 	icon_icon = 'modular_sand/icons/mob/actions/actions_elites.dmi'
 	button_icon_state = "axe_slam"
-	chosen_message = span_boldwarning("You will attempt to slam your axe.")
+	chosen_message = "<span class='boldwarning'>You will attempt to slam your axe.</span>"
 	chosen_attack_num = AXE_SLAM
 
 /datum/action/innate/elite_attack/summon_shambler
 	name = "Summon Shambler"
 	icon_icon = 'modular_sand/icons/mob/actions/actions_elites.dmi'
 	button_icon_state = "summon_shambler"
-	chosen_message = span_boldwarning("You will attempt to summon a shambling miner.")
+	chosen_message = "<span class='boldwarning'>You will attempt to summon a shambling miner.</span>"
 	chosen_attack_num = SUMMON_SHAMBLER
 
 /datum/action/innate/elite_attack/dash
 	name = "Dash"
 	icon_icon = 'modular_sand/icons/mob/actions/actions_elites.dmi'
 	button_icon_state = "dash"
-	chosen_message = span_boldwarning("You will attempt to dash near your target.")
+	chosen_message = "<span class='boldwarning'>You will attempt to dash near your target.</span>"
 	chosen_attack_num = DASH
 
 /datum/action/innate/elite_attack/axe_throw
 	name = "Axe Throw"
 	icon_icon = 'modular_sand/icons/mob/actions/actions_elites.dmi'
 	button_icon_state = "axe_throw"
-	chosen_message = span_boldwarning("You will attempt to throw your axe.")
+	chosen_message = "<span class='boldwarning'>You will attempt to throw your axe.</span>"
 	chosen_attack_num = AXE_THROW
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/OpenFire()
@@ -113,26 +113,26 @@
 	for(var/i in 1 to 3)
 		new /obj/effect/temp_visual/dragon_swoop/priest(T)
 		T = get_step(T, dir_to_target)
-	visible_message(span_boldwarning("[src] prepares to slam his axe!"))
+	visible_message("<span class='boldwarning'>[src] prepares to slam his axe!</span>")
 	sleep(5)
 	playsound(src,'sound/misc/crunch.ogg', 200, 1)
 	T = get_step(get_turf(src), dir_to_target)
 	var/list/hit_things = list()
-	visible_message(span_boldwarning("[src] slams his axe!"))
+	visible_message("<span class='boldwarning'>[src] slams his axe!</span>")
 	for(var/i in 1 to 3)
 		for(var/mob/living/L in T.contents)
 			if(faction_check_mob(L))
 				return
 			hit_things += L
-			visible_message(span_boldwarning("[src] slams his axe on [L]!"))
-			to_chat(L, span_userdanger("[src] slams his axe on you!"))
+			visible_message("<span class='boldwarning'>[src] slams his axe on [L]!</span>")
+			to_chat(L, "<span class='userdanger'>[src] slams his axe on you!</span>")
 			L.Stun(15)
 			L.adjustBruteLoss(30)
 		T = get_step(T, dir_to_target)
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/summon_shambler(target)
 	ranged_cooldown = world.time + 150
-	visible_message(span_boldwarning("[src] summons a minion!"))
+	visible_message("<span class='boldwarning'>[src] summons a minion!</span>")
 	playsound(src,'sound/magic/CastSummon.ogg', 200, 1)
 	var/list/turfs = list()
 	for(var/turf/T in oview(2, src))
@@ -145,7 +145,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/dash(atom/dash_target)
 	ranged_cooldown = world.time + 20
-	visible_message(span_boldwarning("[src] dashes into the air!"))
+	visible_message("<span class='boldwarning'>[src] dashes into the air!</span>")
 	playsound(src,'sound/magic/blink.ogg', 200, 1)
 	var/list/accessable_turfs = list()
 	var/self_dist_to_target = 0
@@ -185,7 +185,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite/minerpriest/proc/axe_throw(target)
 	ranged_cooldown = world.time + 20
-	visible_message(span_boldwarning("[src] prepares to throw his axe!"))
+	visible_message("<span class='boldwarning'>[src] prepares to throw his axe!</span>")
 	var/turf/targetturf = get_turf(target)
 	playsound(src,'sound/weapons/fwoosh.wav', 200, 1)
 	Shoot(targetturf)
@@ -195,8 +195,8 @@
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src.loc)
 	if(src.client)
 		H.client = src.client
-		to_chat(H, span_userdanger("You have been finally enlightened.  Serving the necropolis is not your duty anymore, thanks to whoever defeated you. You owe them a great debt."))
-		to_chat(H, span_big(span_bold("Note that you now share the loyalties of the one who defeated you.  You are expected not to intentionally sabotage their faction unless commanded to!")))
+		to_chat(H, "<span class='userdanger'>You have been finally enlightened.  Serving the necropolis is not your duty anymore, thanks to whoever defeated you. You owe them a great debt.</span")
+		to_chat(H, "<span class='big bold'>Note that you now share the loyalties of the one who defeated you.  You are expected not to intentionally sabotage their faction unless commanded to!</span>")
 	else
 		H.adjustBruteLoss(200)
 	H.equipOutfit(/datum/outfit/job/miner/equipped/priest)
@@ -216,6 +216,19 @@
 		/obj/item/melee/diamondaxe = 1,
 		/obj/item/clothing/head/bronze = 1,
 		/obj/item/clothing/suit/bronze = 1)
+
+/datum/outfit/job/miner/equipped/priest/slave
+	name = "Shaft Miner (Slave)"
+	shoes = /obj/item/clothing/shoes/invisiboots
+	backpack = /obj/item/storage/backpack/satchel/bone
+	uniform = /obj/item/clothing/under/costume/loincloth
+	mask = null
+	ears = null
+	belt = null
+	gloves = null
+	backpack_contents = list(
+		/obj/item/flashlight/seclite=1,
+		/obj/item/stack/marker_beacon/ten = 1)
 
 /obj/effect/temp_visual/dragon_swoop/priest
 	duration = 5

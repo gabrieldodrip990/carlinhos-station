@@ -15,7 +15,7 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/banhammer/suicide_act(mob/user)
-		user.visible_message("<span class='suicide'>[user] is hitting [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to ban [user.p_them()]self from life.</span>")
+		user.visible_message("<span class='suicide'>[user] is hitting себя with [src]! It looks like [user.ru_who()] trying to ban себя from life.</span>")
 		return (BRUTELOSS|FIRELOSS|TOXLOSS|OXYLOSS)
 /*
 oranges says: This is a meme relating to the english translation of the ss13 russian wiki page on lurkmore.
@@ -46,7 +46,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/sord/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is trying to impale [user.p_them()]self with [src]! It might be a suicide attempt if it weren't so shitty.</span>", \
+	user.visible_message("<span class='suicide'>[user] is trying to impale себя with [src]! It might be a suicide attempt if it weren't so shitty.</span>", \
 	"<span class='suicide'>You try to impale yourself with [src], but it's USELESS...</span>")
 	return SHAME
 
@@ -267,7 +267,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
 /obj/item/katana/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is slitting [user.p_their()] stomach open with [src]! It looks like [user.p_theyre()] trying to commit seppuku!</span>")
+	user.visible_message("<span class='suicide'>[user] is slitting [user.ru_ego()] stomach open with [src]! It looks like [user.ru_who()] trying to commit seppuku!</span>")
 	playsound(src, 'sound/weapons/bladeslice.ogg', 50, 1)
 	return(BRUTELOSS)
 
@@ -291,7 +291,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/katana/timestop/suicide_act(mob/living/user) // stolen from hierophant staff
 	new /obj/effect/timestop/magic(get_turf(user), 1, 50, list(user)) // free usage for dying
-	user.visible_message("<span class='suicide'>[user] poses menacingly with the [src]! It looks like [user.p_theyre()] trying to teleport behind someone!</span>")
+	user.visible_message("<span class='suicide'>[user] poses menacingly with the [src]! It looks like [user.ru_who()] trying to teleport behind someone!</span>")
 	user.say("Heh.. Nothing personnel, kid..", forced = "temporal katana suicide")
 	sleep(20)
 	if(!user)
@@ -581,7 +581,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=75)
 	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
-	wound_bonus = -10
+	wound_bonus = 5
 
 /obj/item/wirerod/Initialize(mapload)
 	. = ..()
@@ -682,9 +682,9 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	extended = !extended
 	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, TRUE)
 	if(extended)
-		force = 20
+		force = 14
 		w_class = WEIGHT_CLASS_NORMAL
-		throwforce = 23
+		throwforce = 18
 		icon_state = "switchblade_ext"
 		attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		hitsound = 'sound/weapons/bladeslice.ogg'
@@ -699,7 +699,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		sharpness = SHARP_NONE
 
 /obj/item/switchblade/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is slitting [user.p_their()] own throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message("<span class='suicide'>[user] is slitting [user.ru_ego()] own throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return (BRUTELOSS)
 
 /obj/item/phone
@@ -719,7 +719,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	if(locate(/obj/structure/chair/stool) in user.loc)
 		user.visible_message("<span class='suicide'>[user] begins to tie a noose with [src]'s cord! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	else
-		user.visible_message("<span class='suicide'>[user] is strangling [user.p_them()]self with [src]'s cord! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		user.visible_message("<span class='suicide'>[user] is strangling себя with [src]'s cord! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return(OXYLOSS)
 
 /obj/item/cane
@@ -781,7 +781,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "ectoplasm"
 
 /obj/item/ectoplasm/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is inhaling [src]! It looks like [user.p_theyre()] trying to visit the astral plane!</span>")
+	user.visible_message("<span class='suicide'>[user] is inhaling [src]! It looks like [user.ru_who()] trying to visit the astral plane!</span>")
 	return (OXYLOSS)
 
 // /obj/item/ectoplasm/angelic
@@ -924,10 +924,10 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	force = 10
-	wound_bonus = -10
+	wound_bonus = 8
 	throwforce = 12
 	attack_verb = list("beat", "smacked")
-	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 3.5)
+	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 3.5, /datum/material/iron = MINERAL_MATERIAL_AMOUNT * 3.5)
 	w_class = WEIGHT_CLASS_HUGE
 	var/homerun_ready = 0
 	var/homerun_able = 0
@@ -959,7 +959,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	obj_flags = UNIQUE_RENAME
 	var/chaplain_spawnable = TRUE
 	total_mass = TOTAL_MASS_MEDIEVAL_WEAPON
-	wound_bonus = -5
+	wound_bonus = 10
 
 /obj/item/melee/baseball_bat/chaplain/Initialize(mapload)
 	. = ..()
@@ -1012,7 +1012,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	force = 12
 	throwforce = 15
 
-/obj/item/melee/baseball_bat/ablative/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+/obj/item/melee/baseball_bat/ablative/syndi/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	//some day this will reflect thrown items instead of lasers
 	if(is_energy_reflectable_projectile(object) && (attack_type == ATTACK_TYPE_PROJECTILE))
 		var/turf = get_turf(src)
@@ -1023,7 +1023,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/melee/baseball_bat/ablative/syndi
 	name = "syndicate major league bat"
 	desc = "A metal bat made by the syndicate for the major league team."
-	force = 18 //Spear damage...
+	force = 26 //Spear damage...
 	throwforce = 30
 
 /obj/item/melee/baseball_bat/proc/get_on_description()
@@ -1219,3 +1219,14 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 				owner.visible_message("<span class='danger'>[owner] parries [attack_text] with [src]!</span>")
 				return BLOCK_SUCCESS | BLOCK_PHYSICAL_EXTERNAL
 	return NONE
+
+/obj/item/soap/tongue/organic
+	name = "tongue"
+	desc = "Mlem."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "tonguenormal"
+	force = 0
+	throwforce = 0
+	item_flags = DROPDEL | ABSTRACT | HAND_ITEM
+	attack_verb = list("licked", "lapped", "mlemmed")
+	hitsound = 'sound/effects/gib_step.ogg'

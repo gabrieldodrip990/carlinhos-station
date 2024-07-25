@@ -89,9 +89,17 @@
 /obj/structure/girder,
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered)
-"S" = (
-/obj/machinery/spaceship_navigation_beacon/invion,
-/turf/closed/mineral,
+"L" = (
+/obj/effect/spawner/lootdrop/salvage,
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered)
+"R" = (
+/obj/effect/spawner/lootdrop/salvage,
+/turf/open/floor/mineral/titanium/blue/airless,
+/area/ruin/unpowered)
+"W" = (
+/obj/effect/spawner/lootdrop/salvage,
+/turf/open/floor/plating/airless,
 /area/ruin/unpowered)
 
 (1,1,1) = {"
@@ -291,7 +299,7 @@ a
 a
 a
 a
-c
+L
 c
 a
 a
@@ -521,7 +529,7 @@ b
 b
 b
 b
-S
+b
 b
 b
 d
@@ -627,7 +635,7 @@ d
 b
 b
 b
-g
+W
 g
 o
 b
@@ -741,7 +749,7 @@ e
 g
 h
 h
-h
+R
 e
 c
 c
@@ -790,7 +798,7 @@ a
 d
 b
 b
-c
+L
 c
 c
 c

@@ -138,6 +138,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	show_data_huds()
 	data_huds_on = 1
 
+/mob/dead/observer/get_status_tab_items()
+	. = ..()
+	. += ""
+	//Add coords to status panel
+	. += "X:[src.x] Y:[src.y] Z:[src.z]"
+
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
 		return "You can also see a g-g-g-g-ghooooost!"
@@ -428,9 +434,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, "<span class='warning'>You're already stuck out of your body!</span>")
 		return FALSE
 
-	var/response = alert(src, "Are you sure you want to prevent (almost) all means of resuscitation? This cannot be undone. THIS WILL ALSO STOP YOU FROM RESPAWNING!!!","Are you sure you want to stay dead and never respawn?","Yes","No")
+	var/response = alert(src, "Are you sure you want to prevent (almost) all means of resuscitation? This cannot be undone. THIS WILL ALSO STOP YOU FROM RESPAWNING!!!","Are you sure you want to stay dead and never respawn?","Да","Нет")
 
-	if(response != "Yes")
+	if(response != "Да")
 		return
 
 	can_reenter_corpse = FALSE
@@ -869,7 +875,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				UNSETEMPTY(target.observers)
 	if(..())
 		if(hud_used)
-			client.screen = list()
+			client.clear_screen()
 			hud_used.show_hud(hud_used.hud_version)
 
 /mob/dead/observer/verb/observe()
@@ -894,7 +900,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(client && mob_eye && istype(mob_eye))
 		client.eye = mob_eye
 		if(mob_eye.hud_used)
-			client.screen = list()
+			client.clear_screen()
 			LAZYINITLIST(mob_eye.observers)
 			mob_eye.observers |= src
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
@@ -998,3 +1004,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(ghost_info)
 		stuff += ghost_info
 	to_chat(src,stuff.Join("\n"))
+
+/mob/proc/can_admin_interact()
+	return FALSE
+
+/mob/dead/observer/can_admin_interact()
+	return check_rights(R_ADMIN, 0)

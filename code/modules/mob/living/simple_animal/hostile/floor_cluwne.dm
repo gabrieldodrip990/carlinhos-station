@@ -164,26 +164,34 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	return FALSE
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Acquire_Victim(specific)
-	for(var/I in GLOB.player_list)//better than a potential recursive loop
-		var/mob/living/carbon/human/H = pick(GLOB.player_list)//so the check is fair
-		var/area/A
+	var/mob/living/carbon/human/H
+	var/area/A
 
-		if(specific)
-			H = specific
-			A = get_area(H.loc)
-			if(H.stat != DEAD && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
-				return target = current_victim
-
+	if(specific)
+		H = specific
 		A = get_area(H.loc)
-		if(H && ishuman(H) && H.stat != DEAD && H != current_victim && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
+		if(H.stat != DEAD && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
 			current_victim = H
 			interest = 0
 			stage = STAGE_HAUNT
 			return target = current_victim
+		else
+			message_admins("Floor cluwne's target: [specific] has failed the check and the floor cluwne will be deleted.")
+			qdel(src)
+			return
+
+	if(length(GLOB.player_list))
+		for(var/I in 1 to 10)
+			H = pick(GLOB.player_list)//so the check is fair
+			A = get_area(H.loc)
+			if(H && ishuman(H) && H.stat != DEAD && H != current_victim && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
+				current_victim = H
+				interest = 0
+				stage = STAGE_HAUNT
+				return target = current_victim
 
 	message_admins("Floor Cluwne was deleted due to a lack of valid targets, if this was a manually targeted instance please re-evaluate your choice.")
 	qdel(src)
-
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Manifest()//handles disappearing and appearance anim
 	if(manifested)
@@ -335,8 +343,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 							forceMove(H.loc)
 				to_chat(H, "<span class='userdanger'>You feel the floor closing in on your feet!</span>")
 				H.Paralyze(300)
-				INVOKE_ASYNC(H, TYPE_PROC_REF(/mob, emote), "scream")
-				H.adjustBruteLoss(10)
+				INVOKE_ASYNC(H, TYPE_PROC_REF(/mob, emote), "realagony")
+				H.adjustBruteLoss(60)
 				manifested = TRUE
 				Manifest()
 				if(!eating)
@@ -357,7 +365,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			step_towards(H, src)
 			playsound(H, pick('sound/effects/bodyscrape-01.ogg', 'sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			if(prob(40))
-				H.emote("scream")
+				H.emote("realagony")
 			else if(prob(25))
 				H.say(pick("HELP ME!!","IT'S GOT ME!!","DON'T LET IT TAKE ME!!",";SOMETHING'S KILLING ME!!","HOLY FUCK!!"))
 				playsound(src, pick('sound/voice/cluwnelaugh1.ogg', 'sound/voice/cluwnelaugh2.ogg', 'sound/voice/cluwnelaugh3.ogg'), 50, 1)
@@ -400,8 +408,9 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		H.add_splatter_floor(T)
 	if(do_after(src, 50, target = H))
 		H.unequip_everything()//more runtime prevention
-		if(prob(75))
-			H.gib(FALSE)
+		if(prob(50))
+			H.death()
+			qdel(src)
 		else
 			H.cluwneify()
 			H.adjustBruteLoss(30)
@@ -413,6 +422,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			H.anchored = initial(H.anchored)
 			H.blur_eyes(10)
 			animate(H.client,color = old_color, time = 20)
+			qdel(src)
 
 	eating = FALSE
 	switch_stage = switch_stage * 0.75 //he gets faster after each feast

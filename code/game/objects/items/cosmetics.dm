@@ -24,7 +24,8 @@
 	colour = "black"
 
 /obj/item/lipstick/black/death
-	name = "Kiss of Death"
+	name = "\improper Kiss of Death"
+	desc = "An incredibly potent tube of lipstick made from the venom of the dreaded Yellow Spotted Space Lizard, as deadly as it is chic. Try not to smear it!"
 	lipstick_trait = TRAIT_KISS_OF_DEATH
 
 /obj/item/lipstick/random
@@ -149,17 +150,17 @@
 
 				if(H == user) //shaving yourself
 					user.visible_message("[user] starts to shave [user.p_their()] facial hair with [src].", \
-										 "<span class='notice'>You take a moment to shave your facial hair with [src]...</span>")
+										"<span class='notice'>You take a moment to shave your facial hair with [src]...</span>")
 					if(do_after(user, 50, target = H))
 						user.visible_message("[user] shaves [user.p_their()] facial hair clean with [src].", \
-											 "<span class='notice'>You finish shaving with [src]. Fast and clean!</span>")
+											"<span class='notice'>You finish shaving with [src]. Fast and clean!</span>")
 						shave(H, location)
 				else
 					user.visible_message("<span class='warning'>[user] tries to shave [H]'s facial hair with [src].</span>", \
-										 "<span class='notice'>You start shaving [H]'s facial hair...</span>")
+										"<span class='notice'>You start shaving [H]'s facial hair...</span>")
 					if(do_after(user, 50, target = H))
 						user.visible_message("<span class='warning'>[user] shaves off [H]'s facial hair with [src].</span>", \
-											 "<span class='notice'>You shave [H]'s facial hair clean off.</span>")
+											"<span class='notice'>You shave [H]'s facial hair clean off.</span>")
 						shave(H, location)
 
 		else if(location == BODY_ZONE_HEAD)
@@ -179,19 +180,19 @@
 
 				if(H == user) //shaving yourself
 					user.visible_message("[user] starts to shave [user.p_their()] head with [src].", \
-										 "<span class='notice'>You start to shave your head with [src]...</span>")
+										"<span class='notice'>You start to shave your head with [src]...</span>")
 					if(do_after(user, 5, target = H))
 						user.visible_message("[user] shaves [user.p_their()] head with [src].", \
-											 "<span class='notice'>You finish shaving with [src].</span>")
+											"<span class='notice'>You finish shaving with [src].</span>")
 						shave(H, location)
 				else
 					var/turf/H_loc = H.loc
 					user.visible_message("<span class='warning'>[user] tries to shave [H]'s head with [src]!</span>", \
-										 "<span class='notice'>You start shaving [H]'s head...</span>")
+										"<span class='notice'>You start shaving [H]'s head...</span>")
 					if(do_after(user, 50, target = H))
 						if(H_loc == H.loc)
 							user.visible_message("<span class='warning'>[user] shaves [H]'s head bald with [src]!</span>", \
-												 "<span class='notice'>You shave [H]'s head bald.</span>")
+												"<span class='notice'>You shave [H]'s head bald.</span>")
 							shave(H, location)
 		else
 			..()

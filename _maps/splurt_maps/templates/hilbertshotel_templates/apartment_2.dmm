@@ -402,12 +402,6 @@
 	},
 /turf/open/floor/wood/wood_tiled,
 /area/hilbertshotel)
-"gq" = (
-/obj/structure/table/wood,
-/obj/item/storage/fancy/heart_box,
-/obj/item/paper/fluff/hilbertshotel/welcomeletter,
-/turf/open/floor/carpet,
-/area/hilbertshotel)
 "jn" = (
 /turf/closed/wall,
 /area/hilbertshotel)
@@ -619,7 +613,7 @@ ab
 ax
 no
 aD
-gq
+bB
 bs
 bB
 aD

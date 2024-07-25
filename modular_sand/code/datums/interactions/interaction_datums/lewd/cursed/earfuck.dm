@@ -1,5 +1,5 @@
 /datum/interaction/lewd/earfuck
-	description = "Fuck their ear."
+	description = "Убийственно. Изнасиловать в ухо."
 	interaction_sound = null
 	required_from_user_exposed = INTERACTION_REQUIRE_PENIS
 	required_from_target_exposed = INTERACTION_REQUIRE_EARS
@@ -8,33 +8,34 @@
 	write_log_target = "had their ear fucked by"
 
 /datum/interaction/lewd/earfuck/earsocketfuck
-	description = "Fuck their earsocket."
+	description = "Убийственно. Изнасиловать в ушную раковину."
 	required_from_target_exposed = INTERACTION_REQUIRE_EARSOCKETS
 	write_log_user = "earsocket fucked"
 	write_log_target = "had their earsocket fucked by"
 
 /datum/interaction/lewd/earfuck/display_interaction(mob/living/user, mob/living/partner)
 	var/message
-	var/u_His = user.p_their()
-	var/genital_name = user.get_penetrating_genital_name()
 
 	if(user.is_fucking(partner, CUM_TARGET_EARS))
 		message = "[pick(
-			"pounds into \the <b>[partner]</b>'s [partner.has_ears() ? "ear":"earsocker"].",
-			"shoves [u_His] [genital_name] deep into \the <b>[partner]</b>'s skull",
-			"thrusts in and out of \the <b>[partner]</b>'s [partner.has_ears() ? "ear":"eyesocket"].",
-			"goes balls deep into \the <b>[partner]</b>'s cranium over and over again.")]"
+			"долбится в ушную раковину \the <b>[partner]</b>.",
+			"резко и довольно глубоко вводит свой орган в череп \the <b>[partner]</b>",
+			"раз за разом толкается в ушную раковину \the <b>[partner]</b>.",
+			"заходит своим влажным органом по самые яйца в череп \the <b>[partner]</b> снова и снова.")]"
 		var/client/cli = partner.client
 		var/mob/living/carbon/C = partner
 		if(cli && istype(C))
 			if(cli.prefs.extremeharm != "No")
 				if(prob(15))
-					C.bleed(2)
-				if(prob(25))
-					C.adjustOrganLoss(ORGAN_SLOT_EARS, rand(3,7))
-					C.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(3,7))
+					C.bleed(5)
+					C.add_splatter_floor(get_turf(BLOOD_COLOR_HUMAN), TRUE)
+					new/obj/effect/decal/cleanable/blood
+				if(prob(45))
+					C.adjustOrganLoss(ORGAN_SLOT_EARS, rand(10,20))
+					C.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(7,15))
+					C.adjustBruteLoss(rand(6,12))
 	else
-		message = "forcefully slides [u_His] [genital_name] inside \the <b>[partner]</b>'s [partner.has_ears() ? "ear":"earsocket"]."
+		message = "с силой загоняет свой орган внутрь ушной раковины \the <b>[partner]</b> и громко вздыхает."
 		user.set_is_fucking(partner, CUM_TARGET_EARS, user.getorganslot(ORGAN_SLOT_PENIS))
 
 	playlewdinteractionsound(get_turf(user), pick('modular_sand/sound/interactions/champ1.ogg',

@@ -9,6 +9,9 @@
 	ammo_x_offset = 1
 	shaded_charge = 1
 
+/obj/item/gun/energy/laser/pindicate
+	pin = /obj/item/firing_pin/implant/pindicate
+
 /obj/item/gun/energy/laser/practice
 	name = "practice laser gun"
 	icon_state = "laser-p"
@@ -56,6 +59,7 @@
 	item_state = "caplaser"
 	desc = "This is an antique laser gun. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy. On the item is an image of Space Station 13. The station is exploding."
 	force = 10
+	w_class = WEIGHT_CLASS_NORMAL
 	ammo_x_offset = 3
 	selfcharge = EGUN_SELFCHARGE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -64,13 +68,16 @@
 	name = "laser carbine"
 	desc = "A ruggedized laser carbine featuring much higher capacity and improved handling when compared to a normal laser gun."
 	icon_state = "lasernew"
-	item_state = "lasernew"
+	item_state = "laser-wielded"
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_MEDIUM
+	weapon_weight = WEAPON_HEAVY
 	inaccuracy_modifier = 0.7
 	force = 10
 	throwforce = 10
+	burst_size = 2
+	fire_delay = 2
+	fire_select_modes = list(SELECT_SEMI_AUTOMATIC, SELECT_BURST_SHOT)
 	cell_type = /obj/item/stock_parts/cell/lascarbine
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
@@ -217,7 +224,7 @@
 		return
 
 	if(user == target)
-		target.visible_message("<span class='warning'>[user] sticks [src] in [user.p_their()] mouth, ready to pull the trigger...</span>", \
+		target.visible_message("<span class='warning'>[user] sticks [src] in [user.ru_ego()] mouth, ready to pull the trigger...</span>", \
 			"<span class='userdanger'>You stick [src] in your mouth, ready to pull the trigger...</span>")
 	else
 		target.visible_message("<span class='warning'>[user] points [src] at [target]'s head, ready to pull the trigger...</span>", \
@@ -247,3 +254,6 @@
 		chambered.BB.damage *= 5
 
 	process_fire(target, user, TRUE, params)
+
+/obj/item/gun/laser/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	playsound(src, 'sound/weapons/laser_no_power.ogg', 30, 1)

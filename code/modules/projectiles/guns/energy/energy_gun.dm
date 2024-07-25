@@ -1,9 +1,10 @@
 /obj/item/gun/energy/e_gun
-	name = "energy gun"
+	name = "Energy Gun"
 	desc = "A basic hybrid energy gun with two settings: disable and kill."
 	icon_state = "energy"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
+	w_class = WEIGHT_CLASS_NORMAL
 	modifystate = 1
 	can_flashlight = 1
 	ammo_x_offset = 3
@@ -11,7 +12,7 @@
 	flight_y_offset = 10
 
 /obj/item/gun/energy/e_gun/mini
-	name = "miniature energy gun"
+	name = "Miniature Energy Gun"
 	desc = "A small, pistol-sized energy gun with a built-in flashlight. It has two settings: stun and kill."
 	icon_state = "mini"
 	item_state = "gun"
@@ -28,21 +29,22 @@
 	return ..()
 
 /obj/item/gun/energy/e_gun/stun
-	name = "tactical energy gun"
+	name = "Tactical Energy Gun"
 	desc = "Military issue energy gun, is able to fire stun rounds."
 	icon_state = "energytac"
 	ammo_x_offset = 2
+	cell_type = /obj/item/stock_parts/cell{charge = 3500; maxcharge = 3500}  //bluemoon change
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/spec, /obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/e_gun/old
-	name = "prototype energy gun"
+	name = "Prototype Energy Gun"
 	desc = "NT-P:01 Prototype Energy Gun. Early stage development of a unique laser rifle that has multifaceted energy lens allowing the gun to alter the form of projectile it fires on command."
 	icon_state = "protolaser"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/electrode/old)
 
 /obj/item/gun/energy/e_gun/mini/practice_phaser
-	name = "practice phaser"
+	name = "Practice Phaser"
 	desc = "A modified version of the basic phaser gun, this one fires less concentrated energy bolts designed for target practice."
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser/practice)
 	icon_state = "decloner"
@@ -53,12 +55,14 @@
 	name = "\improper X-01 MultiPhase Energy Gun"
 	desc = "This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time in exchange for inbuilt advanced firearm EMP shielding. <span class='boldnotice'>Right click in combat mode to fire a taser shot with a cooldown.</span>"
 	icon_state = "hoslaser"
+	cell_type = /obj/item/stock_parts/cell{charge = 3000; maxcharge = 3000}
 	force = 10
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser/hos, /obj/item/ammo_casing/energy/ion/hos, /obj/item/ammo_casing/energy/electrode/hos)
 	ammo_x_offset = 4
+	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/last_altfire = 0
-	var/altfire_delay = 0
+	var/altfire_delay = CLICK_CD_RANGE // BLUEMOON EDIT - WAS 0 (фикс отсутствия КД при стрельбе оружия ГСБ)
 
 /obj/item/gun/energy/e_gun/hos/altafterattack(atom/target, mob/user, proximity_flag, params)
 	. = TRUE
@@ -81,6 +85,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	ammo_type = list(/obj/item/ammo_casing/energy/net, /obj/item/ammo_casing/energy/trap)
+	w_class = WEIGHT_CLASS_NORMAL
 	modifystate = FALSE
 	can_flashlight = 0
 	ammo_x_offset = 1
@@ -91,7 +96,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/trap)
 
 /obj/item/gun/energy/e_gun/turret
-	name = "hybrid turret gun"
+	name = "Hybrid Turret Gun"
 	desc = "A heavy hybrid energy cannon with two settings: Stun and kill."
 	icon_state = "turretlaser"
 	item_state = "turretlaser"
@@ -104,7 +109,7 @@
 	ammo_x_offset = 2
 
 /obj/item/gun/energy/e_gun/nuclear
-	name = "advanced energy gun"
+	name = "Advanced Energy Gun"
 	desc = "An energy gun with an experimental miniaturized nuclear reactor that automatically charges the internal power cell."
 	icon_state = "nucgun"
 	item_state = "nucgun"
@@ -115,7 +120,10 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
 	selfcharge = EGUN_SELFCHARGE
 	var/fail_tick = 0
-	var/fail_chance = 0
+	var/fail_chance = 1
+
+/obj/item/gun/energy/e_gun/nuclear/pin
+	pin = /obj/item/firing_pin
 
 /obj/item/gun/energy/e_gun/nuclear/process()
 	if(fail_tick > 0)
@@ -162,3 +170,62 @@
 				. += "[icon_state]_fail_1"
 			if(151 to INFINITY)
 				. += "[icon_state]_fail_2"
+
+
+/obj/item/gun/energy/e_gun/nuclear/ert
+	name = "ERT energy pistol"
+	desc = "Advanced energy pistol with an experimental miniaturized nuclear reactor that automatically charges the internal power cell."
+	icon_state = "nucgun_ert"
+	item_state = "gun"
+	charge_delay = 5
+	w_class = WEIGHT_CLASS_SMALL
+	pin = /obj/item/firing_pin/implant/mindshield
+	cell_type = /obj/item/stock_parts/cell{charge = 6000; maxcharge = 6000}
+	can_charge = 0
+	ammo_x_offset = 1
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
+	selfcharge = EGUN_SELFCHARGE * 5
+	fail_tick = 0
+	fail_chance = 1
+	fire_select_modes = list(SELECT_SEMI_AUTOMATIC, SELECT_BURST_SHOT)
+	fire_delay = 2
+	burst_size = 2
+	burst_spread = 16
+	burst_shot_delay = 2
+	var/icon_charge = "nucgun"
+
+
+/obj/item/gun/energy/e_gun/nuclear/ert/update_overlays()
+	. = ..()
+	if(QDELETED(src))
+		return
+	if(!automatic_charge_overlays)
+		return
+	var/overlay_icon_state  = "[icon_charge]_charge"
+	var/ratio = get_charge_ratio()
+	if (modifystate)
+		var/obj/item/ammo_casing/energy/shot = ammo_type[current_firemode_index]
+		. += "[icon_charge]_[shot.select_name]"
+		overlay_icon_state += "_[shot.select_name]"
+	if(ratio == 0)
+		. += "[icon_charge]_empty"
+	else
+		if(!shaded_charge)
+			var/mutable_appearance/charge_overlay = mutable_appearance(icon, overlay_icon_state)
+			for(var/i = ratio, i >= 1, i--)
+				charge_overlay.pixel_x = ammo_x_offset * (i - 1)
+				charge_overlay.pixel_y = ammo_y_offset * (i - 1)
+				. += new /mutable_appearance(charge_overlay)
+		else
+			. += "[icon_charge]_charge[ratio]"
+
+	if(crit_fail)
+		. += "[icon_charge]_fail_3"
+	else
+		switch(fail_tick)
+			if(0)
+				. += "[icon_charge]_fail_0"
+			if(1 to 150)
+				. += "[icon_charge]_fail_1"
+			if(151 to INFINITY)
+				. += "[icon_charge]_fail_2"

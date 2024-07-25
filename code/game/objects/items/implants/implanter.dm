@@ -1,5 +1,5 @@
 /obj/item/implanter
-	name = "implanter"
+	name = "Implanter"
 	desc = "A sterile automatic implant injector."
 	icon = 'icons/obj/syringe.dmi'
 	icon_state = "implanter0"
@@ -13,7 +13,6 @@
 	var/obj/item/implant/imp = null
 	var/imp_type = null
 
-
 /obj/item/implanter/update_icon_state()
 	if(imp)
 		icon_state = "implanter1"
@@ -25,24 +24,24 @@
 		return
 	if(user && imp)
 		if(M != user)
-			M.visible_message("<span class='warning'>[user] is attempting to implant [M].</span>")
+			M.visible_message("<span class='warning'>[user] имплантирует [M].</span>")
 
 		var/turf/T = get_turf(M)
 		if(T && (M == user || do_mob(user, M, 50)))
 			if(src && imp)
 				if(imp.implant(M, user))
 					if (M == user)
-						to_chat(user, "<span class='notice'>You implant yourself.</span>")
+						to_chat(user, "<span class='notice'>Вы имплантировали себя.</span>")
 					else
-						M.visible_message("[user] has implanted [M].", "<span class='notice'>[user] implants you.</span>")
+						M.visible_message("[user] имплантирует [M].", "<span class='notice'>[user] имплантирует вас.</span>")
 					imp = null
 					update_icon()
 				else
-					to_chat(user, "<span class='warning'>[src] fails to implant [M].</span>")
+					to_chat(user, "<span class='warning'>Вам не удалось имплантировать [M] при помощи [src].</span>")
 
 /obj/item/implanter/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pen))
-		if(!user.is_literate())
+		if(!user.can_write(W))
 			to_chat(user, "<span class='notice'>You prod at [src] with [W]!</span>")
 			return
 		var/t = stripped_input(user, "What would you like the label to be?", name, null)
@@ -51,9 +50,9 @@
 		if(!user.canUseTopic(src, BE_CLOSE))
 			return
 		if(t)
-			name = "implanter ([t])"
+			name = "Implanter ([t])"
 		else
-			name = "implanter"
+			name = "Implanter"
 	else
 		return ..()
 
@@ -64,17 +63,17 @@
 	update_icon()
 
 /obj/item/implanter/adrenalin
-	name = "implanter (adrenalin)"
+	name = "Implanter (adrenalin)"
 	imp_type = /obj/item/implant/adrenalin
 
 /obj/item/implanter/emp
-	name = "implanter (EMP)"
+	name = "Implanter (EMP)"
 	imp_type = /obj/item/implant/emp
 
 /obj/item/implanter/stealth
-	name = "implanter (stealth)"
+	name = "Implanter (stealth)"
 	imp_type = /obj/item/implant/stealth
 
 /obj/item/implanter/hijack
-	name = "implanter (hijack)"
+	name = "Implanter (hijack)"
 	imp_type = /obj/item/implant/hijack

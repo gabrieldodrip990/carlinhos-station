@@ -10,7 +10,7 @@
 /obj/structure/destructible/cult/proc/conceal() //for spells that hide cult presence
 	density = FALSE
 	visible_message("<span class='danger'>[src] fades away.</span>")
-	invisibility = INVISIBILITY_OBSERVER
+	invisibility = INVISIBILITY_HIDDEN_RUNES
 	alpha = 100 //To help ghosts distinguish hidden runes
 	light_range = 0
 	light_power = 0
@@ -32,11 +32,11 @@
 	. = ..()
 	. += "<span class='notice'>\The [src] is [anchored ? "":"not "]secured to the floor.</span>"
 	if((iscultist(user) || isobserver(user)) && cooldowntime > world.time)
-		. += "<span class='cult italic'>The magic in [src] is too weak, [p_they()] will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>"
+		. += "<span class='cult italic'>The magic in [src] is too weak, [ru_who()] will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>"
 
 /obj/structure/destructible/cult/examine_status(mob/user)
 	if(iscultist(user) || isobserver(user))
-		var/t_It = p_they(TRUE)
+		var/t_It = ru_who(TRUE)
 		var/t_is = p_are()
 		return "<span class='cult'>[t_It] [t_is] at <b>[round(obj_integrity * 100 / max_integrity)]%</b> stability.</span>"
 	return ..()
@@ -48,10 +48,10 @@
 			obj_integrity = min(max_integrity, obj_integrity + 5)
 			Beam(M, icon_state="sendbeam", time=4)
 			M.visible_message("<span class='danger'>[M] repairs \the <b>[src]</b>.</span>", \
-				"<span class='cult'>You repair <b>[src]</b>, leaving [p_they()] at <b>[round(obj_integrity * 100 / max_integrity)]%</b> stability.</span>")
+				"<span class='cult'>You repair <b>[src]</b>, leaving [ru_who()] at <b>[round(obj_integrity * 100 / max_integrity)]%</b> stability.</span>")
 			return TRUE
 		else
-			to_chat(M, "<span class='cult'>You cannot repair [src], as [p_theyre()] undamaged!</span>")
+			to_chat(M, "<span class='cult'>You cannot repair [src], as [ru_who()] undamaged!</span>")
 	else
 		return ..()
 
@@ -157,12 +157,12 @@
 	to_chat(user, "<span class='cultitalic'>You study the schematics etched into the forge...</span>")
 
 
-	var/list/options = list("Shielded Robe" = radial_shielded, "Flagellant's Robe" = radial_flagellant, "Mirror Shield" = radial_mirror)
+	var/list/options = list("\improper Nar'Sien Empowered Armor" = radial_shielded, "Flagellant's Robe" = radial_flagellant, "Mirror Shield" = radial_mirror)
 	var/choice = show_radial_menu(user, src, options, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 
 	var/reward
 	switch(choice)
-		if("Shielded Robe")
+		if("\improper Nar'Sien Empowered Armor")
 			reward = /obj/item/clothing/suit/hooded/cultrobes/cult_shield
 		if("Flagellant's Robe")
 			reward = /obj/item/clothing/suit/hooded/cultrobes/berserker
@@ -199,36 +199,47 @@
 /obj/structure/destructible/cult/pylon/New()
 	START_PROCESSING(SSfastprocess, src)
 	..()
+	AddComponent( \
+		/datum/component/aura_healing, \
+		range = 5, \
+		brute_heal = 0.4, \
+		burn_heal = 0.4, \
+		blood_heal = 0.4, \
+		simple_heal = 1, \
+		requires_visibility = FALSE, \
+		limit_to_trait = TRAIT_HEALS_FROM_CULT_PYLONS, \
+		healing_color = COLOR_CULT_RED, \
+	)
 
 /obj/structure/destructible/cult/pylon/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
-/obj/structure/destructible/cult/pylon/proc/heal_friends()
-	set waitfor = FALSE
-	for(var/mob/living/L in range(5, src))
-		if(iscultist(L) || isshade(L) || isconstruct(L))
-			if(L.health != L.maxHealth)
-				new /obj/effect/temp_visual/heal(get_turf(src), "#960000")
-				if(ishuman(L))
-					L.adjustBruteLoss(-1, 0, only_organic = FALSE)
-					L.adjustFireLoss(-1, 0, only_organic = FALSE)
-					L.updatehealth()
-				if(isshade(L) || isconstruct(L))
-					var/mob/living/simple_animal/M = L
-					if(M.health < M.maxHealth)
-						M.adjustHealth(-3)
-			if(ishuman(L) && L.blood_volume < (BLOOD_VOLUME_NORMAL * L.blood_ratio))
-				L.adjust_integration_blood(1.0)
-		CHECK_TICK
+// /obj/structure/destructible/cult/pylon/proc/heal_friends()
+// 	set waitfor = FALSE
+// 	for(var/mob/living/L in range(5, src))
+// 		if(iscultist(L) || isshade(L) || isconstruct(L))
+// 			if(L.health != L.maxHealth)
+// 				new /obj/effect/temp_visual/heal(get_turf(src), "#960000")
+// 				if(ishuman(L))
+// 					L.adjustBruteLoss(-1, 0, only_organic = FALSE)
+// 					L.adjustFireLoss(-1, 0, only_organic = FALSE)
+// 					L.updatehealth()
+// 				if(isshade(L) || isconstruct(L))
+// 					var/mob/living/simple_animal/M = L
+// 					if(M.health < M.maxHealth)
+// 						M.adjustHealth(-3)
+// 			if(ishuman(L) && L.blood_volume < (BLOOD_VOLUME_NORMAL * L.blood_ratio))
+// 				L.adjust_integration_blood(1.0)
+// 		CHECK_TICK
 
 
 /obj/structure/destructible/cult/pylon/process()
 	if(!anchored)
 		return
-	if(last_heal <= world.time)
-		last_heal = world.time + heal_delay
-		heal_friends()
+	// if(last_heal <= world.time)
+	// 	last_heal = world.time + heal_delay
+	// 	heal_friends()
 	if(last_corrupt <= world.time)
 		var/list/validturfs = list()
 		var/list/cultturfs = list()
@@ -274,7 +285,8 @@
 
 	var/static/image/radial_blindfold = image(icon = 'icons/obj/clothing/glasses.dmi', icon_state = "blindfold")
 	var/static/image/radial_curse = image(icon = 'icons/obj/cult.dmi', icon_state ="shuttlecurse")
-	var/static/image/radial_veilwalker = image(icon = 'icons/obj/cult.dmi', icon_state ="shifter")
+	var/static/image/radial_veilshifter = image(icon = 'icons/obj/cult.dmi', icon_state ="shifter")
+	var/static/image/radial_voidtorch = image(icon = 'icons/obj/lighting.dmi', icon_state ="torch")
 
 /obj/structure/destructible/cult/tome/ui_interact(mob/user)
 	. = ..()
@@ -293,7 +305,7 @@
 
 	to_chat(user, "<span class='cultitalic'>You flip through the black pages of the archives...</span>")
 
-	var/list/options = list("Zealot's Blindfold" = radial_blindfold, "Shuttle Curse" = radial_curse, "Veil Walker Set" = radial_veilwalker)
+	var/list/options = list("Zealot's Blindfold" = radial_blindfold, "Shuttle Curse" = radial_curse, "Veil Shifter" = radial_veilshifter, "Void Torch" = radial_voidtorch)
 	var/choice = show_radial_menu(user, src, options, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 
 	var/reward
@@ -302,15 +314,14 @@
 			reward = /obj/item/clothing/glasses/hud/health/night/cultblind
 		if("Shuttle Curse")
 			reward = /obj/item/shuttle_curse
-		if("Veil Walker Set")
-			reward = /obj/effect/spawner/bundle/veil_walker
+		if("Veil Shifter")
+			reward = /obj/item/cult_shift
+		if("Void Torch")
+			reward = /obj/item/flashlight/flare/culttorch
 	if(!QDELETED(src) && reward && check_menu(user))
 		cooldowntime = world.time + 2400
 		new reward(get_turf(src))
 		to_chat(user, "<span class='cultitalic'>You summon the [choice] from the archives!</span>")
-
-/obj/effect/spawner/bundle/veil_walker
-	items = list(/obj/item/cult_shift, /obj/item/flashlight/flare/culttorch)
 
 /obj/effect/gateway
 	name = "gateway"

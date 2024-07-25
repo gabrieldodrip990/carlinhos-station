@@ -119,6 +119,11 @@
 	icon_state = "hawk"
 	covered_limbs = list("Head" = MATRIX_RED_GREEN, "Chest" = MATRIX_RED_GREEN, "Left Leg" = MATRIX_ALL, "Right Leg" = MATRIX_ALL, "Left Arm" = MATRIX_RED, "Right Arm" = MATRIX_RED)
 
+/datum/sprite_accessory/mam_body_markings/heart
+	name = "Heart"
+	icon_state = "heart"
+	covered_limbs = list("Chest" = MATRIX_RED_GREEN)
+
 /datum/sprite_accessory/mam_body_markings/husky
 	name = "Husky"
 	icon_state = "husky"
@@ -261,7 +266,7 @@
 	mutant_part_string = "insect_fluff"
 
 /datum/sprite_accessory/insect_fluff/is_not_visible(var/mob/living/carbon/human/H, var/tauric)
-	return (!H.dna.features["insect_fluff"] || H.dna.features["insect_fluff"] == "None" || H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
+	return (!H.dna.features["insect_fluff"] || H.dna.features["insect_fluff"] == "None" || H.wear_suit && (H.wear_suit.flags_inv & HIDENECK))
 
 /datum/sprite_accessory/insect_fluff/none
 	name = "None"

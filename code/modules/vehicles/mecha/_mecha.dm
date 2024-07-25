@@ -163,6 +163,9 @@
 	///Bool for whether this mech can only be used on lavaland
 	var/lavaland_only = FALSE
 
+	var/nominalphrase = "sound/mecha/nominal.ogg"
+	var/imagenhphrase = "sound/mecha/imag_enh.ogg"
+
 
 	hud_possible = list (DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_TRACK_HUD)
 
@@ -326,7 +329,7 @@
 		C.forceMove(src)
 		cell = C
 		return
-	cell = new /obj/item/stock_parts/cell/high/plus(src)
+	cell = new /obj/item/stock_parts/cell/hyper(src)
 
 ///Adds a scanning module, for use in Map-spawned mechs, Nuke Ops mechs, and admin-spawned mechs. Mechs built by hand will replace this.
 /obj/vehicle/sealed/mecha/proc/add_scanmod(obj/item/stock_parts/scanning_module/sm=null)
@@ -715,8 +718,11 @@
 
 	set_glide_size(DELAY_TO_GLIDE_SIZE(movedelay))
 	use_power(step_energy_drain)
-	//Otherwise just walk normally
-	. = step(src,direction, dir)
+
+	var/turf/current_loc = get_turf(src)
+	if(!current_loc.zFall(src))
+		//Otherwise just walk normally
+		. = step(src,direction, dir)
 
 	if(strafe && !no_strafe)
 		setDir(olddir)
@@ -966,11 +972,11 @@
 	if(dna_lock && M.has_dna())
 		var/mob/living/carbon/entering_carbon = M
 		if(entering_carbon.dna.unique_enzymes != dna_lock)
-			to_chat(M, "<span class='warning'>Access denied. [name] is secured with a DNA lock.</span>")
+			to_chat(M, "<span class='warning'>Доступ запрещён. [name] is secured with a DNA lock.</span>")
 			log_message("Permission denied (DNA LOCK).", LOG_MECHA)
 			return
 	if(!operation_allowed(M))
-		to_chat(M, "<span class='warning'>Access denied. Insufficient operation keycodes.</span>")
+		to_chat(M, "<span class='warning'>Доступ запрещён. Insufficient operation keycodes.</span>")
 		log_message("Permission denied (No keycode).", LOG_MECHA)
 		return
 	if(M.buckled)
@@ -1023,7 +1029,7 @@
 	setDir(dir_in)
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, TRUE)
 	if(!internal_damage)
-		SEND_SOUND(H, sound('sound/mecha/nominal.ogg',volume=50))
+		SEND_SOUND(H, sound(nominalphrase,volume=50))
 	return TRUE
 
 /obj/vehicle/sealed/mecha/proc/mmi_move_inside(obj/item/mmi/M, mob/user)
@@ -1038,7 +1044,7 @@
 		to_chat(user, "<span class='warning'>It's full!</span>")
 		return FALSE
 	if(dna_lock && (!B.stored_dna || (dna_lock != B.stored_dna.unique_enzymes)))
-		to_chat(user, "<span class='warning'>Access denied. [name] is secured with a DNA lock.</span>")
+		to_chat(user, "<span class='warning'>Доступ запрещён. [name] is secured with a DNA lock.</span>")
 		return FALSE
 
 	visible_message("<span class='notice'>[user] starts to insert an MMI into [name].</span>")
@@ -1075,7 +1081,7 @@
 	setDir(dir_in)
 	log_message("[M] moved in as pilot.", LOG_MECHA)
 	if(!internal_damage)
-		SEND_SOUND(M, sound('sound/mecha/nominal.ogg',volume=50))
+		SEND_SOUND(M, sound(nominalphrase,volume=50))
 	log_game("[key_name(user)] has put the MMI/posibrain of [key_name(B)] into [src] at [AREACOORD(src)]")
 	return TRUE
 

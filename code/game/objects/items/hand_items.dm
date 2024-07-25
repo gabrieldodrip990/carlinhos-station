@@ -1,7 +1,6 @@
 /obj/item/hand_item
 	item_flags = DROPDEL | ABSTRACT | HAND_ITEM
 
-
 /obj/item/hand_item/circlegame
 	name = "circled hand"
 	desc = "If somebody looks at this while it's below your waist, you get to bop them."
@@ -246,6 +245,10 @@
 	var/kiss_type = /obj/item/projectile/kiss
 	/// TRUE if the user was aiming anywhere but the mouth when they offer the kiss, if it's offered
 	var/cheek_kiss
+
+/obj/item/hand_item/kisser/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
 
 /obj/item/hand_item/kisser/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()

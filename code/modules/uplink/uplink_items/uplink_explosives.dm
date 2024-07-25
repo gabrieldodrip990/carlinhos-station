@@ -15,7 +15,7 @@
 	item = /obj/item/grenade/chem_grenade/bioterrorfoam
 	cost = 5
 	surplus = 35
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SYNDICATE
 
 /datum/uplink_item/explosives/bombanana
 	name = "Bombanana"
@@ -33,7 +33,7 @@
 	item = /obj/item/storage/box/syndie_kit/bee_grenades
 	cost = 15
 	surplus = 35
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SYNDICATE
 
 /datum/uplink_item/explosives/c4
 	name = "Composition C-4"
@@ -43,12 +43,23 @@
 	item = /obj/item/grenade/plastic/c4
 	cost = 1
 
+/datum/uplink_item/explosives/doorboom
+	name = "Door Charge"
+	desc = "Небольшое взрывное устройство, которое можно поместить посреди электроники шлюза. Любой, кто рискнёт открыть такой шлюз ощутит на себе прелести взрывной химической реакции. Поставляется комплектом из пяти штук."
+	item = /obj/item/storage/box/inteq_kit/doorgoboom
+	cost = 3
+
 /datum/uplink_item/explosives/c4bag
 	name = "Bag of C-4 explosives"
 	desc = "Because sometimes quantity is quality. Contains 10 C-4 plastic explosives."
 	item = /obj/item/storage/backpack/duffelbag/syndie/c4
 	cost = 9 //10% discount!
 	cant_discount = TRUE
+	purchasable_from = UPLINK_SYNDICATE
+
+/datum/uplink_item/explosives/c4bag/inteq
+	item = /obj/item/storage/backpack/duffelbag/syndie/inteq/c4
+	purchasable_from = (UPLINK_TRAITORS | UPLINK_NUKE_OPS)
 
 /datum/uplink_item/explosives/x4bag
 	name = "Bag of X-4 explosives"
@@ -56,8 +67,13 @@
 			X-4 can be placed on a solid surface, such as a wall or window, and it will blast through the wall, injuring anything on the opposite side, while being safer to the user. \
 			For when you want a controlled explosion that leaves a wider, deeper, hole."
 	item = /obj/item/storage/backpack/duffelbag/syndie/x4
-	cost = 4 //
+	cost = 4
 	cant_discount = TRUE
+	purchasable_from = UPLINK_SYNDICATE
+
+/datum/uplink_item/explosives/x4bag/inteq
+	item = /obj/item/storage/backpack/duffelbag/syndie/inteq/x4
+	purchasable_from = (UPLINK_TRAITORS | UPLINK_NUKE_OPS)
 
 /datum/uplink_item/explosives/clown_bomb_clownops
 	name = "Clown Bomb"
@@ -79,6 +95,7 @@
 	item = /obj/item/cartridge/virus/syndicate
 	cost = 5
 	restricted = TRUE
+	purchasable_from = (UPLINK_TRAITORS | UPLINK_NUKE_OPS) //bluemoon change никаких подрывов через ВР
 	limited_stock = 1
 
 /datum/uplink_item/explosives/emp
@@ -96,7 +113,7 @@
 	item = /obj/item/storage/box/syndie_kit/tuberculosisgrenade
 	cost = 8
 	surplus = 35
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SYNDICATE
 	restricted = TRUE
 
 /datum/uplink_item/explosives/grenadier
@@ -124,6 +141,8 @@
 			be defused, and some crew may attempt to do so."
 	item = /obj/item/sbeacondrop/bomb
 	cost = 11
+	hijack_only = TRUE
+	purchasable_from = ~(UPLINK_SYNDICATE)
 
 /datum/uplink_item/explosives/syndicate_detonator
 	name = "Syndicate Detonator"
@@ -133,7 +152,7 @@
 			the blast radius before using the detonator."
 	item = /obj/item/syndicatedetonator
 	cost = 3
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_TRAITORS
 
 /datum/uplink_item/explosives/syndicate_minibomb
 	name = "Syndicate Minibomb"
@@ -143,13 +162,22 @@
 	cost = 6
 	purchasable_from = ~UPLINK_CLOWN_OPS
 
+/datum/uplink_item/explosives/syndicate_minibombs
+	name = "Syndicate Minibomb Clusterbang"
+	desc = "The clusterbang minibomb is a grenade with a five-second fuse. Upon detonation, it will create a small hull breach \
+			in addition to dealing high amounts of damage to nearby personnel."
+	item = /obj/item/grenade/clusterbuster/syndieminibomb
+	cost = 21
+	surplus = 35
+	purchasable_from = UPLINK_NUKE_OPS
+
 /datum/uplink_item/explosives/tearstache
 	name = "Teachstache Grenade"
 	desc = "A teargas grenade that launches sticky moustaches onto the face of anyone not wearing a clown or mime mask. The moustaches will \
 		remain attached to the face of all targets for two minutes, preventing the use of breath masks and other such devices."
 	item = /obj/item/grenade/chem_grenade/teargas/moustache
 	cost = 3
-	surplus = 0
+	surplus = 1
 	purchasable_from = UPLINK_CLOWN_OPS
 
 /datum/uplink_item/explosives/viscerators
@@ -159,4 +187,28 @@
 	item = /obj/item/grenade/spawnergrenade/manhacks
 	cost = 5
 	surplus = 35
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SYNDICATE
+
+/datum/uplink_item/explosives/spesscarp
+	name = "Space Carps Delivery Grenade"
+	desc = "A traditional grenade with a payload consisting entirely of carps. Useful in any scenario!"
+	item = /obj/item/grenade/spawnergrenade/spesscarp
+	cost = 5
+	surplus = 35
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SYNDICATE
+
+/datum/uplink_item/explosives/spesscarps
+	name = "Space Carps Clusterbang"
+	desc = "A traditional clusterbang grenade with a payload consisting entirely of carps. Useful in any scenario!"
+	item = /obj/item/grenade/clusterbuster/spawner_spesscarp
+	cost = 16
+	surplus = 35
+	purchasable_from = UPLINK_NUKE_OPS
+
+/datum/uplink_item/explosives/clf3
+	name = "Clusterbang CLF3"
+	desc = "WELCOME TO THE HELL, BITCHES."
+	item = /obj/item/grenade/clusterbuster/clf3
+	cost = 28
+	surplus = 0
+	purchasable_from = UPLINK_NUKE_OPS

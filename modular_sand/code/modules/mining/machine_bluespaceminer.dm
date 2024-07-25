@@ -12,15 +12,20 @@
 	circuit = /obj/item/circuitboard/machine/bluespace_miner
 	layer = BELOW_OBJ_LAYER
 	init_process = TRUE
+	idle_power_usage = 5000
+	active_power_usage = 10000
+	var/registered_z = 0 //BLUEMOON ADD подтверждаем где бс майнер
+	var/process_while_unused_counter = 10 //BLUEMOON ADD для подсчёта в списке генераторов аномалий (10 сколько изначально он незарегестрирован)
 	var/list/ore_rates = list(
-		/datum/material/iron = 0.3,
-		/datum/material/glass = 0.3,
-		/datum/material/plasma = 0.1,
-		/datum/material/silver = 0.1,
-		/datum/material/gold = 0.05,
-		/datum/material/titanium = 0.05,
-		/datum/material/uranium = 0.05,
-		/datum/material/diamond = 0.02
+		/datum/material/iron = 0.05,
+		/datum/material/glass = 0.05,
+		/datum/material/silver = 0.025,
+		/datum/material/titanium = 0.025,
+		/datum/material/uranium = 0.025,
+		/datum/material/plastic = 0.025,
+		/datum/material/gold = 0.01,
+		/datum/material/diamond = 0.01,
+		/datum/material/plasma = 0.01
 		)
 	var/datum/component/remote_materials/materials
 	var/multiplier = 0 //Multiplier by tier, has been made fair and everything
@@ -38,6 +43,11 @@
 		. += span_notice("A small screen on the machine reads, \"Efficiency at [multiplier * 100]%\"")
 		if(multiplier >= BLUESPACE_MINER_CRYSTAL_TIER)
 			. += span_notice("Bluespace generation is active.")
+		var/instability_text = "Bluespace mining instability in region is [min(length(SSmachines.bluespaceminer_by_zlevel[src.z]) * 20, 100)]%"
+		if(length(SSmachines.bluespaceminer_by_zlevel[src.z]) >= 5)
+			. += span_danger(instability_text)
+		else
+			. += span_notice(instability_text)
 	if(!anchored)
 		. += span_warning("The machine won't work while not firmly secured to the ground.")
 	if(!materials?.silo)
@@ -55,31 +65,54 @@
 		stock_amt++
 	multiplier /= stock_amt
 	if(multiplier >= BLUESPACE_MINER_CRYSTAL_TIER)
-		ore_rates[/datum/material/bluespace] = 0.01
+		ore_rates[/datum/material/bluespace] = 0.005
+		ore_rates[/datum/material/bananium] = 0.005
 	else
 		ore_rates -= /datum/material/bluespace
+		ore_rates -= /datum/material/bananium
 
 	// Apply config multiplier here to not interfere with bluespace material check
 	multiplier *= BLUESPACE_MINER_BONUS_MULT
 
 /obj/machinery/mineral/bluespace_miner/Destroy()
 	materials = null
+	//BLUEMOON ADD считаем бс майнеры на z уровне
+	if(registered_z)
+		SSmachines.bluespaceminer_by_zlevel[registered_z] -= src
+	//BLUEMOON ADD END
 	return ..()
 
 /obj/machinery/mineral/bluespace_miner/multitool_act(mob/living/user, obj/item/M)
 	. = ..()
 	if(!M.buffer || !istype(M.buffer, /obj/machinery/ore_silo))
 		to_chat(user, span_warning("You need to multitool the ore silo first."))
-		balloon_alert(user, "invalid buffer!")
+		balloon_alert(user, "Данные отсутствуют!")
 		return TRUE
 
 /obj/machinery/mineral/bluespace_miner/process()
 	update_icon_state()
 	if(!materials?.silo || materials?.on_hold())
+//BLUEMOON ADD майнеры недовольны когда их много, майнеры делают аномалии
+		if(registered_z)
+			SSmachines.bluespaceminer_by_zlevel[registered_z] -= src
+			registered_z = 0
 		return
 	var/datum/component/material_container/mat_container = materials.mat_container
 	if(!mat_container || panel_open || !powered() || !anchored)
+		process_while_unused_counter++
+		if(registered_z && process_while_unused_counter >= 10)
+			SSmachines.bluespaceminer_by_zlevel[registered_z] -= src
+			registered_z = 0
 		return
+
+	if(!registered_z)
+		SSmachines.bluespaceminer_by_zlevel[src.z] += src
+		registered_z = src.z
+	if(length(SSmachines.bluespaceminer_by_zlevel[src.z]) >= 5 && prob(0.0005))
+		var/datum/round_event_control/anomaly/anomaly_bluespace/bluespace_anomaly = new/datum/round_event_control/anomaly/anomaly_bluespace
+		bluespace_anomaly.runEvent()
+
+	//BLUEMOON ADD END магический счётсчки неуспешных процессов
 	var/datum/material/ore = pick(ore_rates)
 	mat_container.bsm_insert(((ore_rates[ore] * 1000) * multiplier), ore)
 

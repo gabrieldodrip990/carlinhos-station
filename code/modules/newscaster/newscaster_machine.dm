@@ -8,8 +8,8 @@ GLOBAL_LIST_EMPTY(allCasters)
 	result_path = /obj/machinery/newscaster
 
 /obj/machinery/newscaster
-	name = "newscaster"
-	desc = "A standard Nanotrasen-licensed newsfeed handler for use in commercial space stations. All the news you absolutely have no use for, in one place!"
+	name = "Новостник"
+	desc = "Стандартный обработчик новостной ленты, лицензированный NanoTrasen для использования на коммерческих космических станциях. Все новости, которые вам совершенно не нужны, в одном месте!"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "newscaster_normal"
 	plane = ABOVE_WALL_PLANE
@@ -612,7 +612,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 
 /obj/machinery/newscaster/attack_paw(mob/user)
 	if(user.a_intent != INTENT_HARM)
-		to_chat(user, "<span class='warning'>The newscaster controls are far too complicated for your tiny brain!</span>")
+		to_chat(user, "<span class='warning'>Управление диктором новостей слишком сложно для твоего маленького мозга!</span>")
 	else
 		take_damage(5, BRUTE, MELEE)
 
@@ -655,6 +655,9 @@ GLOBAL_LIST_EMPTY(allCasters)
 				scanned_user ="[ID.registered_name] ([ID.assignment])"
 			else
 				scanned_user ="Unknown"
+		else if(human_user.wear_neck?.GetID())
+			var/obj/item/card/id/ID = human_user.wear_neck.GetID()
+			scanned_user ="[ID.registered_name] ([ID.assignment])"
 		else
 			scanned_user ="Unknown"
 	else if(issilicon(user))
@@ -684,7 +687,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 
 /obj/machinery/newscaster/proc/newsAlert(channel)
 	if(channel)
-		say("Breaking news from [channel]!")
+		say("<b>Свежие новости от [channel]</b>!")
 		alert = TRUE
 		update_icon()
 		addtimer(CALLBACK(src,PROC_REF(remove_alert)),alert_delay,TIMER_UNIQUE|TIMER_OVERRIDE)

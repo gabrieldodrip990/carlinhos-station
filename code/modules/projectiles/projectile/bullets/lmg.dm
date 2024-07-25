@@ -1,7 +1,7 @@
 // C3D (Borgs)
 
 /obj/item/projectile/bullet/c3d
-	damage = 20
+	damage = 30
 
 // Mech LMG
 
@@ -19,7 +19,7 @@
 	damage = 20
 
 /obj/item/projectile/bullet/syndicate_turret
-	damage = 20
+	damage = 30
 
 // 7.12x82mm (SAW)
 
@@ -32,8 +32,8 @@
 
 /obj/item/projectile/bullet/mm712x82_ap
 	name = "7.12x82mm armor-piercing bullet"
-	damage = 40
-	armour_penetration = 75
+	damage = 35
+	armour_penetration = 40
 
 /obj/item/projectile/bullet/mm712x82_hp
 	name = "7.12x82mm hollow-point bullet"
@@ -46,7 +46,7 @@
 
 /obj/item/projectile/bullet/incendiary/mm712x82
 	name = "7.12x82mm incendiary bullet"
-	damage = 20
+	damage = 30
 	fire_stacks = 3
 
 /obj/item/projectile/bullet/mm712x82/match
@@ -56,3 +56,4 @@
 	ricochet_chance = 60
 	ricochet_auto_aim_range = 4
 	ricochet_incidence_leeway = 35
+	wound_bonus = -50

@@ -6,7 +6,7 @@
 
 
 /obj/item/borg/stun
-	name = "electrically-charged arm"
+	name = "Electrically-Charged Arm"
 	icon_state = "elecarm"
 	var/charge_cost = 30
 
@@ -20,7 +20,7 @@
 			return
 
 	user.do_attack_animation(M)
-	M.DefaultCombatKnockdown(100)
+	M.DefaultCombatKnockdown(60)
 	M.apply_effect(EFFECT_STUTTER, 5)
 
 	M.visible_message("<span class='danger'>[user] has prodded [M] with [src]!</span>", \
@@ -75,17 +75,18 @@
 					playsound(loc, 'sound/weapons/tap.ogg', 50, 1, -1)
 				else if(ishuman(M))
 					if(M.lying)
-						user.visible_message("<span class='notice'>[user] shakes [M] trying to get [M.p_them()] up!</span>", \
-										"<span class='notice'>You shake [M] trying to get [M.p_them()] up!</span>")
+						user.visible_message("<span class='notice'>[user] трясёт [M], помогая подняться на ноги!</span>", \
+										"<span class='notice'>Ты трасёшь [M], помогая встать на ноги!</span>")
 					else
-						user.visible_message("<span class='notice'>[user] hugs [M] to make [M.p_them()] feel better!</span>", \
-								"<span class='notice'>You hug [M] to make [M.p_them()] feel better!</span>")
+						user.visible_message("<span class='notice'>[user] обнимает [M], желая сделать [M.ru_emu()] лучше!</span>", \
+								"<span class='notice'>Ты обнимаешь [M], желая сделать [M.ru_emu()] лучше!</span>")
 					if(M.resting && !(M.combat_flags & COMBAT_FLAG_HARD_STAMCRIT))
 						M.set_resting(FALSE, TRUE)
 				else
 					user.visible_message("<span class='notice'>[user] pets [M]!</span>", \
 							"<span class='notice'>You pet [M]!</span>")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				new /obj/effect/temp_visual/love_heart(loc)
 		if(1)
 			if(M.health >= 0)
 				if(ishuman(M))
@@ -279,6 +280,7 @@
 		to_chat(user, "<font color='red'>You short out the safeties on [src]!</font>")
 	else
 		to_chat(user, "<font color='red'>You reset the safeties on [src]!</font>")
+	log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
 	return TRUE
 
 /obj/item/harmalarm/attack_self(mob/user)

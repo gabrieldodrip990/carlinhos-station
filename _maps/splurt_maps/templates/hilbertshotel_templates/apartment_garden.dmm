@@ -345,11 +345,6 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass/fairy/purple,
 /area/hilbertshotel)
-"JW" = (
-/obj/structure/chair/pew,
-/obj/item/choice_beacon/box/plushie,
-/turf/open/floor/wood/wood_tiled,
-/area/hilbertshotel)
 "Kc" = (
 /obj/structure/flora/rock,
 /obj/structure/flora/ausbushes/brflowers,
@@ -492,8 +487,6 @@
 "Xj" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/item/storage/fancy/heart_box,
-/obj/item/paper/fluff/hilbertshotel/welcomeletter,
 /turf/open/floor/grass/fairy/purple,
 /area/hilbertshotel)
 "XX" = (
@@ -668,7 +661,7 @@ Dd
 uV
 qq
 Qc
-JW
+Gj
 Kj
 tY
 YG

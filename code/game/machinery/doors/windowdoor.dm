@@ -94,6 +94,17 @@
 	bumpopen(M)
 
 /obj/machinery/door/window/bumpopen(mob/user)
+	if(ishuman(user) && prob(5) && src.density)
+		var/mob/living/carbon/human/H = user
+		if((HAS_TRAIT(H, TRAIT_DUMB)) && Adjacent(user))
+			playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
+			if(!istype(H.head, /obj/item/clothing/head/helmet))
+				H.visible_message("<span class='danger'>[user] headbutts the airlock.</span>", \
+									"<span class='userdanger'>You headbutt the airlock!</span>")
+				H.DefaultCombatKnockdown(100)
+				H.apply_damage(1, BRUTE, BODY_ZONE_HEAD)
+			else
+				visible_message("<span class='danger'>[user] headbutts the airlock. Good thing [user.ru_who()] wearing a helmet.</span>")
 	if( operating || !src.density )
 		return
 	src.add_fingerprint(user)
@@ -164,7 +175,7 @@
 	density = FALSE
 	if(visible)
 		set_opacity(FALSE)
-	air_update_turf(1)
+	air_update_turf(TRUE)
 	update_freelook_sight()
 	if(operating == 1) //emag again
 		operating = FALSE
@@ -184,7 +195,7 @@
 	src.icon_state = src.base_state
 
 	density = TRUE
-	air_update_turf(1)
+	air_update_turf(TRUE)
 	update_freelook_sight()
 	addtimer(CALLBACK(src, PROC_REF(finish_closing)), 10)
 	return TRUE
@@ -231,6 +242,7 @@
 	operating = TRUE
 	flick("[src.base_state]spark", src)
 	playsound(src, "sparks", 75, 1)
+	log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
 	addtimer(CALLBACK(src, PROC_REF(open_windows_me)), 6)
 	return TRUE
 

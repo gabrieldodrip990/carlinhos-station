@@ -20,6 +20,11 @@
 	icon_state = "rsecurity"
 	item_state = "r_suit"
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
+	unique_reskin = list(
+		"Standart" = list("icon_state" = "rsecurity"),
+		"Blue" = list("icon_state" = "security_black"),
+		"White" = list("icon_state" = "security_white")
+	)
 	alt_covers_chest = FALSE
 
 /obj/item/clothing/under/rank/security/officer/util
@@ -28,6 +33,10 @@
 	icon_state = "utilsec"
 	item_state = "utilsec"
 	can_adjust = FALSE
+
+/obj/item/clothing/under/rank/security/officer/util/syndicate
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 0)
+	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/rank/security/officer/grey
 	name = "grey security jumpsuit"
@@ -39,12 +48,20 @@
 /obj/item/clothing/under/rank/security/officer/skirt
 	name = "security jumpskirt"
 	desc = "A \"tactical\" security jumpsuit with the legs replaced by a skirt."
-	icon_state = "secskirt"
-	item_state = "r_suit"
+	icon_state = "sectac_red" ///bluemoon change
+	item_state = "sectac_red" ///bluemoon change
 	body_parts_covered = CHEST|GROIN|ARMS
 	alt_covers_chest = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+	unique_reskin = list(
+		"Blue" = list("icon_state" = "sectac_blue", "item_state" = "sectac_blue"),
+		"Black" = list("icon_state" = "sectac_black", "item_state" = "sectac_black"),
+		"Pink" = list("icon_state" = "sectac_pink", "item_state" = "sectac_pink"),
+		"Maid red" = list("icon_state" = "secmaid_red", "item_state" = "secmaid_red"),
+		"Maid blue" = list("icon_state" = "secmaid_blue", "item_state" = "secmaid_blue"),
+	) ///bluemoon add
+
 
 /obj/item/clothing/under/rank/security/stripper
 	name = "secukini"
@@ -266,3 +283,14 @@
 	icon_state = "spacepolice_families"
 	item_state = "spacepolice_families"
 	can_adjust = FALSE
+
+
+//navyblue jacket
+
+/obj/item/clothing/suit/armor/navyblue
+	name = "security officer's jacket"
+	desc = "This jacket is for those special occasions when a security officer isn't required to wear their armor."
+	icon_state = "officerbluejacket"
+	item_state = "officerbluejacket"
+	body_parts_covered = CHEST|ARMS
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON

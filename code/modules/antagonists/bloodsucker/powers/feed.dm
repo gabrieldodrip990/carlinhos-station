@@ -65,6 +65,14 @@
 		if(display_error)
 			to_chat(owner, "<span class='warning'>Your victim has no blood to take.</span>")
 		return FALSE
+	// BLUEMOON ADD START - вампиры, чтобы не быть перебафанными, не могут питаться персонажами, которыми не управляли игроки
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		if(!C.last_mind)
+			if(display_error)
+				to_chat(owner, "<span class='warning'>Your victim's blood is too thin and won't sate your hunger. (You must hunt for characters of other players)</span>")
+			return FALSE
+	// BLUEMOON ADD END
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(!H.can_inject(owner, TRUE, BODY_ZONE_HEAD) && target == owner.pulling && owner.grab_state < GRAB_AGGRESSIVE)
@@ -165,12 +173,12 @@
 	// Broadcast Message
 	if(amSilent)
 		//if (!iscarbon(target))
-		//	user.visible_message("<span class='notice'>[user] shifts [target] closer to [user.p_their()] mouth.</span>",
+		//	user.visible_message("<span class='notice'>[user] shifts [target] closer to [user.ru_ego()] mouth.</span>",
 		//					 	 "<span class='notice'>You secretly slip your fangs into [target]'s flesh.</span>",
 		//					 	 vision_distance = 2, ignored_mobs=target) // Only people who AREN'T the target will notice this action.
 		//else
-		var/deadmessage = target.stat == DEAD ? "" : " <i>[target.p_they(TRUE)] looks dazed, and will not remember this.</i>"
-		user.visible_message("<span class='notice'>[user] puts [target]'s wrist up to [user.p_their()] mouth.</span>", \
+		var/deadmessage = target.stat == DEAD ? "" : " <i>[target.ru_who(TRUE)] looks dazed, and will not remember this.</i>"
+		user.visible_message("<span class='notice'>[user] puts [target]'s wrist up to [user.ru_ego()] mouth.</span>", \
 						 	 "<span class='notice'>You secretly slip your fangs into [target]'s wrist.[deadmessage]</span>", \
 						 	 vision_distance = notice_range, ignored_mobs = target) // Only people who AREN'T the target will notice this action.
 		// Warn Feeder about Witnesses...
@@ -185,10 +193,20 @@
 			to_chat(user, "<span class='warning'>Someone may have noticed...</span>")
 
 	else						 // /atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mobs)
-		user.visible_message("<span class='warning'>[user] closes [user.p_their()] mouth around [target]'s neck!</span>", \
+		user.visible_message("<span class='warning'>[user] closes [user.ru_ego()] mouth around [target]'s neck!</span>", \
 						 "<span class='warning'>You sink your fangs into [target]'s neck.</span>")
+		tgui_alert_async(target, "Ты не сможешь детально вспомнить обстоятельства, которые привели происходящему, как и саму ситуацию... Тем не менее, в шее ощущается приятное покалывание, а ощущения сравнимы с соитием.", "Что произошло?") // BLUEMOON ADD
+
 	// My mouth is full!
 	ADD_TRAIT(user, TRAIT_MUTE, "bloodsucker_feed")
+
+	// BLUEMOON ADD - жертве приятен укус вампира
+	var/datum/antagonist/vassal/V = target.mind?.has_antag_datum(ANTAG_DATUM_VASSAL)
+	if(V)
+		SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "gave_blood_to_bloodsucker", /datum/mood_event/gave_blood_to_bloodsucker/vassal) // вассал получает меньший баф, чем обычный смертный
+	else
+		SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "gave_blood_to_bloodsucker", /datum/mood_event/gave_blood_to_bloodsucker)
+	// BLUEMOON ADD END
 
 	// Begin Feed Loop
 	var/warning_target_inhuman = FALSE
@@ -213,11 +231,11 @@
 				break
 
 			if(amSilent)
-				to_chat(user, "<span class='warning'>Your feeding has been interrupted...but [target.p_they()] didn't seem to notice you.<span>")
+				to_chat(user, "<span class='warning'>Your feeding has been interrupted...but [target.ru_who()] didn't seem to notice you.<span>")
 			else
 				to_chat(user, "<span class='warning'>Your feeding has been interrupted!</span>")
-				user.visible_message("<span class='danger'>[user] is ripped from [target]'s throat. [target.p_their(TRUE)] blood sprays everywhere!</span>", \
-						 			 "<span class='userdanger'>Your teeth are ripped from [target]'s throat. [target.p_their(TRUE)] blood sprays everywhere!</span>")
+				user.visible_message("<span class='danger'>[user] is ripped from [target]'s throat. [target.ru_ego(TRUE)] blood sprays everywhere!</span>", \
+						 			 "<span class='userdanger'>Your teeth are ripped from [target]'s throat. [target.ru_ego(TRUE)] blood sprays everywhere!</span>")
 
 				// Deal Damage to Target (should have been more careful!)
 				if(iscarbon(target))
@@ -233,7 +251,8 @@
 				user.add_mob_blood(target) // Put target's blood on us. The donor goes in the ( )
 				target.add_mob_blood(target)
 				target.take_overall_damage(10,0)
-				target.emote("scream")
+				if(!HAS_TRAIT(target, TRAIT_ROBOTIC_ORGANISM)) // BLUEMOON ADD - роботы не кричат от боли
+					target.emote("scream")
 
 			// Killed Target?
 			if(was_alive)
@@ -262,7 +281,7 @@
 			if(ishuman(target))
 				SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankblood", /datum/mood_event/drankblood_dead) // BAD // in bloodsucker_life.dm
 			if(!warning_target_dead)
-				to_chat(user, "<span class='notice'>Your victim is dead. [target.p_their(TRUE)] blood barely nourishes you.</span>")
+				to_chat(user, "<span class='notice'>Your victim is dead. [target.ru_ego(TRUE)] blood barely nourishes you.</span>")
 				warning_target_dead = TRUE
 		// Full?
 		if(!warning_full && user.blood_volume >= bloodsuckerdatum.max_blood_volume)
@@ -289,7 +308,7 @@
 	// DONE!
 	//DeactivatePower(user,target)
 	if(amSilent)
-		to_chat(user, "<span class='notice'>You slowly release [target]'s wrist." + (target.stat == 0 ? " [target.p_their(TRUE)] face lacks expression, like you've already been forgotten.</span>" : ""))
+		to_chat(user, "<span class='notice'>You slowly release [target]'s wrist." + (target.stat == 0 ? " [target.ru_ego(TRUE)] face lacks expression, like you've already been forgotten.</span>" : ""))
 	else
 		user.visible_message("<span class='warning'>[user] unclenches their teeth from [target]'s neck.</span>", \
 							 "<span class='warning'>You retract your fangs and release [target] from your bite.</span>")
@@ -305,7 +324,18 @@
 /datum/action/cooldown/bloodsucker/feed/proc/CheckKilledTarget(mob/living/user, mob/living/target)
 	// Bad Bloodsucker. You shouldn't do that.
 	if(target && target.stat >= DEAD && ishuman(target))
-		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled) // BAD // in bloodsucker_life.dm
+		// BLUEMOON ADD START
+		var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(ANTAG_DATUM_BLOODSUCKER)
+		switch(bloodsuckerdatum.bloodsucker_level)
+			if(-INFINITY to 2)
+				SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled) // BAD // in bloodsucker_life.dm
+			if(3 to 4)
+				SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled/lesser)
+			if(5 to 6)
+				SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled/minimal)
+			if(7 to INFINITY)
+				SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled/positive) // где-от здесь человечность на 1-3
+		// BLUEMOON ADD END
 
 /datum/action/cooldown/bloodsucker/feed/ContinueActive(mob/living/user, mob/living/target)
 	return ..()  && target && (!target_grappled || user.pulling == target) && blood_sucking_checks(target, TRUE, TRUE) // Active, and still antag,

@@ -6,7 +6,7 @@
 /obj/vehicle/sealed/mecha/proc/get_stats_html(mob/user)
 	. = {"<html>
 			<head>
-				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+				<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 				<title>[name] data</title>
 				<style>
 					body {color: #00ff00; background: #000000; font-family:"Lucida Console",monospace; font-size: 12px;}
@@ -163,7 +163,7 @@
 		return
 	. = {"<html>
 			<head>
-				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+				<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 				<style>
 					h1 {font-size:15px;margin-bottom:4px;}
 					body {color: #00ff00; background: #000000; font-family:"Courier New", Courier, monospace; font-size: 12px;}
@@ -195,7 +195,7 @@
 		return
 	. = {"<html>
 			<head>
-				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+				<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 				<style>
 					body {color: #00ff00; background: #000000; font-family:"Courier New", Courier, monospace; font-size: 12px;}
 					a {padding:2px 5px; background:#32CD32;color:#000;display:block;margin:2px;text-align:center;text-decoration:none;}
@@ -393,14 +393,20 @@
 	if(href_list["dna_lock"])
 		var/mob/living/carbon/user = usr
 		if(!istype(user) || !user.dna)
-			to_chat(user, "[icon2html(src, occupants)]<span class='notice'>You can't create a DNA lock with no DNA!.</span>")
+			to_chat(user, "[icon2html(src, occupants)]<span class='notice'>Вы не можете воспользоваться ДНК-замком, не имея ДНК!</span>")
 			return
+		if(dna_lock)
+			to_chat(user, "[icon2html(src, occupants)]<span class='notice'>Эта техника уже заблокирована ДНК-замком.</span>")
 		dna_lock = user.dna.unique_enzymes
-		to_chat(user, "[icon2html(src, occupants)]<span class='notice'>You feel a prick as the needle takes your DNA sample.</span>")
+		var/dna_lock_examine = " Этот мех заблокирован ДНК - [user.name]."
+		if(dna_lock)
+			desc += dna_lock_examine
+		to_chat(user, "[icon2html(src, occupants)]<span class='notice'>Вы чувствуете колкое ощущение, когда игла внутри меха берет ваш образец ДНК...</span>")
 		return
 
 	//Resets the DNA lock
 	if(href_list["reset_dna"])
+		desc = desc
 		dna_lock = null
 		return
 

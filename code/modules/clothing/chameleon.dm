@@ -93,7 +93,7 @@
 /datum/action/chameleon_outfit/proc/select_outfit(mob/user)
 	if(!user || !IsAvailable())
 		return FALSE
-	var/selected = input("Select outfit to change into", "Chameleon Outfit") as null|anything in outfit_options
+	var/selected = tgui_input_list(user, "Select outfit to change into", "Chameleon Outfit", outfit_options)
 	if(!IsAvailable() || QDELETED(src) || QDELETED(user))
 		return FALSE
 	var/outfit_type = outfit_options[selected]
@@ -105,6 +105,13 @@
 	for(var/V in user.chameleon_item_actions)
 		var/datum/action/item_action/chameleon/change/A = V
 		var/done = FALSE
+		if(istype(A.target, /obj/item/card/id/))
+			var/obj/item/card/id/ID = A.target
+			ID.assignment = selected
+			ID.update_label()
+			var/mob/living/carbon/human/H = user
+			H.sec_hud_set_ID()
+			break
 		for(var/T in outfit_types)
 			for(var/name in A.chameleon_list)
 				if(A.chameleon_list[name] == T)
@@ -178,7 +185,7 @@
 /datum/action/item_action/chameleon/change/proc/select_look(mob/user)
 	var/obj/item/picked_item
 	var/picked_name
-	picked_name = input("Select [chameleon_name] to change into", "Chameleon [chameleon_name]", picked_name) as null|anything in chameleon_list
+	picked_name = tgui_input_list(user, "Select [chameleon_name] to change into", "Chameleon [chameleon_name]", chameleon_list)
 	if(!picked_name)
 		return
 	picked_item = chameleon_list[picked_name]
@@ -314,6 +321,7 @@ CHAMELEON_CLOTHING_DEFINE(/obj/item/clothing/suit/chameleon)
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	resistance_flags = NONE
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
@@ -631,6 +639,7 @@ CHAMELEON_CLOTHING_DEFINE(/obj/item/stamp/chameleon)
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/stamp
 	chameleon_action.chameleon_name = "Stamp"
+	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/stamp/machine, ignore_root_path = FALSE) // BLUEMOON EDIT - переработка анализаторов здоровья, новый штамп для автобумажек
 	chameleon_action.initialize_disguises()
 
 /obj/item/stamp/chameleon/broken/Initialize(mapload)

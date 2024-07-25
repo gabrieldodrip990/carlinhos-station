@@ -185,6 +185,9 @@
 #undef LAVA_BE_BURNING
 
 /turf/open/lava/proc/do_burn(atom/movable/burn_target, delta_time = 1)
+	if(QDELETED(burn_target))
+		return FALSE
+
 	. = TRUE
 	if(isobj(burn_target))
 		var/obj/burn_obj = burn_target
@@ -194,7 +197,7 @@
 			burn_obj.resistance_flags |= FLAMMABLE //Even fireproof things burn up in lava
 		if(burn_obj.resistance_flags & FIRE_PROOF)
 			burn_obj.resistance_flags &= ~FIRE_PROOF
-		if(burn_obj.armor.fire > 50) //obj with 100% fire armor still get slowly burned away.
+		if(burn_obj.armor?.fire > 50) //obj with 100% fire armor still get slowly burned away.
 			burn_obj.armor = burn_obj.armor.setRating(fire = 50)
 		burn_obj.fire_act(temperature_damage, 1000 * delta_time)
 		if(istype(burn_obj, /obj/structure/closet))
@@ -205,7 +208,6 @@
 
 	var/mob/living/burn_living = burn_target
 	burn_living.update_fire()
-
 	burn_living.adjustFireLoss(lava_damage * delta_time)
 	if(!QDELETED(burn_living)) //mobs turning into object corpses could get deleted here.
 		burn_living.adjust_fire_stacks(lava_firestacks * delta_time)
@@ -226,3 +228,8 @@
 
 /turf/open/lava/smooth/airless
 	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/lava/smooth/weak
+	lava_damage = 10
+	lava_firestacks = 10
+	temperature_damage = 2500

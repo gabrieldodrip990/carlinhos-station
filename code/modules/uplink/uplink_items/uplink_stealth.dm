@@ -11,6 +11,14 @@
 	name = "Telescopic Baseball Bat"
 	desc = "A robust telescopic baseball bat that hits like a truck and can be concealed when collapsed."
 	item = /obj/item/melee/baseball_bat/telescopic
+	purchasable_from = UPLINK_SYNDICATE
+	cost = 2
+
+/datum/uplink_item/stealthy_weapons/telescopicbat_inteq
+	name = "Telescopic Baseball Bat"
+	desc = "Раскладная бейсбольная бита с шипованым навершием. Для тех, кто в душе не ебёт какие правила у бейсбола."
+	item = /obj/item/melee/baseball_bat/telescopic/inteq
+	purchasable_from = (UPLINK_TRAITORS | UPLINK_NUKE_OPS)
 	cost = 2
 
 /datum/uplink_item/stealthy_weapons/combatglovesplus
@@ -18,16 +26,16 @@
 	desc = "A pair of gloves that are fireproof and shock resistant, however unlike the regular Combat Gloves this one uses nanotechnology \
 			to learn the abilities of krav maga to the wearer."
 	item = /obj/item/clothing/gloves/krav_maga/combatglovesplus
-	cost = 5
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	cost = 4
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS | UPLINK_SYNDICATE
 	surplus = 0
 
 /datum/uplink_item/stealthy_weapons/cqc
 	name = "CQC Manual"
 	desc = "A manual that teaches a single user tactical Close-Quarters Combat before self-destructing."
 	item = /obj/item/book/granter/martial/cqc
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
-	cost = 13
+	purchasable_from = ~UPLINK_CLOWN_OPS
+	cost = 12
 	surplus = 0
 
 /datum/uplink_item/stealthy_weapons/dart_pistol
@@ -53,7 +61,7 @@
 	surplus = 30
 
 /datum/uplink_item/stealthy_weapons/derringerpack/purchase(mob/user, datum/component/uplink/U)
-	if(prob(1)) //For the 1%
+	if(prob(10)) //For the 10%
 		item = /obj/item/storage/fancy/cigarettes/derringer/gold
 	..()
 
@@ -76,8 +84,8 @@
 	desc = "This scroll contains the secrets of an ancient martial arts technique. You will master unarmed combat, \
 			gain skin as hard as steel and swat bullets from the air, but you also refuse to use dishonorable ranged weaponry."
 	item = /obj/item/book/granter/martial/carp
-	cost = 17
-	player_minimum = 20
+	cost = 18
+	player_minimum = 25
 	surplus = 0
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
@@ -86,8 +94,8 @@
 	desc = "This scroll contains the secrets of an ancient martial arts technique. You will become proficient in fleeing situations, \
 	and dodging all ranged weapon fire, but you will refuse to use dishonorable ranged weaponry."
 	item = /obj/item/book/granter/martial/bass
-	cost = 18
-	player_minimum = 20
+	cost = 20
+	player_minimum = 25
 	surplus = 0
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
@@ -96,8 +104,7 @@
 	desc = "This scroll contains the secrets of an ancient martial arts technique. You will gain special unarmed attacks for \
 			stealthy takedowns."
 	item = /obj/item/book/granter/martial/krav_maga
-	cost = 16
-	player_minimum = 25
+	cost = 6
 	surplus = 0
 
 /datum/uplink_item/stealthy_weapons/crossbow
@@ -129,6 +136,7 @@
 	cost = 25
 	player_minimum = 25
 	cant_discount = TRUE
+	hijack_only = TRUE
 	purchasable_from = ~UPLINK_NUKE_OPS
 
 /datum/uplink_item/stealthy_weapons/sleepy_pen
@@ -144,7 +152,7 @@
 /datum/uplink_item/stealthy_weapons/taeclowndo_shoes
 	name = "Tae-clown-do Shoes"
 	desc = "A pair of shoes for the most elite agents of the honkmotherland. They grant the mastery of taeclowndo with some honk-fu moves as long as they're worn."
-	cost = 12
+	cost = 6
 	item = /obj/item/clothing/shoes/clown_shoes/taeclowndo
 	purchasable_from = UPLINK_CLOWN_OPS
 
@@ -163,9 +171,36 @@
 	item = /obj/item/soap/syndie
 	cost = 1
 	surplus = 50
+	purchasable_from = UPLINK_SYNDICATE // Bluemoon Changes
+
+/datum/uplink_item/stealthy_weapons/soap_inteq // Bluemoon Changes
+	name = "InteQ Soap"
+	desc = "A sinister-looking surfactant used to clean blood stains to hide murders and prevent DNA analysis. \
+			You can also drop it underfoot to slip people."
+	item = /obj/item/soap/inteq
+	cost = 1
+	surplus = 50
+	purchasable_from = ~(UPLINK_SYNDICATE)
 
 /datum/uplink_item/stealthy_weapons/soap_clusterbang
 	name = "Slipocalypse Clusterbang"
-	desc = "A traditional clusterbang grenade with a payload consisting entirely of Syndicate soap. Useful in any scenario!"
+	desc = "A traditional clusterbang grenade with a payload consisting entirely of soap. Useful in any scenario!"
 	item = /obj/item/grenade/clusterbuster/soap
-	cost = 6
+	cost = 3
+	purchasable_from = UPLINK_SYNDICATE
+
+/datum/uplink_item/stealthy_weapons/soap_clusterbang/inteq
+	item = /obj/item/grenade/clusterbuster/soap/inteq
+	purchasable_from = ~(UPLINK_SYNDICATE)
+
+//BLUEMOON add добавил набор оригами в аплинк.
+
+/datum/uplink_item/stealthy_weapons/origami_bundle
+	name = "Boxed Origami Kit"
+	desc = "This box contains a guide on how to craft masterful works of origami, allowing you to transform normal pieces of paper into perfectly aerodynamic (and potentially lethal) paper airplanes."
+	item = /obj/item/storage/box/inteq_kit/origami_bundle
+	cost = 4
+	surplus = 0
+	purchasable_from = ~UPLINK_NUKE_OPS
+
+//BLUEMOON add end

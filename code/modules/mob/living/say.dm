@@ -15,11 +15,18 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	RADIO_KEY_SECURITY = RADIO_CHANNEL_SECURITY,
 	RADIO_KEY_SUPPLY = RADIO_CHANNEL_SUPPLY,
 	RADIO_KEY_SERVICE = RADIO_CHANNEL_SERVICE,
-
+	RADIO_KEY_LAW = RADIO_CHANNEL_LAW,
 	// Faction
 	RADIO_KEY_SYNDICATE = RADIO_CHANNEL_SYNDICATE,
 	RADIO_KEY_CENTCOM = RADIO_CHANNEL_CENTCOM,
 	RADIO_KEY_HOTEL = RADIO_CHANNEL_HOTEL, //SPLURT EDIT ADDITION
+	RADIO_KEY_PIRATE = RADIO_CHANNEL_PIRATE,
+	RADIO_KEY_INTEQ = RADIO_CHANNEL_INTEQ,
+
+	// Ghost-Roles
+	RADIO_KEY_DS1 = RADIO_CHANNEL_DS1,
+	RADIO_KEY_DS2 = RADIO_CHANNEL_DS2,
+	RADIO_KEY_TARKOFF = RADIO_CHANNEL_TARKOFF,
 
 	// Admin
 	MODE_KEY_ADMIN = MODE_ADMIN,
@@ -46,7 +53,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	"ы" = RADIO_CHANNEL_SECURITY,
 	"г" = RADIO_CHANNEL_SUPPLY,
 	"м" = RADIO_CHANNEL_SERVICE,
-
+	"д" = RADIO_CHANNEL_LAW,
 	// Faction
 	"е" = RADIO_CHANNEL_SYNDICATE,
 	"н" = RADIO_CHANNEL_CENTCOM,
@@ -84,7 +91,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 /mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	set waitfor = FALSE
-	var/static/list/crit_allowed_modes = list(MODE_WHISPER = TRUE, MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
+	// Данные режимы обходят проверку на крит и не превращаются в разговор "на последнем вздохе"
+	var/static/list/special_crit_modes = list(MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)  // BLUEMOON EDIT - правки last breath'а
 	var/static/list/unconscious_allowed_modes = list(MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
 	var/talk_key = get_key(message)
 
@@ -103,14 +111,15 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	if(ic_blocked)
 		//The filter warning message shows the sanitized message though.
-		to_chat(src, "<span class='warning'>That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span></span>")
+		to_chat(src, "<span class='warning'>Здравствуйте. Вам следует исключить сказанное слово из своего словесного запаса во время игры на нашем сервере. Вы предупреждены.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span></span>")
 		SSblackbox.record_feedback("tally", "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
-		return
+		src.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25, 75)
 
 	var/datum/saymode/saymode = SSradio.saymodes[talk_key]
 	var/message_mode = get_message_mode(message)
 	var/original_message = message
 	var/in_critical = InCritical()
+	var/fullcrit = InFullCritical() // BLUEMOON EDIT - правки last breath'а
 
 	if(one_character_prefix[message_mode])
 		message = copytext_char(message, 2)
@@ -136,10 +145,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(check_emote(original_message) || !can_speak_basic(original_message, ignore_spam))
 		return
 
-	if(in_critical)
-		if(!(crit_allowed_modes[message_mode]))
-			return
-	else if(stat == UNCONSCIOUS)
+	else if(stat == UNCONSCIOUS && !fullcrit) // BLUEMOON EDIT - правки last breath'а
 		if(!(unconscious_allowed_modes[message_mode]))
 			return
 
@@ -165,19 +171,22 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		return
 
 	if(!can_speak_vocal(message))
-		to_chat(src, "<span class='warning'>You find yourself unable to speak!</span>")
+		to_chat(src, "<span class='warning'>Вы не можете говорить!</span>")
 		return
 
 	var/message_range = 7
 
 	var/succumbed = FALSE
 
-	var/fullcrit = InFullCritical()
-	if((InCritical() && !fullcrit) || message_mode == MODE_WHISPER)
-		message_range = 1
+	// BLUEMOON EDIT START - правки last breath'а
+	if(in_critical && !special_crit_modes[message_mode])
+		message_range = 2
 		message_mode = MODE_WHISPER
 		src.log_talk(message, LOG_WHISPER)
 		if(fullcrit)
+			var/confirm = alert(src, "You are in full crit and can't talk, but you can whisper it in your last breath and succumb to death. Proceed?", "Last Breath", "Yes", "Cancel")
+			if(!confirm || confirm == "Cancel")
+				return
 			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + health)
 			// If we cut our message short, abruptly end it with a-..
 			var/message_len = length_char(message)
@@ -185,6 +194,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			message = Ellipsis(message, 10, 1)
 			message_mode = MODE_WHISPER_CRIT
 			succumbed = TRUE
+	// BLUEMOON EDIT END
+	else if(message_mode == MODE_WHISPER)
+		message_range = 1
+		message_mode = MODE_WHISPER
+		src.log_talk(message, LOG_WHISPER)
 	else
 		src.log_talk(message, LOG_SAY, forced_by=forced)
 
@@ -256,7 +270,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/deaf_type
 	if(speaker != src)
 		if(!radio_freq) //These checks have to be seperate, else people talking on the radio will make "You can't hear yourself!" appear when hearing people over the radio while deaf.
-			deaf_message = "<span class='name'>[speaker]</span> [speaker.verb_say] something but you cannot hear [speaker.p_them()]."
+			deaf_message = "<span class='name'>[speaker]</span> [speaker.verb_say] something but you cannot hear [speaker.ru_na()]."
 			deaf_type = 1
 	else
 		deaf_message = "<span class='notice'>You can't hear yourself!</span>"
@@ -353,7 +367,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		for(var/mob/M as anything in overhearing)
 			overhearing_text += key_name(M)
 		overhearing_text = english_list(overhearing_text)
-	log_say("YELL: [ismob(src)? key_name(src) : src] yelled [message] with overhearing mobs [overhearing_text]")
+	//log_say("YELL: [ismob(src)? key_name(src) : src] yelled [message] with overhearing mobs [overhearing_text]")
 	// overhearing = get_hearers_in_view(35, src) | get_hearers_in_range(5, src)
 	overhearing -= already_heard
 	if(!overhearing.len)
@@ -431,6 +445,15 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(HAS_TRAIT(src, TRAIT_UNINTELLIGIBLE_SPEECH))
 		message = unintelligize(message)
 
+	if(HAS_TRAIT(src, TRAIT_ASIAT))
+		message = asiatish(message)
+
+	if(HAS_TRAIT(src, TRAIT_UKRAINE))
+		message = ukraine(message)
+
+	if(HAS_TRAIT(src, TRAIT_KARTAVII))
+		message = kartavo(message)
+
 	if(derpspeech)
 		message = derpspeech(message, stuttering)
 
@@ -438,7 +461,10 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		message = stutter(message)
 
 	if(slurring)
-		message = slur(message,slurring)
+		if (isrobotic(src))
+			message = Gibberish(message, FALSE, round(slurring / 2)) // BLUEMOON ADD - теперь синтетики заикаются более с%инт$тич!ески
+		else
+			message = slur(message,slurring)
 
 	if(cultslurring)
 		message = cultslur(message)
@@ -457,8 +483,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			imp.radio.talk_into(src, message, , spans, language)
 			return ITALICS | REDUCE_RANGE
 		if(message_mode == MODE_DEPARTMENT || (message_mode in GLOB.radiochannels))
-			imp.radio.talk_into(src, message, message_mode, spans, language)
-			return ITALICS | REDUCE_RANGE
+			if (imp.radio.channels[message_mode])
+				imp.radio.talk_into(src, message, message_mode, spans, language)
+				return ITALICS | REDUCE_RANGE
 
 	switch(message_mode)
 		if(MODE_WHISPER)
@@ -487,7 +514,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 /mob/living/say_mod(input, message_mode)
 	. = ..()
 	if(message_mode == MODE_WHISPER_CRIT)
-		. = "[verb_whisper] in [p_their()] last breath"
+		. = "[verb_whisper] in [ru_ego()] last breath"
 	else if(message_mode != MODE_CUSTOM_SAY)
 		if(message_mode == MODE_WHISPER)
 			. = verb_whisper

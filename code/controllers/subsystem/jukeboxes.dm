@@ -27,6 +27,7 @@
 SUBSYSTEM_DEF(jukeboxes)
 	name = "Jukeboxes"
 	wait = 5
+	priority = FIRE_PRIORITY_SOUND_LOOPS
 	var/list/songs = list()
 	var/list/activejukeboxes = list()
 	var/list/freejukeboxchannels = list()
@@ -45,17 +46,17 @@ SUBSYSTEM_DEF(jukeboxes)
 	song_beat = beat
 	song_associated_id = assocID
 
-/datum/controller/subsystem/jukeboxes/proc/addjukebox(obj/jukebox, datum/track/T, jukefalloff = 1, area_limited = FALSE) //SPLURT EDIT ADDITION: area_limited
+/datum/controller/subsystem/jukeboxes/proc/addjukebox(obj/jukebox, datum/track/T, jukefalloff = 1, one_area_play = FALSE) //BLUEMOON EDIT
 	if(!istype(T))
 		CRASH("[src] tried to play a song with a nonexistant track")
 	var/channeltoreserve = pick(freejukeboxchannels)
 	if(!channeltoreserve)
 		return FALSE
-	//SPLURT ADDITION START
+	//BLUEMOON ADD START
 	var/area_play
-	if(area_limited)
+	if(one_area_play)
 		area_play = get_area(jukebox)
-	//SPLURT ADDITION END
+	//BLUEMOON ADD END
 	var/sound/song_to_init = sound(T.song_path)
 	freejukeboxchannels -= channeltoreserve
 	var/list/youvegotafreejukebox = list(T, channeltoreserve, jukebox, jukefalloff, song_to_init)
@@ -73,12 +74,14 @@ SUBSYSTEM_DEF(jukeboxes)
 	for(var/mob/M in GLOB.player_list)
 		if(!M.client)
 			continue
-		if(!(M.client.prefs.toggles & SOUND_INSTRUMENTS))
+		if(!M.client.prefs)
 			continue
-		//SPLURT ADDITION START
-		if(area_limited && get_area(M) != area_play)
+		if(!(M.client.prefs.toggles & SOUND_JUKEBOXES))
 			continue
-		//SPLURT ADDITION END
+		//BLUEMOON ADD START
+		if(one_area_play && get_area(M) != area_play)
+			continue
+		//BLUEMOON ADD END
 
 		SEND_SOUND(M, song_to_init)
 	return activejukeboxes.len
@@ -188,11 +191,15 @@ SUBSYSTEM_DEF(jukeboxes)
 			stack_trace("Invalid jukebox track datum.")
 			continue
 		var/obj/jukebox = jukeinfo[JUKE_BOX]
+		var/turf/jukebox_loc = jukebox.loc
 		if(!istype(jukebox))
 			stack_trace("Nonexistant or invalid object associated with jukebox.")
 			continue
 
-		var/list/audible_zlevels = get_multiz_accessible_levels(jukebox.z) //TODO - for multiz refresh, this should use the cached zlevel connections var in SSMapping. For now this is fine!
+		if(!jukebox_loc)
+			return
+
+		var/list/audible_zlevels = get_multiz_accessible_levels(jukebox_loc.z) //TODO - for multiz refresh, this should use the cached zlevel connections var in SSMapping. For now this is fine!
 
 		var/sound/song_played = jukeinfo[JUKE_SOUND]
 		var/turf/currentturf = get_turf(jukebox)
@@ -216,7 +223,9 @@ SUBSYSTEM_DEF(jukeboxes)
 		for(var/mob/M in GLOB.player_list)
 			if(!M.client)
 				continue
-			if(!(M.client.prefs.toggles & SOUND_INSTRUMENTS))
+			if(!M.client.prefs)
+				continue
+			if(!(M.client.prefs.toggles & SOUND_JUKEBOXES))
 				M.stop_sound_channel(jukeinfo[JUKE_CHANNEL])
 				continue
 
@@ -228,7 +237,6 @@ SUBSYSTEM_DEF(jukeboxes)
 				hearer_env = (istype(hearerturf) ? hearerturf.return_air() : null)
 				if(istype(hearer_env))
 					pressure_factor = min(source_pressure, hearer_env.return_pressure())
-
 				if(pressure_factor && targetfalloff && M.can_hear() && (hearerturf.z in audible_zlevels))
 					if(get_area(hearerturf) == currentarea)
 						inrange = TRUE

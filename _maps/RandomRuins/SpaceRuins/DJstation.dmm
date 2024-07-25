@@ -372,10 +372,6 @@
 /obj/structure/disposaloutlet,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"nZ" = (
-/obj/machinery/spaceship_navigation_beacon/invion,
-/turf/closed/wall,
-/area/ruin/space/djstation)
 "Co" = (
 /obj/machinery/door/airlock/external{
 	name = "Ruskie DJ Station"
@@ -383,6 +379,10 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"XG" = (
+/obj/effect/spawner/lootdrop/salvage,
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
 
@@ -543,7 +543,7 @@ ac
 ac
 ac
 ag
-ah
+XG
 ah
 ah
 am
@@ -555,7 +555,7 @@ aw
 aw
 aw
 aw
-nZ
+af
 af
 af
 aa
@@ -643,7 +643,7 @@ ac
 ac
 ac
 ag
-ah
+XG
 ah
 al
 ah

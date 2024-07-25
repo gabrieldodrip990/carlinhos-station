@@ -14,15 +14,16 @@
 #define DECEMBER	12
 
 //Select holiday names -- If you test for a holiday in the code, make the holiday's name a define and test for that instead
-#define NEW_YEAR				"New Year"
-#define VALENTINES				"Valentine's Day"
-#define APRIL_FOOLS				"April Fool's Day"
-#define EASTER					"Easter"
-#define PRIDE_MONTH				"Pride Month"
-#define HALLOWEEN				"Halloween"
-#define CHRISTMAS				"Christmas"
-#define FESTIVE_SEASON			"Festive Season"
-
+#define NEW_YEAR				"Новогодний Сектор |"
+#define VALENTINES				"Сектор - День Святого Валентина |"
+#define APRIL_FOOLS				"Сектор - День дурака |"
+#define EASTER					"Сектор - Пасха |"
+#define PRIDE_MONTH				"Сектор - Гейский День Гейских Геев |"
+#define HALLOWEEN				"Сектор - Хэллоуин |"
+#define CHRISTMAS				"Сектор - Рождество |"
+#define FESTIVE_SEASON			"Сектор - Праздничный сезон |"
+#define GARBAGEDAY				"Сектор - Мусорный День |"
+#define MONKEYDAY				"Сектор - День Обезьяны |"
 /*
 
 Days of the week to make it easier to reference them.
@@ -32,7 +33,7 @@ When using time2text(), please use "DDD" to find the weekday. Refrain from using
 */
 
 #define MONDAY		"Mon"
-#define TUESDAY	"Tue"
+#define TUESDAY		"Tue"
 #define WEDNESDAY	"Wed"
 #define THURSDAY	"Thu"
 #define FRIDAY		"Fri"
@@ -63,5 +64,10 @@ When using time2text(), please use "DDD" to find the weekday. Refrain from using
 #define WORLDTIME2TEXT(format) GAMETIMESTAMP(format, world.time)
 #define WORLDTIMEOFDAY2TEXT(format) GAMETIMESTAMP(format, world.timeofday)
 #define TIME_STAMP(format, showds) showds ? "[WORLDTIMEOFDAY2TEXT(format)]:[world.timeofday % 10]" : WORLDTIMEOFDAY2TEXT(format)
-#define STATION_TIME(display_only, wtime) ((((wtime - SSticker.round_start_time) * SSticker.station_time_rate_multiplier) + SSticker.gametime_offset) % 864000) - (display_only? GLOB.timezoneOffset : 0)
+// WAS - #define STATION_TIME(display_only, wtime) ((((wtime - SSticker.round_start_time) * SSticker.station_time_rate_multiplier) + SSticker.gametime_offset) % 864000) - (display_only? GLOB.timezoneOffset : 0)
+//BLUEMOON CHANGE END
+//BLUEMOON CHANGE START
+#define STATION_TIME(display_only, wtime) (((wtime - SSticker.round_start_time) + SSticker.gametime_offset) % 864000) - (display_only? GLOB.timezoneOffset : 0)
 #define STATION_TIME_TIMESTAMP(format, wtime) time2text(STATION_TIME(TRUE, wtime), format)
+
+#define ROUND_TIME(...) ( "[world.time - SSticker.round_start_time > MIDNIGHT_ROLLOVER ? "[round((world.time - SSticker.round_start_time)/MIDNIGHT_ROLLOVER)]:[worldtime2text()]" : worldtime2text()]" )

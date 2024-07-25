@@ -47,7 +47,7 @@
 	return
 
 /turf/closed/indestructible/wall
-	name = "wall"
+	name = "Wall"
 	desc = "A wall with metal plating. Tough."
 	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall"
@@ -98,10 +98,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 		handle_generic_titlescreen_sizes()
 
 ///helper proc that will center the screen if the icon is changed to a generic width, to make admins have to fudge around with pixel_x less. returns null
-/turf/closed/indestructible/splashscreen/proc/handle_generic_titlescreen_sizes()
+/turf/closed/indestructible/splashscreen/proc/handle_generic_titlescreen_sizes() //BlueMoon reload
 	var/icon/size_check = icon(SStitle.icon, icon_state)
 	var/width = size_check.Width()
 	pixel_x = (672 - width) * 0.5 //The title screen is mapped with the expectation that it's 672x480. Should probably turn the title screen size into a define some time!
+
 
 /turf/closed/indestructible/splashscreen/vv_edit_var(var_name, var_value)
 	. = ..()
@@ -115,7 +116,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = null
 	desc = null
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	
+
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted.dmi'
 	icon_state = "riveted"

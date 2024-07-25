@@ -457,17 +457,21 @@
 	var/obj/item/slimecross/stabilized/linked_extract
 	var/colour = "null"
 
-/datum/status_effect/stabilized/tick()
-	if(!linked_extract || !linked_extract.loc) //Sanity checking
+/datum/status_effect/stabilized/on_creation(mob/living/new_owner, obj/item/slimecross/stabilized/linked_extract)
+	src.linked_extract = linked_extract
+	return ..()
+
+/datum/status_effect/stabilized/tick(seconds_between_ticks)
+	if(isnull(linked_extract))
 		qdel(src)
 		return
-	if(linked_extract && linked_extract.loc != owner && linked_extract.loc.loc != owner)
+	if(linked_extract.get_held_mob() == owner)
+		return
+	owner.balloon_alert(owner, "power faded!") //bluemoon edit
+	if(!QDELETED(linked_extract))
 		linked_extract.linked_effect = null
-		if(!QDELETED(linked_extract))
-			linked_extract.owner = null
-			START_PROCESSING(SSobj,linked_extract)
-		qdel(src)
-	return ..()
+		START_PROCESSING(SSobj,linked_extract)
+	qdel(src)
 
 /datum/status_effect/stabilized/Destroy()
 	linked_extract = null
@@ -659,13 +663,15 @@
 /datum/status_effect/stabilized/silver/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.hunger_mod *= 0.8 //20% buff
+		H.physiology.hunger_mod *= 0.5 //50% имба бафф. было 20%
+		H.physiology.thirst_mod *= 0.5
 	return ..()
 
 /datum/status_effect/stabilized/silver/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.hunger_mod /= 0.8
+		H.physiology.hunger_mod /= 0.5
+		H.physiology.thirst_mod /= 0.5
 	return ..()
 
 //Bluespace has an icon because it's kinda active.
@@ -751,7 +757,7 @@
 /datum/status_effect/stabilized/cerulean/tick()
 	if(owner.stat == DEAD)
 		if(clone && clone.stat != DEAD)
-			owner.visible_message("<span class='warning'>[owner] blazes with brilliant light, [linked_extract] whisking [owner.p_their()] soul away.</span>",
+			owner.visible_message("<span class='warning'>[owner] blazes with brilliant light, [linked_extract] whisking [owner.ru_ego()] soul away.</span>",
 				"<span class='notice'>You feel a warm glow from [linked_extract], and you open your eyes... elsewhere.</span>")
 			if(owner.mind)
 				owner.mind.transfer_to(clone)
@@ -902,6 +908,7 @@
 /datum/status_effect/stabilized/oil/tick()
 	if(owner.stat == DEAD)
 		explosion(get_turf(owner),1,2,4,flame_range = 5)
+		owner.gib() // bugfix
 		qdel(linked_extract)
 		return
 	return ..()
@@ -918,7 +925,7 @@
 		if(M.stat == DEAD)
 			return
 		if(!messagedelivered)
-			to_chat(owner,"<span class='notice'>You feel your hands melt around [M]'s neck and start to drain [M.p_them()] of life.</span>")
+			to_chat(owner,"<span class='notice'>You feel your hands melt around [M]'s neck and start to drain [M.ru_na()] of life.</span>")
 			to_chat(owner.pulling, "<span class='userdanger'>[owner]'s hands melt around your neck, and you can feel your life starting to drain away!</span>")
 			messagedelivered = TRUE
 		examine_text = "<span class='warning'>SUBJECTPRONOUN is draining health from [owner.pulling]!</span>"
@@ -950,9 +957,16 @@
 	return ..()
 
 /datum/status_effect/stabilized/lightpink/tick()
+	// BLUEMOON ADD START - умное изменение ускорения на основании размера персонажа
+	var/owner_size = get_size(owner)
+	if(HAS_TRAIT(owner, TRAIT_BLUEMOON_LIGHT) && owner_size > 1) //лёгкие большие персонажи считаются как при размере 1
+		owner_size = 1
+	if(owner_size > 1)
+		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/status_effect/slime/light_pink, multiplicative_slowdown = -2*(1/owner_size)**2) // Спасибо Максималу за формулу
+	// BLUEMOON ADD END
 	for(var/mob/living/carbon/human/H in range(1, get_turf(owner)))
 		if(H != owner && H.stat != DEAD && H.health <= 0 && !H.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
-			to_chat(owner, "[linked_extract] pulses in sync with [H]'s heartbeat, trying to keep [H.p_them()] alive.")
+			to_chat(owner, "[linked_extract] pulses in sync with [H]'s heartbeat, trying to keep [H.ru_na()] alive.")
 			H.reagents.add_reagent(/datum/reagent/medicine/epinephrine,5)
 	return ..()
 
@@ -1015,7 +1029,8 @@
 			if(X.regencore)
 				X.regencore.afterattack(owner,owner,TRUE)
 				X.regencore = null
-				owner.visible_message("<span class='warning'>[owner] flashes a rainbow of colors, and [owner.p_their()] skin is coated in a milky regenerative goo!</span>")
+				owner.visible_message("<span class='warning'>[owner] flashes a rainbow of colors, and [owner.ru_ego()] skin is coated in a milky regenerative goo!</span>")
 				qdel(src)
 				qdel(linked_extract)
 	return ..()
+//

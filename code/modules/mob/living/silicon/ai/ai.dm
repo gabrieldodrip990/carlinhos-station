@@ -67,7 +67,7 @@
 
 	var/datum/trackable/track = new
 
-	var/last_paper_seen = null
+	var/obj/item/paper/last_paper_seen = null
 	var/can_shunt = TRUE
 	var/last_announcement = "" 		// For AI VOX, if enabled
 	var/turf/waypoint //Holds the turf of the currently selected waypoint.
@@ -424,7 +424,8 @@
 #endif
 	if(href_list["show_paper"])
 		if(last_paper_seen)
-			src << browse(last_paper_seen, "window=show_paper")
+			//src << browse(last_paper_seen, "window=show_paper")
+			last_paper_seen.ui_interact(src)
 	//Carn: holopad requests
 	if(href_list["jumptoholopad"])
 		var/obj/machinery/holopad/H = locate(href_list["jumptoholopad"])
@@ -476,6 +477,10 @@
 		if(M)
 			M.transfer_ai(AI_MECH_HACK, src, usr) //Called on the mech itself.
 
+	if(href_list["character_profile"])
+		if(!profile)
+			profile = new(src)
+		profile.ui_interact(usr)
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
 	if(QDELETED(C))
@@ -767,7 +772,7 @@
 
 /mob/living/silicon/ai/proc/set_syndie_radio()
 	if(radio)
-		radio.make_syndie()
+		radio.make_inteq()
 
 /mob/living/silicon/ai/proc/set_automatic_say_channel()
 	set name = "Set Auto Announce Mode"

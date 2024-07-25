@@ -40,6 +40,7 @@
 	anthro_mob_worn_overlay = 'icons/mob/clothing/modsuit/mod_clothing_anthro.dmi'
 	icon_state = "chestplate"
 	item_state = "chestplate"
+	tail_state = ""
 	blood_overlay_type = "armor"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 25, ACID = 25, WOUND = 10)
 	body_parts_covered = CHEST|GROIN
@@ -52,7 +53,7 @@
 	visor_flags = STOPSPRESSUREDAMAGE
 	visor_flags_inv = HIDEJUMPSUIT
 	item_flags = IMMUTABLE_SLOW
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/device/cooler)
 	resistance_flags = NONE
 	var/obj/item/mod/control/mod
 	mutantrace_variation = STYLE_DIGITIGRADE
@@ -82,7 +83,7 @@
 	item_flags = IMMUTABLE_SLOW
 	var/obj/item/mod/control/mod
 	var/obj/item/clothing/overslot
-	mutantrace_variation = STYLE_NO_ANTHRO_ICON
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/gloves/mod/Destroy()
 	if(!QDELETED(mod))

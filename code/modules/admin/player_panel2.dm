@@ -28,6 +28,8 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		to_chat(owner, "Error: you are not an admin!")
 		return
 
+	log_admin("[key_name(usr)] checked the individual player panel for [key_name(M)][isobserver(usr)?"":" while in game"].")
+
 	if(!M.mob_panel)
 		M.create_player_panel()
 
@@ -433,6 +435,12 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 				return
 			requesting_mind.do_edit_objectives_ambitions()
 
+		if("makementor")
+			admin.holder.makeMentor(ckey = targetMob.ckey)
+
+		if("removementor")
+			admin.holder.removeMentor(ckey = targetMob.ckey)
+
 		if ("traitor_panel")
 			admin.holder.show_traitor_panel(targetMob)
 
@@ -504,5 +512,5 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		roles += list(category_roles)
 
 	roleStatus = roles
-	antagBanReason = jobban_isbanned(targetMob, ROLE_SYNDICATE)
+	antagBanReason = jobban_isbanned(targetMob, ROLE_INTEQ)
 	activeRoleBans = active_role_bans

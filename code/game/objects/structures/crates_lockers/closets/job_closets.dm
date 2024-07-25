@@ -111,7 +111,7 @@
 	new /obj/item/clothing/accessory/pocketprotector/cosmetology(src)
 	new /obj/item/clothing/under/rank/civilian/chaplain(src)
 	new /obj/item/clothing/shoes/sneakers/black(src)
-	new /obj/item/clothing/suit/chaplain/nun(src)
+	new /obj/item/clothing/under/rank/civilian/chaplain/nun(src)
 	new /obj/item/clothing/head/nun_hood(src)
 	new /obj/item/clothing/suit/chaplain/holidaypriest(src)
 	new /obj/item/storage/backpack/cultpack(src)
@@ -359,8 +359,8 @@
 	new /obj/item/clothing/shoes/workboots/mining(src)
 	new /obj/item/storage/backpack/satchel/explorer(src)
 
-/obj/structure/closet/coffin/handle_lock_addition()
+/obj/structure/closet/crate/coffin/handle_lock_addition() // BLUEMOON EDIT - изначальный путь был /obj/structure/closet/coffin, которого уже не существует
 	return
 
-/obj/structure/closet/coffin/handle_lock_removal()
+/obj/structure/closet/crate/coffin/handle_lock_removal() // BLUEMOON EDIT - изначальный путь был /obj/structure/closet/coffin, которого уже не существует
 	return

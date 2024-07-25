@@ -6,6 +6,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("bun" = 4)
 	foodtype = GRAIN | MEAT
+	grind_results = list(/datum/reagent/consumable/nutriment/liquid_burger = 10)
 
 /obj/item/reagent_containers/food/snacks/burger/plain
 	name = "burger"
@@ -145,6 +146,9 @@
 	alpha = 170
 	verb_say = "moans"
 	verb_yell = "wails"
+
+/obj/item/reagent_containers/food/snacks/burger/ghost/no_icon_for_event
+	icon_state = ""
 
 /obj/item/reagent_containers/food/snacks/burger/ghost/Initialize(mapload)
 	. = ..()
@@ -383,4 +387,3 @@
 	. = ..()
 	if(prob(33))
 		icon_state = "cheeseburgeralt"
-

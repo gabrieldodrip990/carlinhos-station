@@ -27,6 +27,8 @@
 		if(user.a_intent == INTENT_HARM)
 			M.visible_message("<span class='danger'>[user] splashes the contents of [src] onto [M]!</span>", \
 							"<span class='userdanger'>[user] splashes the contents of [src] onto [M]!</span>")
+			if(iscatperson(M))
+				M.emote("hiss")
 			var/R = reagents?.log_list()
 			var/mob/thrown_by = thrownby?.resolve()
 			if(isturf(target) && reagents.reagent_list.len && thrown_by)

@@ -1,4 +1,9 @@
-GLOBAL_LIST_INIT(cardinals, list(NORTH, SOUTH, EAST, WEST))
+GLOBAL_LIST_INIT(cardinals, list(
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+))
 GLOBAL_LIST_INIT(cardinals_multiz, list(NORTH, SOUTH, EAST, WEST, UP, DOWN))
 GLOBAL_LIST_INIT(diagonals, list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 GLOBAL_LIST_INIT(corners_multiz, list(UP|NORTHEAST, UP|NORTHWEST, UP|SOUTHEAST, UP|SOUTHWEST, DOWN|NORTHEAST, DOWN|NORTHWEST, DOWN|SOUTHEAST, DOWN|SOUTHWEST))
@@ -21,6 +26,8 @@ GLOBAL_LIST_EMPTY(jobspawn_overrides)					//These will take precedence over norm
 GLOBAL_LIST_EMPTY(wizardstart)
 GLOBAL_LIST_EMPTY(nukeop_start)
 GLOBAL_LIST_EMPTY(nukeop_leader_start)
+GLOBAL_LIST_EMPTY(syndiop_start)
+GLOBAL_LIST_EMPTY(syndiop_leader_start)
 GLOBAL_LIST_EMPTY(newplayer_start)
 GLOBAL_LIST_EMPTY(prisonwarp)	//prisoners go to these
 GLOBAL_LIST_EMPTY(holdingfacility)	//captured people go here
@@ -34,6 +41,7 @@ GLOBAL_LIST_EMPTY(blobstart)
 GLOBAL_LIST_EMPTY(secequipment)
 GLOBAL_LIST_EMPTY(deathsquadspawn)
 GLOBAL_LIST_EMPTY(emergencyresponseteamspawn)
+GLOBAL_LIST_EMPTY(emergencyresponseteamofficerspawn)
 GLOBAL_LIST_EMPTY(servant_spawns) //Servants of Ratvar spawn here
 GLOBAL_LIST_EMPTY(city_of_cogs_spawns) //Anyone entering the City of Cogs spawns here
 GLOBAL_LIST_EMPTY(ruin_landmarks)

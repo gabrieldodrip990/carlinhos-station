@@ -14,25 +14,58 @@
  * Welding mask
  */
 /obj/item/clothing/head/welding
-	name = "welding helmet"
+	name = "Welding Helmet"
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	icon_state = "welding"
-	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	item_state = "welding"
+	can_toggle = TRUE
 	custom_materials = list(/datum/material/iron=1750, /datum/material/glass=400)
 	flash_protect = 2
 	tint = 2
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 60)
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	actions_types = list(/datum/action/item_action/toggle)
-	visor_flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
+	flags_inv = HIDEMASK|HIDEEYES|HIDEFACE
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	visor_flags_inv = HIDEMASK|HIDEEYES|HIDEFACE
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	resistance_flags = FIRE_PROOF
 	mutantrace_variation = STYLE_MUZZLE
+	var/paint = null
 
 /obj/item/clothing/head/welding/attack_self(mob/user)
 	weldingvisortoggle(user)
 
+/obj/item/clothing/head/welding/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/toy/crayon/spraycan))
+		if(paint)
+			to_chat(user, "<span class = 'warning'>Похоже, тут уже есть слой краски!</span>")
+			return
+		var/obj/item/toy/crayon/spraycan/C = I
+		if(C.is_capped)
+			to_chat(user, "<span class = 'warning'>Вы не можете раскрасить [src], пока крышка [C] закрыта!</span>")
+			return
+		var/list/weld_icons = list("Flame" = image(icon = src.icon, icon_state = "welding_redflame"),
+									"Blue Flame" = image(icon = src.icon, icon_state = "welding_blueflame"),
+									"White Flame" = image(icon = src.icon, icon_state = "welding_white"))
+		var/list/weld = list("Flame" = "welding_redflame",
+							"Blue Flame" = "welding_blueflame",
+							"White Flame" = "welding_white")
+		var/choice = show_radial_menu(user, src, weld_icons)
+		if(!choice || I.loc != user || !Adjacent(user))
+			return
+		if(C.charges <= 0)
+			to_chat(user, "<span class = 'warning'>Похоже, краска кончилась.</span>")
+			return
+		icon_state = weld[choice]
+		paint = weld[choice]
+		C.charges--
+		update_icon()
+	if(istype(I, /obj/item/soap) && (icon_state != initial(icon_state)))
+		icon_state = initial(icon_state)
+		paint = null
+		update_icon()
+	else
+		return ..()
 
 /*
  * Cakehat
@@ -88,7 +121,7 @@
 	desc = "Perfect for winter in Siberia, da?"
 	icon_state = "ushankadown"
 	item_state = "ushankadown"
-	alternate_screams = list('sound/voice/human/cyka1.ogg', 'sound/voice/human/cheekibreeki.ogg')
+	alternate_screams = RUSSIAN_SCREAMS
 	flags_inv = HIDEEARS|HIDEHAIR
 	var/earflaps = TRUE
 	cold_protection = HEAD
@@ -149,16 +182,15 @@
 	beepsky_fashion = /datum/beepsky_fashion/cat
 
 /obj/item/clothing/head/kitty/equipped(mob/living/carbon/human/user, slot)
-	..()
 	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
-		update_icon()
+		update_icon(ALL, user)
 		user.update_inv_head() //Color might have been changed by update_icon.
+	..()
 
-/obj/item/clothing/head/kitty/update_icon()
+/obj/item/clothing/head/kitty/update_icon(updates, mob/living/carbon/human/user)
 	. = ..()
-	if(ishuman(loc))
-		var/mob/living/carbon/human/wearer = loc
-		add_atom_colour("#[wearer.hair_color]", FIXED_COLOUR_PRIORITY)
+	if(ishuman(user))
+		add_atom_colour("#[user.hair_color]", FIXED_COLOUR_PRIORITY)
 
 /obj/item/clothing/head/kitty/genuine
 	desc = "A pair of kitty ears. A tag on the inside says \"Hand made from real cats.\""
@@ -313,18 +345,10 @@
 			return
 	return ..()
 
-/obj/item/clothing/head/foilhat/microwave_act(obj/machinery/microwave/M)
+/obj/item/clothing/head/foilhat/microwave_act(obj/machinery/microwave/microwave_source, mob/microwaver, randomize_pixel_offset)
 	. = ..()
 	if(!warped)
 		warp_up()
-
-/obj/item/clothing/head/flakhelm	//Actually the M1 Helmet
-	name = "flak helmet"
-	icon_state = "m1helm"
-	item_state = "helmet"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0.1, BIO = 0, RAD = 0, FIRE = -10, ACID = -15)
-	desc = "A dilapidated helmet used in ancient wars. This one is brittle and essentially useless. An ace of spades is tucked into the band around the outer shell."
-	pocket_storage_component_path = /datum/component/storage/concrete/pockets/tiny/spacenam	//So you can stuff other things in the elastic band instead of it simply being a fluff thing.
 
 //The "pocket" for the M1 helmet so you can tuck things into the elastic band
 

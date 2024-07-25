@@ -1,3 +1,6 @@
+// BLUEMOON REMOVAL - был произведён полный реворк писем, файлы перемещены в modular_bluemoon/vlad0s_staff/code/mail/
+
+/*
 /// Mail is tamper-evident and unresealable, postmarked by CentCom for an individual recepient.
 /obj/item/mail
 	name = "mail"
@@ -357,13 +360,13 @@
 /obj/item/paper/fluff/junkmail_redpill/Initialize()
 	. = ..()
 	if(!prob(nuclear_option_odds)) // 1 in 1000 chance of getting 2 random nuke code characters.
-		info = "<i>You need to escape the simulation. Don't forget the numbers, they help you remember:</i> '[rand(0,9)][rand(0,9)][rand(0,9)]...'"
+		default_raw_text = "<i>You need to escape the simulation. Don't forget the numbers, they help you remember:</i> '[rand(0,9)][rand(0,9)][rand(0,9)]...'"
 		return
 	var/code = random_nukecode()
 	for(var/obj/machinery/nuclearbomb/selfdestruct/self_destruct in GLOB.nuke_list)
 		self_destruct.r_code = code
 	message_admins("Through junkmail, the self-destruct code was set to \"[code]\".")
-	info = "<i>You need to escape the simulation. Don't forget the numbers, they help you remember:</i> '[code[rand(1,5)]][code[rand(1,5)]]...'"
+	default_raw_text = "<i>You need to escape the simulation. Don't forget the numbers, they help you remember:</i> '[code[rand(1,5)]][code[rand(1,5)]]...'"
 
 /obj/item/paper/fluff/junkmail_redpill/true //admin letter enabling players to brute force their way through the nuke code if they're so inclined.
 	nuclear_option_odds = 100
@@ -374,7 +377,7 @@
 
 /obj/item/paper/fluff/junkmail_generic/Initialize()
 	. = ..()
-	info = pick(GLOB.junkmail_messages)
+	default_raw_text = pick(GLOB.junkmail_messages)
 
 /* Maybe some other time
 /obj/item/mail/traitor
@@ -477,4 +480,5 @@
 	. = ..()
 	color = pick(COLOR_SILVER, COLOR_DARK, COLOR_DRIED_TAN, COLOR_ORANGE_BROWN, COLOR_BROWN, COLOR_SYNDIE_RED)
 	new /obj/effect/spawner/random/contraband/grenades/dangerous(src)
+*/
 */

@@ -22,6 +22,7 @@
 	var/disguise_icon_override = null
 	var/disguise_pixel_offset = null
 	var/disguise_dogborg = FALSE
+	var/disguise_drakerest = FALSE	//DarkSer request by Gardelin0
 	var/mob/listeningTo
 	var/list/signalCache = list( // list here all signals that should break the camouflage
 			COMSIG_PARENT_ATTACKBY,
@@ -111,18 +112,18 @@
 		if(isturf(user.loc))
 			toggle(user)
 		else
-			to_chat(user, span_warning("You can't use [src] while inside something!"))
+			to_chat(user, "<span class='warning'>You can't use [src] while inside something!</span>")
 	else
-		to_chat(user, span_warning("You need at least [activationCost] charge in your cell to use [src]!"))
+		to_chat(user, "<span class='warning'>You need at least [activationCost] charge in your cell to use [src]!</span>")
 
 /obj/item/borg_shapeshifter/proc/toggle(mob/living/silicon/robot/user)
 	if(active)
 		playsound(src, 'sound/effects/pop.ogg', 100, TRUE, -6)
-		to_chat(user, span_notice("You deactivate \the [src]."))
+		to_chat(user, "<span class='notice'>You deactivate \the [src].</span>")
 		deactivate(user)
 	else
 		if(animation_playing)
-			to_chat(user, span_notice("\the [src] is recharging."))
+			to_chat(user, "<span class='notice'>\the [src] is recharging.</span>")
 			return
 		var/mob/living/silicon/robot/R = loc
 		var/static/list/module_icons = sort_list(list(
@@ -163,7 +164,9 @@
 					"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinamed"),
 					"Eyebot" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "eyebotmed"),
 					"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymed"),
-					"Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakemedbox")
+					"Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakemedbox"),
+					"Fembot" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi', icon_state = "fembot-medic"), //Gardelin0 Addon
+					"Meka" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi', icon_state = "mekamed") //Krashly Request
 				)
 				var/list/L = list("Medihound" = "medihound", "Medihound Dark" = "medihounddark", "Vale" = "valemed")
 				for(var/a in L)
@@ -213,6 +216,13 @@
 						disguise_icon_override = 'modular_sand/icons/mob/cyborg/drakemech.dmi'
 						disguise_pixel_offset = -16
 						disguise_dogborg = TRUE
+						disguise_drakerest = TRUE
+					if("Fembot") // //Gardelin0 Addon
+						disguise = "fembot-medic"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi'
+					if("Meka") //Krashly Request
+						disguise = "mekamed"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi'
 					else
 						return FALSE
 
@@ -227,7 +237,9 @@
 					"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinaeng"),
 					"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidereng"),
 					"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyeng"),
-					"Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakeengbox")
+					"Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakeengbox"),
+					"Fembot" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi', icon_state = "fembot-engineering"), //Gardelin0 Addon
+					"Meka" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi', icon_state = "mekaengi") //Krashly Request
 				)
 				var/list/L = list("Pup Dozer" = "pupdozer", "Vale" = "valeeng")
 				for(var/a in L)
@@ -286,6 +298,13 @@
 						disguise_icon_override = 'modular_sand/icons/mob/cyborg/drakemech.dmi'
 						disguise_pixel_offset = -16
 						disguise_dogborg = TRUE
+						disguise_drakerest = TRUE
+					if("Fembot") // //Gardelin0 Addon
+						disguise = "fembot-engineering"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi'
+					if("Meka") //Krashly Request
+						disguise = "mekaengi"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi'
 					else
 						return FALSE
 			if("Security")
@@ -297,7 +316,8 @@
 					"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinasec"),
 					"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "spidersec"),
 					"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavysec"),
-					"Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakesecbox")
+					"Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakesecbox"),
+					"Fembot" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi', icon_state = "fembot-security") //Gardelin0 Addon
 				)
 				var/list/L = list("K9" = "k9", "Vale" = "valesec", "K9 Dark" = "k9dark")
 				for(var/a in L)
@@ -355,6 +375,10 @@
 						disguise_icon_override = 'modular_sand/icons/mob/cyborg/drakemech.dmi'
 						disguise_pixel_offset = -16
 						disguise_dogborg = TRUE
+						disguise_drakerest = TRUE
+					if("Fembot") // //Gardelin0 Addon
+						disguise = "fembot-security"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi'
 					else
 						return FALSE
 			if("Service")
@@ -366,12 +390,17 @@
 					"(Service) Tophat" = image(icon = 'icons/mob/robots.dmi', icon_state = "tophat"),
 					"(Service) Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekserv"),
 					"(Service) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyserv"),
+					"(Service) Fembot" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi', icon_state = "fembot-service"), //Gardelin0 Addon
+					"(Service) Meka" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi', icon_state = "mekaserve"), //Krashly Request
 					"(Janitor) Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "janitor"),
 					"(Janitor) Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinajan"),
 					"(Janitor) Sleek" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "sleekjan"),
 					"(Janitor) Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canjan"),
 					"(Janitor) Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavyres"),
-					"(Janitor) Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakejanitbox")
+					"(Janitor) Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakejanitbox"),
+					"(Janitor) Fembot" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi', icon_state = "fembot-janitor"), //Gardelin0 Addon
+					"(Janitor) Ratge" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/ratge.dmi', icon_state = "ratge"), //CassiusRogue Request
+					"(Janitor) Meka" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi', icon_state = "mekajani") //Krashly Request
 				)
 				var/list/L = list("(Service) DarkK9" = "k50", "(Service) Vale" = "valeserv", "(Service) ValeDark" = "valeservdark",
 								"(Janitor) Scrubpuppy" = "scrubpup")
@@ -420,6 +449,12 @@
 						disguise_icon_override = 'modular_citadel/icons/mob/widerobot.dmi'
 						disguise_pixel_offset = -16
 						disguise_dogborg = TRUE
+					if("(Service) Fembot") // //Gardelin0 Addon
+						disguise = "fembot-service"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi'
+					if("(Service) Meka") //Krashly Request
+						disguise = "mekaserve"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi'
 					if("(Janitor) Default")
 						disguise = "janitor"
 						disguise_icon_override = 'icons/mob/robots.dmi'
@@ -445,6 +480,16 @@
 						disguise_icon_override = 'modular_sand/icons/mob/cyborg/drakemech.dmi'
 						disguise_pixel_offset = -16
 						disguise_dogborg = TRUE
+						disguise_drakerest = TRUE
+					if("(Janitor) Fembot") // //Gardelin0 Addon
+						disguise = "fembot-janitor"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi'
+					if("(Janitor) Ratge") // //CassiusRogue request
+						disguise = "ratge"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/ratge.dmi'
+					if("(Janitor) Meka") //Krashly Request
+						disguise = "mekajani"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi'
 					else
 						return FALSE
 			if("Miner")
@@ -456,7 +501,9 @@
 					"Marina" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "marinamin"),
 					"Can" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "canmin"),
 					"Heavy" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "heavymin"),
-					"Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakeminebox")
+					"Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakeminebox"),
+					"Fembot" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi', icon_state = "fembot-miner"), //Gardelin0 Addon
+					"Meka" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi', icon_state = "mekamine") //Krashly Request
 				)
 				var/list/L = list("Blade" = "blade", "Vale" = "valemine")
 				for(var/a in L)
@@ -507,6 +554,13 @@
 						disguise_icon_override = 'modular_sand/icons/mob/cyborg/drakemech.dmi'
 						disguise_pixel_offset = -16
 						disguise_dogborg = TRUE
+						disguise_drakerest = TRUE
+					if("Fembot") // //Gardelin0 Addon
+						disguise = "fembot-miner"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi'
+					if("Meka") //Krashly Request
+						disguise = "mekamine"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi'
 					else
 						return FALSE
 			if("Peacekeeper")
@@ -514,7 +568,9 @@
 					"Default" = image(icon = 'icons/mob/robots.dmi', icon_state = "peace"),
 					"Borgi" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "borgi"),
 					"Spider" = image(icon = 'modular_citadel/icons/mob/robots.dmi', icon_state = "whitespider"),
-					"Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakepeacebox")
+					"Drake" = image(icon = 'modular_sand/icons/mob/cyborg/drakemech.dmi', icon_state = "drakepeacebox"),
+					"Fembot" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi', icon_state = "fembot-peace"), //Gardelin0 Addon
+					"Meka" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi', icon_state = "mekacargo") //Krashly Request
 				))
 				var/borg_icon = show_radial_menu(R, R , peace_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), R), radius = 42, require_near = TRUE)
 				if(!borg_icon)
@@ -534,6 +590,13 @@
 						disguise_icon_override = 'modular_sand/icons/mob/cyborg/drakemech.dmi'
 						disguise_pixel_offset = -16
 						disguise_dogborg = TRUE
+						disguise_drakerest = TRUE
+					if("Fembot") // //Gardelin0 Addon
+						disguise = "fembot-peace"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/robots.dmi'
+					if("Meka") //Krashly Request
+						disguise = "mekapeace"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi'
 					else
 						return FALSE
 			if("Clown")
@@ -553,7 +616,9 @@
 				var/static/list/syndicatejack_icons = sort_list(list(
 					"Saboteur" = image(icon = 'icons/mob/robots.dmi', icon_state = "synd_engi"),
 					"Medical" = image(icon = 'icons/mob/robots.dmi', icon_state = "synd_medical"),
-					"Assault" = image(icon = 'icons/mob/robots.dmi', icon_state = "synd_sec")
+					"Assault" = image(icon = 'icons/mob/robots.dmi', icon_state = "synd_sec"),
+					"Meka Syndie" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi', icon_state = "mekasyndi"), //Krashly Request
+					"Meka Ninja" = image(icon = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi', icon_state = "mekaninja") //Krashly Request
 				))
 				var/borg_icon = show_radial_menu(R, R , syndicatejack_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), R), radius = 42, require_near = TRUE)
 				if(!borg_icon)
@@ -568,13 +633,19 @@
 					if("Assault")
 						disguise = "synd_sec"
 						disguise_icon_override = 'icons/mob/robots.dmi'
+					if("Meka Syndie") //Krashly Request
+						disguise = "mekasyndi"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi'
+					if("Meka Ninja") //Krashly Request
+						disguise = "mekaninja"
+						disguise_icon_override = 'modular_bluemoon/Gardelin0/icons/mob/tallrobot.dmi'
 					else
 						return FALSE
 			else
 				return FALSE
 
 		animation_playing = TRUE
-		to_chat(user, span_notice("You activate \the [src]."))
+		to_chat(user, "<span class='notice'>You activate \the [src].</span>")
 		playsound(src, 'sound/effects/seedling_chargeup.ogg', 100, TRUE, -6)
 		var/start = user.filters.len
 		var/X,Y,rsq,i,f
@@ -591,10 +662,10 @@
 			animate(offset=f:offset-1, time=rand()*20+10)
 		if (do_after(user, 5 SECONDS, user) && user.cell.use(activationCost))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
-			to_chat(user, span_notice("You are now disguised as the Nanotrasen cyborg \"[friendlyName]\"."))
+			to_chat(user, "<span class='notice'>You are now disguised as the Nanotrasen cyborg \"[friendlyName]\".</span>")
 			activate(user, module_selection)
 		else
-			to_chat(user, span_warning("The chameleon field fizzles."))
+			to_chat(user, "<span class='warning'>The chameleon field fizzles.</span>")
 			do_sparks(3, FALSE, user)
 			for(i=1, i<=min(7, user.filters.len), ++i) // removing filters that are animating does nothing, we gotta stop the animations first
 				f = user.filters[start+i]
@@ -624,6 +695,7 @@
 	user.module.cyborg_icon_override = disguise_icon_override
 	user.module.cyborg_pixel_offset = disguise_pixel_offset
 	user.module.dogborg = disguise_dogborg
+	user.module.drakerest = disguise_drakerest		//DarkSer request by Gardelin0
 	user.bubble_icon = "robot"
 	active = TRUE
 	user.update_icons()
@@ -647,16 +719,18 @@
 	user.module.cyborg_icon_override = savedOverride
 	user.module.cyborg_pixel_offset = 0
 	user.module.dogborg = FALSE
+	user.module.drakerest = FALSE		//DarkSer request by Gardelin0
 	user.bubble_icon = savedBubbleIcon
 	active = FALSE
 	user.update_icons()
 	disguise_pixel_offset = 0
 	disguise_dogborg = FALSE
+	disguise_drakerest = FALSE		//DarkSer request by Gardelin0
 	src.user = user
 
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
 	if(active)
-		to_chat(user, span_danger("Your chameleon field deactivates."))
+		to_chat(user, "<span class='danger'>Your chameleon field deactivates.</span>")
 		deactivate(user)
 
 /obj/item/borg_shapeshifter/stable

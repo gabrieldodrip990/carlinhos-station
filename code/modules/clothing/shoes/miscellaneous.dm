@@ -25,6 +25,7 @@
 	icon_state = "sneakboots"
 	item_state = "sneakboots"
 	resistance_flags = FIRE_PROOF |  ACID_PROOF
+	clothing_flags = NOSLIP
 
 /obj/item/clothing/shoes/combat/sneakboots/equipped(mob/user, slot)
 	. = ..()
@@ -39,8 +40,14 @@
 	name = "\improper SWAT boots"
 	desc = "High speed, no drag combat boots."
 	permeability_coefficient = 0.01
-	clothing_flags = NOSLIP
+	clothing_flags = NOSLIP | NOSLIP_ICE
 	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 30, RAD = 30, FIRE = 90, ACID = 50)
+
+/obj/item/clothing/shoes/combat/swat/knife
+
+/obj/item/clothing/shoes/combat/swat/knife/Initialize()
+	. = ..()
+	new /obj/item/kitchen/knife/combat(src)
 
 /obj/item/clothing/shoes/sandal
 	desc = "A pair of rather plain wooden sandals."
@@ -155,10 +162,23 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	lace_time = 12 SECONDS
 
+/obj/item/clothing/shoes/jackboots/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, list('sound/effects/footstep/sec_boots-1.ogg' = 1,'sound/effects/footstep/sec_boots-2.ogg' = 1), 75)
+
 /obj/item/clothing/shoes/jackboots/sec
-	name = "security jackboots"
+	name = "Security Jackboots"
 	desc = "Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "jackboots_sec"
+
+/obj/item/clothing/shoes/jackboots/alliance
+	name = "Alliance Jackboots"
+	desc = "Берцовые Ботинки для представителей Вселенского Союза."
+	icon_state = "wjboots"
+
+/obj/item/clothing/shoes/jackboots/alliance/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, list('sound/effects/footstep/jackboot1.ogg' = 1,'sound/effects/footstep/jackboot2.ogg' = 1), 75)
 
 /obj/item/clothing/shoes/jackboots/fast
 	slowdown = -1
@@ -399,6 +419,7 @@
 /obj/item/clothing/shoes/russian
 	name = "russian boots"
 	desc = "Comfy shoes."
+	alternate_screams = RUSSIAN_SCREAMS
 	icon_state = "rus_shoes"
 	item_state = "rus_shoes"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
@@ -447,7 +468,7 @@
 	desc = "Contrary to popular belief, these do not allow you to walk on walls. Through bluespace magic stolen from an organisation that hoards technology, they simply allow you to slip through the atoms that make up anything, but only while walking, for safety reasons. As well as this, they unfortunately cause minor breath loss as the majority of atoms in your lungs are sucked out into any solid object you walk through. Make sure not to overuse them."
 	icon_state = "walkboots"
 	var/walkcool = 0
-	var/wallcharges = 4
+	var/wallcharges = 20
 	var/newlocobject = null
 
 /obj/item/clothing/shoes/timidcostume
@@ -615,3 +636,13 @@
 	icon_state = "JackFrostShoes"
 	item_state = "JackFrostShoes_worn"
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+
+/obj/item/clothing/shoes/ducky
+	name = "Rubber Ducky Shoes"
+	desc = "These shoes are made for quacking, and thats just what they'll do."
+	icon_state = "ducky"
+	item_state = "ducky"
+
+/obj/item/clothing/shoes/ducky/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, list('sound/items/squeaktoy.ogg' = 1), 50, falloff_exponent = 20)

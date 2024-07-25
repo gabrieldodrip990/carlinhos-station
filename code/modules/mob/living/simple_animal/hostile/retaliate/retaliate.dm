@@ -1,5 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate
-	var/list/enemies = list()
+	name = "НЕ БЕЙ МЕНЯ"
+	//var/list/enemies = list()
 
 /mob/living/simple_animal/hostile/retaliate/Found(atom/A)
 	if(isliving(A))

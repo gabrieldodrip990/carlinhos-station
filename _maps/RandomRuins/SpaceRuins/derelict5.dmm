@@ -72,9 +72,17 @@
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/ruin/unpowered)
-"V" = (
-/obj/machinery/spaceship_navigation_beacon/invion,
-/turf/closed/wall,
+"G" = (
+/obj/effect/spawner/lootdrop/salvage,
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered)
+"U" = (
+/obj/effect/spawner/lootdrop/salvage,
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered/no_grav)
+"Y" = (
+/obj/effect/spawner/lootdrop/salvage,
+/turf/open/floor/plating,
 /area/ruin/unpowered)
 
 (1,1,1) = {"
@@ -648,18 +656,18 @@ b
 b
 b
 d
-g
+Y
 i
 i
 m
 g
 f
-g
-g
+Y
+Y
 d
 b
 c
-c
+U
 c
 a
 a
@@ -773,7 +781,7 @@ j
 f
 f
 e
-V
+e
 p
 l
 e
@@ -808,7 +816,7 @@ a
 b
 b
 d
-g
+Y
 g
 l
 h
@@ -974,7 +982,7 @@ j
 f
 g
 e
-p
+G
 q
 r
 q

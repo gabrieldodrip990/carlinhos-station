@@ -22,7 +22,7 @@
 	var/persistence_key
 
 	var/traits = null
-	var/space_ruin_levels = 4
+	var/space_ruin_levels = 7
 	var/space_empty_levels = 1
 	var/station_ruin_budget = -1 // can be set to manually override the station ruins budget on maps that don't support station ruins, stopping the error from being unable to place the ruins.
 
@@ -35,6 +35,7 @@
 		"cargo" = "cargo_box",
 		"ferry" = "ferry_fancy",
 		"whiteship" = "whiteship_box",
+		"lambda" = "lambda_code",
 		"emergency" = "emergency_box")
 
 	var/year_offset = 540 //The offset of ingame year from the actual IRL year. You know you want to make a map that takes place in the 90's. Don't lie.

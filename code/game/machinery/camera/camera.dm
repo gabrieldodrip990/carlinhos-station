@@ -90,11 +90,6 @@
 		LAZYREMOVE(myarea.cameras, src)
 	QDEL_NULL(alarm_manager)
 	QDEL_NULL(assembly)
-	if(bug)
-		bug.bugged_cameras -= c_tag
-		if(bug.current == src)
-			bug.current = null
-		bug = null
 	return ..()
 
 /obj/machinery/camera/emp_act(severity)
@@ -234,7 +229,7 @@
 		if(istype(I, /obj/item/paper))
 			X = I
 			itemname = X.name
-			info = X.info
+			info = X.default_raw_text
 		else
 			P = I
 			itemname = P.name
@@ -250,24 +245,10 @@
 					to_chat(AI, "<b>[U]</b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
 				else
 					to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(U.name)]'>[U]</a></b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
-				AI.last_paper_seen = "<HTML><HEAD><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
+				AI.last_paper_seen = X
 			else if (O.client && O.client.eye == src)
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
-				O << browse(text("<HTML><HEAD<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
-		return
-
-	else if(istype(I, /obj/item/camera_bug))
-		if(!can_use())
-			to_chat(user, "<span class='notice'>Camera non-functional.</span>")
-			return
-		if(bug)
-			to_chat(user, "<span class='notice'>Camera bug removed.</span>")
-			bug.bugged_cameras -= src.c_tag
-			bug = null
-		else
-			to_chat(user, "<span class='notice'>Camera bugged.</span>")
-			bug = I
-			bug.bugged_cameras[src.c_tag] = src
+				O << browse(text("<HTML><HEAD<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 		return
 
 	else if(istype(I, /obj/item/pai_cable))

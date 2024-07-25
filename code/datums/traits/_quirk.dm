@@ -2,9 +2,9 @@
 //these are NOT "mob quirks" like GOTTAGOFAST, but exist as a medium to apply them and other different effects
 /datum/quirk
 	/// The name of the quirk
-	var/name = "Test Quirk"
+	var/name = "Незнайка"
 	/// The description of the quirk
-	var/desc = "This is a test quirk."
+	var/desc = "Буквально особенность, которая ничего не делает!"
 	/// What the quirk is worth in preferences, zero = neutral / free
 	var/value = 0
 	var/human_only = TRUE
@@ -27,7 +27,7 @@
 	/// A lazylist of items people can receive from mail who have this quirk enabled
 	/// The base weight for the each quirk's mail goodies list to be selected is 5
 	/// then the item selected is determined by pick(selected_quirk.mail_goodies)
-	var/list/mail_goodies
+	var/list/mail_goodies = list()
 
 /datum/quirk/New(mob/living/quirk_mob, spawn_effects)
 	if(!quirk_mob || (human_only && !ishuman(quirk_mob)) || quirk_mob.has_quirk(type))
@@ -98,14 +98,14 @@
 			var/datum/quirk/T = V
 			dat += T.name
 		if(!dat.len)
-			return "None"
+			return "Отсутствуют"
 		return dat.Join(", ")
 	else
 		for(var/V in roundstart_quirks)
 			var/datum/quirk/T = V
 			dat += T.medical_record_text
 		if(!dat.len)
-			return "None"
+			return "Отсутствуют"
 		return dat.Join("<br>")
 
 /mob/living/proc/cleanse_trait_datums() //removes all trait datums

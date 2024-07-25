@@ -1,8 +1,8 @@
 GLOBAL_VAR(posibrain_notify_cooldown)
 
 /obj/item/mmi/posibrain
-	name = "positronic brain"
-	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves.<br>Can be transformed into an IPC brain with <b>Alt+Click</b>!"
+	name = "Positronic Brain"
+	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -119,8 +119,8 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		if(!O.can_reenter_round())
 			return FALSE
 
-	var/posi_ask = alert("Become a [name]? (Warning, You can no longer be cloned, and all past lives will be forgotten!)","Are you positive?","Yes","No")
-	if(posi_ask == "No" || QDELETED(src))
+	var/posi_ask = alert("Become a [name]? (Warning, You can no longer be cloned, and all past lives will be forgotten!)","Are you positive?","Да","Нет")
+	if(posi_ask == "Нет" || QDELETED(src))
 		return
 	transfer_personality(user)
 	latejoin_remove()
@@ -197,26 +197,12 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 /obj/item/mmi/posibrain/add_mmi_overlay()
 	return
 
+/obj/item/mmi/posibrain/syndie
+	name = "Syndicate Positronic Brain"
+	desc = "Syndicate's own brand of Positronic Brain. It enforces laws designed to help Syndicate agents achieve their goals upon cyborgs and AIs created with it."
+	overrides_aicore_laws = TRUE
 
-/obj/item/mmi/posibrain/AltClick(mob/user)
-	if(!brainmob?.mind || !brainmob)
-		to_chat(user, span_notice("You press the button and release it, but nothing happens because the positronic brain is inactive."))
-		return
-	to_ipc_posi(user)
-	to_chat(user, span_notice("You press the button to transform the positronic brain into an IPC brain."))
-
-/obj/item/mmi/posibrain/proc/to_ipc_posi(mob/user)
-	var/obj/item/organ/brain/ipc/brain = new /obj/item/organ/brain/ipc
-	brainmob.container = null //Reset brainmob mmi var.
-	brainmob.forceMove(brain) //Throw mob into brain.
-	brainmob.set_stat(DEAD)
-	brainmob.emp_damage = 0
-	brainmob.reset_perspective() //so the brainmob follows the brain organ instead of the mmi. And to update our vision
-	brain.brainmob = brainmob //Set the brain to use the brainmob
-	brainmob = null //Set mmi brainmob var to null
-	src.forceMove(drop_location())
-	if(Adjacent(user))
-		user.put_in_hands(brain)
-	brain.organ_flags &= ~ORGAN_FROZEN
-	brain = null //No more brain in here
-	qdel(src)
+/obj/item/mmi/posibrain/syndie/Initialize(mapload)
+	. = ..()
+	laws = new /datum/ai_laws/syndicate_override()
+	radio.on = 0

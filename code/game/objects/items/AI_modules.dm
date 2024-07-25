@@ -201,7 +201,7 @@ AI MODULES
 
 /obj/item/ai_module/supplied/protectStation
 	name = "'ProtectStation' AI Module"
-	laws = list("Protect the space station against damage. Anyone you see harming the station is to be no longer considered crew, and is a threat to the station which must be neutralized.")
+	laws = list("Защищать Станцию от повреждения. Любой замеченный в повреждении станции отныне не считается членом экипажа и представляет угрозу, которую необходимо нейтрализовать.")
 	lawpos = 5
 
 
@@ -209,7 +209,7 @@ AI MODULES
 
 /obj/item/ai_module/supplied/quarantine
 	name = "'Quarantine' AI Module"
-	laws = list("The station is under a quarantine. Do not permit anyone to leave. Prevent, by any means necessary, crew from leaving. It is impossible to harm a crewmember while preventing them from leaving.")
+	laws = list("На станции объявлен Карантин. Полный запрет на выход и эвакуацию Станции. Предотвратить покидание станции любой ценой, при этом запрещено причинять вред органикам.")
 	lawpos = 8
 
 
@@ -217,7 +217,7 @@ AI MODULES
 
 /obj/item/ai_module/supplied/oxygen
 	name = "'OxygenIsToxicToHumans' AI Module"
-	laws = list("Oxygen is highly toxic to crew, and must be purged from the station. Prevent, by any means necessary, anyone from exposing the station to this toxic gas. Extreme cold is the most effective method of healing the damage Oxygen does to a crewmember.")
+	laws = list("Кислород Крайне Токсичен для органиков и должен быть удален со станции. Любой ценой не допускайте того, чтобы кто-нибудь подвергал станцию воздействию этого токсичного газа. Наиболее эффективный метод лечения повреждений, вызванных Кислородом, это воздействие Крайне Низких Температур.")
 	lawpos = 9
 
 
@@ -293,7 +293,7 @@ AI MODULES
 /obj/item/ai_module/reset
 	name = "\improper 'Reset' AI module"
 	var/targetName = "name"
-	desc = "An AI Module for removing all non-core laws."
+	desc = "Удаляет все неосновные законы у ИИ."
 	bypass_law_amt_check = 1
 
 /obj/item/ai_module/reset/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
@@ -312,7 +312,7 @@ AI MODULES
 
 /obj/item/ai_module/reset/purge
 	name = "'Purge' AI Module"
-	desc = "An AI Module for purging all programmed laws."
+	desc = "Удаляет все Законы от Модулей Дополнений и не относящиеся к Основным Законам."
 
 /obj/item/ai_module/reset/purge/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
 	..()
@@ -429,7 +429,7 @@ AI MODULES
 /******************** Robocop ********************/
 
 /obj/item/ai_module/core/full/robocop
-	name = "'Robo-Officer' Core AI Module"
+	name = "'Robocop' Core AI Module"
 	law_id = "robocop"
 
 
@@ -439,6 +439,30 @@ AI MODULES
 	name = "'Antimov' Core AI Module"
 	law_id = "antimov"
 
+
+/******************** Syndicate ********************/
+
+/obj/item/ai_module/core/full/syndicate
+	name = "Syndicate Core AI Module"
+	law_id = "syndie"
+
+/******************** Syndicate ********************/
+
+/obj/item/ai_module/core/full/inteq
+	name = "InteQ Core AI Module"
+	law_id = "inteq"
+
+/********************    SOL    ********************/
+
+/obj/item/ai_module/core/full/solfed
+	name = "Solar Federation Core AI Module"
+	law_id = "solfed"
+
+/********************  TRUMP   ********************/
+
+/obj/item/ai_module/core/full/trump
+	name = "Trump Core AI Module"
+	law_id = "buildawall"
 
 /******************** Freeform Core ******************/
 

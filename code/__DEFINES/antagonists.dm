@@ -71,6 +71,7 @@
 ///Heretics --
 GLOBAL_LIST_EMPTY(living_heart_cache)	//A list of all living hearts in existance, for us to iterate through.
 
+#define IS_INTEQ(mob) (mob.mind?.has_antag_datum(/datum/antagonist/traitor) || mob.mind?.has_antag_datum(/datum/antagonist/raiders) || mob.mind?.has_antag_datum(/datum/antagonist/nukeop) || mob.mind?.has_antag_datum(/datum/antagonist/ghost_role))
 
 #define IS_HERETIC(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic))
 #define IS_HERETIC_MONSTER(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic_monster))
@@ -116,7 +117,7 @@ GLOBAL_LIST_EMPTY(living_heart_cache)	//A list of all living hearts in existance
 #define BLOB_REFLECTOR_COST 15
 
 /// How many telecrystals a normal traitor starts with
-#define TELECRYSTALS_DEFAULT 20
+#define TELECRYSTALS_DEFAULT 30
 /// How many telecrystals mapper/admin only "precharged" uplink implant
 #define TELECRYSTALS_PRELOADED_IMPLANT 10
 /// The normal cost of an uplink implant; used for calcuating how many
@@ -132,3 +133,5 @@ GLOBAL_LIST_EMPTY(living_heart_cache)	//A list of all living hearts in existance
 #define REQUEST_DEL_OBJECTIVE "del_objective"
 #define REQUEST_WIN_OBJECTIVE "win_objective"
 #define REQUEST_LOSE_OBJECTIVE "lose_objective"
+
+#define ANTAG_GROUP_ABOMINATIONS "Extradimensional Abominations"

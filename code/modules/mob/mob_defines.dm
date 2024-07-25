@@ -91,6 +91,8 @@
 	var/atom/movable/buckled = null//Living
 	var/atom/movable/buckling
 
+	var/hide_client_absence = FALSE
+
 	//Hands
 	var/active_hand_index = 1
 	var/list/held_items = list() //len = number of hands, eg: 2 nulls is 2 empty hands, 1 item and 1 null is 1 full hand and 1 empty hand.
@@ -149,6 +151,8 @@
 
 	var/registered_z
 
+	var/memory_throttle_time = 0
+
 	var/list/alerts = list() // contains /atom/movable/screen/alert only // On /mob so clientless mobs will throw alerts properly
 	var/list/client_colours = list()
 	var/hud_type = /datum/hud
@@ -189,3 +193,4 @@
 
 /// A mock client, provided by tests and friends
 	var/datum/client_interface/mock_client
+	var/flavor_text = ""

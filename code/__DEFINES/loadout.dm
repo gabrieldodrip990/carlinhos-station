@@ -11,6 +11,8 @@
 #define LOADOUT_CATEGORY_BACKPACK 				"In backpack"
 #define LOADOUT_SUBCATEGORY_BACKPACK_GENERAL 	"General" //basically anything that there's not enough of to have its own subcategory
 #define LOADOUT_SUBCATEGORY_BACKPACK_TOYS 		"Toys"
+#define LOADOUT_SUBCATEGORY_BACKPACK_ACCESSORIES	"ACCESSORIES"
+
 //neck
 #define LOADOUT_CATEGORY_NECK "Neck"
 #define LOADOUT_SUBCATEGORY_NECK_GENERAL 	"General"
@@ -83,6 +85,7 @@
 #define LOADOUT_COLOR				"loadout_color"
 #define LOADOUT_CUSTOM_NAME			"loadout_custom_name"
 #define LOADOUT_CUSTOM_DESCRIPTION	"loadout_custom_description"
+#define LOADOUT_IS_HEIRLOOM			"loadout_is_heirloom" // BLUEMOON ADD - выбор вещей из лодаута как family heirloom
 
 //loadout item flags
 #define LOADOUT_CAN_NAME					(1<<0) //renaming items

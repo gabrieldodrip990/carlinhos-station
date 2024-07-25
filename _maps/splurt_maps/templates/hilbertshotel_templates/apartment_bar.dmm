@@ -14,8 +14,6 @@
 	dir = 1
 	},
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/storage/fancy/heart_box,
-/obj/item/paper/fluff/hilbertshotel/welcomeletter,
 /turf/open/floor/wood/wood_tiled,
 /area/hilbertshotel)
 "ee" = (
@@ -103,13 +101,6 @@
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/table/wood/poker/shadow,
 /turf/open/floor/carpet/royalblack,
-/area/hilbertshotel)
-"nQ" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/structure/table/wood/fancy/royalblack,
-/turf/open/floor/wood/wood_tiled,
 /area/hilbertshotel)
 "oH" = (
 /obj/structure/table/wood,
@@ -214,12 +205,6 @@
 /area/hilbertshotel)
 "yz" = (
 /turf/open/floor/glass/reinforced,
-/area/hilbertshotel)
-"yO" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/structure/table/wood/poker/shadow,
-/obj/item/choice_beacon/box/plushie,
-/turf/open/floor/carpet/royalblack,
 /area/hilbertshotel)
 "BL" = (
 /obj/machinery/light{
@@ -490,11 +475,11 @@ rY
 ee
 ee
 pr
-yO
+nj
 Wg
 yz
 dy
-nQ
+dR
 TA
 Pz
 li
@@ -512,7 +497,7 @@ nj
 cK
 yz
 dy
-nQ
+dR
 af
 af
 lS
@@ -548,7 +533,7 @@ sm
 cK
 yz
 dy
-nQ
+dR
 af
 af
 fo
@@ -566,7 +551,7 @@ sm
 cK
 yz
 dy
-nQ
+dR
 af
 af
 af

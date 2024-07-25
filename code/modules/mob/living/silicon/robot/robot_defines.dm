@@ -22,6 +22,9 @@
 	var/mob/living/silicon/ai/mainframe = null
 	var/datum/action/innate/undeployment/undeployment_action = new
 
+	///Represents the cyborg's model (engineering, medical, etc.)
+	var/obj/item/robot_module/model = null
+
 	/// the last health before updating - to check net change in health
 	var/previous_health
 	/// Station alert datum for showing alerts UI
@@ -113,6 +116,9 @@
 	// cit specific vars //
 	var/sitting = 0
 	var/bellyup = 0
+	var/deep_rest = 0		//DarkSer request by Gardelin0
+	var/wag_rest = 0		//DarkSer request by Gardelin0
+	var/wag_sit = 0			//DarkSer request by Gardelin0
 	var/dogborg = FALSE
 
 	var/cansprint = 1

@@ -8,14 +8,17 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	//SPLURT EDIT START
-	var/list/static/hotel_maps = list("Hotel Room", "Apartment-1","Apartment-2", "Apartment-3", "Apartment-4", "Apartment-Bar", "Apartment-Garden", "Apartment-Sauna")
-	var/datum/map_template/hilbertshotel/apartment/one/hilberts_hotel_rooms_apartment_one
-	var/datum/map_template/hilbertshotel/apartment/two/hilberts_hotel_rooms_apartment_two
-	var/datum/map_template/hilbertshotel/apartment/three/hilberts_hotel_rooms_apartment_three
-	var/datum/map_template/hilbertshotel/apartment/four/hilberts_hotel_rooms_apartment_four
+	var/list/static/hotel_maps = list("Hotel Room", "Apartment-1","Apartment-2", "Apartment-3", "Apartment-4", "Apartment-Syndi", "Apartment-Bar", "Apartment-dojo", "Apartment-Sauna", "Apartment-Beach", "Apartment-Forest")
+	var/datum/map_template/hilbertshotel/apartment/hilberts_hotel_rooms_apartment_one
+	var/datum/map_template/hilbertshotel/apartment/one/hilberts_hotel_rooms_apartment_two
+	var/datum/map_template/hilbertshotel/apartment/two/hilberts_hotel_rooms_apartment_three
+	var/datum/map_template/hilbertshotel/apartment/three/hilberts_hotel_rooms_apartment_four
+	var/datum/map_template/hilbertshotel/apartment/syndi/hilberts_hotel_rooms_apartment_syndi
 	var/datum/map_template/hilbertshotel/apartment/bar/hilberts_hotel_rooms_apartment_bar
-	var/datum/map_template/hilbertshotel/apartment/garden/hilberts_hotel_rooms_apartment_garden
+	var/datum/map_template/hilbertshotel/apartment/dojo/hilberts_hotel_rooms_apartment_dojo
 	var/datum/map_template/hilbertshotel/apartment/sauna/hilberts_hotel_rooms_apartment_sauna
+	var/datum/map_template/hilbertshotel/apartment/beach/hilberts_hotel_rooms_apartment_beach
+	var/datum/map_template/hilbertshotel/apartment/forest/hilberts_hotel_rooms_apartment_forest
 	//SPLURT EDIT END
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
 	var/datum/map_template/hilbertshotel/empty/hotelRoomTempEmpty
@@ -37,15 +40,18 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	hotelRoomTemp = new()
 	hotelRoomTempEmpty = new()
 	hotelRoomTempLore = new()
-	//SPLURT EDIT START
+
 	hilberts_hotel_rooms_apartment_one = new()
 	hilberts_hotel_rooms_apartment_two = new()
 	hilberts_hotel_rooms_apartment_three = new()
 	hilberts_hotel_rooms_apartment_four = new()
+	hilberts_hotel_rooms_apartment_syndi = new()
 	hilberts_hotel_rooms_apartment_bar = new()
-	hilberts_hotel_rooms_apartment_garden = new()
+	hilberts_hotel_rooms_apartment_dojo = new()
 	hilberts_hotel_rooms_apartment_sauna = new()
-	//SPLURT EDIT END
+	hilberts_hotel_rooms_apartment_beach = new()
+	hilberts_hotel_rooms_apartment_forest = new()
+
 	var/area/currentArea = get_area(src)
 	if(currentArea.type == /area/ruin/space/has_grav/hilbertresearchfacility)
 		ruinSpawned = TRUE
@@ -233,8 +239,11 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 		if("Apartment-3") return hilberts_hotel_rooms_apartment_three
 		if("Apartment-4") return hilberts_hotel_rooms_apartment_four
 		if("Apartment-Bar") return hilberts_hotel_rooms_apartment_bar
-		if("Apartment-Garden") return hilberts_hotel_rooms_apartment_garden
+		if("Apartment-Syndi") return hilberts_hotel_rooms_apartment_syndi
+		if("Apartment-dojo") return hilberts_hotel_rooms_apartment_dojo
 		if("Apartment-Sauna") return hilberts_hotel_rooms_apartment_sauna
+		if("Apartment-Beach") return hilberts_hotel_rooms_apartment_beach
+		if("Apartment-Forest") return hilberts_hotel_rooms_apartment_forest
 		if("Mystery Room") return hotelRoomTempLore
 	return hotelRoomTemp // Default to Hotel Room if no match is found
 
@@ -255,9 +264,12 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 			if("Apartment-2") mapTemplate = hilberts_hotel_rooms_apartment_two
 			if("Apartment-3") mapTemplate = hilberts_hotel_rooms_apartment_three
 			if("Apartment-4") mapTemplate = hilberts_hotel_rooms_apartment_four
+			if("Apartment-Syndi") mapTemplate = hilberts_hotel_rooms_apartment_syndi
 			if("Apartment-Bar") mapTemplate = hilberts_hotel_rooms_apartment_bar
-			if("Apartment-Garden") mapTemplate = hilberts_hotel_rooms_apartment_garden
+			if("Apartment-dojo") mapTemplate = hilberts_hotel_rooms_apartment_dojo
 			if("Apartment-Sauna") mapTemplate = hilberts_hotel_rooms_apartment_sauna
+			if("Apartment-Beach") mapTemplate = hilberts_hotel_rooms_apartment_beach
+			if("Apartment-Forest") mapTemplate = hilberts_hotel_rooms_apartment_forest
 	if(!mapTemplate)
 		mapTemplate = hotelRoomTemp //Default Hotel Room
 
@@ -482,12 +494,14 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	has_gravity = TRUE
 	area_flags = NOTELEPORT | HIDDEN_AREA
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
-	ambientsounds = list('sound/ambience/servicebell.ogg')
 	var/roomnumber = 0
 	var/obj/item/hilbertshotel/parentSphere
 	var/datum/turf_reservation/reservation
 	var/turf/storageTurf
 	var/roomType = "Hotel Room" // SPLURT ADDITION: Default room type
+
+/area/hilbertshotel/illuminated
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/hilbertshotel/Entered(atom/movable/AM)
 	. = ..()
@@ -612,7 +626,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 /obj/item/paper/crumpled/docslogs/Initialize(mapload)
 	. = ..()
 	GLOB.hhmysteryRoomNumber = rand(1, SHORT_REAL_LIMIT)
-	info = {"
+	default_raw_text = {"
 ###  Research Logs
 I might just be onto something here!
 The strange space-warping properties of bluespace have been known about for awhile now, but I might be on the verge of discovering a new way of harnessing it.
@@ -638,7 +652,7 @@ Goodbye
 
 /obj/item/paper/crumpled/robertsworkjournal
 	name = "Work Journal"
-	info = {"<h4>First Week!</h4>
+	default_raw_text = {"<h4>First Week!</h4>
 	First week on the new job. It's a secretarial position, but hey, whatever pays the bills. Plus it seems like some interesting stuff goes on here.<br>
 	Doc says its best that I don't openly talk about his research with others, I guess he doesn't want it getting out or something. I've caught myself slipping a few times when talking to others, it's hard not to brag about something this cool!<br>
 	I'm not really sure why I'm choosing to journal this. Doc seems to log everything. He says it's incase he discovers anything important.<br>
@@ -664,7 +678,7 @@ Goodbye
 
 /obj/item/paper/crumpled/bloody/docsdeathnote
 	name = "note"
-	info = {"
+	default_raw_text = {"
 This is it isn't it?
 No one's coming to help, that much has become clear.
 Sure, it's lonely, but do I have much choice? At least I brought the analyzer with me, they shouldn't be able to find me without it.

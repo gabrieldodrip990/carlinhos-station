@@ -80,6 +80,13 @@ All foods are distributed among various categories. Use common sense.
 					reagents.add_reagent(rid, amount, tastes.Copy())
 				else
 					reagents.add_reagent(rid, amount)
+		if(bonus_reagents)
+			for(var/rid in bonus_reagents)
+				var/amount = bonus_reagents[rid]
+				if(rid == /datum/reagent/consumable/nutriment || rid == /datum/reagent/consumable/nutriment/vitamin)
+					reagents.add_reagent(rid, amount, tastes.Copy())
+				else
+					reagents.add_reagent(rid, amount)
 	else
 		..()
 
@@ -127,7 +134,7 @@ All foods are distributed among various categories. Use common sense.
 				user.visible_message("<span class='notice'>[user] hungrily takes a [eatverb] from \the [src].</span>", "<span class='notice'>You hungrily take a [eatverb] from \the [src].</span>")
 			else if(fullness > 150 && fullness < 500)
 				user.visible_message("<span class='notice'>[user] takes a [eatverb] from \the [src].</span>", "<span class='notice'>You take a [eatverb] from \the [src].</span>")
-			else if(fullness > 500 && fullness < 600)
+			else if((fullness > 500 && fullness < 600) || HAS_TRAIT(user, TRAIT_BLUEMOON_DEVOURER))
 				user.visible_message("<span class='notice'>[user] unwillingly takes a [eatverb] of a bit of \the [src].</span>", "<span class='warning'>You unwillingly take a [eatverb] of a bit of \the [src].</span>")
 			else if(fullness > (600 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
 				user.visible_message("<span class='warning'>[user] cannot force any more of \the [src] to go down [user.p_their()] throat!</span>", "<span class='danger'>You cannot force any more of \the [src] to go down your throat!</span>")
@@ -307,24 +314,25 @@ All foods are distributed among various categories. Use common sense.
 			else
 				S.reagents.add_reagent(r_id, amount)
 
-/obj/item/reagent_containers/food/snacks/microwave_act(obj/machinery/microwave/M)
+/obj/item/reagent_containers/food/snacks/microwave_act(obj/machinery/microwave/microwave_source, mob/microwaver, randomize_pixel_offset)
+	. = ..()
 	var/turf/T = get_turf(src)
 	var/obj/item/result
 	if(cooked_type)
 		result = new cooked_type(T)
-		if(istype(M))
-			initialize_cooked_food(result, M.efficiency)
+		if(istype(microwave_source))
+			initialize_cooked_food(result, microwave_source.efficiency)
 			//if the result is food, set its food quality to the original food item's quality
 			if(isfood(result))
 				var/obj/item/reagent_containers/food/food_output = result
-				food_output.adjust_food_quality(food_quality + M.quality_increase)
+				food_output.adjust_food_quality(food_quality + microwave_source.quality_increase)
 		else
 			initialize_cooked_food(result, 1)
 		SSblackbox.record_feedback("tally", "food_made", 1, result.type)
 	else
 		result = new /obj/item/reagent_containers/food/snacks/badrecipe(T)
-		if(istype(M) && M.dirty < 100)
-			M.dirty++
+		if(istype(microwave_source) && microwave_source.dirty < 100)
+			microwave_source.dirty++
 	qdel(src)
 
 	return result

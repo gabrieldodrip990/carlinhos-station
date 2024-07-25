@@ -6,8 +6,9 @@
 /turf/closed/mineral/random,
 /area/ruin/unpowered/no_grav)
 "ac" = (
-/turf/closed/wall,
-/area/ruin/space/has_grav/listeningstation)
+/obj/structure/sign/poster/contraband/random,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ad" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -20,7 +21,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ae" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/neutral,
@@ -34,7 +35,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "af" = (
 /obj/structure/rack{
 	dir = 8
@@ -50,10 +51,10 @@
 	},
 /obj/item/clothing/mask/gas/syndicate,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ag" = (
 /turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ah" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -66,7 +67,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ai" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -79,7 +80,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aj" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -93,10 +94,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ak" = (
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "al" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/syndicate,
@@ -104,7 +105,7 @@
 	pixel_y = -17
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "am" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/turf_decal/tile/neutral{
@@ -118,7 +119,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "an" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -128,7 +129,7 @@
 	req_access_txt = "150"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ao" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -144,7 +145,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ap" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -155,14 +156,14 @@
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aq" = (
 /obj/machinery/light/small{
 	brightness = 3;
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ar" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4;
@@ -181,7 +182,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "as" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -197,7 +198,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "at" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -213,7 +214,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "au" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -230,7 +231,7 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "av" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -243,7 +244,7 @@
 /obj/item/paper/fluff/ruins/listeningstation/reports/november,
 /obj/item/pen,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aw" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
@@ -257,7 +258,7 @@
 	pixel_x = -24
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ax" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -272,15 +273,15 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ay" = (
 /obj/structure/filingcabinet,
 /obj/item/paper/fluff/ruins/listeningstation/odd_report,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "az" = (
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -289,14 +290,14 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aB" = (
 /obj/structure/rack{
 	dir = 8
 	},
 /obj/item/multitool,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aC" = (
 /obj/structure/rack{
 	dir = 8;
@@ -304,38 +305,16 @@
 	},
 /obj/item/tank/internals/doubleoxygen,
 /obj/item/tank/internals/doubleoxygen{
-	pixel_x = -7;
-	pixel_y = 7
-	},
-/obj/item/tank/internals/doubleoxygen{
 	pixel_x = 9;
 	pixel_y = -6
 	},
-/obj/item/tank/internals/doubleoxygen{
-	pixel_x = 9;
-	pixel_y = 2
-	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aD" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck/syndicate,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
-"aE" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/structure/closet/emcloset/anchored,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aF" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -348,22 +327,16 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/structure/tank_dispenser/oxygen{
-	oxygentanks = 4
+/obj/machinery/computer/shuttle/ds_syndicate{
+	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/listeningstation)
-"aH" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aI" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -376,13 +349,13 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aJ" = (
 /obj/machinery/door/airlock{
 	name = "Cabin"
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -402,14 +375,14 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aL" = (
 /obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aM" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -429,14 +402,14 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aN" = (
 /obj/structure/bookcase/random/adult,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 8
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aO" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -458,13 +431,13 @@
 /obj/item/stock_parts/cell/high/plus,
 /obj/item/inducer/sci/combat,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aQ" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -473,7 +446,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aR" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -486,7 +459,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -498,7 +471,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aT" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/effect/turf_decal/tile/red{
@@ -509,7 +482,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aU" = (
 /obj/machinery/airalarm/syndicate{
 	pixel_y = 24
@@ -528,7 +501,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aV" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -543,7 +516,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aW" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -565,7 +538,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aX" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
@@ -580,7 +553,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aY" = (
 /obj/machinery/vending/snack/random{
 	extended_inventory = 1
@@ -592,7 +565,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "aZ" = (
 /obj/structure/filingcabinet,
 /obj/item/paper/fluff/ruins/listeningstation/reports/october,
@@ -603,13 +576,13 @@
 /obj/item/paper/fluff/ruins/listeningstation/reports/may,
 /obj/item/paper/fluff/ruins/listeningstation/reports/april,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ba" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 9
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -618,11 +591,11 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bc" = (
 /obj/machinery/light/small,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bd" = (
 /obj/structure/bed/pod{
 	dir = 1
@@ -631,12 +604,10 @@
 	dir = 8
 	},
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms/space{
-	assignedrole = "Space Syndicate";
-	dir = 4;
-	flavour_text = "<span class='big bold'>You are a syndicate agent,</span><b> assigned to a small listening post station situated near your hated enemy's top secret research facility: Space Station 13. <b>Monitor enemy activity as best you can, and try to keep a low profile. <font size=6>DON'T</font> abandon the base without good cause.</b> Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!</b>"
+	dir = 4
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "be" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -645,7 +616,7 @@
 	pixel_y = -29
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1;
@@ -654,12 +625,12 @@
 	pixel_y = 5
 	},
 /turf/open/floor/plasteel/white/corner,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/white/side,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bh" = (
 /obj/machinery/vending/cola/random{
 	extended_inventory = 1
@@ -667,7 +638,7 @@
 /turf/open/floor/plasteel/white/corner{
 	dir = 8
 	},
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bi" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
@@ -676,35 +647,35 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bj" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bl" = (
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'DANGER: SELF DESTRUCT DEVICE'.";
 	name = "DANGER: SELF DESTRUCT DEVICE";
 	pixel_x = 32
 	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/listeningstation)
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bm" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bn" = (
 /obj/structure/sign/departments/medbay/alt,
-/turf/closed/wall,
-/area/ruin/space/has_grav/listeningstation)
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bo" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -713,7 +684,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bp" = (
 /obj/effect/turf_decal/stripes/red/corner{
 	dir = 1
@@ -724,7 +695,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bq" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -739,7 +710,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "br" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -755,7 +726,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bs" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/reagent_containers/blood/OMinus{
@@ -769,7 +740,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 9
 	},
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -778,30 +749,30 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bu" = (
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/listeningstation)
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bx" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "by" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -814,7 +785,7 @@
 /obj/item/clothing/head/welding,
 /obj/item/weldingtool/largetank,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
@@ -822,18 +793,18 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bA" = (
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bC" = (
 /obj/structure/cable,
 /obj/machinery/power/port_gen/pacman{
@@ -842,12 +813,12 @@
 /obj/effect/turf_decal/bot,
 /obj/item/wrench,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bD" = (
 /obj/structure/table,
 /obj/item/storage/box/lights/bulbs,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/meter,
@@ -857,7 +828,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bH" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -866,7 +837,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -881,32 +852,24 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "bJ" = (
 /obj/docking_port/stationary{
 	dir = 4;
 	dwidth = 6;
-	height = 7;
-	id = "caravansyndicate3_listeningpost";
-	name = "Syndicate Listening Post";
-	width = 15
-	},
-/obj/docking_port/stationary{
-	dir = 4;
-	dwidth = 4;
-	height = 5;
+	height = 16;
 	id = "caravansyndicate1_listeningpost";
 	name = "Syndicate Listening Post";
-	width = 9
+	width = 16
 	},
 /turf/template_noop,
 /area/template_noop)
 "cg" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	dir = 8
+/obj/structure/chair/sofa/corp{
+	color = "#DE3A3A"
 	},
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "cl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -915,13 +878,30 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"cz" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable,
+/obj/machinery/power/rtg/advanced/fullupgrade,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "cA" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"cI" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "di" = (
 /obj/structure/sink{
 	dir = 8;
@@ -932,42 +912,60 @@
 	pixel_x = -26
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "dF" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
-	dir = 1;
-	piping_layer = 3
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "dH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/iron/dark/diagonal,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "dO" = (
 /obj/machinery/vending/snack/random{
 	onstation = 0
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "dV" = (
 /obj/machinery/computer/message_monitor{
 	dir = 2
 	},
 /obj/item/paper/monitorkey,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"er" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "es" = (
-/obj/machinery/atmospherics/miner/toxins,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
+/obj/structure/table/wood,
+/obj/structure/window/reinforced/survival_pod,
+/obj/structure/window/reinforced/survival_pod{
+	dir = 6
+	},
+/obj/item/toy/cards/deck/syndicate,
+/obj/item/toy/cards/deck/unum{
+	pixel_x = 5
+	},
+/obj/item/flashlight/lamp/green{
+	pixel_x = -10
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ey" = (
 /obj/structure/curtain,
 /obj/machinery/shower{
@@ -975,20 +973,7 @@
 	},
 /obj/item/soap/syndie,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/space/has_grav/listeningstation)
-"eQ" = (
-/obj/machinery/power/compressor{
-	comp_id = "syndie_lavaland_incineratorturbine";
-	dir = 1;
-	luminosity = 2
-	},
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
-/turf/open/floor/engine/vacuum,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "eR" = (
 /obj/structure/closet/crate/bin,
 /obj/structure/extinguisher_cabinet{
@@ -996,21 +981,13 @@
 	pixel_y = 1
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
-"eW" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"fo" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
-"fo" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
-	dir = 4;
-	volume_rate = 200
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "fE" = (
 /obj/machinery/power/smes{
 	charge = 5e+006
@@ -1018,16 +995,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
-"fK" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
-"fL" = (
-/obj/machinery/door/poddoor/incinerator_syndicatelava_aux,
-/turf/open/floor/engine/vacuum,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "hg" = (
 /obj/machinery/door/airlock{
 	name = "Cabin"
@@ -1035,7 +1004,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "hj" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -1051,7 +1020,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "hy" = (
 /turf/open/floor/engine/vacuum,
 /area/ruin/unpowered/no_grav)
@@ -1061,7 +1030,7 @@
 	req_access_txt = "150"
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "hG" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1071,14 +1040,14 @@
 	onstation = 0
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"ig" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ik" = (
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
-"im" = (
-/obj/machinery/atmospherics/miner/oxygen,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "is" = (
 /obj/machinery/light/small{
 	dir = 4;
@@ -1095,7 +1064,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "iK" = (
 /obj/structure/table,
 /obj/machinery/firealarm{
@@ -1104,42 +1073,40 @@
 	},
 /obj/machinery/microwave,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "jj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
-"jm" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	dir = 10
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "js" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	dir = 5
+/obj/structure/chair/sofa/corp/left{
+	color = "#DE3A3A"
 	},
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ju" = (
-/obj/machinery/air_sensor{
-	frequency = 1442;
-	id_tag = "syndie_lavaland_o2_sensor"
+/obj/structure/table/wood,
+/obj/structure/window/reinforced/survival_pod,
+/obj/item/storage/fancy/candle_box{
+	pixel_x = 4
 	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
-"la" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/item/storage/book/bible/syndicate{
+	pixel_x = -13
 	},
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/incinerator_syndicatelava{
-	dir = 8
+/obj/item/reagent_containers/glass/beaker/waterbottle/large,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"lh" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor{
+	id = "ds2bridge"
 	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "mk" = (
 /obj/machinery/telecomms/relay/preset/ruskie{
 	use_power = 0
@@ -1148,15 +1115,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
-"mA" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "mR" = (
 /obj/machinery/computer/med_data/syndie{
 	dir = 4;
@@ -1167,79 +1126,68 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "mV" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
 	dir = 8;
-	volume_rate = 200;
-	piping_layer = 2
+	volume_rate = 200
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
-"mX" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 8;
-	frequency = 1442;
-	id_tag = "syndie_lavaland_tox_out";
-	name = "toxin out"
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "na" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular,
 /obj/item/clothing/neck/stethoscope,
 /obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/item/defibrillator/compact/combat/loaded,
+/obj/item/defibrillator/compact/combat,
 /turf/open/floor/plasteel/white/side{
 	dir = 10
 	},
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "nw" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "or" = (
-/obj/machinery/atmospherics/pipe/manifold/orange/visible{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/effect/turf_decal/siding/dark,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ow" = (
 /obj/machinery/power/port_gen/pacman/super,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "oL" = (
 /obj/structure/table/optable,
 /turf/open/floor/plasteel/white/side,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "po" = (
 /obj/structure/toilet{
 	pixel_y = 18
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/space/has_grav/listeningstation)
-"pp" = (
-/obj/machinery/door/poddoor/incinerator_syndicatelava_main,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "pr" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "qc" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "qQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1254,12 +1202,12 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "rc" = (
 /obj/structure/filingcabinet,
 /obj/item/paper/fluff/ruins/listeningstation/receipt,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "rt" = (
 /obj/machinery/sleeper/syndie{
 	dir = 8
@@ -1267,33 +1215,35 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "rv" = (
-/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
-"rw" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/closed/wall,
-/area/ruin/space/has_grav/listeningstation)
-"rx" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	dir = 10
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/supplymain/visible{
+/obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"rw" = (
+/obj/machinery/vending/wardrobe/syndie_wardrobe,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"rx" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/library/checkout{
+	pixel_y = 7
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "sb" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/structure/rack{
-	dir = 8
-	},
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "sg" = (
 /obj/machinery/door/airlock{
 	name = "Cabin"
@@ -1302,20 +1252,18 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ss" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3,
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/effect/turf_decal/siding/dark,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "sD" = (
 /obj/machinery/door/airlock{
 	name = "Personal Quarters"
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "tn" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -1331,58 +1279,43 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "tI" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3,
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "tW" = (
 /obj/machinery/reagentgrinder{
 	pixel_y = 8
 	},
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "uf" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/listeningstation)
+/obj/structure/cable,
+/obj/machinery/power/rtg/advanced/fullupgrade,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "uM" = (
 /obj/machinery/firealarm{
 	dir = 2;
 	pixel_y = 24
 	},
 /obj/structure/table,
-/obj/item/gun/ballistic/shotgun/boltaction,
-/obj/item/ammo_box/a762,
+/obj/item/storage/backpack/duffelbag/syndie/c20rbundle,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
-"uY" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3,
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 2;
-	name = "O2 to Incinerator";
-	target_pressure = 4500
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ve" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 2
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "vk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1390,27 +1323,20 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 10
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/door/airlock/maintenance,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "vG" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/obj/machinery/button/ignition/incinerator/syndicatelava{
-	pixel_x = 6;
-	pixel_y = -24
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "vM" = (
 /obj/machinery/light/small,
 /obj/structure/sign/warning/vacuum{
 	pixel_y = 32
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "vP" = (
 /obj/machinery/airalarm/syndicate{
 	pixel_y = 24
@@ -1422,22 +1348,26 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "vT" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 4
+/obj/effect/turf_decal/siding/dark,
+/obj/structure/bookcase/random/adult,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"vY" = (
+/obj/structure/cable{
+	icon_state = "2-4"
 	},
+/obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "wa" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 1
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "wv" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1445,14 +1375,20 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"wT" = (
+/obj/structure/chair/sofa/corp/right{
+	color = "#DE3A3A"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "wV" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "xf" = (
 /obj/structure/table/wood,
 /obj/item/ammo_box/magazine/m10mm,
@@ -1461,18 +1397,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
-"xC" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
-"xG" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma{
-	dir = 1;
-	piping_layer = 3
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "xJ" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -1480,16 +1405,16 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "xP" = (
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "yg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "yh" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -1508,80 +1433,42 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
-"yC" = (
-/obj/machinery/air_sensor{
-	frequency = 1442;
-	id_tag = "syndie_lavaland_n2_sensor"
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
-"yL" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/structure/rack{
-	dir = 8
-	},
-/obj/item/paper{
-	info = "We took away your hardsuits because many operatives were leaving their posts to have orgies on stations nearby, dis-GUSTENG."
-	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/listeningstation)
-"yY" = (
-/mob/living/carbon/monkey,
-/turf/open/floor/engine/vacuum,
-/area/ruin/space/has_grav/listeningstation)
-"zx" = (
-/obj/machinery/power/turbine{
-	luminosity = 2
-	},
-/obj/structure/cable,
-/turf/open/floor/engine/vacuum,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"yC" = (
+/obj/machinery/space_heater,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "zT" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	dir = 5
-	},
-/obj/machinery/portable_atmospherics/canister,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Am" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/rag,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "AC" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 8;
-	frequency = 1442;
-	id_tag = "syndie_lavaland_o2_out";
-	name = "oxygen out"
+/obj/item/kirbyplants/hedge{
+	anchored = 1
 	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/light/dim/directional/north,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "AJ" = (
 /obj/machinery/vending/cola/random{
 	onstation = 0
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "BE" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
-"BK" = (
-/obj/machinery/atmospherics/pipe/simple/supplymain/visible,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
+/obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Cd" = (
 /obj/item/radio/intercom{
 	freerange = 1;
@@ -1592,13 +1479,13 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Ce" = (
 /obj/machinery/vending/donksofttoyvendor{
 	onstation = 0
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "De" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -1610,16 +1497,12 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
-"Dv" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "DA" = (
 /obj/machinery/computer/camera_advanced,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "DF" = (
 /mob/living/simple_animal/pet/penguin/emperor{
 	name = "Kowalski";
@@ -1636,43 +1519,41 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "DJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "DK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "EU" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/atmospherics/pipe/simple/supplymain/visible{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Ff" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supplymain/visible,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/portable_atmospherics/canister,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Fv" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 5
 	},
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "FX" = (
 /obj/structure/closet/secure_closet/medical1{
 	req_access = null;
@@ -1681,24 +1562,13 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 5
 	},
-/area/ruin/space/has_grav/listeningstation)
-"Gf" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/airlock/public/glass/incinerator/atmos_exterior,
-/turf/open/floor/engine/vacuum,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Gr" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 8
 	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/listeningstation)
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Gw" = (
 /obj/machinery/vending/autodrobe/all_access{
 	default_price = 0;
@@ -1707,14 +1577,11 @@
 	onstation = 0
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "GB" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "GN" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1730,7 +1597,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "GY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4;
@@ -1740,7 +1607,7 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Hf" = (
 /obj/structure/sink{
 	dir = 4;
@@ -1749,15 +1616,16 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Hq" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
-	dir = 1;
-	volume_rate = 200;
-	piping_layer = 2
+/obj/machinery/light/small{
+	dir = 4;
+	light_color = "#d8b1b1"
 	},
-/turf/open/floor/engine/vacuum,
-/area/ruin/space/has_grav/listeningstation)
+/obj/structure/cable,
+/obj/machinery/power/rtg/advanced/fullupgrade,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "HH" = (
 /obj/structure/table/wood,
 /obj/item/ammo_box/magazine/m10mm,
@@ -1768,15 +1636,15 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "HU" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "HW" = (
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "HX" = (
 /obj/structure/table,
 /obj/machinery/computer/security/telescreen/entertainment{
@@ -1801,7 +1669,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Il" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 2;
@@ -1815,33 +1683,29 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Jc" = (
 /obj/structure/table,
-/obj/item/gun/ballistic/shotgun/boltaction,
-/obj/item/ammo_box/a762,
+/obj/item/storage/backpack/duffelbag/syndie/c20rbundle,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Jn" = (
 /obj/structure/table,
 /obj/item/pipe_dispenser,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Jv" = (
 /obj/machinery/light/small{
-	dir = 4
+	dir = 4;
+	light_color = "#d8b1b1"
 	},
-/obj/machinery/atmospherics/components/binary/pump/on{
-	target_pressure = 4500
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 8
-	},
-/obj/machinery/airlock_sensor/incinerator_syndicatelava{
-	pixel_x = 22
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/listeningstation)
+/obj/structure/cable,
+/obj/machinery/power/rtg/advanced/fullupgrade,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "JY" = (
 /obj/structure/statue/bronze/marx,
 /turf/open/floor/engine/vacuum,
@@ -1852,22 +1716,28 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Kq" = (
 /obj/structure/bookcase/random/adult,
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Ks" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/structure/table/wood,
+/obj/structure/window/reinforced/survival_pod{
+	dir = 10
+	},
+/obj/structure/window/reinforced/survival_pod,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/reagent_containers/glass/beaker/waterbottle/large,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Kw" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "KB" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/tile/neutral{
@@ -1885,7 +1755,7 @@
 	pixel_x = 22
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "KF" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/tile/neutral{
@@ -1899,14 +1769,11 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "KX" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
-	dir = 1;
-	piping_layer = 3
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Lu" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -1922,7 +1789,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "LL" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
@@ -1940,25 +1807,13 @@
 	pixel_x = -32
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "LV" = (
-/obj/machinery/computer/turbine_computer{
-	dir = 4;
-	id = "syndie_lavaland_incineratorturbine"
-	},
-/obj/machinery/button/door/incinerator_vent_syndicatelava_aux{
-	pixel_x = -6;
-	pixel_y = -24
-	},
-/obj/machinery/button/door/incinerator_vent_syndicatelava_main{
-	pixel_x = 6;
-	pixel_y = -24
-	},
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Md" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/emergency{
@@ -1970,15 +1825,23 @@
 /obj/item/storage/toolbox/electrical{
 	pixel_y = -3
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"Mq" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/item/tank/internals/emergency_nitrogen_ext,
+/obj/item/tank/internals/emergency_nitrogen_ext,
+/obj/item/tank/internals/emergency_nitrogen_ext,
+/obj/item/tank/internals/emergency_nitrogen/double,
+/obj/item/tank/internals/emergency_nitrogen/double,
+/obj/item/tank/internals/emergency_nitrogen/double,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "MH" = (
-/obj/machinery/igniter/incinerator_syndicatelava,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/engine/vacuum,
-/area/ruin/space/has_grav/listeningstation)
+/obj/structure/cable,
+/obj/machinery/power/rtg/advanced/fullupgrade,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "MK" = (
 /obj/machinery/syndicatebomb/self_destruct{
 	anchored = 1
@@ -1993,7 +1856,7 @@
 	dir = 4
 	},
 /turf/open/floor/circuit/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Nz" = (
 /obj/machinery/vending/kink{
 	default_price = 0;
@@ -2002,13 +1865,13 @@
 	onstation = 0
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "NJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Ow" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 8
@@ -2017,90 +1880,80 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Oz" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "OD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Pg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Pl" = (
 /obj/structure/bookcase/random/adult,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "PB" = (
 /obj/machinery/door/airlock{
 	name = "Toilet"
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "PW" = (
 /obj/machinery/status_display{
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Qe" = (
 /obj/item/paper/fluff/ruins/listeningstation/briefing,
 /obj/structure/table/wood,
 /obj/item/clothing/accessory/ring/syntech,
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Qm" = (
 /obj/machinery/light/small,
 /obj/structure/table,
 /obj/item/melee/baton/stunsword/smithed,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Qu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/closed/wall,
-/area/ruin/space/has_grav/listeningstation)
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "QA" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/airlock/public/glass/incinerator/atmos_interior,
-/obj/machinery/embedded_controller/radio/airlock_controller/incinerator_atmos{
-	pixel_x = 25;
-	pixel_y = 6
+/obj/structure/cable{
+	icon_state = "2-4"
 	},
-/turf/open/floor/engine/vacuum,
-/area/ruin/space/has_grav/listeningstation)
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "QP" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/fullupgrade{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/listeningstation)
-"QQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 9
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
-"Rt" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 6
-	},
-/obj/machinery/spaceship_navigation_beacon/invion,
-/turf/closed/wall,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "RA" = (
 /obj/machinery/light/small,
 /obj/machinery/airalarm/syndicate{
@@ -2115,22 +1968,23 @@
 	name = "Robotics Operating Computer"
 	},
 /turf/open/floor/plasteel/white/side,
-/area/ruin/space/has_grav/listeningstation)
-"RP" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	dir = 9
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "RY" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/machinery/computer/library/checkout,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "So" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"SU" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/structure/sign/poster/contraband/random,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "SV" = (
 /obj/structure/closet{
 	icon_door = "black";
@@ -2164,23 +2018,32 @@
 /obj/item/storage/photo_album,
 /obj/machinery/light/small,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "SY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 8;
-	frequency = 1442;
-	id_tag = "syndie_lavaland_n2_out";
-	name = "nitrogen out"
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
 	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Tx" = (
-/obj/machinery/atmospherics/miner/nitrogen,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/atmospherics/components/unary/tank/air,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "TM" = (
-/turf/open/floor/engine/vacuum,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/rtg/advanced/fullupgrade,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "TO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/turf_decal/tile/neutral,
@@ -2193,20 +2056,25 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
-"Ue" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/atmospherics/pipe/simple/supplymain/visible{
-	dir = 4
+/obj/machinery/button/door/directional/east{
+	desc = "To keep the void away.";
+	id = "ds2bridge";
+	name = "Bridge Blast Door Control";
+	req_access_txt = "150";
+	pixel_y = 40;
+	pixel_x = 26
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"Ue" = (
+/obj/item/kirbyplants/hedge{
+	anchored = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Vr" = (
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "VC" = (
 /obj/machinery/button/door{
 	id = "syndie_listeningpost_external";
@@ -2233,39 +2101,32 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
-"VE" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "VM" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Wi" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Xf" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/plasteel/white/side{
 	dir = 6
 	},
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Xj" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "Xq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -2274,15 +2135,21 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
+"XB" = (
+/obj/machinery/atmospherics/components/unary/tank/air{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "XP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "XT" = (
-/obj/structure/closet/firecloset/full,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "XY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -2291,7 +2158,7 @@
 	dir = 9
 	},
 /turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "YM" = (
 /obj/structure/table/wood,
 /obj/item/radio/headset/syndicate/alt,
@@ -2303,11 +2170,11 @@
 	pixel_y = -5
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "YZ" = (
 /obj/machinery/light/small,
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ZY" = (
 /obj/machinery/vending/clothing{
 	default_price = 0;
@@ -2316,13 +2183,13 @@
 	onstation = 0
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 "ZZ" = (
 /obj/machinery/status_display{
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation)
+/area/ruin/space/has_grav/bluemoon/listeningstation)
 
 (1,1,1) = {"
 aa
@@ -2638,15 +2505,15 @@ JY
 hy
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 ab
 ab
 ab
@@ -2676,7 +2543,7 @@ hy
 hy
 ab
 ab
-ac
+ag
 HX
 iK
 LL
@@ -2684,7 +2551,7 @@ eR
 Kf
 QP
 hG
-ac
+ag
 ab
 ab
 ab
@@ -2714,7 +2581,7 @@ ab
 ab
 ab
 ab
-ac
+ag
 az
 az
 az
@@ -2722,7 +2589,7 @@ az
 az
 az
 az
-ac
+ag
 ab
 ab
 ab
@@ -2752,7 +2619,7 @@ ab
 ab
 ab
 ab
-ac
+ag
 hC
 jj
 Am
@@ -2760,7 +2627,7 @@ tW
 GY
 wV
 HU
-ac
+ag
 ab
 ab
 ab
@@ -2790,7 +2657,7 @@ ab
 ab
 ab
 ab
-ac
+ag
 Vr
 aP
 qc
@@ -2798,7 +2665,7 @@ Vr
 aL
 Vr
 KF
-ac
+ag
 ab
 ab
 ab
@@ -2828,7 +2695,7 @@ ab
 ab
 ab
 ab
-ac
+ag
 AJ
 aP
 Vr
@@ -2836,7 +2703,7 @@ Vr
 DK
 qc
 hj
-ac
+ag
 ab
 ab
 ab
@@ -2866,7 +2733,7 @@ ab
 ab
 ab
 ab
-ac
+ag
 dO
 Xq
 bk
@@ -2874,15 +2741,15 @@ bk
 ba
 qc
 GN
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 ab
 ab
 ab
@@ -2902,17 +2769,17 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-Vr
+ag
+ag
+ag
+rw
 bb
 Vr
 Vr
 Vr
 qc
 Lu
-ac
+ag
 bd
 xf
 cA
@@ -2920,7 +2787,7 @@ Qu
 So
 HH
 bd
-ac
+ag
 ab
 ab
 ab
@@ -2940,7 +2807,7 @@ aa
 ab
 ab
 ab
-ac
+ag
 MK
 Il
 Vr
@@ -2950,7 +2817,7 @@ Vr
 is
 KB
 Lu
-ac
+ag
 ve
 XP
 xJ
@@ -2958,7 +2825,7 @@ Gr
 XP
 XP
 wa
-ac
+ag
 ab
 ab
 ab
@@ -2975,31 +2842,31 @@ aa
 aa
 aa
 aa
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
 ac
 qQ
 Vr
 Kw
 ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
 sg
 bw
 aJ
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
 ab
 ab
 ab
@@ -3012,32 +2879,32 @@ aa
 aa
 aa
 aa
-Ks
-ac
+lh
+ag
 vP
 Cd
 PW
 aq
 aZ
-ac
+ag
 bb
 Vr
 aD
-ac
+ag
 Pl
 Pl
 SV
-ac
+ag
 YM
 NJ
 cl
 yg
 ik
 Wi
-ac
+ag
 po
 di
-ac
+ag
 ab
 ab
 ab
@@ -3049,23 +2916,23 @@ aa
 (20,1,1) = {"
 aa
 aa
-Ks
-Ks
+lh
+lh
 mR
 aI
 ah
 ah
 ar
 ay
-ac
+ag
 bb
 Vr
 bj
-ac
+ag
 bv
 Vr
 Vr
-ac
+ag
 Qe
 OD
 aA
@@ -3075,7 +2942,7 @@ ik
 PB
 xP
 HW
-ac
+ag
 ab
 ab
 ab
@@ -3087,7 +2954,7 @@ ab
 (21,1,1) = {"
 aa
 aa
-Ks
+lh
 DA
 tn
 aI
@@ -3095,7 +2962,7 @@ ah
 ah
 as
 rc
-ac
+ag
 aQ
 DJ
 DJ
@@ -3110,10 +2977,10 @@ XY
 ik
 ik
 YZ
-ac
+ag
 ey
 xP
-ac
+ag
 ab
 ab
 ab
@@ -3125,7 +2992,7 @@ ab
 (22,1,1) = {"
 aa
 aa
-Ks
+lh
 dV
 tn
 aI
@@ -3133,25 +3000,25 @@ DF
 ah
 as
 ak
-ac
+ag
 aR
 sD
 bl
-ac
+ag
 bx
 bD
 Qm
-ac
+ag
 Kq
 aN
 Ce
 Nz
 Gw
 ZY
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
 ab
 ab
 ab
@@ -3163,7 +3030,7 @@ ab
 (23,1,1) = {"
 aa
 aa
-Ks
+lh
 RY
 tn
 aI
@@ -3171,25 +3038,25 @@ ad
 ai
 at
 ak
-ac
+ag
 aS
 Vr
-ac
-ac
-ac
-ac
-ac
-Rt
-rw
-rw
-rw
-rw
-rw
-rw
-rw
-fK
-fK
-VE
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 ag
 ag
 ag
@@ -3201,8 +3068,8 @@ ab
 (24,1,1) = {"
 aa
 aa
-Ks
-Ks
+lh
+lh
 mk
 TO
 ae
@@ -3212,12 +3079,12 @@ bI
 aK
 aT
 bc
-ac
+ag
 bq
 by
 aO
 bC
-bw
+ag
 De
 nw
 fE
@@ -3226,13 +3093,13 @@ Jn
 Md
 ow
 LV
-ag
+vY
 uf
-ag
+cz
 TM
 ag
-ag
-ag
+ab
+ab
 ab
 aa
 "}
@@ -3240,14 +3107,14 @@ aa
 aa
 aa
 aa
-Ks
-ac
+lh
+ag
 uM
 Jc
 ZZ
 av
 aB
-ac
+ag
 aU
 DJ
 bm
@@ -3260,17 +3127,17 @@ wv
 pr
 Xj
 BE
-Oz
-Oz
+cI
+cI
 Oz
 VM
 QA
-la
-Gf
+cz
+cz
 MH
-eQ
-zx
-pp
+ag
+ab
+ab
 aa
 aa
 "}
@@ -3279,36 +3146,36 @@ aa
 aa
 aa
 aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 aV
 be
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
 vk
 dF
 KX
-xG
-Dv
+GB
+GB
 GB
 or
 vG
 Fv
 Jv
-xC
+cz
 Hq
 ag
-ag
-ag
+ab
+ab
 ab
 aa
 "}
@@ -3318,12 +3185,12 @@ aa
 aa
 aa
 ab
-ac
-ac
+ag
+ag
 al
 aw
 aC
-ac
+ag
 aW
 bf
 bn
@@ -3334,16 +3201,16 @@ ag
 XT
 rv
 Ff
-BK
+ag
 rx
-uY
+tI
 tI
 ss
 zT
-eW
-QQ
+bw
 ag
-fL
+ag
+ag
 ag
 ab
 ab
@@ -3356,7 +3223,7 @@ aa
 aa
 ab
 ab
-ac
+ag
 af
 am
 ax
@@ -3369,19 +3236,19 @@ bt
 bB
 RA
 ag
-Ks
+ig
 EU
-aH
-mA
+Mq
+ac
 Ue
 js
 Ks
 vT
-cg
-aH
+zT
+bw
 ab
 ab
-TM
+ab
 ab
 ab
 ab
@@ -3394,33 +3261,33 @@ aa
 aa
 ab
 ab
-ac
-yL
+ag
+sb
 aF
 aF
-aE
-ac
+aF
+ag
 aY
 bh
-ac
+ag
 rt
 bu
 oL
 ag
 yC
 SY
-aH
-ju
+er
+SU
 AC
 cg
 ju
-mX
-cg
-aH
+vT
+zT
+bw
 ab
-TM
-TM
-TM
+ab
+ab
+ab
 ab
 ab
 ab
@@ -3432,34 +3299,34 @@ aa
 aa
 ab
 ab
-ac
+ag
 sb
 ao
 VC
 aF
 ag
-ac
-ac
-ac
+ag
+ag
+ag
 FX
 Hf
 Xf
 ag
 Tx
 fo
-aH
-im
-fo
-cg
+XB
+ac
+Ue
+wT
 es
-fo
-cg
-aH
+vT
+zT
+bw
 ab
-TM
-yY
-TM
-TM
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -3470,33 +3337,33 @@ aa
 aa
 ab
 ab
-ac
-ac
+ag
+ag
 an
-ac
+ag
 aG
 ag
 ab
 ab
-ac
-ac
-ac
-ac
 ag
 ag
-jm
-RP
 ag
-jm
-RP
 ag
-jm
-RP
-aH
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+bw
 ab
-TM
-TM
-TM
+ab
+ab
+ab
 ab
 ab
 ab
@@ -3530,10 +3397,10 @@ ab
 ab
 ab
 ab
-aH
+bw
 ab
 ab
-TM
+ab
 ab
 ab
 ab
@@ -3546,7 +3413,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ag
 ap
 ag
@@ -3605,7 +3472,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 aa
 ab
 ab

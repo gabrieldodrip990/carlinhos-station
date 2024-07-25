@@ -4,6 +4,8 @@
 	button_icon_state = "alter_form" //placeholder
 	icon_icon = 'modular_citadel/icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
+	var/body_size_max
+	var/body_size_min
 
 /datum/action/innate/ability/humanoid_customization/Activate()
 	if(owner.get_ability_property(INNATE_ABILITY_HUMANOID_CUSTOMIZATION, PROPERTY_CUSTOMIZATION_SILENT))
@@ -218,7 +220,7 @@
 			qdel(X)
 		var/min_D = CONFIG_GET(number/penis_min_inches_prefs)
 		var/max_D = CONFIG_GET(number/penis_max_inches_prefs)
-		var/new_length = input(owner, "Penis length in inches:\n([min_D]-[max_D])", "Genital Alteration") as num|null
+		var/new_length = input(owner, "Penis length in centimeters:\n([min_D]-[max_D])", "Genital Alteration") as num|null
 		if(new_length)
 			H.dna.features["cock_length"] = clamp(round(new_length), min_D, max_D)
 		H.update_genitals()
@@ -271,6 +273,7 @@
 		H.apply_overlay()
 		H.give_genital(/obj/item/organ/genital/belly)
 
+	//BLUEMOON CHANGE изменение размера требует время, сколько слишком сильно отличается в особенностях механик от сплюрта, как и в тематике сервера, чтобы давать возможность его так легко изменять
 	else if (select_alteration == "Body Size")
 		// Check if the user has the size_normalized component attached, to avoid body size accumulation bug
 		var/datum/component/size_normalized = H.GetComponent(/datum/component/size_normalized)
@@ -278,10 +281,19 @@
 			to_chat(owner, "<span class='warning'>The normalizer prevents you from adjusting your entire body's size.</span>")
 			return
 		else
-			var/new_body_size = input(owner, "Choose your desired sprite size: ([CONFIG_GET(number/body_size_min)*100]-[CONFIG_GET(number/body_size_max)*100]%)\nWarning: This may make your character look distorted. Additionally, any size under 100% takes a 10% maximum health penalty", "Character Preference", H.dna.features["body_size"]*100) as num|null
+			if(!body_size_max) body_size_max = CONFIG_GET(number/body_size_max)
+			if(!body_size_min) body_size_min = CONFIG_GET(number/body_size_min)
+			var/owner_size = get_size(H)
+			var/new_body_size = input(owner, "Choose your desired sprite size: ([body_size_min * 100]-[body_size_max * 100]%)\nWarning: This may make your character look distorted. Additionally, any size affects speed and max health", "Character Preference", H.dna.features["body_size"]*100) as num|null
 			if(new_body_size)
-				var/chosen_size = clamp(new_body_size * 0.01, CONFIG_GET(number/body_size_min), CONFIG_GET(number/body_size_max))
-				H.update_size(chosen_size)
+				var/chosen_size = clamp(new_body_size * 0.01, body_size_min, body_size_max)
+				var/diff = abs(chosen_size - owner_size)
+				if(diff)
+					var/time_to_use = diff * 40 //10 секунд на 25% размера
+					to_chat(H, span_warning("You need [time_to_use] seconds to change own size."))
+					if(do_after(owner, time_to_use SECONDS, target = owner))
+						H.update_size(chosen_size)
+	//BLUEMOON CHANGE END
 
 	else if (select_alteration == "Genital Color")
 		var/genital_part = input(owner, "Select what part of your genitals to alter", "Genital Color", "cancel") in list("Penis", "Butt", "Balls", "Anus", "Vagina", "Breasts", "Belly", "Toggle genitals using skintone", "Cancel")
@@ -359,7 +371,7 @@
 			else
 				H.skin_tone = new_s_tone
 			H.update_body()
-	
+
 	else if (select_alteration == "Gender & Lewd")
 		var/lewd_selection = input(owner, "Select what aspect of gender and lewd preferences to alter", "Gender & Lewd", "cancel") in list("Gender", "Body Model", "Cancel")
 		if(lewd_selection == "Gender")

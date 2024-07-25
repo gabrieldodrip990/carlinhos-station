@@ -1,7 +1,7 @@
 /obj/structure/displaycase
 	name = "display case"
 	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "glassbox0"
+	icon_state = "glassbox"
 	desc = "A display case for prized possessions."
 	density = TRUE
 	anchored = TRUE
@@ -19,6 +19,7 @@
 	var/start_showpiece_type = null //add type for items on display
 	var/list/start_showpieces = list() //Takes sublists in the form of list("type" = /obj/item/bikehorn, "trophy_message" = "henk")
 	var/trophy_message = ""
+	var/custom_glass_overlay = FALSE ///If we have a custom glass overlay to use.
 	///Represents a signel source of screaming when broken
 	var/datum/alarm_handler/alarm_manager
 
@@ -34,6 +35,11 @@
 		showpiece = new start_showpiece_type (src)
 	update_icon()
 	alarm_manager = new(src)
+
+/obj/structure/displaycase/vv_edit_var(vname, vval)
+	. = ..()
+	if(vname in list(NAMEOF(src, open), NAMEOF(src, showpiece), NAMEOF(src, custom_glass_overlay)))
+		update_icon()
 
 /obj/structure/displaycase/Destroy()
 	QDEL_NULL(electronics)
@@ -91,22 +97,21 @@
 	alarm_manager.send_alarm(ALARM_BURGLAR)
 	addtimer(CALLBACK(alarm_manager, /datum/alarm_handler/proc/clear_alarm, ALARM_BURGLAR), 1 MINUTES)
 
-	playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
+	playsound(src, 'sound/misc/alerts/alert.ogg', 50, TRUE)
 
-/obj/structure/displaycase/update_icon_state()
-	var/icon/I
-	if(open)
-		I = icon('icons/obj/stationobjs.dmi',"glassbox_open")
-	else
-		I = icon('icons/obj/stationobjs.dmi',"glassbox0")
-	if(broken)
-		I = icon('icons/obj/stationobjs.dmi',"glassboxb0")
+/obj/structure/displaycase/update_overlays()
+	. = ..()
 	if(showpiece)
-		var/icon/S = getFlatIcon(showpiece)
-		S.Scale(17,17)
-		I.Blend(S,ICON_UNDERLAY,8,8)
-	src.icon = I
-	return
+		var/mutable_appearance/showpiece_overlay = mutable_appearance(showpiece.icon, showpiece.icon_state)
+		showpiece_overlay.copy_overlays(showpiece)
+		showpiece_overlay.transform *= 0.6
+		. += showpiece_overlay
+	if(custom_glass_overlay)
+		return
+	if(broken)
+		. += "[initial(icon_state)]_broken"
+	else if(!open)
+		. += "[initial(icon_state)]_closed"
 
 /obj/structure/displaycase/attackby(obj/item/W, mob/user, params)
 	if(W.GetID() && !broken && openable)
@@ -114,17 +119,17 @@
 			to_chat(user, span_notice("You [open ? "close":"open"] [src]."))
 			toggle_lock(user)
 		else
-			to_chat(user, span_alert("Access denied."))
+			to_chat(user, span_alert("Доступ запрещён."))
 	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
 		if(obj_integrity < max_integrity)
 			if(!W.tool_start_check(user, amount=5))
 				return
 
-			to_chat(user, span_notice("You begin repairing [src]."))
+			to_chat(user, "<span class='notice'>Вы начинаете чинить [src].</span>")
 			if(W.use_tool(src, user, 40, amount=5, volume=50))
 				obj_integrity = max_integrity
 				update_icon()
-				to_chat(user, span_notice("You repair [src]."))
+				to_chat(user, "<span class='notice'>Вы починили [src].</span>")
 		else
 			to_chat(user, span_warning("[src] is already in good condition!"))
 		return
@@ -191,7 +196,6 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "glassbox_chassis"
 	var/obj/item/electronics/airlock/electronics
-
 
 /obj/structure/displaycase_chassis/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WRENCH) //The player can only deconstruct the wooden frame
@@ -344,7 +348,7 @@
 	desc = "The key to the curator's display cases."
 
 /obj/item/showpiece_dummy
-	name = "Cheap replica"
+	name = "Cheap Replica"
 
 /obj/item/showpiece_dummy/Initialize(mapload, path)
 	. = ..()
@@ -356,7 +360,8 @@
 /obj/structure/displaycase/forsale
 	name = "vend-a-tray"
 	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "laserbox0"
+	icon_state = "laserbox"
+	custom_glass_overlay = TRUE
 	desc = "A display case with an ID-card swiper. Use your ID to purchase the contents."
 	density = FALSE
 	max_integrity = 100
@@ -397,6 +402,15 @@
 		viewing_ui[user] = ui
 		ui.open()
 
+/obj/structure/displaycase/forsale/update_icon_state()
+	. = ..()
+	icon_state = "[initial(icon_state)][broken ? "_broken" : (open ? "_open" : (!showpiece ? "_empty" : null))]"
+
+/obj/structure/displaycase/forsale/update_overlays()
+	. = ..()
+	if(!broken && !open)
+		. += "[initial(icon_state)]_overlay"
+
 /obj/structure/displaycase/forsale/ui_data(mob/user)
 	var/list/data = list()
 	var/register = FALSE
@@ -419,35 +433,34 @@
 	switch(action)
 		if("Buy")
 			if(!showpiece)
-				to_chat(usr, span_notice("There's nothing for sale."))
+				to_chat(usr, span_notice("Тут ничего не продается."))
 				return TRUE
 			if(broken)
-				to_chat(usr, span_notice("[src] appears to be broken."))
+				to_chat(usr, span_notice("[capitalize(src.name)] кажется, он сломан."))
 				return TRUE
 			if(!payments_acc)
-				to_chat(usr, span_notice("[src] hasn't been registered yet."))
+				to_chat(usr, span_notice("[capitalize(src.name)] еще не зарегистрирован."))
 				return TRUE
 			if(!usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 				return TRUE
 			if(!potential_acc)
-				to_chat(usr, span_notice("No ID card detected."))
+				to_chat(usr, span_notice("ID-карта не обнаружена."))
 				return
 			var/datum/bank_account/account = potential_acc.registered_account
 			if(!account)
-				to_chat(usr, span_notice("[potential_acc] has no account registered!"))
+				to_chat(usr, span_notice("[potential_acc] не имеет зарегистрированного аккаунта!"))
 				return
 			if(!account.has_money(sale_price))
-				to_chat(usr, span_notice("You do not possess the funds to purchase this."))
+				to_chat(usr, span_notice("У меня нет средств, чтобы купить это. Нужно больше золота."))
 				return TRUE
 			else
 				account.adjust_money(-sale_price)
 				if(payments_acc)
 					payments_acc.adjust_money(sale_price)
 				usr.put_in_hands(showpiece)
-				to_chat(usr, span_notice("You purchase [showpiece] for [sale_price] credits."))
-				// playsound(src, 'sound/effects/cashregister.ogg', 40, TRUE)
-				icon = 'icons/obj/stationobjs.dmi'
-				flick("laserbox_vend", src)
+				to_chat(usr, span_notice("Покупаю [showpiece] по цене в [sale_price] кредит[get_num_string(sale_price)]."))
+				playsound(src, 'sound/effects/cashregister.ogg', 40, TRUE)
+				flick("[initial(icon_state)]_vend", src)
 				showpiece = null
 				update_icon()
 				SStgui.update_uis(src)
@@ -542,7 +555,8 @@
 	. = ..()
 	payments_acc = null
 	req_access = list()
-	to_chat(user, span_warning("[src]'s card reader fizzles and smokes, and the account owner is reset."))
+	log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
+	to_chat(user, "<span class='warning'>[src]'s card reader fizzles and smokes, and the account owner is reset.</span>")
 
 /obj/structure/displaycase/forsale/examine(mob/user)
 	. = ..()

@@ -24,7 +24,7 @@
  */
 
 /obj/item/storage/box
-	name = "box"
+	name = "Box"
 	desc = "It's just an ordinary box."
 	icon_state = "box"
 	item_state = "syringe_kit"
@@ -44,12 +44,12 @@
 /obj/item/storage/box/suicide_act(mob/living/carbon/user)
 	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 	if(myhead)
-		user.visible_message("<span class='suicide'>[user] puts [user.p_their()] head into \the [src], and begins closing it! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		user.visible_message("<span class='suicide'>[user] puts [user.ru_ego()] head into \the [src], and begins closing it! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 		myhead.dismember()
 		myhead.forceMove(src)//force your enemies to kill themselves with your head collection box!
 		playsound(user,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
 		return BRUTELOSS
-	user.visible_message("<span class='suicide'>[user] beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message("<span class='suicide'>[user] beating себя with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return BRUTELOSS
 
 /obj/item/storage/box/update_overlays()
@@ -105,7 +105,7 @@
 
 // Ordinary survival box
 /obj/item/storage/box/survival
-	name = "survival box"
+	name = "Survival Box"
 	desc = "A box with the bare essentials of ensuring the survival of you and others."
 	icon_state = "internals"
 	illustration = "emergencytank"
@@ -114,14 +114,26 @@
 	var/medipen_type = /obj/item/reagent_containers/hypospray/medipen
 
 /obj/item/storage/box/survival/PopulateContents()
-	new mask_type(src)
+	// BLUEMOON ADD - у робототов особый набор для выживания
+	if(HAS_TRAIT(loc, TRAIT_ROBOTIC_ORGANISM))
+		mask_type = null
+		internal_type = null
+		medipen_type = null
+		new /obj/item/stack/cable_coil/random/five(src)
+		new /obj/item/weldingtool/mini(src)
+	if(!isnull(mask_type))
+	// BLUEMOON ADD END
+		new mask_type(src)
 	if(!isnull(medipen_type))
 		new medipen_type(src)
 
-	if(!isplasmaman(loc))
-		new internal_type(src)
-	else
+	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
+	else if (isvox(loc))
+		new /obj/item/tank/internals/emergency_nitrogen(src)
+	else
+		if(!isnull(internal_type)) // BLUEMOON ADD
+			new internal_type(src)
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)
@@ -139,15 +151,18 @@
 	..()
 	new /obj/item/crowbar/red(src)
 
-	if(!isplasmaman(loc))
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
+	else if (isvox(loc))
+		new /obj/item/tank/internals/emergency_nitrogen(src)
+	else
+		new /obj/item/tank/internals/emergency_oxygen(src)
 
 // Engineer survival box
 /obj/item/storage/box/survival/engineer
-	name = "extended-capacity survival box"
+	name = "Extended-Capacity Survival Box"
 	desc = "A box with the bare essentials of ensuring the survival of you and others. This one is labelled to contain an extended-capacity tank."
+	icon_state = "engibox"
 	illustration = "extendedtank"
 	internal_type = /obj/item/tank/internals/emergency_oxygen/engi
 
@@ -157,20 +172,142 @@
 
 // Syndie survival box
 /obj/item/storage/box/survival/syndie //why is this its own thing if it's just the engi box with a syndie mask and medipen?
-	name = "extended-capacity survival box"
+	name = "Extended-Capacity Survival Box"
 	desc = "A box with the bare essentials of ensuring the survival of you and others. This one is labelled to contain an extended-capacity tank."
 	illustration = "extendedtank"
 	mask_type = /obj/item/clothing/mask/gas/syndicate
-	internal_type = /obj/item/tank/internals/emergency_oxygen/engi
-	medipen_type = null
+	internal_type = /obj/item/tank/internals/emergency_oxygen/engi/syndi
+	medipen_type = /obj/item/reagent_containers/hypospray/medipen/atropine
 
 // Security survival box
 /obj/item/storage/box/survival/security
+	name = "Extended-Capacity Survival Box"
+	icon_state = "secbox_xl"
 	mask_type = /obj/item/clothing/mask/gas/sechailer
+	internal_type = /obj/item/tank/internals/emergency_oxygen/engi/sec
+
+/obj/item/storage/box/survival/security/PopulateContents()
+	..() // we want the regular stuff too
+	new /obj/item/crowbar/red/sec(src)
 
 /obj/item/storage/box/survival/security/radio/PopulateContents()
 	..() // we want the regular stuff too
 	new /obj/item/radio/off(src)
+	new /obj/item/flashlight/glowstick/red(src)
+
+//Command survival box
+/obj/item/storage/box/survival/command
+	name = "Extended-Capacity Survival Box"
+	icon_state = "ghostcostuming"
+	internal_type = /obj/item/tank/internals/emergency_oxygen/engi
+	medipen_type = /obj/item/reagent_containers/hypospray/medipen/atropine
+
+/obj/item/storage/box/survival/command/PopulateContents()
+	..() // we want the regular stuff too
+	new /obj/item/crowbar/red/sec(src)
+	new /obj/item/reagent_containers/spray/pepper(src)
+	new /obj/item/melee/classic_baton/telescopic(src)
+
+//CentCom survival box
+/obj/item/storage/box/survival/centcom
+	name = "Extended-Capacity Survival Box"
+	icon_state = "ghostcostuming"
+	mask_type = /obj/item/clothing/mask/gas/sechailer
+	internal_type = /obj/item/tank/internals/emergency_oxygen/double
+	medipen_type = /obj/item/reagent_containers/hypospray/medipen/atropine
+
+/obj/item/storage/box/survival/centcom/PopulateContents()
+	..() // we want the regular stuff too
+	new /obj/item/crowbar/power(src)
+	new /obj/item/melee/classic_baton/telescopic(src)
+	new /obj/item/radio/off(src)
+	new /obj/item/extinguisher/mini(src)
+	new /obj/item/flashlight/flare(src)
+	new /obj/item/hypospray/mkii/CMO/combat/synthflesh(src)
+
+//body cameras implanters box
+/obj/item/storage/box/body_camera
+	name = "Body cameras kit"
+
+/obj/item/storage/box/body_camera/PopulateContents()
+	..()
+	for(var/i in 1 to 6)
+		new /obj/item/clothing/accessory/bodycamera(src)
+	new /obj/item/camera_bug(src)
+
+//death_alert implanters box
+/obj/item/storage/box/death_alert
+	name = "Death alert implants kit"
+
+/obj/item/storage/box/death_alert/PopulateContents()
+	..()
+	for(var/i in 1 to 6)
+		new /obj/item/implantcase/death_alert(src)
+	new /obj/item/implanter/death_alert(src)
+
+//ert commander box
+/obj/item/storage/box/ert_commander
+	name = "ERT commander kit"
+	icon_state = "ghostcostuming"
+
+/obj/item/storage/box/ert_commander/PopulateContents()
+	..()
+	new /obj/item/camera_bug(src)
+	new /obj/item/door_remote/omni(src)
+	new /obj/item/megaphone/command(src)
+
+//blueshield suit box
+/obj/item/storage/box/blue_shield_hs
+	name = "NT flexible suit"
+	icon_state = "ghostcostuming"
+
+/obj/item/storage/box/blue_shield_hs/PopulateContents()
+	..()
+	new /obj/item/clothing/suit/space/hardsuit/blue_shield(src)
+	new /obj/item/clothing/mask/gas/sechailer/swat/blueshield(src)
+	new /obj/item/tank/internals/emergency_oxygen/double(src)
+
+//security kit
+/obj/item/storage/box/sec_kit
+	name = "Security standart kit"
+	icon_state = "secbox_xl"
+
+/obj/item/storage/box/sec_kit/PopulateContents()
+	..()
+	new /obj/item/flashlight/seclite(src)
+	new /obj/item/holosign_creator/security(src)
+	new /obj/item/reagent_containers/spray/pepper(src)
+	new /obj/item/assembly/flash/handheld(src)
+	new /obj/item/grenade/flashbang(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/restraints/handcuffs(src)
+
+//ert ammo boxes
+/obj/item/storage/box/ammo
+	name = "box of ammo"
+	desc = "Contains some extra ammo"
+	var/ammo = /obj/item/ammo_box/magazine/smgm9mm/ap
+
+/obj/item/storage/box/ammo/smgap
+	name = "box of SMG ammo"
+	ammo = /obj/item/ammo_box/magazine/smgm9mm/ap
+
+/obj/item/storage/box/ammo/m556
+	name = "box of M556 ammo"
+	ammo = /obj/item/ammo_box/magazine/m556/ap
+
+/obj/item/storage/box/ammo/wt
+	name = "box of WT ammo"
+	ammo = /obj/item/ammo_box/magazine/wt550m9
+
+/obj/item/storage/box/ammo/holy
+	name = "some holy water"
+	ammo = /obj/item/reagent_containers/food/drinks/bottle/holywater
+
+/obj/item/storage/box/ammo/PopulateContents()
+	..()
+	for(var/i in 1 to 5)
+		new ammo(src)
 
 /obj/item/storage/box/seclooking
 	icon_state = "secbox"
@@ -276,7 +413,7 @@
 		new /obj/item/dnainjector/m2h(src)
 
 /obj/item/storage/box/flashbangs
-	name = "box of flashbangs (WARNING)"
+	name = "Box of Flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
 	icon_state = "secbox"
 	illustration = "flashbang"
@@ -284,6 +421,16 @@
 /obj/item/storage/box/flashbangs/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/grenade/flashbang(src)
+
+/obj/item/storage/box/flashbangs/super
+	name = "Box of Super Flashbangs (WARNING)"
+	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
+	icon_state = "secbox"
+	illustration = "flashbang"
+
+/obj/item/storage/box/flashbangs/super/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/grenade/clusterbuster/soap(src)
 
 /obj/item/storage/box/stingbangs
 	name = "box of stingbangs (WARNING)"
@@ -738,7 +885,7 @@
 	foldable = null
 
 /obj/item/storage/box/hug/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] clamps the box of hugs on [user.p_their()] jugular! Guess it wasn't such a hugbox after all..</span>")
+	user.visible_message("<span class='suicide'>[user] clamps the box of hugs on [user.ru_ego()] jugular! Guess it wasn't such a hugbox after all..</span>")
 	return (BRUTELOSS)
 
 /obj/item/storage/box/hug/attack_self(mob/user)
@@ -780,10 +927,12 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
-	if(!isplasmaman(loc))
-		new /obj/item/tank/internals/emergency_oxygen(src)
-	else
+	if(isplasmaman(loc))
 		new /obj/item/tank/internals/plasmaman/belt(src)
+	else if (isvox(loc))
+		new /obj/item/tank/internals/emergency_nitrogen(src)
+	else
+		new /obj/item/tank/internals/emergency_oxygen(src)
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)
@@ -878,9 +1027,6 @@
 	for(var/i in 1 to 4)
 		var/randomFigure = pick(subtypesof(/obj/item/toy/prize/))
 		new randomFigure(src)
-
-
-
 
 /obj/item/storage/box/papersack
 	name = "paper sack"
@@ -985,54 +1131,54 @@
 /obj/item/storage/box/ingredients/wildcard/PopulateContents()
 	for(var/i in 1 to 7)
 		var/randomFood = pick(/obj/item/reagent_containers/food/snacks/grown/chili,
-							  /obj/item/reagent_containers/food/snacks/grown/tomato,
-							  /obj/item/reagent_containers/food/snacks/grown/carrot,
-							  /obj/item/reagent_containers/food/snacks/grown/potato,
-							  /obj/item/reagent_containers/food/snacks/grown/potato/sweet,
-							  /obj/item/reagent_containers/food/snacks/grown/apple,
-							  /obj/item/reagent_containers/food/snacks/chocolatebar,
-							  /obj/item/reagent_containers/food/snacks/grown/cherries,
-							  /obj/item/reagent_containers/food/snacks/grown/berries,
-							  /obj/item/reagent_containers/food/snacks/grown/banana,
-							  /obj/item/reagent_containers/food/snacks/grown/cabbage,
-							  /obj/item/reagent_containers/food/snacks/grown/soybeans,
-							  /obj/item/reagent_containers/food/snacks/grown/corn,
-							  /obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
-							  /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
-							  /obj/item/reagent_containers/food/snacks/meatball,
-							  /obj/item/reagent_containers/food/snacks/grown/citrus/orange,
-							  /obj/item/reagent_containers/food/snacks/grown/citrus/lemon,
-							  /obj/item/reagent_containers/food/snacks/grown/citrus/lime,
-							  /obj/item/reagent_containers/food/snacks/grown/bluecherries,
-							  /obj/item/reagent_containers/food/snacks/grown/cocoapod,
-							  /obj/item/reagent_containers/food/snacks/grown/vanillapod,
-							  /obj/item/reagent_containers/food/snacks/grown/grapes,
-							  /obj/item/reagent_containers/food/snacks/grown/strawberry,
-							  /obj/item/reagent_containers/food/snacks/grown/whitebeet,
-							  /obj/item/reagent_containers/food/snacks/meat/slab/bear,
-							  /obj/item/reagent_containers/food/snacks/meat/slab/spider,
-							  /obj/item/reagent_containers/food/snacks/spidereggs,
-							  /obj/item/reagent_containers/food/snacks/carpmeat,
-							  /obj/item/reagent_containers/food/snacks/meat/slab/xeno,
-							  /obj/item/reagent_containers/food/snacks/meat/slab/corgi,
-							  /obj/item/reagent_containers/food/snacks/grown/oat,
-							  /obj/item/reagent_containers/food/snacks/grown/wheat,
-							  /obj/item/reagent_containers/honeycomb,
-							  /obj/item/reagent_containers/food/snacks/grown/watermelon,
-							  /obj/item/reagent_containers/food/snacks/grown/onion,
-							  /obj/item/reagent_containers/food/snacks/grown/peach,
-							  /obj/item/reagent_containers/food/snacks/grown/peanut,
-							  /obj/item/reagent_containers/food/snacks/grown/pineapple,
-							  /obj/item/reagent_containers/food/snacks/grown/pumpkin,
-							  /obj/item/reagent_containers/food/snacks/meat/rawcrab,
-							  /obj/item/reagent_containers/food/snacks/meat/slab/goliath,
-							  /obj/item/reagent_containers/food/snacks/meat/slab/chicken,
-							  /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime,
-							  /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/golem,
-							  /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-							  /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/skeleton,
-							  /obj/item/reagent_containers/food/snacks/egg,
-							  /obj/item/reagent_containers/food/snacks/grown/eggplant)
+							/obj/item/reagent_containers/food/snacks/grown/tomato,
+							/obj/item/reagent_containers/food/snacks/grown/carrot,
+							/obj/item/reagent_containers/food/snacks/grown/potato,
+							/obj/item/reagent_containers/food/snacks/grown/potato/sweet,
+							/obj/item/reagent_containers/food/snacks/grown/apple,
+							/obj/item/reagent_containers/food/snacks/chocolatebar,
+							/obj/item/reagent_containers/food/snacks/grown/cherries,
+							/obj/item/reagent_containers/food/snacks/grown/berries,
+							/obj/item/reagent_containers/food/snacks/grown/banana,
+							/obj/item/reagent_containers/food/snacks/grown/cabbage,
+							/obj/item/reagent_containers/food/snacks/grown/soybeans,
+							/obj/item/reagent_containers/food/snacks/grown/corn,
+							/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
+							/obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
+							/obj/item/reagent_containers/food/snacks/meatball,
+							/obj/item/reagent_containers/food/snacks/grown/citrus/orange,
+							/obj/item/reagent_containers/food/snacks/grown/citrus/lemon,
+							/obj/item/reagent_containers/food/snacks/grown/citrus/lime,
+							/obj/item/reagent_containers/food/snacks/grown/bluecherries,
+							/obj/item/reagent_containers/food/snacks/grown/cocoapod,
+							/obj/item/reagent_containers/food/snacks/grown/vanillapod,
+							/obj/item/reagent_containers/food/snacks/grown/grapes,
+							/obj/item/reagent_containers/food/snacks/grown/strawberry,
+							/obj/item/reagent_containers/food/snacks/grown/whitebeet,
+							/obj/item/reagent_containers/food/snacks/meat/slab/bear,
+							/obj/item/reagent_containers/food/snacks/meat/slab/spider,
+							/obj/item/reagent_containers/food/snacks/spidereggs,
+							/obj/item/reagent_containers/food/snacks/carpmeat,
+							/obj/item/reagent_containers/food/snacks/meat/slab/xeno,
+							/obj/item/reagent_containers/food/snacks/meat/slab/corgi,
+							/obj/item/reagent_containers/food/snacks/grown/oat,
+							/obj/item/reagent_containers/food/snacks/grown/wheat,
+							/obj/item/reagent_containers/honeycomb,
+							/obj/item/reagent_containers/food/snacks/grown/watermelon,
+							/obj/item/reagent_containers/food/snacks/grown/onion,
+							/obj/item/reagent_containers/food/snacks/grown/peach,
+							/obj/item/reagent_containers/food/snacks/grown/peanut,
+							/obj/item/reagent_containers/food/snacks/grown/pineapple,
+							/obj/item/reagent_containers/food/snacks/grown/pumpkin,
+							/obj/item/reagent_containers/food/snacks/meat/rawcrab,
+							/obj/item/reagent_containers/food/snacks/meat/slab/goliath,
+							/obj/item/reagent_containers/food/snacks/meat/slab/chicken,
+							/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime,
+							/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/golem,
+							/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+							/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/skeleton,
+							/obj/item/reagent_containers/food/snacks/egg,
+							/obj/item/reagent_containers/food/snacks/grown/eggplant)
 		new randomFood(src)
 
 /obj/item/storage/box/ingredients/fiesta
@@ -1150,6 +1296,61 @@
 		new /obj/item/reagent_containers/food/snacks/sea_weed(src)
 		new /obj/item/reagent_containers/food/snacks/carpmeat(src)
 	new /obj/item/reagent_containers/food/snacks/meat/rawcrab(src)
+
+/obj/item/storage/box/gum
+	name = "bubblegum packet"
+	desc = "The packaging is entirely in Japanese, apparently. You can't make out a single word of it."
+	icon = 'icons/obj/storage/gum.dmi'
+	icon_state = "bubblegum_generic"
+	w_class = WEIGHT_CLASS_TINY
+	illustration = null
+	foldable = null
+	custom_price = PAYCHECK_MEDIUM
+
+/obj/item/storage/box/gum/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/bubblegum))
+	STR.max_items = 4
+
+/obj/item/storage/box/gum/PopulateContents()
+	for(var/i in 1 to 4)
+		new/obj/item/reagent_containers/food/snacks/bubblegum/bubblegum(src)
+
+/obj/item/storage/box/gum/nicotine
+	name = "nicotine gum packet"
+	desc = "Designed to help with nicotine addiction and oral fixation all at once without destroying your lungs in the process. Mint flavored!"
+	icon_state = "bubblegum_nicotine"
+	custom_premium_price = PAYCHECK_MEDIUM * 1.5
+
+/obj/item/storage/box/gum/nicotine/PopulateContents()
+	for(var/i in 1 to 4)
+		new/obj/item/reagent_containers/food/snacks/bubblegum/nicotine(src)
+
+/obj/item/storage/box/gum/happiness
+	name = "HP+ gum packet"
+	desc = "A seemingly homemade packaging with an odd smell. It has a weird drawing of a smiling face sticking out its tongue."
+	icon_state = "bubblegum_happiness"
+	custom_price = PAYCHECK_COMMAND * 3
+	custom_premium_price = PAYCHECK_COMMAND * 3
+
+/obj/item/storage/box/gum/happiness/Initialize(mapload)
+	. = ..()
+	if (prob(25))
+		desc += " You can faintly make out the word 'Hemopagopril' was once scribbled on it."
+
+/obj/item/storage/box/gum/happiness/PopulateContents()
+	for(var/i in 1 to 4)
+		new/obj/item/reagent_containers/food/snacks/bubblegum/happiness(src)
+
+/obj/item/storage/box/gum/bubblegum
+	name = "bubblegum gum packet"
+	desc = "The packaging is entirely in Demonic, apparently. You feel like even opening this would be a sin."
+	icon_state = "bubblegum_bubblegum"
+
+/obj/item/storage/box/gum/bubblegum/PopulateContents()
+	for(var/i in 1 to 4)
+		new/obj/item/reagent_containers/food/snacks/bubblegum/bubblegum(src)
 
 /obj/item/storage/box/emptysandbags
 	name = "box of empty sandbags"
@@ -1323,7 +1524,7 @@
 	new /obj/item/reagent_containers/food/snacks/breadslice/creamcheese(src)
 	new /obj/item/reagent_containers/food/condiment/pack/ketchup(src)
 	new /obj/item/reagent_containers/food/snacks/chocolatebar(src)
-	new /obj/item/tank/internals/emergency_oxygen(src)
+	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 
 /obj/item/storage/box/mre/menu2
 	name = "\improper Nanotrasen MRE Ration Kit Menu 2"
@@ -1338,7 +1539,7 @@
 	new /obj/item/reagent_containers/food/snacks/meat/cutlet/plain(src)
 	new /obj/item/reagent_containers/food/snacks/fries(src)
 	new /obj/item/reagent_containers/food/snacks/chocolatebar(src)
-	new /obj/item/tank/internals/emergency_oxygen(src)
+	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 
 /obj/item/storage/box/mre/menu3
 	name = "\improper Nanotrasen MRE Ration Kit Menu 3"
@@ -1353,7 +1554,7 @@
 	new /obj/item/reagent_containers/food/snacks/cubannachos(src)
 	new /obj/item/reagent_containers/food/snacks/grown/chili(src)
 	new /obj/item/reagent_containers/food/drinks/coffee/type2(src)
-	new /obj/item/tank/internals/emergency_oxygen(src)
+	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 
 /obj/item/storage/box/mre/menu4
 	name = "\improper Nanotrasen MRE Ration Kit Menu 4"
@@ -1371,7 +1572,7 @@
 	new /obj/item/reagent_containers/food/snacks/burger/tofu(src)
 	new /obj/item/reagent_containers/food/snacks/salad/fruit(src)
 	new /obj/item/reagent_containers/food/snacks/cracker(src)
-	new /obj/item/tank/internals/emergency_oxygen(src)
+	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 
 //Where do I put this?
 /obj/item/secbat
@@ -1481,3 +1682,50 @@
 		)
 	generate_items_inside(items_inside,src)
 
+/obj/item/storage/box/fireworks
+	name = "box of fireworks"
+	desc = "Contains an assortment of fireworks."
+	illustration = "sparkler"
+
+/obj/item/storage/box/fireworks/PopulateContents()
+	for(var/i in 1 to 3)
+		new/obj/item/sparkler(src)
+		new/obj/item/grenade/firecracker(src)
+	new /obj/item/toy/snappop(src)
+
+/obj/item/storage/box/fireworks/dangerous
+	desc = "This box has a small label on it stating that it's from the Gorlex Marauders. Contains an assortment of \"fireworks\"."
+
+/obj/item/storage/box/fireworks/dangerous/PopulateContents()
+	for(var/i in 1 to 3)
+		new/obj/item/sparkler(src)
+		new/obj/item/grenade/firecracker(src)
+	if(prob(20))
+		new /obj/item/grenade/frag(src)
+	else
+		new /obj/item/toy/snappop(src)
+
+/obj/item/storage/box/coffeepack
+	name = "Arabica Beans"
+	desc = "A bag containing fresh, dry coffee arabica beans. Ethically sourced and packaged by Waffle Corp."
+	icon_state = "arabica_beans"
+	illustration = null
+	icon = 'icons/obj/food/containers.dmi'
+	var/beantype = /obj/item/reagent_containers/food/snacks/grown/coffee
+
+/obj/item/storage/box/coffeepack/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 5
+	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/grown/coffee))
+
+/obj/item/storage/box/coffeepack/PopulateContents()
+	for(var/i in 1 to 5)
+		var/obj/item/reagent_containers/food/snacks/grown/coffee/bean = new beantype(src)
+		bean.add_atom_colour(COLOR_DRIED_TAN, FIXED_COLOUR_PRIORITY) //give them the tan just like from the drying rack
+
+/obj/item/storage/box/coffeepack/robusta
+	name = "Robusta Beans"
+	desc = "A bag containing fresh, dry coffee robusta beans. Ethically sourced and packaged by Waffle Corp."
+	icon_state = "robusta_beans"
+	beantype = /obj/item/reagent_containers/food/snacks/grown/coffee/robusta

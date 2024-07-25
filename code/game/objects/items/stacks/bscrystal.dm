@@ -28,11 +28,16 @@
 	return TRUE
 
 /obj/item/stack/ore/bluespace_crystal/attack_self(mob/user)
-	user.visible_message("<span class='warning'>[user] crushes [src]!</span>", "<span class='danger'>You crush [src]!</span>")
-	new /obj/effect/particle_effect/sparks(loc)
-	playsound(loc, "sparks", 50, 1)
-	blink_mob(user)
-	use(1)
+	if(!user.canUseTopic(src))
+		return
+	if(amount <= 2)
+		user.visible_message("<span class='warning'>[user] ломает [src]!</span>", "<span class='danger'>Вы ломаете [src]!</span>")
+		new /obj/effect/particle_effect/sparks(loc)
+		playsound(loc, "sparks", 50, 1)
+		blink_mob(user)
+		use(1)
+	else
+		user.visible_message("<span class='warning'>[user] перебирает [src] в своих руках. Их слишком много!</span>", "<span class='danger'>Ты перебираешь [src] в своих руках. Их слишком много!</span>")
 
 /obj/item/stack/ore/bluespace_crystal/proc/blink_mob(mob/living/L)
 	do_teleport(L, get_turf(L), blink_range, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
@@ -52,10 +57,11 @@
 	name = "artificial bluespace crystal"
 	desc = "An artificially made bluespace crystal, it looks delicate."
 	custom_materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT*0.5)
-	blink_range = 4 // Not as good as the organic stuff!
+	blink_range = 2 // Not as good as the organic stuff!
 	points = 0 //nice try
 	refined_type = null
 	grind_results = list(/datum/reagent/bluespace = 10, /datum/reagent/silicon = 20)
+	max_amount = 10
 
 //Polycrystals, aka stacks
 /obj/item/stack/sheet/bluespace_crystal

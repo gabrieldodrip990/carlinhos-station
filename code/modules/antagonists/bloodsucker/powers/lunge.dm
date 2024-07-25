@@ -4,8 +4,8 @@
 	name = "Predatory Lunge"
 	desc = "Prepare the strenght to grapple your prey."
 	button_icon_state = "power_lunge"
-	bloodcost = 10
-	cooldown_time = 30
+	bloodcost = 20
+	cooldown_time = 70
 	bloodsucker_can_buy = TRUE
 	warn_constant_cost = TRUE
 	amToggle = TRUE

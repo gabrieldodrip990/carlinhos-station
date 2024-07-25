@@ -34,6 +34,8 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		// SPLURT EDIT
 		/obj/item/handmirror/split_personality = ARCADE_WEIGHT_TRICK,
 		/obj/item/toy/figure/assistant/imaginary_friend = ARCADE_WEIGHT_TRICK,
+		/obj/item/toy/prizeball/figure = ARCADE_WEIGHT_TRICK,
+		/obj/item/toy/prizeball/therapy = ARCADE_WEIGHT_TRICK,
 		// END SPLURT EDIT
 
 		/mob/living/simple_animal/bot/secbot/grievous/toy = ARCADE_WEIGHT_RARE,
@@ -58,12 +60,32 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/grenade/chem_grenade/glitter/pink = ARCADE_WEIGHT_TRICK,
 		/obj/item/grenade/chem_grenade/glitter/blue = ARCADE_WEIGHT_TRICK,
 		/obj/item/grenade/chem_grenade/glitter/white = ARCADE_WEIGHT_TRICK,
+		/obj/item/grenade/confetti = ARCADE_WEIGHT_TRICK,
 
 		/obj/item/extendohand/acme = ARCADE_WEIGHT_TRICK,
 		/obj/item/card/emagfake	= ARCADE_WEIGHT_TRICK,
 		/obj/item/clothing/shoes/wheelys = ARCADE_WEIGHT_RARE,
 		/obj/item/clothing/shoes/kindleKicks = ARCADE_WEIGHT_RARE,
 		/obj/item/storage/belt/military/snack = ARCADE_WEIGHT_RARE,
+
+		/obj/item/toy/mecha/ripley = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/ripleymkii = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/hauler = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/clarke = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/odysseus = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/gygax = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/durand = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/savannahivanov = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/phazon = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/honk = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/darkgygax = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/mauler = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/darkhonk = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/deathripley = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/reticence = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/marauder = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/seraph = ARCADE_WEIGHT_RARE,
+		/obj/item/toy/mecha/firefighter = ARCADE_WEIGHT_RARE,
 
 		/obj/item/clothing/mask/fakemoustache/italian = ARCADE_WEIGHT_RARE,
 		/obj/item/clothing/suit/hooded/wintercoat/ratvar/fake = ARCADE_WEIGHT_TRICK,
@@ -77,6 +99,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	icon_keyboard = null
 	icon_screen = "invaders"
 	light_color = LIGHT_COLOR_GREEN
+	unique_icon = TRUE
 	var/list/prize_override
 
 /obj/machinery/computer/arcade/proc/Reset()
@@ -107,7 +130,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	// 	prizes *= 2
 	for(var/i = 0, i < prizes, i++)
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "arcade", /datum/mood_event/arcade)
-		if(prob(0.0001)) //1 in a million
+		if(prob(0.001))
 			new /obj/item/gun/energy/pulse/prize(src)
 			visible_message("<span class='notice'>[src] dispenses.. woah, a gun! Way past cool.</span>", "<span class='notice'>You hear a chime and a shot.</span>")
 			user.client.give_award(/datum/award/achievement/misc/pulse, user)

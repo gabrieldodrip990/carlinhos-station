@@ -134,20 +134,6 @@
 	airlock_type = /obj/machinery/door/airlock/shuttle
 	glass_type = /obj/machinery/door/airlock/shuttle/glass
 
-/obj/structure/door_assembly/door_assembly_cult
-	name = "cult airlock assembly"
-	icon = 'icons/obj/doors/airlocks/cult/runed/cult.dmi'
-	base_name = "cult airlock"
-	overlays_file = 'icons/obj/doors/airlocks/cult/runed/overlays.dmi'
-	airlock_type = /obj/machinery/door/airlock/cult
-	glass_type = /obj/machinery/door/airlock/cult/glass
-
-/obj/structure/door_assembly/door_assembly_cult/unruned
-	icon = 'icons/obj/doors/airlocks/cult/unruned/cult.dmi'
-	overlays_file = 'icons/obj/doors/airlocks/cult/unruned/overlays.dmi'
-	airlock_type = /obj/machinery/door/airlock/cult/unruned
-	glass_type = /obj/machinery/door/airlock/cult/unruned/glass
-
 /obj/structure/door_assembly/door_assembly_viro
 	name = "virology airlock assembly"
 	icon = 'icons/obj/doors/airlocks/station/virology.dmi'
@@ -241,6 +227,21 @@
 	mineral = "wood"
 	glass_type = /obj/machinery/door/airlock/wood/glass
 
+/obj/structure/door_assembly/door_assembly_cult
+	name = "cult airlock assembly"
+	icon = 'icons/obj/doors/airlocks/cult/runed/cult.dmi'
+	base_name = "cult airlock"
+	overlays_file = 'icons/obj/doors/airlocks/cult/runed/overlays.dmi'
+	airlock_type = /obj/machinery/door/airlock/cult
+	glass_type = /obj/machinery/door/airlock/cult/glass
+	material_type = /obj/item/stack/sheet/runed_metal
+
+/obj/structure/door_assembly/door_assembly_cult/unruned
+	icon = 'icons/obj/doors/airlocks/cult/unruned/cult.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/cult/unruned/overlays.dmi'
+	airlock_type = /obj/machinery/door/airlock/cult/unruned
+	glass_type = /obj/machinery/door/airlock/cult/unruned/glass
+
 /obj/structure/door_assembly/door_assembly_bronze
 	name = "bronze airlock assembly"
 	icon = 'icons/obj/doors/airlocks/clockwork/pinion_airlock.dmi'
@@ -251,3 +252,10 @@
 
 /obj/structure/door_assembly/door_assembly_bronze/seethru
 	airlock_type = /obj/machinery/door/airlock/bronze/seethru
+
+/obj/structure/door_assembly/door_assembly_material
+	name = "airlock assembly"
+	airlock_type = /obj/machinery/door/airlock/material
+	glass_type = /obj/machinery/door/airlock/material/glass
+	nomineral = TRUE
+	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS

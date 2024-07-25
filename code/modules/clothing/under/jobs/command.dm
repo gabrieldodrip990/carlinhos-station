@@ -3,15 +3,20 @@
 	name = "captain's jumpsuit"
 	icon_state = "captain"
 	item_state = "b_suit"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, WOUND = 15)
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
 	sensor_mode = SENSOR_COORDS
 	sensor_flags = NONE
+
+/obj/item/clothing/under/rank/captain/utility/syndicate
+	armor = list(MELEE = 10, BULLET = 5, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 50, RAD = 0, FIRE = 50, ACID = 40, WOUND = 10)
+	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/rank/captain/util
 	name = "command utility uniform"
 	desc = "A utility uniform for command personnel."
 	icon_state = "utilcom"
 	item_state = "utilcom"
+	armor = list(MELEE = 10, BULLET = 5, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 50, RAD = 0, FIRE = 50, ACID = 40, WOUND = 10)
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/captain/skirt
@@ -55,3 +60,29 @@
 	item_state = "lewdcap"
 	alt_covers_chest = TRUE
 	mutantrace_variation = STYLE_DIGITIGRADE|USE_TAUR_CLIP_MASK
+
+
+//Bridge officer
+
+/obj/item/clothing/under/rank/bridgeofficer
+	name = "bridge officer outfit"
+	desc = "The uniform of a bridge officer. It makes you feel extremely important, even if you are not."
+	icon_state = "bridgesec"
+	item_state = "bridgesec"
+	armor = list("melee" = 5, "bullet" = 0, "laser" = 5,"energy" = 5, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 0)
+	alt_covers_chest = TRUE
+	can_adjust = FALSE
+	sensor_flags = NONE
+	sensor_mode = SENSOR_COORDS
+
+/obj/item/clothing/under/rank/bridgeofficer/skirt
+	name = "bridge officer skirt"
+	icon_state = "bridgesecf"
+	item_state = "bridgesecf"
+	body_parts_covered = CHEST|GROIN|ARMS
+
+/obj/item/clothing/under/rank/bridgeofficer/formal
+	name = "bridge officer formal outfit"
+	desc = "The uniform of a bridge officer. Its a formal variant."
+	icon_state = "bridgesecformal"
+	item_state = "bridgesecformal"

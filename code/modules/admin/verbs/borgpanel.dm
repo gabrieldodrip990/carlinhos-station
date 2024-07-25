@@ -199,11 +199,15 @@
 					borg.radio.channels -= channel
 					if (channel == RADIO_CHANNEL_SYNDICATE)
 						borg.radio.syndie = FALSE
+					if (channel == RADIO_CHANNEL_INTEQ)
+						borg.radio.syndie = FALSE
 					else if (channel == RADIO_CHANNEL_CENTCOM)
 						borg.radio.independent = FALSE
 				else
 					borg.radio.keyslot.channels -= channel
 					if (channel == RADIO_CHANNEL_SYNDICATE)
+						borg.radio.keyslot.syndie = FALSE
+					if (channel == RADIO_CHANNEL_INTEQ)
 						borg.radio.keyslot.syndie = FALSE
 					else if (channel == RADIO_CHANNEL_CENTCOM)
 						borg.radio.keyslot.independent = FALSE
@@ -214,6 +218,8 @@
 					borg.radio.keyslot = new (borg.radio)
 				borg.radio.keyslot.channels[channel] = 1
 				if (channel == RADIO_CHANNEL_SYNDICATE)
+					borg.radio.keyslot.syndie = TRUE
+				if (channel == RADIO_CHANNEL_INTEQ)
 					borg.radio.keyslot.syndie = TRUE
 				else if (channel == RADIO_CHANNEL_CENTCOM)
 					borg.radio.keyslot.independent = TRUE

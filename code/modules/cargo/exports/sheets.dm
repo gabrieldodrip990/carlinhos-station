@@ -60,7 +60,7 @@
 	export_types = list(/obj/item/stack/sheet/animalhide/xeno)
 
 /datum/export/stack/licenseplate
-	cost = 25
+	cost = 250
 	unit_name = "license plate"
 	export_types = list(/obj/item/stack/license_plates/filled)
 
@@ -121,12 +121,14 @@
 
 /datum/export/stack/cloth
 	cost = 20
+	k_elasticity = 1/200 //BLUEMOON CHANGE "Anti-floods"
 	unit_name = "sheets"
 	message = "of cloth"
 	export_types = list(/obj/item/stack/sheet/cloth)
 
 /datum/export/stack/duracloth
 	cost = 40
+	k_elasticity = 1/200 //BLUEMOON CHANGE "Anti-floods"
 	unit_name = "sheets"
 	message = "of duracloth"
 	export_types = list(/obj/item/stack/sheet/durathread)
@@ -164,6 +166,6 @@
 /datum/export/stack/telecrystal
 	unit_name = "raw"
 	cost = 1000
-	message = "telecrystals"
+	message = "credits"
 	export_types = list(/obj/item/stack/telecrystal)
 

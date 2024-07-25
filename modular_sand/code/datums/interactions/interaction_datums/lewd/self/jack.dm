@@ -1,5 +1,5 @@
 /datum/interaction/lewd/jack
-	description = "Jerk yourself off."
+	description = "Член. Подрочить себе."
 	interaction_sound = null
 	required_from_user = INTERACTION_REQUIRE_HANDS
 	required_from_user_exposed = INTERACTION_REQUIRE_PENIS
@@ -7,6 +7,7 @@
 	max_distance = 0
 	write_log_user = "jerked off"
 	write_log_target = null
+	p13user_emote = PLUG13_EMOTE_PENIS
 
 	additional_details = list(
 		list(
@@ -18,9 +19,8 @@
 
 /datum/interaction/lewd/jack/display_interaction(mob/living/user)
 	var/message
-	var/t_His = user.p_their()
-	var/t_Him = user.p_them()
-	var/genital_name = user.get_penetrating_genital_name()
+	//var/t_His = user.ru_ego()
+	//var/genital_name = user.get_penetrating_genital_name()
 
 	var/obj/item/reagent_containers/liquid_container
 
@@ -33,21 +33,22 @@
 			liquid_container = cached_item
 
 	if(user.is_fucking(user, CUM_TARGET_HAND, user.getorganslot(ORGAN_SLOT_PENIS)))
-		message = "[pick("jerks [t_Him]self off",
-			"works [t_His] shaft",
-			"strokes [t_His] [genital_name]",
-			"wanks [t_His] [genital_name] hard")]"
+		message = "[pick("хватается за свой член и начинает его наяривать",
+			"с усердием вздрачивает свой пенис",
+			"дёргает своё мясо",
+			"наяривает",
+			"активно теребит свой орган не без помощи своих ладоней")]"
 	else
-		message = "[pick("wraps [t_His] hand around [t_His] [genital_name]",
-			"starts to stroke [t_His] [genital_name]",
-			"starts playing with [t_His] [genital_name]")]"
+		message = "[pick("хватается за свой член и начинает его наяривать",
+			"активно теребит свой орган не без помощи своих ладоней",
+			"с усердием вздрачивает свой пенис")]"
 		user.set_is_fucking(user, CUM_TARGET_HAND, user.getorganslot(ORGAN_SLOT_PENIS))
 	if(liquid_container)
-		message += " over \the [liquid_container]"
+		message += " прямо в [liquid_container]"
 
 	playlewdinteractionsound(get_turf(user), pick('modular_sand/sound/interactions/bang1.ogg',
 						'modular_sand/sound/interactions/bang2.ogg',
 						'modular_sand/sound/interactions/bang3.ogg'), 70, 1, -1)
-	user.visible_message(span_lewd("<b>\The [user]</b> [message]."), ignored_mobs = user.get_unconsenting())
+	user.visible_message(span_lewd("<b>[user]</b> [message]."), ignored_mobs = user.get_unconsenting())
 	if(user.can_penetrating_genital_cum())
 		user.handle_post_sex(NORMAL_LUST, CUM_TARGET_HAND, liquid_container ? liquid_container : user, ORGAN_SLOT_PENIS) //SPLURT edit

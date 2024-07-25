@@ -36,11 +36,12 @@
 	var/text_buffer = ""
 
 	var/static/list/graffiti = list("amyjon","face","matt","revolution","engie","guy","end","dwarf","uboa","body","cyka","star","poseur tag","prolizard","antilizard", "tile")
-	var/static/list/symbols = list("danger","firedanger","electricdanger","biohazard","radiation","safe","evac","space","med","trade","shop","food","peace","like","skull","nay","heart","credit", "scp")
+	var/static/list/symbols = list("danger","firedanger","electricdanger","biohazard","radiation","safe","evac","space","med","trade","shop","food","peace","like","skull","nay","heart","credit", "sonne", "ironguard", "scp", "falange")
 	var/static/list/drawings = list("smallbrush","brush","largebrush","splatter","snake","stickman","carp","ghost","clown","taser","disk","fireaxe","toolbox","corgi","cat","toilet","blueprint","beepsky","scroll","bottle","shotgun", "boobs", "booty", "bdragon")
 	var/static/list/oriented = list("arrow","line","thinline","shortline","body","chevron","footprint","clawprint","pawprint") // These turn to face the same way as the drawer
 	var/static/list/runes = list("rune1","rune2","rune3","rune4","rune5","rune6")
-	var/static/list/randoms = list(RANDOM_ANY, RANDOM_RUNE, RANDOM_ORIENTED, RANDOM_NUMBER, RANDOM_GRAFFITI, RANDOM_LETTER, RANDOM_SYMBOL, RANDOM_PUNCTUATION, RANDOM_DRAWING)
+	var/static/list/randoms = list(RANDOM_ANY, RANDOM_RUNE, RANDOM_ORIENTED,
+		RANDOM_NUMBER, RANDOM_GRAFFITI, RANDOM_LETTER, RANDOM_SYMBOL, RANDOM_PUNCTUATION, RANDOM_DRAWING)
 	var/static/list/graffiti_large_h = list("yiffhell", "furrypride", "secborg", "paint")
 
 	var/static/list/all_drawables = graffiti + symbols + drawings + oriented + runes + graffiti_large_h
@@ -75,6 +76,9 @@
 	var/pre_noise = FALSE
 	var/post_noise = FALSE
 
+	var/pre_noise_sound = 'sound/effects/spray.ogg' // BLUEMOON EDIT || MODULARIZE
+	var/post_noise_sound = 'sound/effects/spray.ogg' // BLUEMOON EDIT || MODULARIZE
+
 	var/datum/team/gang/gang //For marking territory.
 	var/gang_tag_delay = 30 //this is the delay for gang mode tag applications on anything that gang = true on.
 
@@ -86,7 +90,7 @@
 	return istype(surface, /turf/open/floor)
 
 /obj/item/toy/crayon/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is jamming [src] up [user.p_their()] nose and into [user.p_their()] brain. It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message("<span class='suicide'>[user] is jamming [src] up [user.ru_ego()] nose and into [user.ru_ego()] brain. It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return (BRUTELOSS|OXYLOSS)
 
 /obj/item/toy/crayon/Initialize(mapload)
@@ -419,8 +423,8 @@
 		to_chat(user, "<span class='notice'>You start drawing a [temp] on the [target.name]...</span>")
 
 	if(pre_noise)
-		audible_message("<span class='notice'>You hear spraying.</span>")
-		playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
+		audible_message("<span class='notice'>You can hear something.</span>") // BLUEMOON EDIT
+		playsound(user.loc, pre_noise_sound, 5, 1, 5) // BLUEMOON EDIT || MODULARIZE
 
 	var/wait_time = 50
 	if(paint_mode == PAINT_LARGE_HORIZONTAL)
@@ -482,8 +486,8 @@
 		SStgui.update_uis(src)
 
 	if(post_noise)
-		audible_message("<span class='notice'>You hear spraying.</span>")
-		playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
+		audible_message("<span class='notice'>You can hear something.</span>") // BLUEMOON EDIT
+		playsound(user.loc, post_noise_sound, 5, 1, 5) // BLUEMOON EDIT || MODULARIZE
 
 	var/fraction = min(1, . / reagents.maximum_volume)
 	if(affected_turfs.len)
@@ -548,6 +552,14 @@
 			return G
 
 /////////////////Gang end////////////////////
+
+/obj/item/toy/crayon/get_writing_implement_details()
+	return list(
+		interaction_mode = MODE_WRITING,
+		font = CRAYON_FONT,
+		color = paint_color,
+		use_bold = TRUE,
+	)
 
 /obj/item/toy/crayon/red
 	icon_state = "crayonred"
@@ -633,7 +645,7 @@
 
 /obj/item/storage/crayons
 	name = "box of crayons"
-	desc = "A box of crayons for all your rune drawing needs."
+	desc = "Полна сил для всех ваших прекрасных художеств на полу и стенах."
 	icon = 'icons/obj/crayons.dmi'
 	icon_state = "crayonbox"
 	w_class = WEIGHT_CLASS_SMALL
@@ -657,27 +669,40 @@
 /obj/item/storage/crayons/update_overlays()
 	. = ..()
 	for(var/obj/item/toy/crayon/crayon in contents)
-		add_overlay(mutable_appearance('icons/obj/crayons.dmi', crayon.crayon_color))
+		. += mutable_appearance('icons/obj/crayons.dmi', crayon.crayon_color)
 
 /obj/item/storage/crayons/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/toy/crayon))
 		var/obj/item/toy/crayon/C = W
 		switch(C.crayon_color)
 			if("mime")
-				to_chat(usr, "This crayon is too sad to be contained in this box.")
+				to_chat(usr, "Этот мелок слишком печален, чтобы его помещать в эту коробку!")
 				return
 			if("rainbow")
-				to_chat(usr, "This crayon is too powerful to be contained in this box.")
+				to_chat(usr, "Этот мелок слишком мощный, чтобы его помещать в эту коробку!")
 				return
 		if(istype(W, /obj/item/toy/crayon/spraycan))
-			to_chat(user, "Spraycans are not crayons.")
+			to_chat(user, "Спреи не мелки!")
 			return
 	return ..()
+
+/obj/item/storage/crayons/attack_self(mob/user)
+	. = ..()
+	if(contents.len > 0)
+		to_chat(user, span_warning("Не получится развернуть [src.name], пока мелки внутри!"))
+		return
+	if(flags_1 & HOLOGRAM_1)
+		return
+
+	var/obj/item/stack/sheet/cardboard/cardboard = new /obj/item/stack/sheet/cardboard(user.drop_location())
+	to_chat(user, span_notice("Разворачиваю [src.name] в картонку."))
+	user.put_in_active_hand(cardboard)
+	qdel(src)
 
 //Spraycan stuff
 
 /obj/item/toy/crayon/spraycan
-	name = "spray can"
+	name = "Spray Can"
 	icon_state = "spraycan"
 
 	icon_capped = "spraycan_cap"
@@ -711,11 +736,11 @@
 /obj/item/toy/crayon/spraycan/suicide_act(mob/user)
 	var/mob/living/carbon/human/H = user
 	if(is_capped || !actually_paints)
-		user.visible_message("<span class='suicide'>[user] shakes up [src] with a rattle and lifts it to [user.p_their()] mouth, but nothing happens!</span>")
+		user.visible_message("<span class='suicide'>[user] shakes up [src] with a rattle and lifts it to [user.ru_ego()] mouth, but nothing happens!</span>")
 		user.say("MEDIOCRE!!", forced="spraycan suicide")
 		return SHAME
 	else
-		user.visible_message("<span class='suicide'>[user] shakes up [src] with a rattle and lifts it to [user.p_their()] mouth, spraying paint across [user.p_their()] teeth!</span>")
+		user.visible_message("<span class='suicide'>[user] shakes up [src] with a rattle and lifts it to [user.ru_ego()] mouth, spraying paint across [user.ru_ego()] teeth!</span>")
 		user.say("WITNESS ME!!", forced="spraycan suicide")
 		if(pre_noise || post_noise)
 			playsound(loc, 'sound/effects/spray.ogg', 5, 1, 5)
@@ -827,7 +852,7 @@
 		. += spray_overlay
 
 /obj/item/toy/crayon/spraycan/borg
-	name = "cyborg spraycan"
+	name = "Cyborg Spraycan"
 	desc = "A metallic container containing shiny synthesised paint."
 	charges = -1
 	stun_delay = 5 SECONDS
@@ -852,7 +877,7 @@
 		borgy.cell.use(cost)
 
 /obj/item/toy/crayon/spraycan/hellcan
-	name = "hellcan"
+	name = "Hellcan"
 	desc = "This spraycan doesn't seem to be filled with paint..."
 	icon_state = "deathcan2_cap"
 	icon_capped = "deathcan2_cap"
@@ -866,7 +891,7 @@
 	paint_color = "#000000"
 
 /obj/item/toy/crayon/spraycan/lubecan
-	name = "slippery spraycan"
+	name = "Slippery Spraycan"
 	desc = "You can barely keep hold of this thing."
 	icon_state = "clowncan2_cap"
 	icon_capped = "clowncan2_cap"
@@ -880,7 +905,7 @@
 	return istype(surface, /turf/open/floor)
 
 /obj/item/toy/crayon/spraycan/mimecan
-	name = "silent spraycan"
+	name = "Silent Spraycan"
 	desc = "Art is best seen, not heard."
 	icon_state = "mimecan_cap"
 	icon_capped = "mimecan_cap"
@@ -895,7 +920,7 @@
 	reagent_contents = list(/datum/reagent/consumable/nothing = 1, /datum/reagent/toxin/mutetoxin = 1)
 
 /obj/item/toy/crayon/spraycan/infinite
-	name = "infinite spraycan"
+	name = "Infinite Spraycan"
 	charges = -1
 	desc = "Now with 30% more bluespace technology."
 

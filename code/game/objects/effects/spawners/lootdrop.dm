@@ -49,7 +49,9 @@
 				/obj/item/bedsheet/red = 8, /obj/item/bedsheet/yellow = 8, /obj/item/bedsheet/brown = 8,
 				/obj/item/bedsheet/black = 8, /obj/item/bedsheet/patriot = 3, /obj/item/bedsheet/rainbow = 3,
 				/obj/item/bedsheet/ian = 3, /obj/item/bedsheet/runtime = 3, /obj/item/bedsheet/nanotrasen = 3,
-				/obj/item/bedsheet/pirate = 1, /obj/item/bedsheet/cosmos = 1, /obj/item/bedsheet/gondola = 1
+				/obj/item/bedsheet/pirate = 1, /obj/item/bedsheet/cosmos = 1, /obj/item/bedsheet/gondola = 1,
+				/obj/item/bedsheet/vulp = 1, /obj/item/bedsheet/vulp/vulp2 = 1, /obj/item/bedsheet/vulp/vulp3,
+				/obj/item/bedsheet/vulp/vulp4 = 1
 				)
 
 /obj/effect/spawner/lootdrop/armory_contraband
@@ -58,16 +60,40 @@
 	loot = list(
 				/obj/item/gun/ballistic/automatic/pistol = 8,
 				/obj/item/gun/ballistic/shotgun/automatic/combat = 5,
-				/obj/item/gun/ballistic/revolver/mateba,
-				/obj/item/gun/ballistic/automatic/pistol/deagle
-				)
+				/obj/item/kitchen/knife/combat = 5,
+				/obj/item/clothing/gloves/tackler/combat/insulated = 3,
+				/obj/item/storage/box/syndie_kit/throwing_weapons = 3)
 
 /obj/effect/spawner/lootdrop/armory_contraband/metastation
-	loot = list(/obj/item/gun/ballistic/automatic/pistol = 5,
+	loot = list(/obj/item/gun/ballistic/automatic/pistol = 8,
 				/obj/item/gun/ballistic/shotgun/automatic/combat = 5,
-				/obj/item/gun/ballistic/revolver/mateba,
-				/obj/item/gun/ballistic/automatic/pistol/deagle,
+				/obj/item/kitchen/knife/combat = 5,
+				/obj/item/clothing/gloves/tackler/combat/insulated = 3,
 				/obj/item/storage/box/syndie_kit/throwing_weapons = 3)
+
+/obj/effect/spawner/lootdrop/syndicate_present
+	name = "Syndicate Present from Technical Tunnels"
+	icon_state = "esword_dual"
+	lootdoubles = FALSE
+	loot = list(
+				/obj/item/poster/random_contraband = 120,
+//				/obj/item/reagent_containers/hypospray/medipen/magillitis = 2, / BLUEMOON REMOVAL - убираем манчерские вещи из техов
+//				/obj/item/storage/box/syndie_kit/space = 3, / BLUEMOON REMOVAL - убираем манчерские вещи из техов
+				/obj/item/storage/toolbox/syndicate = 5,
+//				/obj/item/clothing/shoes/chameleon/noslip = 6, / BLUEMOON REMOVAL - убираем манчерские вещи из техов
+//				/obj/item/grenade/clusterbuster/soap/inteq = 6, / BLUEMOON REMOVAL - убираем манчерские вещи из техов
+				/obj/item/soap/syndie = 8,
+//				/obj/item/pen/sleepy = 12, / BLUEMOON REMOVAL - убираем манчерские вещи из техов
+				/obj/item/storage/backpack/duffelbag/syndie = 3,
+				/obj/item/storage/box/syndie_kit/chameleon = 4,
+				/obj/item/storage/toolbox/inteq = 1,
+				/obj/item/storage/backpack/duffelbag/syndie/inteq = 1,
+//				/obj/item/storage/box/syndie_kit/space/inteq = 1, / BLUEMOON REMOVAL - убираем манчерские вещи из техов
+				/obj/item/soap/inteq = 4,
+				/obj/item/sign/flag/inteq = 1,
+//				/obj/item/storage/fancy/cigarettes/cigpack_inteq = 1, / BLUEMOON REMOVAL - убираем манчерские вещи из техов
+				/obj/item/storage/backpack/guitarbag/loaded = 1,
+				)
 
 /obj/effect/spawner/lootdrop/prison_contraband
 	name = "prison contraband loot spawner"
@@ -180,6 +206,34 @@
 			lootcount_override = round(lootcount * 0.5)
 	. = ..()
 
+/obj/effect/spawner/lootdrop/maintenance/two
+	name = "2 x maintenance loot spawner"
+	lootcount = 2
+
+/obj/effect/spawner/lootdrop/maintenance/three
+	name = "3 x maintenance loot spawner"
+	lootcount = 3
+
+/obj/effect/spawner/lootdrop/maintenance/four
+	name = "4 x maintenance loot spawner"
+	lootcount = 4
+
+/obj/effect/spawner/lootdrop/maintenance/five
+	name = "5 x maintenance loot spawner"
+	lootcount = 5
+
+/obj/effect/spawner/lootdrop/maintenance/six
+	name = "6 x maintenance loot spawner"
+	lootcount = 6
+
+/obj/effect/spawner/lootdrop/maintenance/seven
+	name = "7 x maintenance loot spawner"
+	lootcount = 7
+
+/obj/effect/spawner/lootdrop/maintenance/eight
+	name = "8 x maintenance loot spawner"
+	lootcount = 8
+
 /obj/effect/spawner/lootdrop/glowstick
 	name = "random colored glowstick"
 	icon = 'icons/obj/lighting.dmi'
@@ -217,16 +271,19 @@
 /obj/effect/spawner/lootdrop/organ_spawner
 	name = "organ spawner"
 	loot = list(
-		/obj/item/organ/heart/gland/electric = 3,
-		/obj/item/organ/heart/gland/trauma = 4,
-		/obj/item/organ/heart/gland/egg = 7,
-		/obj/item/organ/heart/gland/chem = 5,
-		/obj/item/organ/heart/gland/mindshock = 5,
-		/obj/item/organ/heart/gland/plasma = 7,
-		/obj/item/organ/heart/gland/transform = 5,
-		/obj/item/organ/heart/gland/slime = 4,
-		/obj/item/organ/heart/gland/spiderman = 5,
-		/obj/item/organ/heart/gland/ventcrawling = 1,
+		/obj/item/organ/heart/cybernetic = 3,
+		/obj/item/organ/heart/cybernetic/tier2 = 4,
+		/obj/item/organ/heart/cybernetic/tier3 = 7,
+		/obj/item/organ/appendix = 5,
+		/obj/item/organ/cyberimp/eyes/hud/medical = 5,
+		/obj/item/organ/genital/penis = 5,
+		/obj/item/organ/lungs/cybernetic = 3,
+		/obj/item/organ/lungs/cybernetic/tier2 = 4,
+		/obj/item/organ/lungs/cybernetic/tier3 = 7,
+		/obj/item/organ/zombie_infection = 3,
+		/obj/item/organ/liver/cybernetic = 3,
+		/obj/item/organ/liver/cybernetic/tier2 = 4,
+		/obj/item/organ/liver/cybernetic/tier3 = 7,
 		/obj/item/organ/body_egg/alien_embryo = 1,
 		/obj/item/organ/regenerative_core = 2)
 	lootcount = 3
@@ -267,7 +324,7 @@
 		/obj/item/clothing/head/rabbitears = 1)
 
 /obj/effect/spawner/lootdrop/minor/pirate_or_bandana
-	name = "pirate hat or bandana spawner"
+	name = "Pirate hat or bandana spawner"
 	loot = list(
 		/obj/item/clothing/head/pirate = 1,
 		/obj/item/clothing/head/bandana = 1)
@@ -442,7 +499,8 @@
 	loot = list(/obj/structure/reagent_dispensers/keg/mead = 5,
 		/obj/structure/reagent_dispensers/keg/aphro = 2,
 		/obj/structure/reagent_dispensers/keg/aphro/strong = 2,
-		/obj/structure/reagent_dispensers/keg/gargle = 1)
+		/obj/structure/reagent_dispensers/keg/gargle = 1,
+		/obj/structure/reagent_dispensers/keg/catnip = 3)
 
 /obj/effect/spawner/lootdrop/coin
 	lootcount = 1
@@ -469,7 +527,8 @@
 				/obj/item/storage/fancy/cigarettes/cigpack_xeno = 3,
 				/obj/item/storage/fancy/cigarettes/cigpack_cannabis = 10,
 				/obj/item/storage/fancy/cigarettes/cigpack_mindbreaker = 10,
-				/obj/item/storage/fancy/rollingpapers = 10
+				/obj/item/storage/fancy/rollingpapers = 10,
+				/obj/item/storage/fancy/cigarettes/cigpack_inteq = 2 // Bluemoon Changes
 				)
 
 /obj/effect/spawner/lootdrop/cigars_cases
@@ -606,7 +665,7 @@
 		/obj/item/weldingtool/experimental = 1,
 		/obj/item/crowbar/power = 1,
 		/obj/item/analyzer = 1,
-		/obj/item/multitool = 1
+		/obj/item/multitool/tricorder = 1
 		)
 
 /obj/effect/spawner/lootdrop/welder_tools
@@ -775,6 +834,39 @@
 		/obj/item/ammo_casing/shotgun/rubbershot = 9,
 		/obj/item/ammo_casing/shotgun = 8,
 		/obj/item/ammo_casing/shotgun/incendiary = 10,
+		)
+
+/obj/effect/spawner/lootdrop/melee
+	name = "Random Melee Weapon"
+	desc = "This is a random melee weapon."
+	icon_state = "esword_dual"
+	lootcount = 1
+	loot = list(
+		/obj/item/kitchen/knife/combat = 1,
+		/obj/item/kitchen/knife/butcher = 1,
+		/obj/item/kitchen/rollingpin = 1,
+		/obj/item/melee/baton = 1,
+		/obj/item/melee/classic_baton = 1,
+		/obj/item/kitchen/knife = 1,
+		/obj/item/melee/classic_baton/telescopic/contractor_baton = 1,
+		/obj/item/melee/chainofcommand = 1,
+		/obj/item/melee/powerfist = 1,
+		/obj/item/spear = 1,
+		/obj/item/hatchet = 1,
+		/obj/item/melee/transforming/energy/sword = 1,
+		/obj/item/extinguisher = 1,
+		/obj/item/dualsaber = 1,
+		/obj/item/fireaxe = 1,
+		/obj/item/inteq_sledgehammer = 1,
+		/obj/item/circular_saw = 1,
+		/obj/item/claymore = 1,
+		/obj/item/scalpel = 1,
+		/obj/item/broken_bottle = 1,
+		/obj/item/scythe = 1,
+		/obj/item/melee/arm_blade = 1,
+		/obj/item/melee/transforming/energy/axe = 1,
+		/obj/item/melee/transforming/energy/blade = 1,
+		/obj/item/banhammer = 1,
 		)
 
 /// Mail loot spawner. Some sort of random and rare building tool. No alien tech here.

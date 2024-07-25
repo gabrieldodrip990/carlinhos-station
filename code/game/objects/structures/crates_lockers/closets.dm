@@ -28,8 +28,8 @@
 	var/mob_storage_capacity = 3 // how many human sized mob/living can fit together inside a closet.
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate then open it in a populated area to crash clients.
 	var/cutting_tool = TOOL_WELDER
-	var/open_sound = 'sound/machines/click.ogg'
-	var/close_sound = 'sound/machines/click.ogg'
+	var/open_sound = 'sound/machines/closet_open.ogg'
+	var/close_sound = 'sound/machines/closet_close.ogg'
 	var/material_drop = /obj/item/stack/sheet/metal
 	var/material_drop_amount = 2
 	var/delivery_icon = "deliverycloset" //which icon to use when packagewrapped. null to be unwrappable.
@@ -110,7 +110,7 @@
 		investigate_log("had its contents examined by [user] as a ghost.", INVESTIGATE_GHOST)
 
 	if(HAS_TRAIT(user, TRAIT_SKITTISH))
-		. += "<span class='notice'>If you bump into [p_them()] while running, you will jump inside.</span>"
+		. += "<span class='notice'>If you bump into [ru_na()] while running, you will jump inside.</span>"
 
 /obj/structure/closet/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -211,6 +211,10 @@
 				return FALSE
 			if(L.mob_size > max_mob_size)
 				return FALSE
+			// BLUEMOOB ADDITION AHEAD - убираем много головной боли с абузами ящиков на больших персонажей, запретив помещать их внутрь
+			if(HAS_TRAIT(AM, TRAIT_BLUEMOON_HEAVY_SUPER) || HAS_TRAIT(AM, TRAIT_BLUEMOON_HEAVY))
+				return FALSE
+			// BLUEMOOB ADDITION END
 			var/mobs_stored = 0
 			for(var/mob/living/M in contents)
 				if(++mobs_stored >= mob_storage_capacity)
@@ -378,13 +382,12 @@
 	else if(!isitem(O))
 		return
 	var/turf/T = get_turf(src)
-	var/list/targets = list(O, src)
 	add_fingerprint(user)
 	user.visible_message("<span class='warning'>[user] [actuallyismob ? "tries to ":""]stuff [O] into [src].</span>", \
 		"<span class='warning'>You [actuallyismob ? "try to ":""]stuff [O] into [src].</span>", \
 		"<span class='hear'>You hear clanging.</span>")
 	if(actuallyismob)
-		if(do_after_mob(user, targets, 40))
+		if(do_after(user, 4 SECONDS, O))
 			user.visible_message("<span class='notice'>[user] stuffs [O] into [src].</span>", \
 				"<span class='notice'>You stuff [O] into [src].</span>", \
 				"<span class='hear'>You hear a loud metal bang.</span>")
@@ -470,6 +473,9 @@
 	user.visible_message("<span class='warning'>[src] begins to shake violently!</span>", \
 		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
 		"<span class='hear'>You hear banging from [src].</span>")
+	if(INTERACTING_WITH(user, src))
+		to_chat(user, span_warning("You're already interacting with [src]!"))
+		return
 	if(do_after(user, breakout_time, src, IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || opened || (!locked && !welded) )
 			return
@@ -525,6 +531,7 @@
 		user.visible_message("<span class='warning'>Sparks fly from [src]!</span>",
 						"<span class='warning'>You scramble [src]'s lock, breaking it open!</span>",
 						"<span class='hear'>You hear a faint electrical spark.</span>")
+	log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
 	playsound(src, "sparks", 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	broken = TRUE
 	locked = FALSE
@@ -674,7 +681,7 @@
 		return TRUE
 	if(allowed(user))
 		return TRUE
-	to_chat(user, "<span class='notice'>Access denied.</span>")
+	to_chat(user, "<span class='notice'>Доступ запрещён.</span>")
 
 /obj/structure/closet/on_object_saved(depth)
 	if(depth >= 10)

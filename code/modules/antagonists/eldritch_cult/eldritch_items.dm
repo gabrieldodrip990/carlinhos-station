@@ -1,12 +1,14 @@
 /obj/item/living_heart
-	name = "living heart"
-	desc = "A link to the worlds beyond."
+	name = "Living Heart"
+	desc = "Связь с другим миром... смажь меня кровью, если хочешь возобновить биение сердца. Нажмите АЛЬТ-ЛКМ, чтобы сбросить жертву."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "living_heart"
 	w_class = WEIGHT_CLASS_SMALL
 	///Target
 	var/mob/living/carbon/human/target
 	var/datum/antagonist/heretic/sac_targetter	//The heretic who used this to acquire the current target - gets cleared when target gets sacrificed.
+	var/reset = TRUE
+	COOLDOWN_DECLARE(cooldown)
 
 /obj/item/living_heart/Initialize(mapload)
 	. = ..()
@@ -17,6 +19,23 @@
 	if(sac_targetter && target)
 		sac_targetter.sac_targetted.Remove(target.real_name)
 	return ..()
+
+/obj/item/living_heart/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
+	. = ..()
+	if(COOLDOWN_FINISHED(src, cooldown))
+		LAZYSET(context[SCREENTIP_CONTEXT_ALT_LMB], INTENT_ANY, reset ? "Restart" : "Restart")
+	return CONTEXTUAL_SCREENTIP_SET
+
+/obj/item/living_heart/process(delta_time)
+	. = ..()
+	if(COOLDOWN_FINISHED(src, cooldown))
+		COOLDOWN_START(src, cooldown, 300 SECONDS)
+		playsound(src, 'sound/misc/bloop.ogg', 50, FALSE)
+		var/mob/living/carbon/human/H = target
+		if(sac_targetter)
+			sac_targetter.sac_targetted.Remove(H.real_name)
+		target = null
+		reset = FALSE
 
 /obj/item/living_heart/attack_self(mob/user)
 	. = ..()
@@ -29,19 +48,30 @@
 	var/dir = get_dir(user.loc,target.loc)
 
 	if(user.z != target.z)
+		user.balloon_alert(user,"<span class='warning'>[target.real_name] is on another plane of existance!</span>")
 		to_chat(user,"<span class='warning'>[target.real_name] is on another plane of existance!</span>")
 	else
 		switch(dist)
 			if(0 to 15)
+				user.balloon_alert(user,"<span class='warning'>[target.real_name] is near you. They are to the [dir2text(dir)] of you!</span>")
+
 				to_chat(user,"<span class='warning'>[target.real_name] is near you. They are to the [dir2text(dir)] of you!</span>")
 			if(16 to 31)
+				user.balloon_alert(user,"<span class='warning'>[target.real_name] is somewhere in your vicinity. They are to the [dir2text(dir)] of you!</span>")
+
 				to_chat(user,"<span class='warning'>[target.real_name] is somewhere in your vicinity. They are to the [dir2text(dir)] of you!</span>")
 			if(32 to 127)
+				user.balloon_alert(user,"<span class='warning'>[target.real_name] is far away from you. They are to the [dir2text(dir)] of you!</span>")
+
 				to_chat(user,"<span class='warning'>[target.real_name] is far away from you. They are to the [dir2text(dir)] of you!</span>")
 			else
+				user.balloon_alert(user,"<span class='warning'>[target.real_name] is beyond our reach.</span>")
+
 				to_chat(user,"<span class='warning'>[target.real_name] is beyond our reach.</span>")
 
 	if(target.stat == DEAD)
+		user.balloon_alert(user,"<span class='warning'>[target.real_name] is dead. Bring them onto a transmutation rune!</span>")
+
 		to_chat(user,"<span class='warning'>[target.real_name] is dead. Bring them onto a transmutation rune!</span>")
 
 /obj/item/melee/sickly_blade
@@ -57,10 +87,12 @@
 	flags_1 = CONDUCT_1
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 17
-	throwforce = 10
+	force = 28
+	throwforce = 15
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "tore", "lacerated", "ripped", "diced", "rended")
+	wound_bonus = 30
+	bare_wound_bonus = 35
 
 /obj/item/melee/sickly_blade/attack(mob/living/target, mob/living/user)
 	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
@@ -117,22 +149,20 @@
 	desc = "Molten and unwrought, a hunk of metal warped to cinders and slag. Unmade, it aspires to be more than it is, and shears soot-filled wounds with a blunt edge."
 	icon_state = "ash_blade"
 	item_state = "ash_blade"
-	force = 20
+	force = 35
 
 /obj/item/melee/sickly_blade/flesh
 	name = "flesh blade"
 	desc = "A crescent blade born from a fleshwarped creature. Keenly aware, it seeks to spread to others the suffering it has endured from its dreadful origins."
 	icon_state = "flesh_blade"
 	item_state = "flesh_blade"
-	wound_bonus = 10
-	bare_wound_bonus = 20
 
 /obj/item/melee/sickly_blade/void
 	name = "void blade"
 	desc = "Devoid of any substance, this blade reflects nothingness. It is a real depiction of purity, and chaos that ensues after its implementation."
 	icon_state = "void_blade"
 	item_state = "void_blade"
-	throwforce = 25
+	throwforce = 35
 
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
@@ -166,6 +196,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	flash_protect = 2
+	alternate_screams = BLOOD_SCREAMS
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch
 	name = "ominous armor"
@@ -179,6 +210,7 @@
 	// slightly better than normal cult robes
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50,ENERGY = 50, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20)
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+	alternate_screams = BLOOD_SCREAMS
 
 /obj/item/reagent_containers/glass/beaker/eldritch
 	name = "flask of eldritch essence"
@@ -287,9 +319,9 @@
 	flags_1 = CONDUCT_1
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_SMALL
-	wound_bonus = 20
-	force = 10
-	throwforce = 20
+	wound_bonus = 30
+	force = 35
+	throwforce = 30
 	embedding = list(embed_chance=75, jostle_chance=2, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=3, jostle_pain_mult=5, rip_time=15)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "tore", "lacerated", "ripped", "diced", "rended")
