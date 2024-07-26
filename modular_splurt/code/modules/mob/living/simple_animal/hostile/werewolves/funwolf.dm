@@ -20,11 +20,6 @@
 	melee_damage_upper = 0
 	stop_automated_movement_when_pulled = 1
 
-/mob/living/simple_animal/hostile/werewolf/funwolf/abomination
-	name = "Exiled Werewolf"
-	desc = "A massive, wolf like creature with powerful muscles, razor-sharp claws, and aggression to match. This one has a strange smell for some reason.."
-	werewolf_mode = "abomination"
-
 /mob/living/simple_animal/hostile/werewolf/funwolf/AttackingTarget()
 	var/mob/living/M = target
 
@@ -137,18 +132,6 @@
 				return
 			if(tearSlot(M, ITEM_SLOT_MASK))
 				return
-
-			// Abomination deathclaws do other stuff instead
-			if(werewolf_mode == "abomination" && M.client?.prefs.unholypref == "Yes")
-				if(prob(1))
-					do_faceshit(M)
-				else
-					do_facefart(M)
-				handle_post_sex(25, null, M)
-				shake_camera(M, 6, 1)
-			else
-				I = SSinteractions.interactions["/datum/interaction/lewd/throatfuck"]
-				I.display_interaction(src, M)
 
 /mob/living/simple_animal/hostile/werewolf/funwolf/cum(mob/living/M)
 
@@ -350,18 +333,6 @@
 				return
 			if(tearSlot(M, ITEM_SLOT_MASK))
 				return
-
-			// Abomination deathclaws do other stuff instead
-			if(werewolf_mode == "abomination" && M.client?.prefs.unholypref == "Yes")
-				if(prob(1))
-					do_faceshit(M)
-				else
-					do_facefart(M)
-				handle_post_sex(25, null, M)
-				shake_camera(M, 6, 1)
-			else
-				I = SSinteractions.interactions["/datum/interaction/lewd/throatfuck"]
-				I.display_interaction(src, M)
 
 /mob/living/simple_animal/hostile/ice_wolf/funwolf/cum(mob/living/M)
 
@@ -565,18 +536,6 @@
 			if(tearSlot(M, ITEM_SLOT_MASK))
 				return
 
-			// Abomination deathclaws do other stuff instead
-			if(werewolf_mode == "abomination" && M.client?.prefs.unholypref == "Yes")
-				if(prob(1))
-					do_faceshit(M)
-				else
-					do_facefart(M)
-				handle_post_sex(25, null, M)
-				shake_camera(M, 6, 1)
-			else
-				I = SSinteractions.interactions["/datum/interaction/lewd/throatfuck"]
-				I.display_interaction(src, M)
-
 /mob/living/simple_animal/hostile/hellhound/funwolf/cum(mob/living/M)
 
 	if(get_refraction_dif() > 0)
@@ -778,18 +737,6 @@
 				return
 			if(tearSlot(M, ITEM_SLOT_MASK))
 				return
-
-			// Abomination deathclaws do other stuff instead
-			if(werewolf_mode == "abomination" && M.client?.prefs.unholypref == "Yes")
-				if(prob(1))
-					do_faceshit(M)
-				else
-					do_facefart(M)
-				handle_post_sex(25, null, M)
-				shake_camera(M, 6, 1)
-			else
-				I = SSinteractions.interactions["/datum/interaction/lewd/throatfuck"]
-				I.display_interaction(src, M)
 
 /mob/living/simple_animal/hostile/the_mosley/funwolf/cum(mob/living/M)
 
