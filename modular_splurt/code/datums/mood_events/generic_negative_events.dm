@@ -1,6 +1,6 @@
 /datum/mood_event/masked_mook_incomplete
 	description = span_warning("I feel incomplete without a gas mask...\n")
-	mood_change = -4
+	mood_change = -3 // 1 ponto a menos
 
 /datum/mood_event/creampie/cheesed
 	description = span_warning("I've been cheesed. Tastes like cheese.\n")
@@ -13,16 +13,16 @@
 		return .
 	if(iscatperson(actual_owner))
 		description = span_warning("<b>CHEESE!!! WAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!</b>\n")
-		mood_change = -5
+		mood_change = -10 //fvck cat niggers
 		timeout = 5 MINUTES
 
 /datum/mood_event/nudist_negative
 	description = span_warning("I don't feel comfortable wearing this.\n")
-	mood_change = -4
+	mood_change = -2 // não deveria nem ter trait dessa porra. TODO, Remover nudismo.
 
 /datum/mood_event/dorsualiphobic_mood_negative
 	description = span_warning("I can't let anyone find out if I'm wearing a backpack or not!\n")
-	mood_change = -4
+	mood_change = -3 //ditto da mascara
 
 // Matches drinking synth blood (drankblood_synth)
 /datum/mood_event/drankblood_slime
@@ -38,10 +38,10 @@
 // Matches drinking shared exotic blood
 /datum/mood_event/drankblood_insect
 	description = span_boldwarning("I drank an insect's hemolymph. What is wrong with me?\n")
-	mood_change = -2
+	mood_change = -1 //guh
 	timeout = 2 MINUTES
 
 /datum/mood_event/drankblood_xeno
 	description = span_boldwarning("I drank xenobiological blood. What is wrong with me?\n")
-	mood_change = -2
+	mood_change = -1 //guh
 	timeout = 2 MINUTES

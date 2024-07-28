@@ -1,3 +1,4 @@
+//tive que da revert infelizmente, tava dando erro em mapas e em um antag, depois nos ver como retirar
 #define POINT_TYPE_CARGO "cargo"
 #define POINT_TYPE_SCIENCE "science"
 
