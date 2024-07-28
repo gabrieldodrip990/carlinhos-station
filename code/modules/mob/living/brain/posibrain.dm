@@ -202,6 +202,9 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(!brainmob?.mind || !brainmob)
 		to_chat(user, span_notice("You press the button and release it, but nothing happens because the positronic brain is inactive."))
 		return
+	else if(brainmob.ckey == user.ckey)
+		to_chat(brainmob, span_notice("You cannot press your button itself, so nothing happens."))
+		return
 	to_ipc_posi(user)
 	to_chat(user, span_notice("You press the button to transform the positronic brain into an IPC brain."))
 
